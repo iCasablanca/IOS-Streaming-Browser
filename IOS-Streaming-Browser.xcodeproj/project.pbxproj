@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECE61A0C137C3E5F00622B58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE61A0B137C3E5F00622B58 /* UIKit.framework */; };
+		ECE61A0E137C3E5F00622B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE61A0D137C3E5F00622B58 /* Foundation.framework */; };
+		ECE61A10137C3E5F00622B58 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE61A0F137C3E5F00622B58 /* CoreGraphics.framework */; };
+		ECE61A16137C3E5F00622B58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECE61A14137C3E5F00622B58 /* InfoPlist.strings */; };
+		ECE61A19137C3E5F00622B58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE61A18137C3E5F00622B58 /* main.m */; };
+		ECE61A1C137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE61A1B137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.m */; };
+		ECE61A1F137C3E5F00622B58 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE61A1D137C3E5F00622B58 /* MainWindow.xib */; };
+		ECE61A22137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE61A21137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.m */; };
+		ECE61A25137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE61A23137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ECE61A07137C3E5F00622B58 /* IOS-Streaming-Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS-Streaming-Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE61A0B137C3E5F00622B58 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ECE61A0D137C3E5F00622B58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ECE61A0F137C3E5F00622B58 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ECE61A13137C3E5F00622B58 /* IOS-Streaming-Browser-Info.plist */ = {isa = PBXFileReference; path = "IOS-Streaming-Browser-Info.plist"; sourceTree = "<group>"; };
+		ECE61A15137C3E5F00622B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECE61A17137C3E5F00622B58 /* IOS-Streaming-Browser-Prefix.pch */ = {isa = PBXFileReference; path = "IOS-Streaming-Browser-Prefix.pch"; sourceTree = "<group>"; };
+		ECE61A18137C3E5F00622B58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ECE61A1A137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.h */ = {isa = PBXFileReference; path = IOS_Streaming_BrowserAppDelegate.h; sourceTree = "<group>"; };
+		ECE61A1B137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOS_Streaming_BrowserAppDelegate.m; sourceTree = "<group>"; };
+		ECE61A1E137C3E5F00622B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		ECE61A20137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.h */ = {isa = PBXFileReference; path = IOS_Streaming_BrowserViewController.h; sourceTree = "<group>"; };
+		ECE61A21137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOS_Streaming_BrowserViewController.m; sourceTree = "<group>"; };
+		ECE61A24137C3E5F00622B58 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IOS_Streaming_BrowserViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECE61A04137C3E5F00622B58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE61A0C137C3E5F00622B58 /* UIKit.framework in Frameworks */,
+				ECE61A0E137C3E5F00622B58 /* Foundation.framework in Frameworks */,
+				ECE61A10137C3E5F00622B58 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECE619FC137C3E5E00622B58 = {
+			isa = PBXGroup;
+			children = (
+				ECE61A11137C3E5F00622B58 /* IOS-Streaming-Browser */,
+				ECE61A0A137C3E5F00622B58 /* Frameworks */,
+				ECE61A08137C3E5F00622B58 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECE61A08137C3E5F00622B58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECE61A07137C3E5F00622B58 /* IOS-Streaming-Browser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECE61A0A137C3E5F00622B58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECE61A0B137C3E5F00622B58 /* UIKit.framework */,
+				ECE61A0D137C3E5F00622B58 /* Foundation.framework */,
+				ECE61A0F137C3E5F00622B58 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECE61A11137C3E5F00622B58 /* IOS-Streaming-Browser */ = {
+			isa = PBXGroup;
+			children = (
+				ECE61A1A137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.h */,
+				ECE61A1B137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.m */,
+				ECE61A1D137C3E5F00622B58 /* MainWindow.xib */,
+				ECE61A20137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.h */,
+				ECE61A21137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.m */,
+				ECE61A23137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.xib */,
+				ECE61A12137C3E5F00622B58 /* Supporting Files */,
+			);
+			path = "IOS-Streaming-Browser";
+			sourceTree = "<group>";
+		};
+		ECE61A12137C3E5F00622B58 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECE61A13137C3E5F00622B58 /* IOS-Streaming-Browser-Info.plist */,
+				ECE61A14137C3E5F00622B58 /* InfoPlist.strings */,
+				ECE61A17137C3E5F00622B58 /* IOS-Streaming-Browser-Prefix.pch */,
+				ECE61A18137C3E5F00622B58 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECE61A06137C3E5F00622B58 /* IOS-Streaming-Browser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECE61A28137C3E5F00622B58 /* Build configuration list for PBXNativeTarget "IOS-Streaming-Browser" */;
+			buildPhases = (
+				ECE61A03137C3E5F00622B58 /* Sources */,
+				ECE61A04137C3E5F00622B58 /* Frameworks */,
+				ECE61A05137C3E5F00622B58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "IOS-Streaming-Browser";
+			productName = "IOS-Streaming-Browser";
+			productReference = ECE61A07137C3E5F00622B58 /* IOS-Streaming-Browser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECE619FE137C3E5F00622B58 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = ECE61A01137C3E5F00622B58 /* Build configuration list for PBXProject "IOS-Streaming-Browser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ECE619FC137C3E5E00622B58;
+			productRefGroup = ECE61A08137C3E5F00622B58 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECE61A06137C3E5F00622B58 /* IOS-Streaming-Browser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECE61A05137C3E5F00622B58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE61A16137C3E5F00622B58 /* InfoPlist.strings in Resources */,
+				ECE61A1F137C3E5F00622B58 /* MainWindow.xib in Resources */,
+				ECE61A25137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECE61A03137C3E5F00622B58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE61A19137C3E5F00622B58 /* main.m in Sources */,
+				ECE61A1C137C3E5F00622B58 /* IOS_Streaming_BrowserAppDelegate.m in Sources */,
+				ECE61A22137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ECE61A14137C3E5F00622B58 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECE61A15137C3E5F00622B58 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		ECE61A1D137C3E5F00622B58 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECE61A1E137C3E5F00622B58 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		ECE61A23137C3E5F00622B58 /* IOS_Streaming_BrowserViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECE61A24137C3E5F00622B58 /* en */,
+			);
+			name = IOS_Streaming_BrowserViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ECE61A26137C3E5F00622B58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		ECE61A27137C3E5F00622B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		ECE61A29137C3E5F00622B58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IOS-Streaming-Browser/IOS-Streaming-Browser-Prefix.pch";
+				INFOPLIST_FILE = "IOS-Streaming-Browser/IOS-Streaming-Browser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ECE61A2A137C3E5F00622B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IOS-Streaming-Browser/IOS-Streaming-Browser-Prefix.pch";
+				INFOPLIST_FILE = "IOS-Streaming-Browser/IOS-Streaming-Browser-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECE61A01137C3E5F00622B58 /* Build configuration list for PBXProject "IOS-Streaming-Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE61A26137C3E5F00622B58 /* Debug */,
+				ECE61A27137C3E5F00622B58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECE61A28137C3E5F00622B58 /* Build configuration list for PBXNativeTarget "IOS-Streaming-Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECE61A29137C3E5F00622B58 /* Debug */,
+				ECE61A2A137C3E5F00622B58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECE619FE137C3E5F00622B58 /* Project object */;
+}
