@@ -2,13 +2,14 @@
 // Prefix header for all source files of the 'IOS-Streaming-Browser' target in the 'IOS-Streaming-Browser' project
 //
 
-#import <Availability.h>
-
-#ifndef __IPHONE_3_0
-#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #endif
 
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 40200
+#define UIUserInterfaceIdiomPhone 1
+#define UIUserInterfaceIdiomPad 2
+#define UI_USER_INTERFACE_IDIOM() UIUserInterfaceIdiomPhone
 #endif
