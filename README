@@ -6,8 +6,21 @@ This is a port of the CocoaHTTPServer, and it designed primarily for students, t
 
 It can also be used in small group environments, to steam the content directly to other mobile devices.
 
+**********************************************************
+* Why is this needed, and why use this application       *
+**********************************************************
 
-Status of development:
-----------------------
-5/14/11:  Redid the core of the project to match the current CocoaHTTPServer version.  The previous version was based on an old CocoaHTTPServer version which had memory leaks.
+This application is needed for two reasons.  
+
+1.  Schools have designed their network to filter content at the network level, however, as they attempt to integrate mobile devices, they will need to ensure content is filtered on whatever network the devices is connected to.  For example, if the students are allowed to take the device home, a school may still be responsible for the content which the students access on the device.   
+
+2.  The second reason this application is needed, is to have the ability to view a students content if needed.  This feature is available via the embedded HTTP server installed within the application.  This allows teachers to view a single iPad/iTouch, or multiple devices at the single time.  This feature provides an added layer of protection on top of the browser filtering capability, and can also be utilized to allow students to broadcast a presentation to other students or a teacher's projector.
+
+
+**********************************************************
+* Status of development:                                 *
+**********************************************************
+5/14/11 -   Redid the core of the project to match the current CocoaHTTPServer version.  The previous version was based on an old CocoaHTTPServer version which had memory leaks.
+
+
 

@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>IOS Streaming Browser</title>
+<script language="JavaScript"><!--
+    function refreshIt(){
+        if (!document.images) return;
+        document.images['myImage'].src='1.png?'+Math.random();
+        setTimeout('refreshIt()',1000);
+        
+    }
+    //--></script>
+</head>
+<body onLoad=setTimeout('refreshIt()',1000) bgcolor="#FFFFFF">
+    <img src="1.png" name="myImage">
+
+
+</body>
+</html>
