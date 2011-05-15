@@ -1,1 +1,8 @@
-Test
+Welcome to IOS-Streaming Browser!
+
+This project provides you (the developer) with an embedded HTTP server which steams the web browser's view as screen captures to remote users and devices.  
+
+This is a port of the CocoaHTTPServer, and it designed primarily for students, teachers, and learning environments.  The intent is to allow students to develop content and briefings, and then broadcast the presentation to a main projector.
+
+It can also be used in small group environments, to steam the content directly to other mobile devices.
+
