@@ -6,3 +6,8 @@ This is a port of the CocoaHTTPServer, and it designed primarily for students, t
 
 It can also be used in small group environments, to steam the content directly to other mobile devices.
 
+
+Status of development:
+----------------------
+5/14/11:  Redid the core of the project to match the current CocoaHTTPServer version.  The previous version was based on an old CocoaHTTPServer version which had memory leaks.
+

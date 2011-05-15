@@ -290,11 +290,6 @@
 
     
     [super viewDidLoad];
-
- 
-    
-    
-   
     
     // Adds an observer to the local notification center to call the
     // displayInfoUpdate method once the local host is resolved
@@ -311,17 +306,10 @@
 	NSURL *url = [NSURL URLWithString:urlAddress];
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
+    
+    
 	[webView loadRequest:requestObj];
 	[addressBar setText:urlAddress];
-    
-    
-    //displayInfo.text = @"None";
-    
-    // Create a view of the standard size at the bottom of the screen.
-    
- 
-
-    
 }
 
 /*
@@ -384,8 +372,15 @@
     // Creates a request for the URL in the address bar
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
+    
+    
+    
+    
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
+    
+    
+    
     
     // Set the address bar as the first responder
 	[addressBar resignFirstResponder];
@@ -425,7 +420,7 @@
  */
 -(IBAction) goHome:(id)sender {
     // Set the defaults web address to load
-    NSString *urlAddress = @"http://google.com";
+    NSString *urlAddress = @"shttp://www.google.com/search?client=safari&rls=en&q=google.com&ie=UTF-8&oe=UTF-8";
 	
 	NSURL *url = [NSURL URLWithString:urlAddress];
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
