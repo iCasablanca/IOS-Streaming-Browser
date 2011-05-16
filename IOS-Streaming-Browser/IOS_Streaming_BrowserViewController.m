@@ -10,7 +10,11 @@
 #import "HTTPServer.h"
 #import "HTTPConnection.h"
 #import "localhostAddresses.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
+// Log levels: off, error, warn, info, verbose
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 
@@ -30,11 +34,13 @@
 @synthesize activityIndicator;
 
 
+
 /*
  Deallocate the object
  */
 - (void)dealloc
 {
+
     [httpServer release];
     [clockTimer invalidate]; clockTimer = nil;
 	[assetWriterTimer invalidate]; assetWriterTimer = nil;
@@ -156,7 +162,7 @@
     
 	NSString *imagePath = [[self pathToDocumentsDirectory] stringByAppendingPathComponent:imageName];
     
-    //NSLog(@"Image Name is: %@",imagePath);
+    // DDLogError(@"Image Name is: %@",imagePath);
     
     // Check if a file already exists, and if so, remove it
 	if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
@@ -168,7 +174,7 @@
     
     [UIImagePNGRepresentation([self screenshot]) writeToFile:imagePath atomically:YES];
     
-    //NSLog (@"made screenshot");
+    // DDLogError (@"made screenshot");
     
 }
 
@@ -203,12 +209,12 @@
 	//NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
     //[httpServer setDocumentRoot:webPath];
     
-	//NSLog(@"Setting document root: %@", webPath);
-    //NSLog(@"root is: %@",root);
+	// DDLogError(@"Setting document root: %@", webPath);
+    // DDLogError(@"root is: %@",root);
 	[httpServer setDocumentRoot:[NSURL fileURLWithPath:root]];
 	[httpServer setDocumentRoot:root];
     
-    //NSLog(@"Setting document root: %@", [NSURL fileURLWithPath:root]);
+    // DDLogError(@"Setting document root: %@", [NSURL fileURLWithPath:root]);
 
 	// Start the server (and check for problems)
     NSError *error;
@@ -216,7 +222,7 @@
     // Try and start the http server
     if(![httpServer start:&error])
     {
-        NSLog(@"Error starting HTTP Server: %@", error);
+            DDLogError(@"Error starting HTTP Server: %@", error);
     }
     
     // Set the display information for the main browser view to nil because this will be updated with the actual IP address and port once it is obtained from the wireless router
@@ -255,12 +261,12 @@
  Stop recording images
  */
 -(void) stopRecording {
-
+    DDLogError(@"stopRecording");
     [httpServer stop];
 	[assetWriterTimer invalidate]; // invalidate the timer
 	assetWriterTimer = nil;
 	[assetWriter finishWriting]; // Completes the writing of the output file.
-	NSLog (@"finished writing");
+	DDLogError (@"finished writing");
     
     // Clear images from directory
     // Check if a file already exists, and if so, remove it
@@ -271,7 +277,7 @@
 	
     if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
         [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
-        // NSLog(@"File removed");
+        // DDLogError(@"File removed");
     }
 }
 
@@ -279,17 +285,20 @@
 #pragma mark - View lifecycle
 
 - (void) viewWillAppear:(BOOL)animated {
-    //[self refresh];
-    //[self fixupAdView:[UIDevice currentDevice].orientation];
+    DDLogError(@"viewWillAppear");
 }
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    DDLogError(@"viewDidLoad");
 
     
     [super viewDidLoad];
+    
+    
+    
     
     // Adds an observer to the local notification center to call the
     // displayInfoUpdate method once the local host is resolved
@@ -297,19 +306,27 @@
     
     
 	[localhostAddresses performSelectorInBackground:@selector(list) withObject:nil];
+
+    
     
     // Set the defaults web address to load by creating a 
     // string, then converting the string to a URL.  The URL is
     // then put inside a URL request
-    NSString *urlAddress = @"http://google.com";
-	
+    NSString *urlAddress = @"http://www.google.com/webhp?safe=strict";
+
+
+    
 	NSURL *url = [NSURL URLWithString:urlAddress];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+	
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
     
+
     
+    webView.delegate = self;
 	[webView loadRequest:requestObj];
 	[addressBar setText:urlAddress];
+    
 }
 
 /*
@@ -317,14 +334,14 @@
  */
 - (void)viewDidUnload
 {
+    DDLogError(@"viewDidUnload");
   
-    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     [self stopHttpServer];
+    
 }
-
 
 /*
  Whether the screen should autorotate
@@ -341,20 +358,20 @@
 /*
  Upon the start/stop button being pressed
  */
--(IBAction) handleStartStopTapped: (id) sender {
+-(IBAction) handleStartStopTapped: (id) sender 
+{
+    DDLogError(@"handleStartStopTapped");
+    
 	if (self.startStopButton.selected) { // stop recording and deselect
 		[self stopRecording];
 
 		self.startStopButton.selected = NO;
-        
         
         [startStopButton setTitle:@"Start Broadcasting" forState:UIControlStateNormal];
 	} else { // start recording and set the button as selected
 		[self startRecording];
 
 		self.startStopButton.selected = YES;
-        
-          
         
         [startStopButton setTitle:@"Stop Broadcasting" forState:UIControlStateSelected];
 	}
@@ -364,23 +381,19 @@
  Gets the address from the address bar, and updates
  the webview with the requested URL
  */
--(IBAction)gotoAddress:(id) sender {
+-(IBAction)gotoAddress:(id) sender 
+{
+    DDLogError(@"gotoAddress");
     
     // Gets the text from the address bar
 	NSURL *url = [NSURL URLWithString:[addressBar text]];
+        
     
     // Creates a request for the URL in the address bar
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
-    
-    
-    
-    
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
-    
-    
-    
     
     // Set the address bar as the first responder
 	[addressBar resignFirstResponder];
@@ -389,14 +402,20 @@
 /*
  Upon the back button being pressed on the webview
  */
--(IBAction) goBack:(id)sender {
+-(IBAction) goBack:(id)sender 
+{
+    DDLogError(@"goBack");
+    
 	[webView goBack];
 }
 
 /*
  Upon the configure button being pressed
  */
--(IBAction) configureButton:(id)sender {
+-(IBAction) configureButton:(id)sender 
+{
+    DDLogError(@"configureButton");
+    
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Note"
                                                     message:@"Feature not available in free version"
                                                    delegate:nil
@@ -410,7 +429,10 @@
 /*
  Upon the forward button being pressed on the webview
  */
--(IBAction) goForward:(id)sender {
+-(IBAction) goForward:(id)sender 
+{
+    DDLogError(@"goForward");
+    
 	[webView goForward];
 }
 
@@ -419,34 +441,71 @@
  Upon the Home button being pressed on the webview
  */
 -(IBAction) goHome:(id)sender {
+    DDLogError(@"goHome");
+    
+    
     // Set the defaults web address to load
-    NSString *urlAddress = @"shttp://www.google.com/search?client=safari&rls=en&q=google.com&ie=UTF-8&oe=UTF-8";
+    NSString *urlAddress = @"http://www.google.com/webhp?safe=strict";
 	
 	NSURL *url = [NSURL URLWithString:urlAddress];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+	
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+	
+
+
+   
 	
 	[webView loadRequest:requestObj];
 	[addressBar setText:urlAddress];
 }
 
 
-/*
- Starts webview with a specific page
- */
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
+{
+    
+    DDLogError(@"webView shouldStartLoadWithRequest");
     
 	//CAPTURE USER LINK-CLICK.
-	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        
+	if (navigationType == UIWebViewNavigationTypeLinkClicked) 
+    {
+        DDLogError(@"is a link click");
 		NSURL *URL = [request URL];	
-        
-		if ([[URL scheme] isEqualToString:@"http"]) {
+        DDLogError(@"URL is: %@",[URL absoluteString]);
+
+		if (([[URL scheme] isEqualToString:@"http"])||([[URL scheme] isEqualToString:@"https"])) 
+        {
+            if ([[URL absoluteString]isEqualToString:@"http://www.google.com/webhp?hl=en&tab=ww"] ) {
+                NSLog(@"URL is blank.html");
+
+                
+                NSURL *myUrl = [NSURL URLWithString:@"http://www.google.com/webhp?safe=strict"];
+                
+                NSURLRequest *requestObj = [NSURLRequest requestWithURL:myUrl];
+                
+                [self.webView loadRequest:requestObj];
+                
+                return YES;
+            }
+            
 			[addressBar setText:[URL absoluteString]];
+            DDLogError(@"baseURL is: %@",[URL baseURL]);
+            DDLogError(@"host: %@",[URL host]);
 			[self gotoAddress:nil];
-		}	 
-		return NO;
-	}	
-	return YES;   
+		}else // set the addressbar but dont' return anything to the user
+        {	 
+            [addressBar setText:[URL absoluteString]];
+            return NO;
+        }
+	}else
+    {
+        DDLogError(@"not a link click");
+        NSURL *URL = [request URL];	
+        DDLogError(@"baseURL is: %@",[URL baseURL]);
+        [addressBar setText:[URL absoluteString]];
+        return YES;
+    }
+    return NO;
 }
 
 
@@ -454,8 +513,11 @@
  Start the activity indicator when the webview
  starts loading a webpage
  */
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView 
+{
+   
     
+    DDLogError(@"webViewDidStartLoad");
 	[activityIndicator startAnimating];
 }
 
@@ -464,8 +526,10 @@
  Stop the activity indicator when the webview
  finishes loading the webpage
  */
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView 
+{
     
+   DDLogError(@"webViewDidFinishLoad");
 	[activityIndicator stopAnimating];
 }
 
@@ -475,13 +539,13 @@
  */
 - (void)displayInfoUpdate:(NSNotification *) notification
 {
-	NSLog(@"displayInfoUpdate:");
+	DDLogError(@"displayInfoUpdate:");
     
 	if(notification)
 	{
 		[addresses release];
 		addresses = [[notification object] copy];
-		NSLog(@"addresses: %@", addresses);
+		DDLogError(@"addresses: %@", addresses);
 	}
     
     // Return if the notification doesn't contain an address
@@ -514,9 +578,4 @@
     
 	displayInfo.text = info;
 }
-
-
-
-
-
 @end

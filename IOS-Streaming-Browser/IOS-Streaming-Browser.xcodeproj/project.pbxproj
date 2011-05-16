@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC7CC649138161E8001B5D70 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC642138161E8001B5D70 /* DDLog.m */; };
+		EC7CC64A138161E8001B5D70 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC644138161E8001B5D70 /* DDTTYLogger.m */; };
+		EC7CC64B138161E8001B5D70 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC646138161E8001B5D70 /* DDASLLogger.m */; };
+		EC7CC64C138161E8001B5D70 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC648138161E8001B5D70 /* DDFileLogger.m */; };
 		ECA7E4DD137CD6520046380A /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E4DC137CD6520046380A /* GCDAsyncSocket.m */; };
 		ECA7E4EB137CD6890046380A /* HTTPAuthenticationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E4E1137CD6890046380A /* HTTPAuthenticationRequest.m */; };
 		ECA7E4EC137CD6890046380A /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E4E3137CD6890046380A /* HTTPServer.m */; };
@@ -25,7 +29,6 @@
 		ECE098161380168700D8AB16 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE098151380168700D8AB16 /* MainWindow_iPad.xib */; };
 		ECE0982A13806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0982813806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m */; };
 		ECE0982F13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0982C13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m */; };
-		ECE0983013806DFD00D8AB16 /* IOS-Streaming-Browser-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE0982D13806DFD00D8AB16 /* IOS-Streaming-Browser-Info.plist */; };
 		ECE0983313806E2700D8AB16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0983213806E2700D8AB16 /* main.m */; };
 		ECE61A0C137C3E5F00622B58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE61A0B137C3E5F00622B58 /* UIKit.framework */; };
 		ECE61A0E137C3E5F00622B58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE61A0D137C3E5F00622B58 /* Foundation.framework */; };
@@ -49,6 +52,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC7CC641138161E8001B5D70 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		EC7CC642138161E8001B5D70 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		EC7CC643138161E8001B5D70 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		EC7CC644138161E8001B5D70 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		EC7CC645138161E8001B5D70 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		EC7CC646138161E8001B5D70 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		EC7CC647138161E8001B5D70 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		EC7CC648138161E8001B5D70 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
 		ECA7E4DB137CD6520046380A /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		ECA7E4DC137CD6520046380A /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		ECA7E4E0137CD6890046380A /* HTTPAuthenticationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAuthenticationRequest.h; sourceTree = "<group>"; };
@@ -130,6 +141,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC7CC640138161D5001B5D70 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				EC7CC641138161E8001B5D70 /* DDLog.h */,
+				EC7CC642138161E8001B5D70 /* DDLog.m */,
+				EC7CC643138161E8001B5D70 /* DDTTYLogger.h */,
+				EC7CC644138161E8001B5D70 /* DDTTYLogger.m */,
+				EC7CC645138161E8001B5D70 /* DDASLLogger.h */,
+				EC7CC646138161E8001B5D70 /* DDASLLogger.m */,
+				EC7CC647138161E8001B5D70 /* DDFileLogger.h */,
+				EC7CC648138161E8001B5D70 /* DDFileLogger.m */,
+			);
+			name = Logging;
+			sourceTree = "<group>";
+		};
 		ECA7E4DE137CD6750046380A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +177,7 @@
 		ECE619FC137C3E5E00622B58 = {
 			isa = PBXGroup;
 			children = (
+				EC7CC640138161D5001B5D70 /* Logging */,
 				ECE61A38137C3E8400622B58 /* TCP */,
 				ECE61A3C137C3E9C00622B58 /* HTTP */,
 				ECE61A88137C444B00622B58 /* Classes */,
@@ -236,7 +263,6 @@
 		ECE61A71137C405000622B58 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ECE0982D13806DFD00D8AB16 /* IOS-Streaming-Browser-Info.plist */,
 				ECE61A99137C4BBA00622B58 /* Images */,
 				ECE61A8F137C4B5A00622B58 /* Web */,
 				ECE61AC3137C5D2200622B58 /* MainWindow.xib */,
@@ -254,8 +280,8 @@
 				ECE61AB6137C552D00622B58 /* localhostAddresses.m */,
 				ECE0982813806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m */,
 				ECE0982913806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.h */,
-				ECE0982C13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m */,
 				ECE0982E13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.h */,
+				ECE0982C13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -263,6 +289,7 @@
 		ECE61A89137C44B400622B58 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				ECE0982D13806DFD00D8AB16 /* IOS-Streaming-Browser-Info.plist */,
 				ECE0983113806E1400D8AB16 /* IOS-Streaming-Browser-Prefix.pch */,
 				ECE0983213806E2700D8AB16 /* main.m */,
 			);
@@ -342,7 +369,6 @@
 				ECE61AA9137C4BD000622B58 /* Icon.png in Resources */,
 				ECE61AC4137C5D2200622B58 /* MainWindow.xib in Resources */,
 				ECE098161380168700D8AB16 /* MainWindow_iPad.xib in Resources */,
-				ECE0983013806DFD00D8AB16 /* IOS-Streaming-Browser-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +398,10 @@
 				ECE0982A13806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m in Sources */,
 				ECE0982F13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m in Sources */,
 				ECE0983313806E2700D8AB16 /* main.m in Sources */,
+				EC7CC649138161E8001B5D70 /* DDLog.m in Sources */,
+				EC7CC64A138161E8001B5D70 /* DDTTYLogger.m in Sources */,
+				EC7CC64B138161E8001B5D70 /* DDASLLogger.m in Sources */,
+				EC7CC64C138161E8001B5D70 /* DDFileLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

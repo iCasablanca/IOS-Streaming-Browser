@@ -12,7 +12,9 @@
 @class HTTPServer;
 
 
-@interface IOS_Streaming_BrowserViewController : UIViewController {
+// The UIWebViewDelegate is telling the app that this class will be 
+// the delegate for our UIWebview.  
+@interface IOS_Streaming_BrowserViewController : UIViewController <UIWebViewDelegate> {
     
   
     
@@ -41,6 +43,7 @@
     
     // The web view on the xib file
     IBOutlet UIWebView *webView;
+
     
     // the address bar in the xib file
     IBOutlet UITextField *addressBar;
@@ -59,6 +62,7 @@
     
     HTTPServer *httpServer;
     
+
 
 }
 
