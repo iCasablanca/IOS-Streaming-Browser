@@ -502,8 +502,27 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             NSHTTPCookie *myCookie = [NSHTTPCookie cookieWithProperties:properties];
             [cookieJar setCookie:myCookie];
             DDLogError(@"%@", myCookie);
-            
 
+        }else if (([[cookie name] isEqualToString:@"PREF"]) && ([[cookie domain] isEqualToString:@".google.com"]))
+        {
+            
+            DDLogError(@"%@", cookie);
+            NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:4];
+            
+            [properties setObject:@"PREF" forKey:NSHTTPCookieName];
+            NSString *myValue = [cookie value];
+            NSString *myNewValue;
+            myNewValue = [[myValue stringByReplacingOccurrencesOfString:@"FF=0" withString:@"FF=1"]stringByReplacingOccurrencesOfString:@"FF=4" withString:@"FF=1"];
+            
+            [properties setObject:myNewValue forKey:NSHTTPCookieValue];                                             
+            [properties setObject:[cookie domain] forKey:NSHTTPCookieDomain];
+            [properties setObject:[cookie path] forKey:@"Path"];
+            NSHTTPCookie *myCookie = [NSHTTPCookie cookieWithProperties:properties];
+                          
+            [cookieJar deleteCookie:cookie]; // delete old cookie
+            [cookieJar setCookie:myCookie]; // add new cookie
+            DDLogError(@"%@", myCookie);
+         
         }
     }
 
@@ -577,96 +596,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
     }else if(navigationType == UIWebViewNavigationTypeFormResubmitted){
         DDLogError(@"user resubmitted a form");
-        NSURL *URL = [request URL];	
-        DDLogError(@"URL is: %@",[URL absoluteString]);
-        DDLogError(@"absoluteString:%@",[URL absoluteString]);
-        DDLogError(@"absoluteURL:%@",[URL absoluteURL]);
-        DDLogError(@"baseURL:%@",[URL baseURL]);
-        DDLogError(@"fragment:%@",[URL fragment]);
-        DDLogError(@"host:%@",[URL host]);
-        DDLogError(@"lastPathComponent:%@",[URL lastPathComponent]);
-        DDLogError(@"parameterString:%@",[URL parameterString]);
-        DDLogError(@"password:%@",[URL password]);
-        DDLogError(@"path:%@",[URL path]);
-        DDLogError(@"pathComponents:%@",[URL pathComponents]);
-        DDLogError(@"pathExtension:%@",[URL pathExtension]);
-        DDLogError(@"port:%@",[URL port]);
-        DDLogError(@"query:%@",[URL query]);
-        DDLogError(@"relativePath:%@",[URL relativePath]);
-        DDLogError(@"relativeString:%@",[URL relativeString]);
-        DDLogError(@"resourceSpecifier:%@",[URL resourceSpecifier]);
-        DDLogError(@"scheme:%@",[URL scheme]);
-        DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
-        DDLogError(@"user:%@",[URL user]);
-
-
-        
-          
-        
         return YES;
         
     }else if(navigationType == UIWebViewNavigationTypeBackForward){
         DDLogError(@"user tapped the forward or back button");
-        NSURL *URL = [request URL];	
-        DDLogError(@"URL is: %@",[URL absoluteString]);
-        DDLogError(@"absoluteString:%@",[URL absoluteString]);
-        DDLogError(@"absoluteURL:%@",[URL absoluteURL]);
-        DDLogError(@"baseURL:%@",[URL baseURL]);
-        DDLogError(@"fragment:%@",[URL fragment]);
-        DDLogError(@"host:%@",[URL host]);
-        DDLogError(@"lastPathComponent:%@",[URL lastPathComponent]);
-        DDLogError(@"parameterString:%@",[URL parameterString]);
-        DDLogError(@"password:%@",[URL password]);
-        DDLogError(@"path:%@",[URL path]);
-        DDLogError(@"pathComponents:%@",[URL pathComponents]);
-        DDLogError(@"pathExtension:%@",[URL pathExtension]);
-        DDLogError(@"port:%@",[URL port]);
-        DDLogError(@"query:%@",[URL query]);
-        DDLogError(@"relativePath:%@",[URL relativePath]);
-        DDLogError(@"relativeString:%@",[URL relativeString]);
-        DDLogError(@"resourceSpecifier:%@",[URL resourceSpecifier]);
-        DDLogError(@"scheme:%@",[URL scheme]);
-        DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
-        DDLogError(@"user:%@",[URL user]);
-
-
-        
-        
-        
-           
-        
         return YES;
         
     }else if(navigationType == UIWebViewNavigationTypeReload){
         DDLogError(@"user tapped the reload button");
-        NSURL *URL = [request URL];	
-        DDLogError(@"URL is: %@",[URL absoluteString]);
-        DDLogError(@"absoluteString:%@",[URL absoluteString]);
-        DDLogError(@"absoluteURL:%@",[URL absoluteURL]);
-        DDLogError(@"baseURL:%@",[URL baseURL]);
-        DDLogError(@"fragment:%@",[URL fragment]);
-        DDLogError(@"host:%@",[URL host]);
-        DDLogError(@"lastPathComponent:%@",[URL lastPathComponent]);
-        DDLogError(@"parameterString:%@",[URL parameterString]);
-        DDLogError(@"password:%@",[URL password]);
-        DDLogError(@"path:%@",[URL path]);
-        DDLogError(@"pathComponents:%@",[URL pathComponents]);
-        DDLogError(@"pathExtension:%@",[URL pathExtension]);
-        DDLogError(@"port:%@",[URL port]);
-        DDLogError(@"query:%@",[URL query]);
-        DDLogError(@"relativePath:%@",[URL relativePath]);
-        DDLogError(@"relativeString:%@",[URL relativeString]);
-        DDLogError(@"resourceSpecifier:%@",[URL resourceSpecifier]);
-        DDLogError(@"scheme:%@",[URL scheme]);
-        DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
-        DDLogError(@"user:%@",[URL user]);
-
-
-        
-        
-          
-        
-        return YES;
+         return YES;
     }
     
 	//CAPTURE USER LINK-CLICK.
@@ -698,36 +636,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 		if (([[URL scheme] isEqualToString:@"http"])||([[URL scheme] isEqualToString:@"https"])) 
         {
             
-
-            
-           
-            if ([[URL host] isEqualToString:@"www.google.com"] && [[URL relativePath] isEqualToString:@"/webhp"]){
-//            if ([[URL absoluteString]isEqualToString:@"http://www.google.com/webhp?hl=en&tab=ww"] ) {
-                DDLogError(@"URL is blank.html");
-
-                
-                NSURL *myUrl = [NSURL URLWithString:@"http://www.google.com/webhp?safe=strict"];
-                
-                 request = [NSMutableURLRequest requestWithURL:myUrl];
-                
-                [self.webView loadRequest:request];
-                
-                return NO;
-            } 
-            else if (([[URL host] isEqualToString:@"www.youtube.com"]) || ([[URL host] isEqualToString:@"m.youtube.com"])){
-   
-                DDLogError(@"URL is youtube");
-                
-              //  request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.youtube.com"]];
-                
-              //  [self.webView loadRequest:request];
-                return YES;
-            }else {
                 [addressBar setText:[URL absoluteString]];
                 DDLogError(@"baseURL is: %@",[URL baseURL]);
                 DDLogError(@"host: %@",[URL host]);
                 [self gotoAddress:nil];
-            }
+            
 		}else // set the addressbar but dont' return anything to the user
         {	 
             [addressBar setText:[URL absoluteString]];
