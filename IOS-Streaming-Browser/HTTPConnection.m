@@ -11,9 +11,12 @@
 #import "HTTPFileResponse.h"
 #import "HTTPAsyncFileResponse.h"
 #import "WebSocket.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
 
-
-
+// Log levels: off, error, warn, info, verbose
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 // Define chunk size used to read in data for responses
 // This is how much data will be read from disk into RAM at a time
@@ -120,7 +123,7 @@ static NSMutableArray *recentNonces;
 **/
 - (id)initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig
 {
-    NSLog(@"initWithAsyncSocket");
+    DDLogError(@"initWithAsyncSocket");
     
 	if ((self = [super init]))
 	{
@@ -200,7 +203,7 @@ static NSMutableArray *recentNonces;
 **/
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
-	NSLog(@"supportsMethod: method: %@, path: %@",method,path);
+	DDLogError(@"supportsMethod: method: %@, path: %@",method,path);
     
 	// Override me to support methods such as POST.
 	// 
@@ -233,7 +236,7 @@ static NSMutableArray *recentNonces;
 **/
 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path
 {
-    NSLog(@"expectsRequestBodyFromMethod: method: %@, path: %@",method,path);
+    DDLogError(@"expectsRequestBodyFromMethod: method: %@, path: %@",method,path);
 	
 	// Override me to add support for other methods that expect the client
 	// to send a body along with the request header.
@@ -549,7 +552,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)start
 {
-    NSLog(@"start");
+    DDLogError(@"start");
     
 	dispatch_async(connectionQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -569,7 +572,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)stop
 {
-    NSLog(@"stop");
+    DDLogError(@"stop");
     
 	dispatch_async(connectionQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -587,7 +590,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)startConnection
 {
-    NSLog(@"startConnection");
+    DDLogError(@"startConnection");
     
 	// Override me to do any custom work before the connection starts.
 	// 
@@ -629,7 +632,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)startReadingRequest
 {
-	NSLog(@"startReadingRequest");
+	DDLogError(@"startReadingRequest");
     
 	[asyncSocket readDataToData:[GCDAsyncSocket CRLFData]
 	                withTimeout:TIMEOUT_READ_FIRST_HEADER_LINE
@@ -649,7 +652,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSDictionary *)parseParams:(NSString *)query
 {
-    NSLog(@"parseParams: %@",query);
+    DDLogError(@"parseParams: %@",query);
     
 	NSArray *components = [query componentsSeparatedByString:@"&"];
 	NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:[components count]];
@@ -705,7 +708,7 @@ static NSMutableArray *recentNonces;
 **/ 
 - (NSDictionary *)parseGetParams 
 {
-    NSLog(@"parseGetParams");
+    DDLogError(@"parseGetParams");
     
 	if(![request isHeaderComplete]) return nil;
 	
@@ -731,7 +734,7 @@ static NSMutableArray *recentNonces;
  **/
 - (BOOL)parseRangeRequest:(NSString *)rangeHeader withContentLength:(UInt64)contentLength
 {
-	NSLog(@"parseRangeRequest: %@, %llu",rangeHeader,contentLength);
+	DDLogError(@"parseRangeRequest: %@, %llu",rangeHeader,contentLength);
     
 	// Examples of byte-ranges-specifier values (assuming an entity-body of length 10000):
 	// 
@@ -878,7 +881,7 @@ static NSMutableArray *recentNonces;
 
 - (NSString *)requestURI
 {
-    NSLog(@"requestURI");
+    DDLogError(@"requestURI");
     
 	if(request == nil) return nil;
 	
@@ -891,7 +894,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)replyToHTTPRequest
 {
-    NSLog(@"replyToHTTPRequest");
+    DDLogError(@"replyToHTTPRequest");
 	
 
 	
@@ -1001,7 +1004,7 @@ static NSMutableArray *recentNonces;
 - (HTTPMessage *)newUniRangeResponse:(UInt64)contentLength
 {
 	
-    NSLog(@"newUniRangeResponse");
+    DDLogError(@"newUniRangeResponse");
     
 	// Status Code 206 - Partial Content
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:206 description:nil version:HTTPVersion1_1];
@@ -1025,7 +1028,7 @@ static NSMutableArray *recentNonces;
 **/
 - (HTTPMessage *)newMultiRangeResponse:(UInt64)contentLength
 {
-	NSLog(@"newMultiRangeResponse");
+	DDLogError(@"newMultiRangeResponse");
     
 	// Status Code 206 - Partial Content
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:206 description:nil version:HTTPVersion1_1];
@@ -1097,7 +1100,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSData *)chunkedTransferSizeLineForLength:(NSUInteger)length
 {
-    NSLog(@"chunkedTransferSizeLineForLength");
+    DDLogError(@"chunkedTransferSizeLineForLength");
     
 	return [[NSString stringWithFormat:@"%lx\r\n", (unsigned long)length] dataUsingEncoding:NSUTF8StringEncoding];
 }
@@ -1118,7 +1121,7 @@ static NSMutableArray *recentNonces;
 
 - (void)sendResponseHeadersAndBody
 {
-    NSLog(@"sendResponseHeaderAndBody");
+    DDLogError(@"sendResponseHeaderAndBody");
     
 	if ([httpResponse respondsToSelector:@selector(delayResponeHeaders)])
 	{
@@ -1315,7 +1318,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSUInteger)writeQueueSize
 {
-    NSLog(@"writeQueueSize");
+    DDLogError(@"writeQueueSize");
     
 	NSUInteger result = 0;
 	
@@ -1336,7 +1339,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)continueSendingStandardResponseBody
 {
-	NSLog(@"continueSendingStandardResponseBody");
+	DDLogError(@"continueSendingStandardResponseBody");
     
 	// This method is called when either asyncSocket has finished writing one of the response data chunks,
 	// or when an asynchronous HTTPResponse object informs us that it has more available data for us to send.
@@ -1404,7 +1407,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)continueSendingSingleRangeResponseBody
 {
-	NSLog(@"continueSendingSingleRangeResponseBody");
+	DDLogError(@"continueSendingSingleRangeResponseBody");
     
 	// This method is called when either asyncSocket has finished writing one of the response data chunks,
 	// or when an asynchronous response informs us that is has more available data for us to send.
@@ -1455,7 +1458,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)continueSendingMultiRangeResponseBody
 {
-	NSLog(@"continueSendingMultiRangeResponseBody");
+	DDLogError(@"continueSendingMultiRangeResponseBody");
     
 	// This method is called when either asyncSocket has finished writing one of the response data chunks,
 	// or when an asynchronous HTTPResponse object informs us that is has more available data for us to send.
@@ -1541,7 +1544,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSArray *)directoryIndexFileNames
 {
-	NSLog(@"directoryIndexFileNames");
+	DDLogError(@"directoryIndexFileNames");
     
 	// Override me to support other index pages.
 	
@@ -1553,7 +1556,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSString *)filePathForURI:(NSString *)path
 {
-	NSLog(@"filePathForURI: %@",path);
+	DDLogError(@"filePathForURI: %@",path);
 	// Override me to perform custom path mapping.
 	// For example you may want to use a default file other than index.html, or perhaps support multiple types.
 	
@@ -1658,7 +1661,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
 {
-	NSLog(@"httpResponseForMethod: %@ %@",method,path);
+	DDLogError(@"httpResponseForMethod: %@ %@",method,path);
 	// Override me to provide custom responses.
 	
 	NSString *filePath = [self filePathForURI:path];
@@ -1673,27 +1676,16 @@ static NSMutableArray *recentNonces;
 		// Use me instead for asynchronous file IO.
 		// Generally better for larger files.
 		
-	//	return [[[HTTPAsyncFileResponse alloc] initWithFilePath:filePath forConnection:self] autorelease];
+        //	return [[[HTTPAsyncFileResponse alloc] initWithFilePath:filePath forConnection:self] autorelease];
 	}else
     {
         if ([path isEqualToString:@"/"]) {
-            NSLog(@"path is a slash");
-            NSLog(@"config documentRoot is: %@",[config documentRoot]);
+            DDLogError(@"path is a slash");
+            DDLogError(@"config documentRoot is: %@",[config documentRoot]);
         }else{
-            NSLog(@"path is not just a slash");
+            DDLogError(@"path is not just a slash");
         }
         
-        //NSString *folder = [path isEqualToString:@"/"] ? [[config documentRoot] path] : [NSString stringWithFormat: @"%@%@", [[config documentRoot] path], path];
-        
-        //NSString *folder = [path isEqualToString:@"/"] ? [[config documentRoot] path] : [[config documentRoot] path];
-
-        
-        
-			//NSLog(@"folder: %@", folder);
-//			NSData *browseData = [[self createBrowseableIndex:path] dataUsingEncoding:NSUTF8StringEncoding];
-
-        //NSData *browseData = [[self createBrowseableIndex:[[config documentRoot]path]] dataUsingEncoding:NSUTF8StringEncoding];
-
         
         NSMutableString *outdata = [NSMutableString new];
         
@@ -1714,7 +1706,7 @@ static NSMutableArray *recentNonces;
 
         NSData *browseData = [outdata dataUsingEncoding:NSUTF8StringEncoding];
         
-			return [[[HTTPDataResponse alloc] initWithData:browseData] autorelease];
+        return [[[HTTPDataResponse alloc] initWithData:browseData] autorelease];
  
     }
 	
@@ -1723,7 +1715,7 @@ static NSMutableArray *recentNonces;
 
 - (WebSocket *)webSocketForURI:(NSString *)path
 {
-	NSLog(@"webSocketForURI: %@",path);
+	DDLogError(@"webSocketForURI: %@",path);
 	// Override me to provide custom WebSocket responses.
 	// To do so, simply override the base WebSocket implementation, and add your custom functionality.
 	// Then return an instance of your custom WebSocket here.
@@ -1777,7 +1769,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)handleVersionNotSupported:(NSString *)version
 {
-    NSLog(@"handleVersionNotSupported: %@",version);
+    DDLogError(@"handleVersionNotSupported: %@",version);
     
 	// Override me for custom error handling of unsupported http version responses
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
@@ -1798,7 +1790,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)handleAuthenticationFailed
 {
-    NSLog(@"handleAuthenticationFailed");
+    DDLogError(@"handleAuthenticationFailed");
     
 	// Override me for custom handling of authentication challenges
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
@@ -1831,7 +1823,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)handleInvalidRequest:(NSData *)data
 {
-    NSLog(@"handleInvalidRequest");
+    DDLogError(@"handleInvalidRequest");
 	// Override me for custom error handling of invalid HTTP requests
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
@@ -1858,7 +1850,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)handleUnknownMethod:(NSString *)method
 {
-    NSLog(@"handleUnknownMethod");
+    DDLogError(@"handleUnknownMethod");
 	// Override me for custom error handling of 405 method not allowed responses.
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
@@ -1886,7 +1878,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)handleResourceNotFound
 {
-    NSLog(@"handleResourceNotFound");
+    DDLogError(@"handleResourceNotFound");
 	// Override me for custom error handling of 404 not found responses
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
@@ -1911,7 +1903,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSString *)dateAsString:(NSDate *)date
 {
-    NSLog(@"dataAsString");
+    DDLogError(@"dataAsString");
     
 	// From Apple's Documentation (Data Formatting Guide -> Date Formatters -> Cache Formatters for Efficiency):
 	// 
@@ -1951,7 +1943,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSData *)preprocessResponse:(HTTPMessage *)response
 {
-	NSLog(@"preprocessResponse");
+	DDLogError(@"preprocessResponse");
     
 	// Override me to customize the response headers
 	// You'll likely want to add your own custom headers, and then return [super preprocessResponse:response]
@@ -1988,7 +1980,7 @@ static NSMutableArray *recentNonces;
 **/
 - (NSData *)preprocessErrorResponse:(HTTPMessage *)response;
 {
-	NSLog(@"preprocessErrorResponse");
+	DDLogError(@"preprocessErrorResponse");
 	// Override me to customize the error response headers
 	// You'll likely want to add your own custom headers, and then return [super preprocessErrorResponse:response]
 	// 
@@ -2044,7 +2036,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData*)data withTag:(long)tag
 {
-    NSLog(@"socket didReadData withTag");
+    DDLogError(@"socket didReadData withTag");
     
 	if (tag == HTTP_REQUEST_HEADER)
 	{
@@ -2209,7 +2201,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
-    NSLog(@"socket didWriteDataWithTag");
+    DDLogError(@"socket didWriteDataWithTag");
     
 	BOOL doneSendingResponse = NO;
 	
@@ -2322,7 +2314,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 {
-    NSLog(@"socketDidDisconnect withError");
+    DDLogError(@"socketDidDisconnect withError");
 	
 	[asyncSocket release];
 	asyncSocket = nil;
@@ -2342,7 +2334,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)responseHasAvailableData:(NSObject<HTTPResponse> *)sender
 {
-    NSLog(@"responseHasAvailableData");
+    DDLogError(@"responseHasAvailableData");
 	
 	// We always dispatch this asynchronously onto our connectionQueue,
 	// even if the connectionQueue is the current queue.
@@ -2388,7 +2380,7 @@ static NSMutableArray *recentNonces;
 **/
 - (void)responseDidAbort:(NSObject<HTTPResponse> *)sender
 {
-    NSLog(@"responseDidAbort");
+    DDLogError(@"responseDidAbort");
 	
 	// We always dispatch this asynchronously onto our connectionQueue,
 	// even if the connectionQueue is the current queue.
@@ -2422,7 +2414,7 @@ static NSMutableArray *recentNonces;
 **/
 - (BOOL)shouldDie
 {
-	NSLog(@"shouldDie");
+	DDLogError(@"shouldDie");
 	// Override me if you want to perform any custom actions after a response has been fully sent.
 	// You may also force close the connection by returning YES.
 	// 
@@ -2460,7 +2452,7 @@ static NSMutableArray *recentNonces;
 
 - (void)die
 {
-	NSLog(@"die");
+	DDLogError(@"die");
     
 	// Override me if you want to perform any custom actions when a connection is closed.
 	// Then call [super die] when you're done.
@@ -2497,7 +2489,7 @@ static NSMutableArray *recentNonces;
 
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot
 {
-    NSLog(@"initWithServer documentRoot: %@",aDocumentRoot);
+    DDLogError(@"initWithServer documentRoot: %@",aDocumentRoot);
     
 	if ((self = [super init]))
 	{
@@ -2509,7 +2501,7 @@ static NSMutableArray *recentNonces;
 
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot queue:(dispatch_queue_t)q
 {
-    NSLog(@"initWithServer documentRoot queue: %@",documentRoot);
+    DDLogError(@"initWithServer documentRoot queue: %@",documentRoot);
     
 	if ((self = [super init]))
 	{

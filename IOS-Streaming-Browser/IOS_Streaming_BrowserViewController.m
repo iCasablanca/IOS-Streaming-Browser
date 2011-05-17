@@ -529,7 +529,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         if ([request respondsToSelector:@selector(allHTTPHeaderFields)]) {
             NSDictionary *dictionary = [request allHTTPHeaderFields];
-            NSLog([dictionary description]);
+            DDLogError([dictionary description]);
         }
         
         
@@ -562,11 +562,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
         DDLogError(@"user:%@",[URL user]);
 
-        // Request information
-        DDLogError(@"cachePolicy: %@",[request cachePolicy]);
-        DDLogError(@"mainDocumentURL:%@",[request mainDocumentURL]);
-        DDLogError(@"timeoutInterval:%@",[request timeoutInterval]);
-        DDLogError(@"URL: %@",[request URL]);
+
         
         
         
@@ -598,12 +594,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
         DDLogError(@"user:%@",[URL user]);
 
-        // Request information
-        DDLogError(@"cachePolicy: %@",[request cachePolicy]);
-        DDLogError(@"mainDocumentURL:%@",[request mainDocumentURL]);
-        DDLogError(@"timeoutInterval:%@",[request timeoutInterval]);
-        DDLogError(@"URL: %@",[request URL]);
-        
+
         
           
         
@@ -633,11 +624,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
         DDLogError(@"user:%@",[URL user]);
 
-        // Request information
-        DDLogError(@"cachePolicy: %@",[request cachePolicy]);
-        DDLogError(@"mainDocumentURL:%@",[request mainDocumentURL]);
-        DDLogError(@"timeoutInterval:%@",[request timeoutInterval]);
-        DDLogError(@"URL: %@",[request URL]);
+
         
         
         
@@ -669,12 +656,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
         DDLogError(@"user:%@",[URL user]);
 
-        // Request information
-        DDLogError(@"cachePolicy: %@",[request cachePolicy]);
-        DDLogError(@"mainDocumentURL:%@",[request mainDocumentURL]);
-        DDLogError(@"timeoutInterval:%@",[request timeoutInterval]);
-        DDLogError(@"URL: %@",[request URL]);
-        
+
         
         
           
