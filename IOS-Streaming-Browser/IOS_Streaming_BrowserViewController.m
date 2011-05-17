@@ -296,7 +296,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     
     // Prevent cookies from being stored in the application
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];    
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];    
     
     
     
@@ -481,6 +481,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     DDLogError(@"webView shouldStartLoadWithRequest");
     
+    // Loop through the cookies availabe for the HTTP request.
+    // This is looking for cookie settings and ensuring strict filtering
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [cookieJar cookies]) {
+        
+        if (([[cookie name] isEqualToString:@"PREF"]) && ([[cookie domain] isEqualToString:@".youtube.com"]))
+        {
+        
+            DDLogError(@"Cookie before delete: %@", cookie);
+            [cookieJar deleteCookie:cookie];
+            
+            NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:4];
+                                               
+            [properties setObject:@"PREF" forKey:NSHTTPCookieName];
+            [properties setObject:@"f1=50000000&f2=8000000&fms2=30000&fms1=30000" forKey:NSHTTPCookieValue];                                             
+            [properties setObject:@".youtube.com" forKey:NSHTTPCookieDomain];
+            [properties setObject:@"/" forKey:@"Path"];
+            NSHTTPCookie *myCookie = [NSHTTPCookie cookieWithProperties:properties];
+            [cookieJar setCookie:myCookie];
+            DDLogError(@"%@", myCookie);
+            
+
+        }
+    }
+
+    
+    
     if(navigationType == UIWebViewNavigationTypeOther){
         DDLogError(@"some other action occurred");
         NSURL *URL = [request URL];	
@@ -512,30 +540,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"URL: %@",[request URL]);
 
   
-        
-        NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"m.youtube.com", NSHTTPCookieDomain,
-                                    @"\\", NSHTTPCookiePath,  // IMPORTANT!
-                                    @"PREF", NSHTTPCookieName,
-                                    @"f2=8000000", NSHTTPCookieValue,
-                                    nil];
-        
-        NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
-        
-        NSArray* cookies = [NSArray arrayWithObjects: cookie, nil];
-        NSDictionary * headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-        
-        [request setAllHTTPHeaderFields:headers];
-        
-        if ([request respondsToSelector:@selector(allHTTPHeaderFields)]) {
-            NSDictionary *dictionary = [request allHTTPHeaderFields];
-            DDLogError([dictionary description]);
-        }
-        
-        
-        
-        //PREF=f2=8000000
-        
+         
         
         return YES;
     }else if(navigationType == UIWebViewNavigationTypeFormSubmitted){
