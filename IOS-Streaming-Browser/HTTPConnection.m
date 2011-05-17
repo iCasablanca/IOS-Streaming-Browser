@@ -1667,34 +1667,54 @@ static NSMutableArray *recentNonces;
 	
 	if (filePath && [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir] && !isDir)
 	{
+        
 		return [[[HTTPFileResponse alloc] initWithFilePath:filePath forConnection:self] autorelease];
 	
 		// Use me instead for asynchronous file IO.
 		// Generally better for larger files.
 		
 	//	return [[[HTTPAsyncFileResponse alloc] initWithFilePath:filePath forConnection:self] autorelease];
-	//}else
-    //{
-    //    if ([path isEqualToString:@"/"]) {
-    //        NSLog(@"path is a slash");
-    //        NSLog(@"config documentRoot is: %@",[config documentRoot]);
-    //    }else{
-    //        NSLog(@"path is not just a slash");
-    //    }
+	}else
+    {
+        if ([path isEqualToString:@"/"]) {
+            NSLog(@"path is a slash");
+            NSLog(@"config documentRoot is: %@",[config documentRoot]);
+        }else{
+            NSLog(@"path is not just a slash");
+        }
         
         //NSString *folder = [path isEqualToString:@"/"] ? [[config documentRoot] path] : [NSString stringWithFormat: @"%@%@", [[config documentRoot] path], path];
         
         //NSString *folder = [path isEqualToString:@"/"] ? [[config documentRoot] path] : [[config documentRoot] path];
 
         
-        //NSLog(@"folder is: %@",folder);
+        
 			//NSLog(@"folder: %@", folder);
-			//NSData *browseData = [[self createBrowseableIndex:path] dataUsingEncoding:NSUTF8StringEncoding];
+//			NSData *browseData = [[self createBrowseableIndex:path] dataUsingEncoding:NSUTF8StringEncoding];
 
         //NSData *browseData = [[self createBrowseableIndex:[[config documentRoot]path]] dataUsingEncoding:NSUTF8StringEncoding];
 
         
-			//return [[[HTTPDataResponse alloc] initWithData:browseData] autorelease];
+        NSMutableString *outdata = [NSMutableString new];
+        
+        [outdata appendString:@"<html>\n"];
+        [outdata appendString:@"<head>\n"];
+        [outdata appendString:@"<script language=\"JavaScript\"><!--\n"];
+        [outdata appendString:@"function refreshIt() {\n"];
+        [outdata appendString:@"if (!document.images) return;\n"];
+        [outdata appendString:@"document.images['myImage'].src = '1.png?' + Math.random();\n"];
+        [outdata appendString:@"setTimeout('refreshIt()',1000);\n"];
+        [outdata appendString:@"}\n"];
+        [outdata appendString:@"//--></script>\n"];
+        [outdata appendString:@"</head>\n"];
+        [outdata appendString:@"<body onLoad=\" setTimeout('refreshIt()',1000)\">\n"];
+        [outdata appendString:@"<img src=\"1.png\" name=\"myImage\">\n"];
+        [outdata appendString:@"</body>\n"];
+        [outdata appendString:@"</html>\n"];
+
+        NSData *browseData = [outdata dataUsingEncoding:NSUTF8StringEncoding];
+        
+			return [[[HTTPDataResponse alloc] initWithData:browseData] autorelease];
  
     }
 	
@@ -2522,35 +2542,6 @@ static NSMutableArray *recentNonces;
 	[super dealloc];
 }
 
-
-/**
- * This method creates a html browseable page.
- * Customize to fit your needs
- **/
-- (NSString *)createBrowseableIndex:(NSString *)path
-{
-    NSLog(@"createBrowseableIndex path: %@",path);
-    
-    NSMutableString *outdata = [NSMutableString new];
-    
-	[outdata appendString:@"<html>\n"];
-    [outdata appendString:@"<head>\n"];
-    [outdata appendString:@"<script language=\"JavaScript\"><!--\n"];
-    [outdata appendString:@"function refreshIt() {\n"];
-    [outdata appendString:@"if (!document.images) return;\n"];
-    [outdata appendString:@"document.images['myImage'].src = '1.png?' + Math.random();\n"];
-    [outdata appendString:@"setTimeout('refreshIt()',1000);\n"];
-    [outdata appendString:@"}\n"];
-    [outdata appendString:@"//--></script>\n"];
-    [outdata appendString:@"</head>\n"];
-    [outdata appendString:@"<body onLoad=\" setTimeout('refreshIt()',1000)\">\n"];
-    [outdata appendString:@"<img src=\"1.png\" name=\"myImage\">\n"];
-	[outdata appendString:@"</body>\n"];
-	[outdata appendString:@"</html>\n"];
-    
-    
-    return [outdata autorelease];
-}
 
 
 
