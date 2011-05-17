@@ -81,6 +81,8 @@
 -(IBAction) goBack:(id)sender;
 -(IBAction) goForward:(id)sender;
 -(IBAction) goHome:(id)sender;
+-(IBAction) reloadPage:(id)sender;
+-(IBAction) stopLoading:(id)sender;
 -(IBAction) configureButton:(id)sender;
 
 @end

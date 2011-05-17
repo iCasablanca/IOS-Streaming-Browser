@@ -298,6 +298,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [super viewDidLoad];
     
     
+    // Prevent cookies from being stored in the application
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];    
+    
     
     
     // Adds an observer to the local notification center to call the
@@ -436,6 +439,26 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 	[webView goForward];
 }
 
+/*
+ Upon the reload image beinging pressed on the webview
+ */
+-(IBAction) reloadPage:(id)sender 
+{
+    DDLogError(@"reloadPage");
+    
+	[webView reload];
+}
+
+/*
+ Upon the stop loading button beinging pressed on the webview
+ */
+-(IBAction) stopLoading:(id)sender 
+{
+    DDLogError(@"stopLoading");
+    
+	[webView stopLoading];
+}
+
 
 /*
  Upon the Home button being pressed on the webview
@@ -460,8 +483,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 
-
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
+/*
+    Whether should load the request in the UIWebView
+    returns BOOL
+*/
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSMutableURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
 {
     
     DDLogError(@"webView shouldStartLoadWithRequest");
@@ -475,18 +501,61 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 		if (([[URL scheme] isEqualToString:@"http"])||([[URL scheme] isEqualToString:@"https"])) 
         {
-            if ([[URL absoluteString]isEqualToString:@"http://www.google.com/webhp?hl=en&tab=ww"] ) {
-                NSLog(@"URL is blank.html");
+
+                
+            
+            
+            DDLogError(@"absoluteString:%@",[URL absoluteString]);
+            DDLogError(@"absoluteURL:%@",[URL absoluteURL]);
+            DDLogError(@"baseURL:%@",[URL baseURL]);
+            DDLogError(@"fragment:%@",[URL fragment]);
+            DDLogError(@"host:%@",[URL host]);
+            DDLogError(@"lastPathComponent:%@",[URL lastPathComponent]);
+            DDLogError(@"parameterString:%@",[URL parameterString]);
+            DDLogError(@"password:%@",[URL password]);
+            DDLogError(@"path:%@",[URL path]);
+            DDLogError(@"pathComponents:%@",[URL pathComponents]);
+            DDLogError(@"pathExtension:%@",[URL pathExtension]);
+            DDLogError(@"port:%@",[URL port]);
+            DDLogError(@"query:%@",[URL query]);
+            DDLogError(@"relativePath:%@",[URL relativePath]);
+            DDLogError(@"relativeString:%@",[URL relativeString]);
+            DDLogError(@"resourceSpecifier:%@",[URL resourceSpecifier]);
+            DDLogError(@"scheme:%@",[URL scheme]);
+            DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
+            DDLogError(@"user:%@",[URL user]);
+
+            
+           
+            if ([[URL host] isEqualToString:@"www.google.com"] && [[URL relativePath] isEqualToString:@"/webhp"]){
+//            if ([[URL absoluteString]isEqualToString:@"http://www.google.com/webhp?hl=en&tab=ww"] ) {
+                DDLogError(@"URL is blank.html");
 
                 
                 NSURL *myUrl = [NSURL URLWithString:@"http://www.google.com/webhp?safe=strict"];
                 
-                NSURLRequest *requestObj = [NSURLRequest requestWithURL:myUrl];
+                 request = [NSMutableURLRequest requestWithURL:myUrl];
                 
-                [self.webView loadRequest:requestObj];
+                [self.webView loadRequest:request];
+                
+                return NO;
+            } 
+            if (([[URL host] isEqualToString:@"www.youtube.com"]) || ([[URL host] isEqualToString:@"m.youtube.com"])){
+   
+                
+                DDLogError(@"URL is youtube");
+                
+              //  request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.youtube.com"]];
+                
+              //  [self.webView loadRequest:request];
                 
                 return YES;
+                
+                
             }
+            
+            
+            
             
 			[addressBar setText:[URL absoluteString]];
             DDLogError(@"baseURL is: %@",[URL baseURL]);
@@ -499,9 +568,56 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
 	}else
     {
+
         DDLogError(@"not a link click");
         NSURL *URL = [request URL];	
+        
+        if (([[URL host] isEqualToString:@"www.youtube.com"]) || ([[URL host] isEqualToString:@"m.youtube.com"])){
+            
+            
+            DDLogError(@"URL is youtube");
+            
+            //request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.youtube.com"]];
+            
+            //[self.webView loadRequest:request];
+            
+      
+            
+            //NSURL *myUrl = [NSURL URLWithString:@"http://www.youtube.com"];
+            //NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:myUrl];
+
+            //[requestObj setValue:@"PREF=f2=8000000" forHTTPHeaderField:@"Cookie"];           
+                       
+            //[self.webView loadRequest:requestObj];
+
+            return YES;
+            
+            
+        }
+
+        
+      
         DDLogError(@"baseURL is: %@",[URL baseURL]);
+        DDLogError(@"absoluteString:%@",[URL absoluteString]);
+        DDLogError(@"absoluteURL:%@",[URL absoluteURL]);
+        DDLogError(@"baseURL:%@",[URL baseURL]);
+        DDLogError(@"fragment:%@",[URL fragment]);
+        DDLogError(@"host:%@",[URL host]);
+        DDLogError(@"lastPathComponent:%@",[URL lastPathComponent]);
+        DDLogError(@"parameterString:%@",[URL parameterString]);
+        DDLogError(@"password:%@",[URL password]);
+        DDLogError(@"path:%@",[URL path]);
+        DDLogError(@"pathComponents:%@",[URL pathComponents]);
+        DDLogError(@"pathExtension:%@",[URL pathExtension]);
+        DDLogError(@"port:%@",[URL port]);
+        DDLogError(@"query:%@",[URL query]);
+        DDLogError(@"relativePath:%@",[URL relativePath]);
+        DDLogError(@"relativeString:%@",[URL relativeString]);
+        DDLogError(@"resourceSpecifier:%@",[URL resourceSpecifier]);
+        DDLogError(@"scheme:%@",[URL scheme]);
+        DDLogError(@"standardizedURL:%@",[URL standardizedURL]);
+        DDLogError(@"user:%@",[URL user]);
+        
         [addressBar setText:[URL absoluteString]];
         return YES;
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC290E531382AB4A0047E722 /* ReloadButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC290E521382AB4A0047E722 /* ReloadButton.png */; };
 		EC7CC649138161E8001B5D70 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC642138161E8001B5D70 /* DDLog.m */; };
 		EC7CC64A138161E8001B5D70 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC644138161E8001B5D70 /* DDTTYLogger.m */; };
 		EC7CC64B138161E8001B5D70 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7CC646138161E8001B5D70 /* DDASLLogger.m */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC290E521382AB4A0047E722 /* ReloadButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReloadButton.png; sourceTree = "<group>"; };
 		EC7CC641138161E8001B5D70 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
 		EC7CC642138161E8001B5D70 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
 		EC7CC643138161E8001B5D70 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		ECE61A99137C4BBA00622B58 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC290E521382AB4A0047E722 /* ReloadButton.png */,
 				ECE61A9A137C4BD000622B58 /* iPadSplashScreen.png */,
 				ECE61A9B137C4BD000622B58 /* iPhoneSplashScreen.png */,
 				ECE61A9C137C4BD000622B58 /* Default-Portrait~ipad.png */,
@@ -369,6 +372,7 @@
 				ECE61AA9137C4BD000622B58 /* Icon.png in Resources */,
 				ECE61AC4137C5D2200622B58 /* MainWindow.xib in Resources */,
 				ECE098161380168700D8AB16 /* MainWindow_iPad.xib in Resources */,
+				EC290E531382AB4A0047E722 /* ReloadButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
