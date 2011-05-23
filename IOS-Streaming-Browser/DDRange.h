@@ -48,9 +48,19 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
 @interface NSValue (NSValueDDRangeExtensions)
 
+/*
+    Class method
+ */
 + (NSValue *)valueWithDDRange:(DDRange)range;
+
+/*
+ 
+ */
 - (DDRange)ddrangeValue;
 
+/*
+ 
+ */
 - (NSInteger)ddrangeCompare:(NSValue *)ddrangeValue;
 
 @end

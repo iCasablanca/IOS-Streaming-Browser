@@ -49,10 +49,12 @@
     // of the first item of the list in *ifap.
 	BOOL success = (getifaddrs(&addrs) == 0);
     
-    
+    // If successful in getting the addresses
 	if (success) 
 	{
 		const struct ifaddrs* cursor = addrs;
+        
+        
 		while (cursor != NULL) 
 		{
 			NSMutableString* ip;
@@ -62,14 +64,23 @@
 			{
                 
 				const struct sockaddr_in* dlAddr = (const struct sockaddr_in*)cursor->ifa_addr;
+                
 				const uint8_t* base = (const uint8_t*)&dlAddr->sin_addr;
+                
 				ip = [[NSMutableString new] autorelease];
+                
+                // Loops through the address and adds a period
 				for (int i = 0; i < 4; i++) 
 				{
 					if (i != 0) 
+                    {
 						[ip appendFormat:@"."];
+                    }
+                    
 					[ip appendFormat:@"%d", base[i]];
 				}
+                
+                
 				[result setObject:(NSString*)ip forKey:[NSString stringWithFormat:@"%s", cursor->ifa_name]];
 			}
 			cursor = cursor->ifa_next;

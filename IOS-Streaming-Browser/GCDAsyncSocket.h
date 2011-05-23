@@ -47,17 +47,17 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	UInt16 config;
 	
 	id delegate;
-	dispatch_queue_t delegateQueue;
+	dispatch_queue_t delegateQueue;  //dispatch queue
 	
-	int socket4FD;
-	int socket6FD;
+	int socket4FD;  // IP version 4 socket file descriptor
+	int socket6FD;  // IP version 6 socket file descriptor
 	int connectIndex;
-	NSData * connectInterface4;
-	NSData * connectInterface6;
+	NSData * connectInterface4;  // IP version 4 interface
+	NSData * connectInterface6;  // IP version 6 interface
 	
-	dispatch_queue_t socketQueue;
+	dispatch_queue_t socketQueue;  // dispatch queue
 	
-	dispatch_source_t accept4Source;
+	dispatch_source_t accept4Source; 
 	dispatch_source_t accept6Source;
 	dispatch_source_t connectTimer;
 	dispatch_source_t readSource;
@@ -103,27 +103,50 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The delegate queue and socket queue can optionally be the same.
 **/
 - (id)init;
+
+
+// Initialize the GCDAsyncSocket with a socket queue
 - (id)initWithSocketQueue:(dispatch_queue_t)sq;
+
+
+// Initialize the GCDAsyncSocket with a delegate and delegate queue
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq;
+
+// Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq socketQueue:(dispatch_queue_t)sq;
 
 #pragma mark Configuration
 
+// Gets the delegate
 - (id)delegate;
+
+// Sets the delegate
 - (void)setDelegate:(id)delegate;
+
+// Synchronously sets the delegate
 - (void)synchronouslySetDelegate:(id)delegate;
 
+
+// Get the delegate queue
 - (dispatch_queue_t)delegateQueue;
+
+// Set the delegate queue
 - (void)setDelegateQueue:(dispatch_queue_t)delegateQueue;
 - (void)synchronouslySetDelegateQueue:(dispatch_queue_t)delegateQueue;
 
+
+// Get delegate and delegate queue
 - (void)getDelegate:(id *)delegatePtr delegateQueue:(dispatch_queue_t *)delegateQueuePtr;
+
+// Set the delegate and delegate queue
 - (void)setDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
+
+// Synchronously set the delegate and delegate queue
 - (void)synchronouslySetDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
  * Traditionally sockets are not closed until the conversation is over.
- * However, it is technically possible for the remote enpoint to close its write stream.
+ * However, it is technically possible for the remote endpoint to close its write stream.
  * Our socket would then be notified that there is no more data to be read,
  * but our socket would still be writeable and the remote endpoint could continue to receive our data.
  * 
@@ -134,7 +157,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * To make matters worse, from a TCP perspective there is no way to tell the difference from a read stream close
  * and a full socket close. They both result in the TCP stack receiving a FIN packet. The only way to tell
  * is by continuing to write to the socket. If it was only a read stream close, then writes will continue to work.
- * Otherwise an error will be occur shortly (when the remote end sends us a RST packet).
+ * Otherwise an error will be occur shortly (when the remote end sends us a RST (reset) packet).
  * 
  * In addition to the technical challenges and confusion, many high level socket/stream API's provide
  * no support for dealing with the problem. If the read stream is closed, the API immediately declares the
@@ -151,7 +174,11 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * The default value is YES.
 **/
+
+// Whether automatically disconnecting upon the closing of a read stream
 - (BOOL)autoDisconnectOnClosedReadStream;
+
+// Sets the flag for whether automatically disconnecting upon the closing of a read stream
 - (void)setAutoDisconnectOnClosedReadStream:(BOOL)flag;
 
 /**
@@ -166,13 +193,25 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If a DNS lookup returns both IPv4 and IPv6 results, the preferred protocol will be chosen.
  * By default, the preferred protocol is IPv4, but may be configured as desired.
 **/
+
+// Whether IP version 4 is enabled
 - (BOOL)isIPv4Enabled;
+
+// Set the flag for whether IP version 4 protocol is enabled
 - (void)setIPv4Enabled:(BOOL)flag;
 
+
+// Whether IP version 6 protocol is enabled
 - (BOOL)isIPv6Enabled;
+
+// Set the flag for whether IP version 6 protocol is enabled
 - (void)setIPv6Enabled:(BOOL)flag;
 
+
+// Whether IP version 4 protocol is preferred over IP version 6 protocol
 - (BOOL)isIPv4PreferredOverIPv6;
+
+// Set the flag for whether IP version 4 protocol is preferred over IP version 6
 - (void)setPreferIPv4OverIPv6:(BOOL)flag;
 
 /**
@@ -777,20 +816,26 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 #pragma mark Utilities
 
-/**
+/***************************************************************
  * Extracting host and port information from raw address data.
-**/
+*****************************************************************/
+
+// Gets the host from an address
 + (NSString *)hostFromAddress:(NSData *)address;
+
+// Get the port from an address
 + (UInt16)portFromAddress:(NSData *)address;
+
+
 + (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address;
 
 /**
  * A few common line separators, for use with the readDataToData:... methods.
 **/
-+ (NSData *)CRLFData;   // 0x0D0A
-+ (NSData *)CRData;     // 0x0D
-+ (NSData *)LFData;     // 0x0A
-+ (NSData *)ZeroData;   // 0x00
++ (NSData *)CRLFData;   // 0x0D0A - Carriage return and line feed
++ (NSData *)CRData;     // 0x0D  - Carriage return
++ (NSData *)LFData;     // 0x0A - line feed
++ (NSData *)ZeroData;   // 0x00 - empty NSData object
 
 @end
 

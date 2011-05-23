@@ -15,12 +15,12 @@
 {	
 	HTTPConnection *connection;
 	
-	NSString *filePath;
-	UInt64 fileLength;
+	NSString *filePath; // the file path
+	UInt64 fileLength;  // the file length
 	UInt64 fileOffset;  // File offset as pertains to data given to connection
 	UInt64 readOffset;  // File offset as pertains to data read from file (but maybe not returned to connection)
 	
-	BOOL aborted;
+	BOOL aborted;  // whether the file response is aborted
 	
 	NSData *data;
 	
@@ -34,7 +34,14 @@
 	BOOL readSourceSuspended;
 }
 
+/*
+        Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
+ */
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
+
+/*
+    returns filePath as an NSString
+ */
 - (NSString *)filePath;
 
 @end

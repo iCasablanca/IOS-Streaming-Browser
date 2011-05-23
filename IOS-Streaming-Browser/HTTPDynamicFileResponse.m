@@ -7,6 +7,11 @@
 
 @implementation HTTPDynamicFileResponse
 
+
+/*
+    Initialize the HTTPDynamicFileResponse with a file path for
+    a specific connection, separator string, and dictionary
+ */
 - (id)initWithFilePath:(NSString *)fpath
          forConnection:(HTTPConnection *)parent
              separator:(NSString *)separatorStr
@@ -21,12 +26,18 @@
 	return self;
 }
 
+/*
+ 
+ */
 - (BOOL)isChunked
 {
 	
 	return YES;
 }
 
+/*
+ 
+ */
 - (UInt64)contentLength
 {
 	// This method shouldn't be called since we're using a chunked response.
@@ -36,6 +47,9 @@
 	return 0;
 }
 
+/*
+ 
+ */
 - (void)setOffset:(UInt64)offset
 {
 	// This method shouldn't be called since we're using a chunked response.
@@ -43,6 +57,9 @@
 	
 }
 
+/*
+ 
+ */
 - (BOOL)isDone
 {
 	BOOL result = (readOffset == fileLength) && (readBufferOffset == 0);
@@ -51,6 +68,9 @@
 	return result;
 }
 
+/*
+ 
+ */
 - (void)processReadBuffer
 {
 	
@@ -266,6 +286,9 @@
 	[connection responseHasAvailableData:self];
 }
 
+/*
+    Standard deconstructor
+ */
 - (void)dealloc
 {
 	

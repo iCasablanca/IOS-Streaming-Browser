@@ -19,7 +19,14 @@
 	NSUInteger bufferSize;
 }
 
+/*
+ 
+ */
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
+
+/*
+ 
+ */
 - (NSString *)filePath;
 
 @end

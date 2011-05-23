@@ -7,6 +7,10 @@
 	NSString *redirectPath;
 }
 
+
+/*
+    Initialize the HTTPRedirectResponse with a redirectPath
+ */
 - (id)initWithPath:(NSString *)redirectPath;
 
 @end

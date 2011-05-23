@@ -11,6 +11,10 @@
 
 @implementation HTTPFileResponse
 
+
+/*
+ 
+ */
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if((self = [super init]))
@@ -46,6 +50,10 @@
 	return self;
 }
 
+
+/*
+ 
+ */
 - (void)abort
 {
 	
@@ -53,6 +61,9 @@
 	aborted = YES;
 }
 
+/*
+ 
+ */
 - (BOOL)openFile
 {
 	
@@ -68,6 +79,9 @@
 	return YES;
 }
 
+/*
+ 
+ */
 - (BOOL)openFileIfNeeded
 {
 	if (aborted)
@@ -87,18 +101,29 @@
 	return [self openFile];
 }
 
+
+/*
+ 
+ */
 - (UInt64)contentLength
 {
 	
 	return fileLength;
 }
 
+/*
+ 
+ */
 - (UInt64)offset
 {
 	
 	return fileOffset;
 }
 
+
+/*
+ 
+ */
 - (void)setOffset:(UInt64)offset
 {
 	
@@ -119,6 +144,10 @@
 	}
 }
 
+
+/*
+ 
+ */
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	
@@ -182,6 +211,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (BOOL)isDone
 {
 	BOOL result = (fileOffset == fileLength);
@@ -190,11 +222,18 @@
 	return result;
 }
 
+/*
+ 
+ */
 - (NSString *)filePath
 {
 	return filePath;
 }
 
+
+/*
+ 
+ */
 - (void)dealloc
 {
 	

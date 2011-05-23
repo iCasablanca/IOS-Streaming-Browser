@@ -20,18 +20,28 @@
 
 @interface HTTPServer : NSObject IMPLEMENTED_PROTOCOLS
 {
+    /////////////////////////////////////////////
 	// Underlying asynchronous TCP/IP socket
+    ////////////////////////////////////////////
+
+    // Dispatch queues are lightweight objects to which blocks may be
+    // submitted.  The system manages a pool of threads which process 
+    // dispatch queues and invoke blocks submitted to them.
 	dispatch_queue_t serverQueue;
 	dispatch_queue_t connectionQueue;
 	GCDAsyncSocket *asyncSocket;
 	
+    ///////////////////////////////////////////
 	// HTTP server configuration
+    ///////////////////////////////////////////
 	NSString *documentRoot;
 	Class connectionClass;
 	NSString *interface;
 	UInt16 port;
-	
+
+    ///////////////////////////////////////////	
 	// NSNetService and related variables
+    ///////////////////////////////////////////    
 	NSNetService *netService;
 	NSString *domain;
 	NSString *type;
@@ -39,12 +49,15 @@
 	NSString *publishedName;
 	NSDictionary *txtRecordDictionary;
 	
+    ///////////////////////////////////////////    
 	// Connection management
+    ///////////////////////////////////////////
 	NSMutableArray *connections;
 	NSMutableArray *webSockets;
 	NSLock *connectionsLock;
 	NSLock *webSocketsLock;
 	
+    // Whether the server is running or not
 	BOOL isRunning;
 }
 

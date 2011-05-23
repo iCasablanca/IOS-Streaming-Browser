@@ -28,7 +28,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @synthesize viewController;
 
 /*
- 
+    Whether the application did finith launching
 */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -51,7 +51,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /*
-    Deconstructor
+    Standard Deconstructor
 */ 
 - (void)dealloc
 {  

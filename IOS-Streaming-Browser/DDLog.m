@@ -45,7 +45,7 @@
 #if GCD_MAYBE_AVAILABLE
 struct LoggerNode {
 	id <DDLogger> logger;
-	dispatch_queue_t loggerQueue;
+	dispatch_queue_t loggerQueue;  // dispatch queue
     struct LoggerNode * next;
 };
 typedef struct LoggerNode LoggerNode;

@@ -78,6 +78,10 @@
 	return isWebSocket;
 }
 
+
+/**
+    Class method
+ **/
 + (BOOL)isVersion76Request:(HTTPMessage *)request
 {
 	NSString *key1 = [request headerField:@"Sec-WebSocket-Key1"];
@@ -103,6 +107,10 @@
 @synthesize delegate;
 @synthesize websocketQueue;
 
+
+/**
+ 
+ **/
 - (id)initWithRequest:(HTTPMessage *)aRequest socket:(GCDAsyncSocket *)socket
 {
 	
@@ -129,6 +137,10 @@
 	return self;
 }
 
+
+/**
+ 
+ **/
 - (void)dealloc
 {
 	
@@ -143,6 +155,10 @@
 	[super dealloc];
 }
 
+
+/**
+ 
+ **/
 - (id)delegate
 {
 	__block id result = nil;
@@ -154,6 +170,10 @@
 	return result;
 }
 
+
+/**
+ 
+ **/
 - (void)setDelegate:(id)newDelegate
 {
 	dispatch_async(websocketQueue, ^{
@@ -216,6 +236,9 @@
 #pragma mark HTTP Response
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (void)readRequestBody
 {
 	
@@ -224,6 +247,9 @@
 	[asyncSocket readDataToLength:8 withTimeout:TIMEOUT_NONE tag:TAG_HTTP_REQUEST_BODY];
 }
 
+/*
+ 
+ */
 - (NSString *)originResponseHeaderValue
 {
 	
@@ -241,6 +267,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (NSString *)locationResponseHeaderValue
 {
 	
@@ -263,6 +292,10 @@
 	return location;
 }
 
+
+/*
+ 
+ */
 - (void)sendResponseHeaders
 {
 	
@@ -345,6 +378,10 @@
 	[asyncSocket writeData:responseHeaders withTimeout:TIMEOUT_NONE tag:TAG_HTTP_RESPONSE_HEADERS];
 }
 
+
+/*
+ 
+ */
 - (NSData *)processKey:(NSString *)key
 {
 	
@@ -390,6 +427,10 @@
 	return [NSData dataWithBytes:&result length:4];
 }
 
+
+/*
+ 
+ */
 - (void)sendResponseBody:(NSData *)d3
 {
 	
@@ -422,6 +463,9 @@
 #pragma mark Core Functionality
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+ */
 - (void)didOpen
 {
 	
@@ -440,6 +484,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (void)sendMessage:(NSString *)msg
 {
 	
@@ -456,6 +503,9 @@
 	[asyncSocket writeData:data withTimeout:TIMEOUT_NONE tag:0];
 }
 
+/*
+ 
+ */
 - (void)didReceiveMessage:(NSString *)msg
 {
 	
@@ -471,6 +521,10 @@
 	}
 }
 
+
+/*
+ 
+ */
 - (void)didClose
 {
 	
@@ -493,6 +547,9 @@
 #pragma mark AsyncSocket Delegate
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+ */
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
 	
@@ -532,6 +589,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {
 	

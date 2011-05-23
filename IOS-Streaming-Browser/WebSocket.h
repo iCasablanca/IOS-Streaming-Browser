@@ -45,7 +45,19 @@
  * These methods are automatically called by the HTTPServer.
  * You may invoke the stop method yourself to close the WebSocket manually.
 **/
+
+/**
+ * Starting point for the WebSocket after it has been fully initialized (including subclasses).
+ * This method is called by the HTTPConnection it is spawned from.
+ **/
 - (void)start;
+
+
+
+/**
+ * This method is called by the HTTPServer if it is asked to stop.
+ * The server, in turn, invokes stop on each WebSocket instance.
+ **/
 - (void)stop;
 
 /**

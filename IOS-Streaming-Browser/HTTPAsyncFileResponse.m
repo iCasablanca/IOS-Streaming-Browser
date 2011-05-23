@@ -27,6 +27,10 @@
 
 @implementation HTTPAsyncFileResponse
 
+
+/*
+ 
+ */
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if ((self = [super init]))
@@ -62,6 +66,10 @@
 	return self;
 }
 
+
+/*
+ 
+ */
 - (void)abort
 {
 	
@@ -69,6 +77,10 @@
 	aborted = YES;
 }
 
+
+/*
+ 
+ */
 - (void)processReadBuffer
 {
 	// This method is here to allow superclasses to perform post-processing of the data.
@@ -88,6 +100,9 @@
 	[connection responseHasAvailableData:self];
 }
 
+/*
+ 
+ */
 - (void)pauseReadSource
 {
 	if (!readSourceSuspended)
@@ -98,6 +113,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (void)resumeReadSource
 {
 	if (readSourceSuspended)
@@ -108,6 +126,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (void)cancelReadSource
 {
 	
@@ -123,6 +144,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (BOOL)openFileAndSetupReadSource
 {
 	
@@ -229,6 +253,9 @@
 	return YES;
 }
 
+/*
+ 
+ */
 - (BOOL)openFileIfNeeded
 {
 	if (aborted)
@@ -248,18 +275,27 @@
 	return [self openFileAndSetupReadSource];
 }	
 
+/*
+ 
+ */
 - (UInt64)contentLength
 {
 	
 	return fileLength;
 }
 
+/*
+ 
+ */
 - (UInt64)offset
 {
 	
 	return fileOffset;
 }
 
+/*
+ 
+ */
 - (void)setOffset:(UInt64)offset
 {
 	if (![self openFileIfNeeded])
@@ -280,6 +316,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	
@@ -316,6 +355,9 @@
 	}
 }
 
+/*
+ 
+ */
 - (BOOL)isDone
 {
 	BOOL result = (fileOffset == fileLength);
@@ -324,17 +366,26 @@
 	return result;
 }
 
+/*
+ 
+ */
 - (NSString *)filePath
 {
 	return filePath;
 }
 
+/*
+ 
+ */
 - (BOOL)isAsynchronous
 {
 	
 	return YES;
 }
 
+/*
+ 
+ */
 - (void)connectionDidClose
 {
 	
@@ -354,19 +405,27 @@
 	}
 }
 
+/*
+    Standard deconstructor
+ */
 - (void)dealloc
 {
-	
+	// Check to see if there is anything in the read queue
 	if (readQueue)
+    {
 		dispatch_release(readQueue);
-	
+	}
+    
+    // Check to see if there is anything in the read buffer
 	if (readBuffer)
+    {
 		free(readBuffer);
-	
+	}
+    
 	[filePath release];
 	[data release];
 	
-	[super dealloc];
+	[super dealloc]; 
 }
 
 @end

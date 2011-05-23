@@ -36,10 +36,13 @@
 
 @interface HTTPDynamicFileResponse : HTTPAsyncFileResponse
 {
-	NSData *separator;
+	NSData *separator;  // separator string
 	NSDictionary *replacementDict;
 }
 
+/*
+    Initialize the HTTPDyanmicFileResponse
+ */
 - (id)initWithFilePath:(NSString *)filePath
          forConnection:(HTTPConnection *)connection
              separator:(NSString *)separatorStr

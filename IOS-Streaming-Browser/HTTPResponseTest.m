@@ -14,6 +14,10 @@
 
 @implementation HTTPResponseTest
 
+
+/*
+    Initialize the HTTPResponseTest
+*/
 - (id)initWithConnection:(HTTPConnection *)parent
 {
 	if ((self = [super init]))
@@ -36,6 +40,10 @@
 	return self;
 }
 
+
+/*
+ 
+*/
 - (void)doAsyncStuff
 {
 	// This method is executed on a global concurrent queue
@@ -50,6 +58,10 @@
 	});
 }
 
+
+/*
+ 
+*/
 - (void)asyncStuffFinished
 {
 	// This method is executed on the connectionQueue
@@ -59,12 +71,20 @@
 	[connection responseHasAvailableData:self];
 }
 
+
+/*
+ 
+*/
 - (BOOL)delayResponeHeaders
 {
 	
 	return !readyToSendResponseHeaders;
 }
 
+
+/*
+ 
+*/
 - (void)connectionDidClose
 {
 	// This method is executed on the connectionQueue
@@ -73,36 +93,59 @@
 	connection = nil;
 }
 
+
+/*
+ 
+*/
 - (UInt64)contentLength
 {
 	
 	return 0;
 }
 
+
+/*
+ 
+*/
 - (UInt64)offset
 {
 	
 	return 0;
 }
 
+
+/*
+ 
+*/
 - (void)setOffset:(UInt64)offset
 {
 	
 	// Ignored
 }
 
+
+/*
+ 
+*/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	
 	return nil;
 }
 
+
+/*
+ 
+*/
 - (BOOL)isDone
 {
 	
 	return YES;
 }
 
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	

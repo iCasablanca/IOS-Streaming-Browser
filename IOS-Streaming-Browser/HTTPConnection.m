@@ -879,12 +879,19 @@ static NSMutableArray *recentNonces;
 	return YES;
 }
 
+
+/*
+    Returns the URL as a string for the HTTPMessage
+*/
 - (NSString *)requestURI
 {
     DDLogError(@"requestURI");
     
-	if(request == nil) return nil;
-	
+	if(request == nil) 
+    {
+        return nil;
+	}
+    
 	return [[request url] relativeString];
 }
 
@@ -1119,6 +1126,10 @@ static NSMutableArray *recentNonces;
 	return [@"\r\n0\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+
+/*
+ 
+*/
 - (void)sendResponseHeadersAndBody
 {
     DDLogError(@"sendResponseHeaderAndBody");
@@ -1713,6 +1724,11 @@ static NSMutableArray *recentNonces;
 	return nil;
 }
 
+
+/*
+    
+    return WebSocket
+*/
 - (WebSocket *)webSocketForURI:(NSString *)path
 {
 	DDLogError(@"webSocketForURI: %@",path);
@@ -2450,6 +2466,9 @@ static NSMutableArray *recentNonces;
 	return shouldDie;
 }
 
+/*
+ 
+*/
 - (void)die
 {
 	DDLogError(@"die");
@@ -2487,6 +2506,10 @@ static NSMutableArray *recentNonces;
 @synthesize documentRoot;
 @synthesize queue;
 
+
+/*
+ 
+*/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot
 {
     DDLogError(@"initWithServer documentRoot: %@",aDocumentRoot);
@@ -2499,6 +2522,10 @@ static NSMutableArray *recentNonces;
 	return self;
 }
 
+
+/*
+ 
+*/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot queue:(dispatch_queue_t)q
 {
     DDLogError(@"initWithServer documentRoot queue: %@",documentRoot);
@@ -2523,6 +2550,10 @@ static NSMutableArray *recentNonces;
 	return self;
 }
 
+
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	[server release];

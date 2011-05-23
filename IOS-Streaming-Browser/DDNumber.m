@@ -3,6 +3,9 @@
 
 @implementation NSNumber (DDNumber)
 
+/*
+    Class method
+ */
 + (BOOL)parseString:(NSString *)str intoSInt64:(SInt64 *)pNum
 {
 	if(str == nil)
@@ -23,6 +26,10 @@
 		return YES;
 }
 
+
+/*
+    Class method
+ */
 + (BOOL)parseString:(NSString *)str intoUInt64:(UInt64 *)pNum
 {
 	if(str == nil)
@@ -43,6 +50,10 @@
 		return YES;
 }
 
+
+/*
+    Class method
+ */
 + (BOOL)parseString:(NSString *)str intoNSInteger:(NSInteger *)pNum
 {
 	if(str == nil)
@@ -64,6 +75,10 @@
 		return YES;
 }
 
+
+/*
+    Class method
+ */
 + (BOOL)parseString:(NSString *)str intoNSUInteger:(NSUInteger *)pNum
 {
 	if(str == nil)

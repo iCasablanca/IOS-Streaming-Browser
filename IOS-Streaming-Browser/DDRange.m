@@ -81,11 +81,18 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 @implementation NSValue (NSValueDDRangeExtensions)
 
+/*
+    Class method
+ */
 + (NSValue *)valueWithDDRange:(DDRange)range
 {
 	return [NSValue valueWithBytes:&range objCType:@encode(DDRange)];
 }
 
+
+/*
+ 
+ */
 - (DDRange)ddrangeValue
 {
 	DDRange result;
@@ -93,6 +100,9 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 	return result;
 }
 
+/*
+ 
+ */
 - (NSInteger)ddrangeCompare:(NSValue *)other
 {
 	DDRange r1 = [self ddrangeValue];

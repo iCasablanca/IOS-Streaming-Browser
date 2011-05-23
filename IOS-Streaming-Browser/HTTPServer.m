@@ -230,6 +230,9 @@
     return result;
 }
 
+/*
+ 
+*/
 - (UInt16)listeningPort
 {
 	__block UInt16 result;
@@ -244,6 +247,9 @@
 	return result;
 }
 
+/*
+ 
+*/
 - (void)setPort:(UInt16)value
 {
 	
@@ -267,6 +273,10 @@
     return [domain autorelease];
 }
 
+
+/*
+    Set the domain
+*/
 - (void)setDomain:(NSString *)value
 {
 	
@@ -296,6 +306,10 @@
 	return [name autorelease];
 }
 
+
+/*
+ 
+*/
 - (NSString *)publishedName
 {
 	__block NSString *result;
@@ -320,6 +334,10 @@
 	return [result autorelease];
 }
 
+
+/*
+ 
+*/
 - (void)setName:(NSString *)value
 {
 	NSString *valueCopy = [value copy];
@@ -347,6 +365,9 @@
 	return [result autorelease];
 }
 
+/*
+    Set the type of service to be published via Bonjour
+*/
 - (void)setType:(NSString *)value
 {
 	NSString *valueCopy = [value copy];
@@ -372,6 +393,10 @@
 	
 	return [result autorelease];
 }
+
+/*
+ 
+*/
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
 	
@@ -405,6 +430,10 @@
 #pragma mark Server Control
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+/*
+ 
+*/
 - (BOOL)start:(NSError **)errPtr
 {
 	
@@ -437,6 +466,10 @@
 	return success;
 }
 
+
+/*
+ 
+*/
 - (BOOL)stop
 {
 	
@@ -474,6 +507,10 @@
 	return YES;
 }
 
+
+/*
+ 
+*/
 - (BOOL)isRunning
 {
 	__block BOOL result;
@@ -485,6 +522,10 @@
 	return result;
 }
 
+
+/*
+ 
+*/
 - (void)addWebSocket:(WebSocket *)ws
 {
 	[webSocketsLock lock];
@@ -530,6 +571,9 @@
 #pragma mark Incoming Connections
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (HTTPConfig *)config
 {
 	// Override me if you want to provide a custom config to the new connection.
@@ -546,10 +590,14 @@
 	return [[[HTTPConfig alloc] initWithServer:self documentRoot:documentRoot queue:connectionQueue] autorelease];
 }
 
+
+/*
+ 
+*/
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
 	HTTPConnection *newConnection = (HTTPConnection *)[[connectionClass alloc] initWithAsyncSocket:newSocket
-	                                                                                 configuration:[self config]];
+                    configuration:[self config]];
 	[connectionsLock lock];
 	[connections addObject:newConnection];
 	[connectionsLock unlock];
@@ -562,6 +610,9 @@
 #pragma mark Bonjour
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (void)publishBonjour
 {
 	
@@ -596,6 +647,9 @@
 	}
 }
 
+/*
+ 
+*/
 - (void)unpublishBonjour
 {
 	
@@ -708,6 +762,10 @@
 
 static NSThread *bonjourThread;
 
+
+/*
+    Class method
+*/
 + (void)startBonjourThreadIfNeeded
 {
 	
@@ -721,6 +779,10 @@ static NSThread *bonjourThread;
 	});
 }
 
+
+/*
+    Class method
+*/
 + (void)bonjourThread
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -737,6 +799,10 @@ static NSThread *bonjourThread;
 	[pool release];
 }
 
+
+/*
+    Class method
+*/
 + (void)performBonjourBlock:(dispatch_block_t)block
 {
 	
@@ -745,6 +811,10 @@ static NSThread *bonjourThread;
 	block();
 }
 
+
+/*
+    Class method
+*/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone
 {
 	

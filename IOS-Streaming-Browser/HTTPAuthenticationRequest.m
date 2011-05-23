@@ -1,6 +1,8 @@
 #import "HTTPAuthenticationRequest.h"
 #import "HTTPMessage.h"
 
+
+
 @interface HTTPAuthenticationRequest (PrivateAPI)
 - (NSString *)quotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
 - (NSString *)nonquotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
@@ -9,6 +11,10 @@
 
 @implementation HTTPAuthenticationRequest
 
+
+/*
+    Initialize the HTTPAuthenticationRequest with an HTTPMessage
+*/
 - (id)initWithRequest:(HTTPMessage *)request
 {
 	if ((self = [super init]))
@@ -60,6 +66,9 @@
 	return self;
 }
 
+/*
+    Deconstructor
+*/
 - (void)dealloc
 {
 	[base64Credentials release];
