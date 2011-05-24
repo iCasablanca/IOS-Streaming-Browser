@@ -47,6 +47,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	UInt16 config;
 	
 	id delegate;
+    
+    // Dispatch queues are lightweight objects to which blocks may be submitted.
+    // The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them.
 	dispatch_queue_t delegateQueue;  //dispatch queue
 	
 	int socket4FD;  // IP version 4 socket file descriptor
@@ -57,6 +60,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	
 	dispatch_queue_t socketQueue;  // dispatch queue
 	
+    
+    // Dispatch sources are used to automatically submit event handler
+    // blocks to dispatch queues in response to external events.
 	dispatch_source_t accept4Source; 
 	dispatch_source_t accept6Source;
 	dispatch_source_t connectTimer;
@@ -65,15 +71,17 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	dispatch_source_t readTimer;
 	dispatch_source_t writeTimer;
 	
-	NSMutableArray *readQueue;
-	NSMutableArray *writeQueue;
+    
+    
+	NSMutableArray *readQueue;  // The read queue
+	NSMutableArray *writeQueue;  // the write queue
 	
-	GCDAsyncReadPacket *currentRead;
-	GCDAsyncWritePacket *currentWrite;
+	GCDAsyncReadPacket *currentRead; // if current read from buffer
+	GCDAsyncWritePacket *currentWrite; // if current write to buffer
 	
-	unsigned long socketFDBytesAvailable;
+	unsigned long socketFDBytesAvailable;  // socket file descriptor bytes available
 	
-	NSMutableData *partialReadBuffer;
+	NSMutableData *partialReadBuffer;  // partial read buffer
 		
 #if TARGET_OS_IPHONE
 	CFStreamClientContext streamContext;
@@ -85,7 +93,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	size_t sslWriteCachedLength;
 #endif
 	
-	id userData;
+	id userData; //user data
 }
 
 /**
@@ -920,8 +928,8 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * Note that this method may be called multiple times for a single read if you return positive numbers.
 **/
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag
-                                                                 elapsed:(NSTimeInterval)elapsed
-                                                               bytesDone:(NSUInteger)length;
+            elapsed:(NSTimeInterval)elapsed
+            bytesDone:(NSUInteger)length;
 
 /**
  * Called if a write operation has reached its timeout without completing.
@@ -935,8 +943,8 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * Note that this method may be called multiple times for a single write if you return positive numbers.
 **/
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutWriteWithTag:(long)tag
-                                                                  elapsed:(NSTimeInterval)elapsed
-                                                                bytesDone:(NSUInteger)length;
+        elapsed:(NSTimeInterval)elapsed
+        bytesDone:(NSUInteger)length;
 
 /**
  * Conditionally called if the read stream closes, but the write stream may still be writeable.

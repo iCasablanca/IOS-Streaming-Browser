@@ -75,7 +75,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 // tag of your own invention.
 
 @interface HTTPConnection (PrivateAPI)
+
+// Start reading the request
 - (void)startReadingRequest;
+
+// Send response headers and body
 - (void)sendResponseHeadersAndBody;
 @end
 
@@ -85,7 +89,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation HTTPConnection
 
-static NSMutableArray *recentNonces;
+static NSMutableArray *recentNonces;  // initialize with capacity of 5
 
 /**
  * This method is automatically called (courtesy of Cocoa) before the first instantiation of this class.
@@ -120,6 +124,7 @@ static NSMutableArray *recentNonces;
  * Sole Constructor.
  * Associates this new HTTP connection with the given AsyncSocket.
  * This HTTP connection object will become the socket's delegate and take over responsibility for the socket.
+    returns self
 **/
 - (id)initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig
 {
@@ -127,13 +132,13 @@ static NSMutableArray *recentNonces;
     
 	if ((self = [super init]))
 	{
-		
+		// if there is a dispatch queue for requests
 		if (aConfig.queue)
 		{
 			connectionQueue = aConfig.queue;
 			dispatch_retain(connectionQueue);
 		}
-		else
+		else  // if there is not a dispatch queue for requests then create one
 		{
 			connectionQueue = dispatch_queue_create("HTTPConnection", NULL);
 		}
@@ -178,6 +183,7 @@ static NSMutableArray *recentNonces;
 	
 	[nonce release];
 	
+    // Check if the HTTPResponse has a connectionDidClose method
 	if ([httpResponse respondsToSelector:@selector(connectionDidClose)])
 	{
 		[httpResponse connectionDidClose];
@@ -218,12 +224,20 @@ static NSMutableArray *recentNonces;
 	// 
 	// See also: expectsRequestBodyFromMethod:atPath:
 	
+    
+    // We with accept GET methods
 	if ([method isEqualToString:@"GET"])
+    {
 		return YES;
-	
+	}
+    
+    // We will accept HEAD methods
 	if ([method isEqualToString:@"HEAD"])
+    {
 		return YES;
-		
+	}
+	
+    // We will not accept any other methods
 	return NO;
 }
 
@@ -245,12 +259,20 @@ static NSMutableArray *recentNonces;
 	// 
 	// See also: supportsMethod:atPath:
 	
+    
+    // We accept POST methods
 	if ([method isEqualToString:@"POST"])
+    {
 		return YES;
-	
+	}
+    
+    // We accept PUT methods
 	if ([method isEqualToString:@"PUT"])
+    {
 		return YES;
-	
+	}
+    
+    // We don't accept any other methods
 	return NO;
 }
 
@@ -317,7 +339,7 @@ static NSMutableArray *recentNonces;
 	// Override me to customize the authentication scheme
 	// Make sure you understand the security risks of using the weaker basic authentication
 	
-	return YES;
+	return NO;
 }
 
 /**
@@ -452,17 +474,26 @@ static NSMutableArray *recentNonces;
 			}
 		}
 		
+        // Gets the authentication nonce
+        // converts a string to a long
+        // base-16
 		long authNC = strtol([[auth nc] UTF8String], NULL, 16);
 		
+        
 		if (authNC <= lastNC)
 		{
 			// The nc value (nonce count) hasn't been incremented since the last request.
 			// This could be a replay attack.
 			return NO;
 		}
+        
+        // Set the last nonce to this authorization nonce
 		lastNC = authNC;
 		
+        
+        
 		NSString *HA1str = [NSString stringWithFormat:@"%@:%@:%@", [auth username], [auth realm], password];
+        
 		NSString *HA2str = [NSString stringWithFormat:@"%@:%@", [request method], [auth uri]];
 		
 		NSString *HA1 = [[[HA1str dataUsingEncoding:NSUTF8StringEncoding] md5Digest] hexStringValue];
@@ -539,12 +570,15 @@ static NSMutableArray *recentNonces;
 	NSString *authFormat = @"Basic realm=\"%@\"";
 	NSString *authInfo = [NSString stringWithFormat:authFormat, [self realm]];
 	
+    // Adds WWW-Authenticate and the format and realm to the response
+    // header field
 	[response setHeaderField:@"WWW-Authenticate" value:authInfo];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////
 #pragma mark Core
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
 /**
  * Starting point for the HTTP connection after it has been fully initialized (including subclasses).

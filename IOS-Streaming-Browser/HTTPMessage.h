@@ -15,27 +15,28 @@
 
 @interface HTTPMessage : NSObject
 {
-	CFHTTPMessageRef message;
+	CFHTTPMessageRef message; // message can be request or response
 }
 
 
 /**
- 
+    returns self as an empty HTTP message
  **/
 - (id)initEmptyRequest;
 
 /**
- 
+    Initialize a request HTTPMessage with a URL and version
+    returns self (HTTPMessage)
  **/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version;
 
 /**
- 
+     Initialize a response HTTPMessage with a code, description, and version
  **/
 - (id)initResponseWithStatusCode:(NSInteger)code description:(NSString *)description version:(NSString *)version;
 
 /**
-    Returns can appendData with data
+    Returns whether can appendData with data
  **/
 - (BOOL)appendData:(NSData *)data;
 

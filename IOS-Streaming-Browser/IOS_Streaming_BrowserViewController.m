@@ -180,7 +180,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /*
- Start the HTTP server
+    Start the HTTP server
  */
 -(void) startHttpServer
 {
@@ -706,7 +706,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /*
- Update the broadcast ip/port label on the view
+    Updates the broadcast ip/port label on the view
  */
 - (void)displayInfoUpdate:(NSNotification *) notification
 {

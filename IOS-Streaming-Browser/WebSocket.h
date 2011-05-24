@@ -15,13 +15,19 @@
 	
 	NSData *term;
 	
-	BOOL isStarted;
-	BOOL isOpen;
-	BOOL isVersion76;
+	BOOL isStarted;  // if web socket is started
+	BOOL isOpen;  // if web socket is open
+	BOOL isVersion76; // if version76
 }
 
+/*
+    Class method
+*/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request;
 
+/*
+    Initialize with HTTPMessage request and a socket
+*/
 - (id)initWithRequest:(HTTPMessage *)request socket:(GCDAsyncSocket *)socket;
 
 /**
@@ -73,8 +79,20 @@
  * 
  * These methods are designed to be overriden by subclasses.
 **/
+
+/*
+    If the web socket did open
+*/
 - (void)didOpen;
+
+/*
+    If the web socket did receive a message
+ */
 - (void)didReceiveMessage:(NSString *)msg;
+
+/*
+    If the web socket did close
+ */
 - (void)didClose;
 
 @end
@@ -98,10 +116,19 @@
 @protocol WebSocketDelegate
 @optional
 
+/*
+    
+ */
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
+/*
+ 
+ */
 - (void)webSocket:(WebSocket *)ws didReceiveMessage:(NSString *)msg;
 
+/*
+ 
+ */
 - (void)webSocketDidClose:(WebSocket *)ws;
 
 @end

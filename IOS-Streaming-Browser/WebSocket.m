@@ -477,7 +477,7 @@
 	// Start reading for messages
 	[asyncSocket readDataToLength:1 withTimeout:TIMEOUT_NONE tag:TAG_PREFIX];
 	
-	// Notify delegate
+	// Notify delegate that the web socket did open
 	if ([delegate respondsToSelector:@selector(webSocketDidOpen:)])
 	{
 		[delegate webSocketDidOpen:self];
@@ -485,26 +485,29 @@
 }
 
 /*
- 
+    Sends a message
  */
 - (void)sendMessage:(NSString *)msg
 {
-	
+	// Encodes the message
 	NSData *msgData = [msg dataUsingEncoding:NSUTF8StringEncoding];
 	
+    // Puts message into a NSMutableData
 	NSMutableData *data = [NSMutableData dataWithCapacity:([msgData length] + 2)];
 	
-	[data appendBytes:"\x00" length:1];
+    
+	[data appendBytes:"\x00" length:1];  // NULL 0x00
 	[data appendData:msgData];
-	[data appendBytes:"\xFF" length:1];
+	[data appendBytes:"\xFF" length:1];  // End of transmission 0x04
 	
 	// Remember: GCDAsyncSocket is thread-safe
 	
+    // Writes data to the socket with no timeout or tag
 	[asyncSocket writeData:data withTimeout:TIMEOUT_NONE tag:0];
 }
 
 /*
- 
+    Did receive a message
  */
 - (void)didReceiveMessage:(NSString *)msg
 {
@@ -514,7 +517,7 @@
 	// 
 	// For completeness, you should invoke [super didReceiveMessage:msg] in your method.
 	
-	// Notify delegate
+	// Notify delegate that it did receive a message
 	if ([delegate respondsToSelector:@selector(webSocket:didReceiveMessage:)])
 	{
 		[delegate webSocket:self didReceiveMessage:msg];
@@ -523,7 +526,7 @@
 
 
 /*
- 
+    Notifiy delegate that websocket did close
  */
 - (void)didClose
 {
@@ -533,7 +536,7 @@
 	// 
 	// Don't forget to invoke [super didClose] at the end of your method.
 	
-	// Notify delegate
+	// Notify delegate that the websocket did close
 	if ([delegate respondsToSelector:@selector(webSocketDidClose:)])
 	{
 		[delegate webSocketDidClose:self];
@@ -548,7 +551,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
- 
+    Socket did read the request with a specific tag
  */
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
@@ -574,7 +577,7 @@
 			[self didClose];
 		}
 	}
-	else
+	else  // If not the HTTP_REQUEST_BODY or TAG_PREFIX
 	{
 		NSUInteger msgLength = [data length] - 1; // Excluding ending 0xFF frame
 		
@@ -590,7 +593,7 @@
 }
 
 /*
- 
+    
  */
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {

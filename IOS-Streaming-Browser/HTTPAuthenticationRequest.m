@@ -87,46 +87,100 @@
 #pragma mark Accessors:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+    Gets whether basic authentication
+*/
 - (BOOL)isBasic {
 	return isBasic;
 }
 
+
+/*
+    Whether digest authentication
+*/
 - (BOOL)isDigest {
 	return isDigest;
 }
 
+
+/*
+    Returns base64 credentials
+*/
 - (NSString *)base64Credentials {
 	return base64Credentials;
 }
 
+/*
+    Returns the username
+    The user's name in the specified realm, encoded according to the value of the "charset" directive. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+*/
 - (NSString *)username {
 	return username;
 }
 
+
+/*
+    Returns the realm
+    The realm containing the user's account. This directive is required if the server provided any realms in the "digest-challenge", in which case it may appear exactly once and its value SHOULD be one of those realms. If the directive is missing, "realm-value" will set to the empty string when computing A1 (see below for details).
+*/
 - (NSString *)realm {
 	return realm;
 }
 
+
+/*
+    Returns the nonce
+    The server-specified data string received in the preceding digest-challenge. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+*/
 - (NSString *)nonce {
 	return nonce;
 }
 
+/*
+    Returns the URI
+*/
 - (NSString *)uri {
 	return uri;
 }
 
+
+/*
+    Returns the quality of protection
+    Indicates what "quality of protection" the client accepted. If present, it may appear exactly once and its value MUST be one of the alternatives in qop-options. If not present, it defaults to "auth". These values affect the computation of the response. Note that this is a single token, not a quoted list of alternatives.
+
+*/
 - (NSString *)qop {
 	return qop;
 }
 
+
+/*
+    Returns the nonce count
+    The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request. For example, in the first request sent in response to a given nonce value, the client sends "nc=00000001". The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. See the description below of the construction of the response value. This directive may appear at most once; if multiple instances are present, the client should abort the authentication exchange.
+*/
 - (NSString *)nc {
 	return nc;
 }
 
+
+/*
+    A cnonce is a a client-specified data string which MUST be different
+    each time a digest-response is sent as part of initial authentication.
+    The cnonce-value is an opaque quoted string value provided by the client
+    and used by both client and server to avoid chosen plaintext attacks,
+    and to provide mutual authentication. The security of the implementation
+    depends on a good choice. It is RECOMMENDED that it contain at least 64
+    bits of entropy. This directive is required and MUST be present exactly
+    once; otherwise, authentication fails.
+*/
 - (NSString *)cnonce {
 	return cnonce;
 }
 
+/*
+    Returns the response
+    A string of 32 hex digits computed as defined below, which proves that the user knows a password. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+*/
 - (NSString *)response {
 	return response;
 }

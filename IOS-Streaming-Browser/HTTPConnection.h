@@ -34,6 +34,7 @@
 - (id)initWithServer:(HTTPServer *)server documentRoot:(NSString *)documentRoot queue:(dispatch_queue_t)q;
 
 
+// Sets the properties for the instance attributes/variables
 @property (nonatomic, readonly) HTTPServer *server;
 @property (nonatomic, readonly) NSString *documentRoot;
 @property (nonatomic, readonly) dispatch_queue_t queue;
@@ -46,28 +47,30 @@
 
 @interface HTTPConnection : NSObject
 {
-	dispatch_queue_t connectionQueue;
-	GCDAsyncSocket *asyncSocket;  // Handles each request on at a time in order
-	HTTPConfig *config;  
+	dispatch_queue_t connectionQueue; // queue with all the connections
+	GCDAsyncSocket *asyncSocket;  // Handles each request one at a time in order
+	HTTPConfig *config;  // HTTP server configuration
 	
-	BOOL started;
+	BOOL started;  // whether connection started
 	
-	HTTPMessage *request;
-	unsigned int numHeaderLines;
+	HTTPMessage *request;  // the request 
+	unsigned int numHeaderLines;  // number of header lines
 	
-	BOOL sentResponseHeaders;
+	BOOL sentResponseHeaders;   // whether sent response headers
 	
-	NSString *nonce;
-	long lastNC;
+	NSString *nonce;  // A nonce is a  server-specified string uniquely generated for each 401 response.
+    
+    
+	long lastNC; // the last nonce
 	
-	NSObject<HTTPResponse> *httpResponse;
+	NSObject<HTTPResponse> *httpResponse; // the response
 	
 	NSMutableArray *ranges;
 	NSMutableArray *ranges_headers;
 	NSString *ranges_boundry;
 	int rangeIndex;
 	
-	UInt64 requestContentLength;
+	UInt64 requestContentLength;  // the request content length
 	UInt64 requestContentLengthReceived;
 	
 	NSMutableArray *responseDataSizes;

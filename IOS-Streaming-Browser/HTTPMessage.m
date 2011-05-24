@@ -5,7 +5,7 @@
 
 
 /**
- 
+    returns self as an empty HTTP message
 **/
 - (id)initEmptyRequest
 {
@@ -17,7 +17,8 @@
 }
 
 /**
- 
+    Initialize a request HTTPMessage with a URL and version
+    returns self (HTTPMessage)
  **/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version
 {
@@ -29,7 +30,7 @@
 }
 
 /**
- 
+    Initialize a response HTTPMessage with a code, description, and version
  **/
 - (id)initResponseWithStatusCode:(NSInteger)code description:(NSString *)description version:(NSString *)version
 {
@@ -41,7 +42,7 @@
 }
 
 /**
- 
+    Standard deconstructor
  **/
 - (void)dealloc
 {
@@ -53,7 +54,7 @@
 }
 
 /**
- 
+    Returns whether can appendData to a message
  **/
 - (BOOL)appendData:(NSData *)data
 {
@@ -61,7 +62,7 @@
 }
 
 /**
- 
+    Whether the header is complete
  **/
 - (BOOL)isHeaderComplete
 {
@@ -70,7 +71,7 @@
 
 
 /**
- 
+    Gets the version
  **/
 - (NSString *)version
 {
@@ -79,7 +80,7 @@
 
 
 /**
- 
+    Gets the method
  **/
 - (NSString *)method
 {
@@ -88,7 +89,7 @@
 
 
 /**
- 
+    Gets the url
  **/
 - (NSURL *)url
 {
@@ -97,7 +98,7 @@
 
 
 /**
- 
+    Gets the status code
  **/
 - (NSInteger)statusCode
 {
@@ -106,7 +107,7 @@
 
 
 /**
- 
+    Gets all the header fields
  **/
 - (NSDictionary *)allHeaderFields
 {
@@ -115,7 +116,7 @@
 
 
 /**
- 
+    Gets a speicific header field
  **/
 - (NSString *)headerField:(NSString *)headerField
 {
@@ -124,7 +125,7 @@
 
 
 /**
- 
+    Sets a header field
  **/
 - (void)setHeaderField:(NSString *)headerField value:(NSString *)headerFieldValue
 {
@@ -133,7 +134,7 @@
 
 
 /**
- 
+    Gets the message data
  **/
 - (NSData *)messageData
 {
@@ -142,7 +143,7 @@
 
 
 /**
- 
+    Gets the message body
  **/
 - (NSData *)body
 {
@@ -151,7 +152,7 @@
 
 
 /**
- 
+    Sets the message body
  **/
 - (void)setBody:(NSData *)body
 {
