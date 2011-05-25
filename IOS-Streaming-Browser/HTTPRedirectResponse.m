@@ -60,7 +60,7 @@
 }
 
 /*
-    
+    Returns an NSDictionary object with a 'Location' key, and a value as the redirect path
  */
 - (NSDictionary *)httpHeaders
 {

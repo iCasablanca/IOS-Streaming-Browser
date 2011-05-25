@@ -13,7 +13,7 @@
 
 
 /*
- 
+    Initialize the HTTPFileResponse with a file path and HTTPConnection
  */
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
@@ -22,7 +22,10 @@
 		
 		connection = parent; // Parents retain children, children do NOT retain parents
 		
+        // copies the file path into the instance variable
 		filePath = [fpath copy];
+        
+        // If there is no file path then decrement the reference count for self and return nil
 		if (filePath == nil)
 		{
 			
@@ -30,7 +33,10 @@
 			return nil;
 		}
 		
+        // Gets an NSDictionary of key/value pairs containing the attributes of the item (file, directory, symlink, etc.)
 		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+        
+        // If there are no file attributed, then decrement the 
 		if (fileAttributes == nil)
 		{
 			
@@ -38,7 +44,10 @@
 			return nil;
 		}
 		
+        // Gets the file size
 		fileLength = (UInt64)[[fileAttributes objectForKey:NSFileSize] unsignedLongLongValue];
+        
+        
 		fileOffset = 0;
 		
 		aborted = NO;
@@ -52,7 +61,7 @@
 
 
 /*
- 
+    Abort the connection
  */
 - (void)abort
 {
@@ -62,16 +71,21 @@
 }
 
 /*
- 
+    Whether can open the file or not
  */
 - (BOOL)openFile
 {
 	
+    // open the files as read only
 	fileFD = open([filePath UTF8String], O_RDONLY);
+    
+    // If could not open the file
 	if (fileFD == NULL_FD)
 	{
-		
+		// Abort the connection
 		[self abort];
+        
+        // Return 'NO' because we could not open the file
 		return NO;
 	}
 	
@@ -80,7 +94,7 @@
 }
 
 /*
- 
+    Whether the file needs to be opened
  */
 - (BOOL)openFileIfNeeded
 {
@@ -92,18 +106,22 @@
 		return NO;
 	}
 	
+    // If the connection has not been aborted
+    
+    
 	if (fileFD != NULL_FD)
 	{
 		// File has already been opened.
 		return YES;
 	}
 	
+    // opens the file
 	return [self openFile];
 }
 
 
 /*
- 
+    Get the file length
  */
 - (UInt64)contentLength
 {
@@ -112,7 +130,7 @@
 }
 
 /*
- 
+    Gets the file offset
  */
 - (UInt64)offset
 {
@@ -122,7 +140,7 @@
 
 
 /*
- 
+    Set the file offset
  */
 - (void)setOffset:(UInt64)offset
 {
@@ -146,7 +164,7 @@
 
 
 /*
- 
+    Reads a specific length of data from the file and returns as within an NSData object
  */
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
@@ -212,7 +230,7 @@
 }
 
 /*
- 
+    If done reading the files
  */
 - (BOOL)isDone
 {
@@ -223,7 +241,7 @@
 }
 
 /*
- 
+    Returns the filePath as string
  */
 - (NSString *)filePath
 {
@@ -232,7 +250,7 @@
 
 
 /*
- 
+    Standard deconstructor
  */
 - (void)dealloc
 {

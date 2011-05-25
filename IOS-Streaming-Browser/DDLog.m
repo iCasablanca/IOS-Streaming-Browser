@@ -693,6 +693,7 @@ typedef struct LoggerNode LoggerNode;
 			// Automatically create queue for the logger.
 			// Use the logger name as the queue name if possible.
 			
+            // Create a constant read only local attribute
 			const char *loggerQueueName = NULL;
 			if ([logger respondsToSelector:@selector(loggerName)])
 			{
@@ -1176,6 +1177,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 		{
 		#if GCD_MAYBE_AVAILABLE
 			
+            // Create a constant read only local attribute
 			const char *loggerQueueName = NULL;
 			if ([self respondsToSelector:@selector(loggerName)])
 			{

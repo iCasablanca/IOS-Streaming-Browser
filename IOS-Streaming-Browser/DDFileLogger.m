@@ -1082,7 +1082,8 @@
 	{
 	
 	#if TARGET_OS_IPHONE
-	
+        
+        // Create a constant read only local attribute
 		const char *path = [filePath UTF8String];
 		
 		struct attrlist attrList;
@@ -1383,6 +1384,7 @@
 
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName
 {
+    // Create a constant read only local attribute
 	const char *path = [filePath UTF8String];
 	const char *name = [attrName UTF8String];
 	
@@ -1393,6 +1395,7 @@
 
 - (void)addExtendedAttributeWithName:(NSString *)attrName
 {
+    // Create a constant read only local attribute
 	const char *path = [filePath UTF8String];
 	const char *name = [attrName UTF8String];
 	
@@ -1406,6 +1409,7 @@
 
 - (void)removeExtendedAttributeWithName:(NSString *)attrName
 {
+    // Create a constant read only local attribute
 	const char *path = [filePath UTF8String];
 	const char *name = [attrName UTF8String];
 	

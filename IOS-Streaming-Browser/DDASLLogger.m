@@ -60,6 +60,7 @@ static DDASLLogger *sharedInstance;
 	
 	if (logMsg)
 	{
+        // Create a constant read only local attribute
 		const char *msg = [logMsg UTF8String];
 		
 		int aslLogLevel;

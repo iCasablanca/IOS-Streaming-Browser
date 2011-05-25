@@ -19,15 +19,17 @@
 {
 	if ((self = [super initWithFilePath:fpath forConnection:parent]))
 	{
-		
+		// Sets the separator string
 		separator = [[separatorStr dataUsingEncoding:NSUTF8StringEncoding] retain];
+        
+        // Sets the replacement dictionary
 		replacementDict = [dict retain];
 	}
 	return self;
 }
 
 /*
- 
+    Whether using chunked encoding to transfer the response in a series of chunks with its own size indicator
  */
 - (BOOL)isChunked
 {
@@ -36,7 +38,7 @@
 }
 
 /*
- 
+    Does nothing
  */
 - (UInt64)contentLength
 {
@@ -48,7 +50,7 @@
 }
 
 /*
- 
+    Does nothing
  */
 - (void)setOffset:(UInt64)offset
 {
@@ -58,7 +60,7 @@
 }
 
 /*
- 
+    If done reading the fule
  */
 - (BOOL)isDone
 {
@@ -99,10 +101,13 @@
 	NSUInteger s1 = 0;
 	NSUInteger s2 = 0;
 	
+    
+    // Create a constant read only local attribute
 	const void *sep = [separator bytes];
 	
 	while (offset < stopOffset)
 	{
+        // Create a constant read only local attribute
 		const void *subBuffer = readBuffer + offset;
 		
 		if (memcmp(subBuffer, sep, sepLen) == 0)

@@ -25,7 +25,6 @@
 		ECA7E505137CD6A10046380A /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E4FE137CD6A10046380A /* HTTPRedirectResponse.m */; };
 		ECA7E506137CD6A10046380A /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E500137CD6A10046380A /* HTTPAsyncFileResponse.m */; };
 		ECA7E507137CD6A10046380A /* HTTPDynamicFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E502137CD6A10046380A /* HTTPDynamicFileResponse.m */; };
-		ECA7E50A137CD6C30046380A /* HTTPResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA7E509137CD6C30046380A /* HTTPResponseTest.m */; };
 		ECE098161380168700D8AB16 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE098151380168700D8AB16 /* MainWindow_iPad.xib */; };
 		ECE0982A13806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0982813806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m */; };
 		ECE0982F13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE0982C13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m */; };
@@ -89,8 +88,6 @@
 		ECA7E500137CD6A10046380A /* HTTPAsyncFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPAsyncFileResponse.m; sourceTree = "<group>"; };
 		ECA7E501137CD6A10046380A /* HTTPDynamicFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDynamicFileResponse.h; sourceTree = "<group>"; };
 		ECA7E502137CD6A10046380A /* HTTPDynamicFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDynamicFileResponse.m; sourceTree = "<group>"; };
-		ECA7E508137CD6C30046380A /* HTTPResponseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponseTest.h; sourceTree = "<group>"; };
-		ECA7E509137CD6C30046380A /* HTTPResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPResponseTest.m; sourceTree = "<group>"; };
 		ECE098151380168700D8AB16 /* MainWindow_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow_iPad.xib; sourceTree = "<group>"; };
 		ECE0982813806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOS_Streaming_BrowserAppDelegate.m; sourceTree = "<group>"; };
 		ECE0982913806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOS_Streaming_BrowserAppDelegate.h; sourceTree = "<group>"; };
@@ -274,8 +271,6 @@
 		ECE61A88137C444B00622B58 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ECA7E508137CD6C30046380A /* HTTPResponseTest.h */,
-				ECA7E509137CD6C30046380A /* HTTPResponseTest.m */,
 				ECE61AB5137C552D00622B58 /* localhostAddresses.h */,
 				ECE61AB6137C552D00622B58 /* localhostAddresses.m */,
 				ECE0982813806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m */,
@@ -394,7 +389,6 @@
 				ECA7E505137CD6A10046380A /* HTTPRedirectResponse.m in Sources */,
 				ECA7E506137CD6A10046380A /* HTTPAsyncFileResponse.m in Sources */,
 				ECA7E507137CD6A10046380A /* HTTPDynamicFileResponse.m in Sources */,
-				ECA7E50A137CD6C30046380A /* HTTPResponseTest.m in Sources */,
 				ECE0982A13806DE600D8AB16 /* IOS_Streaming_BrowserAppDelegate.m in Sources */,
 				ECE0982F13806DFD00D8AB16 /* IOS_Streaming_BrowserViewController.m in Sources */,
 				ECE0983313806E2700D8AB16 /* main.m in Sources */,

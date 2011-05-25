@@ -41,7 +41,7 @@
     
 	NSMutableDictionary* result = [NSMutableDictionary dictionary];
     
-    
+    // Creates an ifaddrs structure
 	struct ifaddrs*	addrs;
     
     //function creates a linked list of structures describing the
@@ -52,21 +52,25 @@
     // If successful in getting the addresses
 	if (success) 
 	{
+        // Create a constant read only local attribute
 		const struct ifaddrs* cursor = addrs;
         
-        
+        // Loop through the struct while not NULL 
 		while (cursor != NULL) 
 		{
+            // Creates a local attribute
 			NSMutableString* ip;
             
             // AF_INET is the address family for an internet socket
 			if (cursor->ifa_addr->sa_family == AF_INET) 
 			{
-                
+                // Create a constant read only local attribute
 				const struct sockaddr_in* dlAddr = (const struct sockaddr_in*)cursor->ifa_addr;
                 
+                // Create a constant read only local attribute
 				const uint8_t* base = (const uint8_t*)&dlAddr->sin_addr;
                 
+                // Initializes and allocates memory for the new ip
 				ip = [[NSMutableString new] autorelease];
                 
                 // Loops through the address and adds a period
@@ -89,6 +93,7 @@
 		freeifaddrs(addrs);
 	}
     
+    // Post a notification to the default notification center that the local host address has been resolved
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"LocalhostAdressesResolved" object:result];
 
 	[pool release];

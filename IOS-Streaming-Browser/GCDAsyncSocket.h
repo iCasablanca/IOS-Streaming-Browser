@@ -84,8 +84,14 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	NSMutableData *partialReadBuffer;  // partial read buffer
 		
 #if TARGET_OS_IPHONE
+    
+    // A struct for holding client information
 	CFStreamClientContext streamContext;
+    
+    // Is the interface for reading a byte stream either synchronously or asynchronously.
 	CFReadStreamRef readStream;
+    
+    // Is the interface for writing a byte stream either synchronously or asynchronously
 	CFWriteStreamRef writeStream;
 #else
 	SSLContextRef sslContext;

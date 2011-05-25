@@ -58,6 +58,7 @@
 #define LogCTrace()             LogC(LOG_FLAG_VERBOSE, @"%@: %s", THIS_FILE, __FUNCTION__)
 
 // Log levels : off, error, warn, info, verbose
+// Create a constant read only local attribute as static.  This means the value extends throughout the lifetime of this program
 static const int logLevel = LOG_LEVEL_VERBOSE;
 
 #else
@@ -525,10 +526,10 @@ enum GCDAsyncSocketConfig
 	NSUInteger startOffset; // start offset for read buffer
 	NSUInteger bytesDone; // bytes dones reading
 	NSUInteger maxLength; // maximum length
-	NSTimeInterval timeout;
+	NSTimeInterval timeout; // the timeout value for reading from a host
 	NSUInteger readLength; // read length
 	NSData *term;   // terminator
-	BOOL bufferOwner;
+	BOOL bufferOwner;  // whether there is a buffer owner
 	NSUInteger originalBufferLength; // original buffer length
 	long tag;
 }
@@ -550,7 +551,7 @@ enum GCDAsyncSocketConfig
 - (void)ensureCapacityForAdditionalDataOfLength:(NSUInteger)bytesToRead;
 
 /*
- 
+    The optimal read length with a default value, and whether should prebuffer
  */
 - (NSUInteger)optimalReadLengthWithDefault:(NSUInteger)defaultValue shouldPreBuffer:(BOOL *)shouldPreBufferPtr;
 
@@ -576,17 +577,19 @@ enum GCDAsyncSocketConfig
 
 @end
 
+
+
 @implementation GCDAsyncReadPacket
 
 /*
     Initialize the GCDAsyncReadPacket
  */
 - (id)initWithData:(NSMutableData *)d
-       startOffset:(NSUInteger)s
-         maxLength:(NSUInteger)m
-           timeout:(NSTimeInterval)t
-        readLength:(NSUInteger)l
-        terminator:(NSData *)e
+       startOffset:(NSUInteger)s  // Number of characerts from the start
+         maxLength:(NSUInteger)m  // maximum length
+           timeout:(NSTimeInterval)t  // timeout for the packet
+        readLength:(NSUInteger)l 
+        terminator:(NSData *)e 
                tag:(long)i
 {
 	if((self = [super init]))
@@ -598,19 +601,19 @@ enum GCDAsyncSocketConfig
 		term = [e copy];
 		tag = i;
 		
-		if (d)
+		if (d) // if there is mutable data passed-in to initialize the method
 		{
 			buffer = [d retain];
 			startOffset = s;
 			bufferOwner = NO;
 			originalBufferLength = [d length];
 		}
-		else
+		else // if there is not mutable data
 		{
 			if (readLength > 0)
             {
 				buffer = [[NSMutableData alloc] initWithLength:readLength];
-			}else{
+			}else{ // If readLength is less than or equal to zero
 				buffer = [[NSMutableData alloc] initWithLength:0];
 			}
 			startOffset = 0;
@@ -657,6 +660,7 @@ enum GCDAsyncSocketConfig
 **/
 - (NSUInteger)optimalReadLengthWithDefault:(NSUInteger)defaultValue shouldPreBuffer:(BOOL *)shouldPreBufferPtr
 {
+    // Local variable for holding the result
 	NSUInteger result;
 	
 	if (readLength > 0)
@@ -674,7 +678,7 @@ enum GCDAsyncSocketConfig
 			*shouldPreBufferPtr = NO;
         }
 	}
-	else
+	else // if readLength is equal to zero
 	{
 		// Either reading until we find a specified terminator,
 		// or we're simply reading all available data.
@@ -687,7 +691,7 @@ enum GCDAsyncSocketConfig
 		if (maxLength > 0)
         {
 			result =  MIN(defaultValue, (maxLength - bytesDone));
-		}else{
+		}else{ // if maximum length is not greater than zero
 			result = defaultValue;
 		}
         
@@ -698,13 +702,19 @@ enum GCDAsyncSocketConfig
 		// This is because, in all likelyhood, the amount read from the socket will be less than the default value.
 		// Thus we should avoid over-allocating the read buffer when we can simply use the pre-buffer instead.
 		
+        
 		if (shouldPreBufferPtr)
 		{
+            // Gets the buffer size
 			NSUInteger buffSize = [buffer length];
+            
+            // Get the amount of the buffer which has been utilized
 			NSUInteger buffUsed = startOffset + bytesDone;
 			
+            // Gets the amount of available space in the bufer
 			NSUInteger buffSpace = buffSize - buffUsed;
 			
+            
 			if (buffSpace >= result)
             {
 				*shouldPreBufferPtr = NO;
@@ -753,6 +763,7 @@ enum GCDAsyncSocketConfig
 		
 		if (maxLength > 0)
 		{
+            // Get the lesser of the bytes available, or the maximum length minus the bytesDone reading or writing
 			result = MIN(result, (maxLength - bytesDone));
 		}
 		
@@ -930,7 +941,7 @@ enum GCDAsyncSocketConfig
     
 	Byte seq[termLength];
     
-    
+    // Create a constant read only local attribute
 	const void *termBuf = [term bytes];
 	
     
@@ -943,6 +954,7 @@ enum GCDAsyncSocketConfig
 	NSUInteger preLen = termLength - bufLen;
 	void *pre = (void *)[preBuffer bytes];
 	
+    // Set the loop count for searching through the buffer and prebuffer
 	NSUInteger loopCount = bufLen + maxPreBufferLength - termLength + 1; // Plus one. See example above.
 	
     
@@ -957,9 +969,13 @@ enum GCDAsyncSocketConfig
 		{
 			// Combining bytes from buffer and preBuffer
 			
+            // Copies bufLen bytes from the bufer to the seq
 			memcpy(seq, buf, bufLen);
+            
+            // Copies preLen bytes from pre to seq plus bufLen
 			memcpy(seq + bufLen, pre, preLen);
 			
+            // compare bytes in memory
 			if (memcmp(seq, termBuf, termLength) == 0)
 			{
 				result = preLen;
@@ -971,7 +987,7 @@ enum GCDAsyncSocketConfig
 			bufLen--;
 			preLen++;
 		}
-		else
+		else // if buffer length is not greater than zero
 		{
 			// Comparing directly from preBuffer
 			
@@ -1021,6 +1037,7 @@ enum GCDAsyncSocketConfig
 	void *buff = [buffer mutableBytes];
 	NSUInteger buffLength = bytesDone + numBytes;
 	
+    // Create a constant read only local attribute
 	const void *termBuff = [term bytes];
 	NSUInteger termLength = [term length];
 	
@@ -1029,10 +1046,13 @@ enum GCDAsyncSocketConfig
 	
 	NSUInteger i = ((buffLength - numBytes) >= termLength) ? (buffLength - numBytes - termLength + 1) : 0;
 	
+    // While the terimination length is less than or equal to the buffer length
 	while (i + termLength <= buffLength)
 	{
+        
 		void *subBuffer = buff + startOffset + i;
 		
+        // compare bytes in memory
 		if (memcmp(subBuffer, termBuff, termLength) == 0)
 		{
 			return buffLength - (i + termLength);
@@ -1070,7 +1090,7 @@ enum GCDAsyncSocketConfig
 	NSData *buffer; // write buffer
 	NSUInteger bytesDone; // bytes done writing
 	long tag;
-	NSTimeInterval timeout; 
+	NSTimeInterval timeout; // the timeout value for writing to a host
 }
 
 /*
@@ -1207,8 +1227,10 @@ enum GCDAsyncSocketConfig
 	{
 		delegate = aDelegate;
 		
+        // Test if there is a delegat queue
 		if (dq)
 		{
+            // Increment the reference count of the delegate queue
 			dispatch_retain(dq);
 			delegateQueue = dq;
 		}
@@ -1222,6 +1244,8 @@ enum GCDAsyncSocketConfig
             // Make sure the socket queue is not a global concurrence queue
 			NSString *assertMsg = @"The given socketQueue parameter must not be a concurrent queue.";
 			
+            
+            // Test whether the socket queue is not equal to the global queue values
 			NSAssert(sq != dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), assertMsg);
 			NSAssert(sq != dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), assertMsg);
 			NSAssert(sq != dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), assertMsg);
@@ -1315,7 +1339,6 @@ enum GCDAsyncSocketConfig
     // In this case, is the block running on the socketQueue
 	if (dispatch_get_current_queue() == socketQueue)
 	{
-        // 
 		return delegate;
 	}
 	else // If block not running on the socket queue then submit to dispatch queue
@@ -1324,10 +1347,10 @@ enum GCDAsyncSocketConfig
 		__block id result;
 		
         
-        // Submits a block for synchronous execution on a dispatch queue.
+        // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
 			result = delegate;
-		});
+		}); // END OF BLOCK
 		
 		return result;
 	}
@@ -1370,7 +1393,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)setDelegate:(id)newDelegate
 {
-    // executes asynchronously
+    // Sets the delegate as the newDelegate for asynchronous execution of blocks
 	[self setDelegate:newDelegate synchronously:NO];
 }
 
@@ -1379,7 +1402,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)synchronouslySetDelegate:(id)newDelegate
 {
-    
+    // Set the delegate as the newDelegate for synchronous execution of blocks
 	[self setDelegate:newDelegate synchronously:YES];
 }
 
@@ -1402,10 +1425,10 @@ enum GCDAsyncSocketConfig
 		__block dispatch_queue_t result;
 		
         
-        
+        // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
 			result = delegateQueue;
-		});
+		}); // END OF BLOCK
 		
 		return result;
 	}
@@ -1417,32 +1440,38 @@ enum GCDAsyncSocketConfig
 - (void)setDelegateQueue:(dispatch_queue_t)newDelegateQueue synchronously:(BOOL)synchronously
 {
     
+    // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 	dispatch_block_t block = ^{
 		
+        // If there is a delegate queue
 		if (delegateQueue)
         {
+            // Decrement the reference count of the delegateQueue
 			dispatch_release(delegateQueue);
         }
         
-        
+        // If there is a new delegate queue
 		if (newDelegateQueue)
         {
+            // Increment the reference count of the newDelegateQueue
 			dispatch_retain(newDelegateQueue);
 		}
         
 		delegateQueue = newDelegateQueue;
-	};
+	}; // END OF BLOCK
 	
     // Returns the queue on which the currently executing block is running.
     // In this case, check if the socketQueue is currently running the block
 	if (dispatch_get_current_queue() == socketQueue) {
 		block();
 	}
-	else {
+	else { // if the current queue is not the socketQueue
+        
+        
 		if (synchronously)
         {
 			dispatch_sync(socketQueue, block);
-        }else{
+        }else{ // If executing blocks asynchronously
 			dispatch_async(socketQueue, block);
         }
 	}
@@ -1453,6 +1482,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)setDelegateQueue:(dispatch_queue_t)newDelegateQueue
 {
+    // Set the delegate queue to the new delegate queue for asynchronous execution of blocks
 	[self setDelegateQueue:newDelegateQueue synchronously:NO];
 }
 
@@ -1461,6 +1491,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)synchronouslySetDelegateQueue:(dispatch_queue_t)newDelegateQueue
 {
+    // Set the delegate queue to the new delegate queue for synchronous execution of blocks
 	[self setDelegateQueue:newDelegateQueue synchronously:YES];
 }
 
@@ -1474,10 +1505,20 @@ enum GCDAsyncSocketConfig
     // In this case, check if the socketQueue is currently running the block
 	if (dispatch_get_current_queue() == socketQueue)
 	{
-		if (delegatePtr) *delegatePtr = delegate;
-		if (delegateQueuePtr) *delegateQueuePtr = delegateQueue;
+        // If there is a delegate pointer
+		if (delegatePtr)
+        {
+            *delegatePtr = delegate;
+        }
+        
+        // If there is a delegateQueue pointer
+		if (delegateQueuePtr)
+        {
+            *delegateQueuePtr = delegateQueue;
+        }
+        
 	}
-	else
+	else  // If the current queue is not the socketQueue
 	{
         // Get the delegate pointer and delegate queue from the block
 		__block id dPtr = NULL;
@@ -1486,13 +1527,23 @@ enum GCDAsyncSocketConfig
         
         //BLOCK
         
+        // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
-			dPtr = delegate;
-			dqPtr = delegateQueue;
-		});
+			dPtr = delegate; //delegate pointer
+			dqPtr = delegateQueue; // delegate que pointer
+		}); // END OF BLOCK
 		
-		if (delegatePtr) *delegatePtr = dPtr;
-		if (delegateQueuePtr) *delegateQueuePtr = dqPtr;
+        // If there is a delegate pointer
+		if (delegatePtr)
+        {
+            *delegatePtr = dPtr;
+        }
+        
+        // If there is a delegateQueue pointer
+		if (delegateQueuePtr)
+        {
+            *delegateQueuePtr = dqPtr;
+        }
 	}
 }
 
@@ -1505,16 +1556,20 @@ enum GCDAsyncSocketConfig
 		
 		delegate = newDelegate;
 		
+        // if there is a delegateQueue
 		if (delegateQueue)
         {
+            // Decrement the reference count of the delegateQueue
 			dispatch_release(delegateQueue);
 		}
         
-        
+        // if there is a newDelegateQueue
 		if (newDelegateQueue)
         {
+            // Increment the reference count of the newDelegateQueue
 			dispatch_retain(newDelegateQueue);
 		}
+        
         
 		delegateQueue = newDelegateQueue;
 	};
@@ -1524,11 +1579,14 @@ enum GCDAsyncSocketConfig
 	if (dispatch_get_current_queue() == socketQueue) {
 		block();
 	}
-	else {
+	else { // if the current queue is not the socketQueue
 		if (synchronously)
         {
+            // Submits a block for synchronous execution on the socketQueue
 			dispatch_sync(socketQueue, block);
-		}else{
+		}else{ // if executing asynchronously
+            
+            // Submits a block for asynchronous execution on the socketQueue
 			dispatch_async(socketQueue, block);
         }
 	}
@@ -4356,9 +4414,12 @@ enum GCDAsyncSocketConfig
 	}
 	else
 	{
+        // Create a constant read only local attribute
 		const char *iface = [interface UTF8String];
 		
 		struct ifaddrs *addrs;
+        
+        // Create a constant read only local attribute
 		const struct ifaddrs *cursor;
 		
 		if ((getifaddrs(&addrs) == 0))
@@ -4646,6 +4707,8 @@ enum GCDAsyncSocketConfig
 {
 	if (offset > [buffer length]) return;
 	
+    
+    
 	GCDAsyncReadPacket *packet = [[GCDAsyncReadPacket alloc] initWithData:buffer
             startOffset:offset
             maxLength:length
@@ -7603,6 +7666,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 - (void)performBlock:(dispatch_block_t)block
 {
+    // Submits a block for synchronous execution on the socketQueue.
 	dispatch_sync(socketQueue, block);
 }
 
@@ -7623,11 +7687,11 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 		if (socket4FD != SOCKET_NULL)
         {
 			return socket4FD;
-		}else{
+		}else{ // if the IP version 4 socket file descriptor is null then return the IP version 6 file descriptor
 			return socket6FD;
         }
 	}
-	else
+	else // if the current queue is not the socketQueue
 	{
 		return SOCKET_NULL;
 	}
@@ -7646,8 +7710,9 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
     // Returns the queue on which the currently executing block is running.
 	if (dispatch_get_current_queue() == socketQueue)
     {
+        // Return the IP version 4 socket file descriptor
 		return socket4FD;
-	}else{
+	}else{ // if the current queue is not the socketQueue
 		return SOCKET_NULL;
     }
 }
@@ -7665,8 +7730,9 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
     // Returns the queue on which the currently executing block is running.
 	if (dispatch_get_current_queue() == socketQueue)
     {
+        // Return the IP version 6 socket file descriptor
 		return socket6FD;
-	}else{
+	}else{ // If the current queue is not the socketQueue
 		return SOCKET_NULL;
     }
 }
@@ -7688,12 +7754,13 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	{
 		if (readStream == NULL)
         {
+            // Create the read and write stream
 			[self createReadAndWriteStream];
         }
 		
 		return readStream;
 	}
-	else
+	else // If the current queue is not the socketQueue
 	{
 		return NULL;
 	}
@@ -7713,12 +7780,13 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	{
 		if (writeStream == NULL)
         {
+            // Create the read and write stream
 			[self createReadAndWriteStream];
         }
 		
 		return writeStream;
 	}
-	else
+	else // If the current queue is not the socketQueuue
 	{
 		return NULL;
 	}
@@ -7764,14 +7832,21 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	
 	if (!caveat)
 	{
+        // Get the current status of the read stream
 		CFStreamStatus readStatus = CFReadStreamGetStatus(readStream);
+        
+        // Get the current status of the write stream
 		CFStreamStatus writeStatus = CFWriteStreamGetStatus(writeStream);
 		
+        // If the read or write streams are not open
 		if ((readStatus == kCFStreamStatusNotOpen) || (writeStatus == kCFStreamStatusNotOpen))
 		{
+            // Open the read and write streams
 			r1 = CFReadStreamOpen(readStream);
 			r2 = CFWriteStreamOpen(writeStream);
 			
+            
+            // Check if the read and write streams could be opened
 			if (!r1 || !r2)
 			{
 				LogError(@"Error opening bg streams");
@@ -7786,6 +7861,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 
 /*
     Whether to enable backgrounding on socket
+    returns boolean YES or NO
  */
 - (BOOL)enableBackgroundingOnSocket
 {
@@ -7796,7 +7872,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	{
 		return [self enableBackgroundingOnSocketWithCaveat:NO];
 	}
-	else
+	else // If the current queue is not the socketQueue
 	{
 		return NO;
 	}
@@ -7815,7 +7891,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	{
 		return [self enableBackgroundingOnSocketWithCaveat:YES];
 	}
-	else
+	else // If the current queue is not the socketQueue
 	{
 		return NO;
 	}
@@ -7833,7 +7909,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	if (dispatch_get_current_queue() == socketQueue)
     {
 		return sslContext;
-	}else{
+	}else{  // If the current queue is not the socketQueue
 		return NULL;
     }
 }
@@ -7848,16 +7924,20 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 /*
     Class method
     Gets host from IP version 4 socket address
+    returns NSString
  */
 + (NSString *)hostFromAddress4:(struct sockaddr_in *)pSockaddr4
 {
+    // Create an address buffer 16 characters in length
 	char addrBuf[INET_ADDRSTRLEN];
-	
+
+    // Try to convert a numerical address into a text string suitable for presentation
 	if (inet_ntop(AF_INET, &pSockaddr4->sin_addr, addrBuf, (socklen_t)sizeof(addrBuf)) == NULL)
 	{
 		addrBuf[0] = '\0';
 	}
-	
+
+    // Returns a NSString from a CString with ASCII string encoding
 	return [NSString stringWithCString:addrBuf encoding:NSASCIIStringEncoding];
 }
 
@@ -7865,16 +7945,21 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 /*
     Class method
     Gets host from IP version 6 socket address
+    returns NSString
  */
 + (NSString *)hostFromAddress6:(struct sockaddr_in6 *)pSockaddr6
 {
-	char addrBuf[INET6_ADDRSTRLEN];
+    
+    // Create an address buffer 46 characters in length
+	char addrBuf[INET6_ADDRSTRLEN]; // equals the number 46
 	
+    // Try to convert a numerical address into a text string suitable for presentation
 	if (inet_ntop(AF_INET6, &pSockaddr6->sin6_addr, addrBuf, (socklen_t)sizeof(addrBuf)) == NULL)
 	{
 		addrBuf[0] = '\0';
 	}
 	
+    // Returns a NSString from a CString with ASCII string encoding
 	return [NSString stringWithCString:addrBuf encoding:NSASCIIStringEncoding];
 }
 
@@ -7885,6 +7970,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 + (UInt16)portFromAddress4:(struct sockaddr_in *)pSockaddr4
 {
+    // Converts a network address port to a host address port
 	return ntohs(pSockaddr4->sin_port);
 }
 
@@ -7894,6 +7980,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 + (UInt16)portFromAddress6:(struct sockaddr_in6 *)pSockaddr6
 {
+    // Converts a network address port to a host address port
 	return ntohs(pSockaddr6->sin6_port);
 }
 
@@ -7903,12 +7990,14 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 + (NSString *)hostFromAddress:(NSData *)address
 {
+    // Local variable
 	NSString *host;
 	
+    // Try to get the host from an address
 	if ([self getHost:&host port:NULL fromAddress:address])
     {
 		return host;
-	}else{
+	}else{ // Could not get the host from the address
 		return nil;
     }
 }
@@ -7919,12 +8008,14 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 + (UInt16)portFromAddress:(NSData *)address
 {
+    // Local variable
 	UInt16 port;
 	
+    // Try to get the port from an address
 	if ([self getHost:NULL port:&port fromAddress:address])
     {
 		return port;
-	}else{
+	}else{ // Can not get the port from an address
 		return 0;
     }
 }
@@ -7938,34 +8029,49 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 {
     // Check if address length is greater than sizoe of socket address
     // sockaddr is a structure used by kernel to store most addresses
-    // Why?
+    // Why:  To determine if the address is valid
 	if ([address length] >= sizeof(struct sockaddr))
 	{
         
-        
+        // Gets a pointer to the address contents.
 		struct sockaddr *addrX = (struct sockaddr *)[address bytes];
 		
         
-        // If the address family is for an internal socket
+        // If the socket address family is for an IP version 4 format
 		if (addrX->sa_family == AF_INET)
 		{
+            // Check if the number of bytes in the address is greater than or equal to the size of a normal internet style socket address.  
 			if ([address length] >= sizeof(struct sockaddr_in))
 			{
+                // Get the address from the pointer to the address
 				struct sockaddr_in *addr4 = (struct sockaddr_in *)addrX;
 				
+                // Check if we can get the host from the address
 				if (hostPtr) *hostPtr = [self hostFromAddress4:addr4];
+                
+                // Check if we can get the post from the address
 				if (portPtr) *portPtr = [self portFromAddress4:addr4];
 				
+                
 				return YES;
 			}
 		}
+        // If the socket address family if for IP version 6 format
 		else if (addrX->sa_family == AF_INET6)
 		{
+            
+            // Check if the number of bytes in the address is greater than or equal to the size of a normal internet style socket address.  
 			if ([address length] >= sizeof(struct sockaddr_in6))
 			{
+                
+                // Get the address from the pointer to the address
 				struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)addrX;
 				
+                
+                // Check if we can get the host from the address
 				if (hostPtr) *hostPtr = [self hostFromAddress6:addr6];
+                
+                // Check if we can get the port from the address
 				if (portPtr) *portPtr = [self portFromAddress6:addr6];
 				
 				return YES;
@@ -8012,6 +8118,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
  */
 + (NSData *)ZeroData
 {
+    
 	return [NSData dataWithBytes:"" length:1];
 }
 

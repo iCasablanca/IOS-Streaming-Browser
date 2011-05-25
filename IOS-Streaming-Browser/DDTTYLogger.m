@@ -53,6 +53,8 @@ static DDTTYLogger *sharedInstance;
 			// Initialze 'app' variable (char *)
 			
 			NSString *appNStr = [[NSProcessInfo processInfo] processName];
+            
+            // Create a constant read only local attribute
 			const char *appCStr = [appNStr UTF8String];
 			
 			appLen = strlen(appCStr);
@@ -63,6 +65,8 @@ static DDTTYLogger *sharedInstance;
 			// Initialize 'pid' variable (char *)
 			
 			NSString *pidNStr = [NSString stringWithFormat:@"%i", (int)getpid()];
+            
+            // Create a constant read only local attribute
 			const char *pidCStr = [pidNStr UTF8String];
 			
 			pidLen = strlen(pidCStr);
@@ -89,6 +93,7 @@ static DDTTYLogger *sharedInstance;
 	
 	if (logMsg)
 	{
+        // Create a constant read only local attribute
 		const char *msg = [logMsg UTF8String];
 		size_t msgLen = strlen(msg);
 		
@@ -112,6 +117,7 @@ static DDTTYLogger *sharedInstance;
 			
 			NSString *tsNStr = [dateFormatter stringFromDate:(logMessage->timestamp)];
 			
+            // Create a constant read only local attribute
 			const char *tsCStr = [tsNStr UTF8String];
 			size_t tsLen = strlen(tsCStr);
 			

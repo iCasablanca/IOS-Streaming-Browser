@@ -16,9 +16,15 @@ static char encodingTable[64] = {
  */
 - (NSData *)md5Digest
 {
-	unsigned char result[CC_MD5_DIGEST_LENGTH];
+    
+    // Creates unsigned character with value of 16
+	unsigned char result[CC_MD5_DIGEST_LENGTH];  // 16- digest length in bytes */
+    
+    
     
     CC_MD5([self bytes], (CC_LONG)[self length], result);
+    
+    
     return [NSData dataWithBytes:result length:CC_MD5_DIGEST_LENGTH];
 }
 
@@ -27,9 +33,10 @@ static char encodingTable[64] = {
  */
 - (NSData *)sha1Digest
 {
-	unsigned char result[CC_SHA1_DIGEST_LENGTH];
+	unsigned char result[CC_SHA1_DIGEST_LENGTH]; // 20 - digest length in bytes 
     
 	CC_SHA1([self bytes], (CC_LONG)[self length], result);
+    
     return [NSData dataWithBytes:result length:CC_SHA1_DIGEST_LENGTH];
 }
 
@@ -38,9 +45,13 @@ static char encodingTable[64] = {
  */
 - (NSString *)hexStringValue
 {
+    // Create a string buffer 
 	NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([self length] * 2)];
 	
+    // Create a constant read only local attribute
     const unsigned char *dataBuffer = [self bytes];
+    
+    
     int i;
     
     for (i = 0; i < [self length]; ++i)
@@ -56,7 +67,9 @@ static char encodingTable[64] = {
  */
 - (NSString *)base64Encoded
 {
+    // Create a constant read only local attribute
 	const unsigned char	*bytes = [self bytes];
+    
 	NSMutableString *result = [NSMutableString stringWithCapacity:[self length]];
 	unsigned long ixtext = 0;
 	unsigned long lentext = [self length];
@@ -112,7 +125,9 @@ static char encodingTable[64] = {
  */
 - (NSData *)base64Decoded
 {
+    // Create a constant read only local attribute
 	const unsigned char	*bytes = [self bytes];
+    
 	NSMutableData *result = [NSMutableData dataWithCapacity:[self length]];
 	
 	unsigned long ixtext = 0;

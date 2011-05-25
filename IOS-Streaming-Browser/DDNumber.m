@@ -21,9 +21,11 @@
 	*pNum = strtoll([str UTF8String], NULL, 10);
 	
 	if(errno != 0)
+    {
 		return NO;
-	else
+	}else{
 		return YES;
+    }
 }
 
 
@@ -45,9 +47,11 @@
 	*pNum = strtoull([str UTF8String], NULL, 10);
 	
 	if(errno != 0)
+    {
 		return NO;
-	else
+    }else{
 		return YES;
+    }
 }
 
 
@@ -70,9 +74,11 @@
 	*pNum = strtol([str UTF8String], NULL, 10);
 	
 	if(errno != 0)
+    {
 		return NO;
-	else
+    }else{
 		return YES;
+    }
 }
 
 
@@ -81,12 +87,16 @@
  */
 + (BOOL)parseString:(NSString *)str intoNSUInteger:(NSUInteger *)pNum
 {
+    // Check if the string is nil, and if so, return NO because there is no string to parse
 	if(str == nil)
 	{
 		*pNum = 0;
 		return NO;
 	}
 	
+    // This means the string is not nil
+    
+    
 	errno = 0;
 	
 	// On LP64, NSUInteger = unsigned long = 64 bit
@@ -94,10 +104,13 @@
 	
 	*pNum = strtoul([str UTF8String], NULL, 10);
 	
-	if(errno != 0)
+    
+	if(errno != 0) // This means there was an error trying to parse the string
+    {       
 		return NO;
-	else
+    }else{ // This means there was no error trying to parse the string
 		return YES;
+    }
 }
 
 @end

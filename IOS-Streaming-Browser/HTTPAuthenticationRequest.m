@@ -33,29 +33,49 @@
 			isDigest = [[authInfo substringToIndex:7] caseInsensitiveCompare:@"Digest "] == NSOrderedSame;
 		}
 		
+        // if using basic authentication
 		if (isBasic)
 		{
+            
+            // Gets the substring in the 7th position, makes a copy, and then schedules it for autorelease
 			NSMutableString *temp = [[[authInfo substringFromIndex:6] mutableCopy] autorelease];
+            
+            // Trims any whitespace from the string
 			CFStringTrimWhitespace((CFMutableStringRef)temp);
 			
+            // Copies the value in the temp string to the base64Credentials variable
 			base64Credentials = [temp copy];
 		}
 		
+        
+        // If using digest authentication
 		if (isDigest)
 		{
+            // Get the username from the header
 			username = [[self quotedSubHeaderFieldValue:@"username" fromHeaderFieldValue:authInfo] retain];
+            
+            // Get the realm from the header
 			realm    = [[self quotedSubHeaderFieldValue:@"realm" fromHeaderFieldValue:authInfo] retain];
+            
+            // Get the nonce from the header
 			nonce    = [[self quotedSubHeaderFieldValue:@"nonce" fromHeaderFieldValue:authInfo] retain];
+            
+            // Get the URI from the header
 			uri      = [[self quotedSubHeaderFieldValue:@"uri" fromHeaderFieldValue:authInfo] retain];
 			
 			// It appears from RFC 2617 that the qop is to be given unquoted
 			// Tests show that Firefox performs this way, but Safari does not
 			// Thus we'll attempt to retrieve the value as nonquoted, but we'll verify it doesn't start with a quote
 			qop      = [self nonquotedSubHeaderFieldValue:@"qop" fromHeaderFieldValue:authInfo];
+            
+            // If there is a quality of protection setting
 			if(qop && ([qop characterAtIndex:0] == '"'))
 			{
+                
 				qop  = [self quotedSubHeaderFieldValue:@"qop" fromHeaderFieldValue:authInfo];
 			}
+            
+            // Increment the reference count for the quality of protection
 			[qop retain];
 			
 			nc       = [[self nonquotedSubHeaderFieldValue:@"nc" fromHeaderFieldValue:authInfo] retain];
@@ -199,25 +219,43 @@
 **/
 - (NSString *)quotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header
 {
+    
+    // Finds and returns the range of the first occurrence of the parameter withing the header
 	NSRange startRange = [header rangeOfString:[NSString stringWithFormat:@"%@=\"", param]];
+    
+    // If the parameter was not found anywhere within the header
 	if(startRange.location == NSNotFound)
 	{
-		// The param was not found anywhere in the header
+		
 		return nil;
 	}
 	
+    // Gets the location after the parameter
 	NSUInteger postStartRangeLocation = startRange.location + startRange.length;
+    
+    // The header length minus the length of the location found in the header.  This is provides the for everything in the header after the last parameter
 	NSUInteger postStartRangeLength = [header length] - postStartRangeLocation;
+    
+    // Creates a new range with a start location after the parameter to the end of the header
 	NSRange postStartRange = NSMakeRange(postStartRangeLocation, postStartRangeLength);
 	
+    // Finds the the location of the next quotation mark
 	NSRange endRange = [header rangeOfString:@"\"" options:0 range:postStartRange];
+    
+    
 	if(endRange.location == NSNotFound)
 	{
-		// The ending double-quote was not found anywhere in the header
+		// The ending quote was not found anywhere in the header
 		return nil;
 	}
 	
+    
+    // Make to this point, this means an end quote was found
+    
+    // Creates a range from the start location to the end location
 	NSRange subHeaderRange = NSMakeRange(postStartRangeLocation, endRange.location - postStartRangeLocation);
+    
+    // Returns the string of the subheader
 	return [header substringWithRange:subHeaderRange];
 }
 
@@ -231,18 +269,30 @@
 **/
 - (NSString *)nonquotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header
 {
+    
+    // Finds the begining of the range
 	NSRange startRange = [header rangeOfString:[NSString stringWithFormat:@"%@=", param]];
+    
+    // The param was not found anywhere in the header    
 	if(startRange.location == NSNotFound)
 	{
-		// The param was not found anywhere in the header
 		return nil;
 	}
 	
+    
+    // Gets the starting location of the range
 	NSUInteger postStartRangeLocation = startRange.location + startRange.length;
+    
+    // Gets the length of from the startRange location to the end of the header
 	NSUInteger postStartRangeLength = [header length] - postStartRangeLocation;
+    
+    // Creates a new range from the starting location, and a length from the start location to the end of the header
 	NSRange postStartRange = NSMakeRange(postStartRangeLocation, postStartRangeLength);
 	
+    // Search for a comma
 	NSRange endRange = [header rangeOfString:@"," options:0 range:postStartRange];
+    
+    
 	if(endRange.location == NSNotFound)
 	{
 		// The ending comma was not found anywhere in the header
@@ -258,9 +308,12 @@
 			return [header substringWithRange:postStartRange];
 		}
 	}
-	else
+	else // If a comma was found
 	{
+        // Create a new range from the start location to the comma
 		NSRange subHeaderRange = NSMakeRange(postStartRangeLocation, endRange.location - postStartRangeLocation);
+        
+        // Returns the subHeader
 		return [header substringWithRange:subHeaderRange];
 	}
 }

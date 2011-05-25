@@ -517,9 +517,11 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			return NO;
 		}
 		
-		// Decode the base 64 encoded credentials
+		// Decode the base 64 encoded credentials by getting the HTTPAuthenticationRequest base64Credentials
 		NSString *base64Credentials = [auth base64Credentials];
 		
+        
+        // Returns an NSData object containing a representation of the receiver encoded using UTF8 encoding, and then decodes the base64 string.
 		NSData *temp = [[base64Credentials dataUsingEncoding:NSUTF8StringEncoding] base64Decoded];
 		
 		NSString *credentials = [[[NSString alloc] initWithData:temp encoding:NSUTF8StringEncoding] autorelease];
@@ -536,6 +538,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		}
 		
 		NSString *credUsername = [credentials substringToIndex:colonRange.location];
+        
+        
 		NSString *credPassword = [credentials substringFromIndex:(colonRange.location + colonRange.length)];
 		
 		NSString *password = [self passwordForUser:credUsername];

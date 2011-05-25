@@ -29,7 +29,7 @@
 
 
 /*
- 
+    Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
  */
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
@@ -38,15 +38,21 @@
 		
 		connection = parent; // Parents retain children, children do NOT retain parents
 		
+        // Copy the passed-in file path variable into the local instance variable
 		filePath = [fpath copy];
+        
+        // Check that the file path variable is not nil
 		if (filePath == nil)
 		{
-			
+			// If the file path variable is nil, then decrement this instances reference count and return nil
 			[self release];
 			return nil;
 		}
 		
-		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL];
+		// Creates a dictionary object with the file attributes for the specified file path
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL];
+        
+        // Check that there are file attributes
 		if (fileAttributes == nil)
 		{
 			
@@ -54,7 +60,10 @@
 			return nil;
 		}
 		
+        // Gets the length of the file
 		fileLength = (UInt64)[[fileAttributes objectForKey:NSFileSize] unsignedLongLongValue];
+        
+        
 		fileOffset = 0;
 		
 		aborted = NO;
@@ -68,7 +77,7 @@
 
 
 /*
- 
+    Abort the HTTP connection
  */
 - (void)abort
 {
@@ -79,7 +88,7 @@
 
 
 /*
- 
+    
  */
 - (void)processReadBuffer
 {
@@ -101,7 +110,7 @@
 }
 
 /*
- 
+    Pause the read source
  */
 - (void)pauseReadSource
 {
@@ -114,7 +123,7 @@
 }
 
 /*
- 
+    Resume the read source
  */
 - (void)resumeReadSource
 {
@@ -127,7 +136,7 @@
 }
 
 /*
- 
+    Cancel the read source
  */
 - (void)cancelReadSource
 {
@@ -145,23 +154,27 @@
 }
 
 /*
- 
+    Whether can open a file and setup the readSource
  */
 - (BOOL)openFileAndSetupReadSource
 {
-	
+	// Open file as read only
 	fileFD = open([filePath UTF8String], (O_RDONLY | O_NONBLOCK));
+    
+    // Test whether able to open the file
 	if (fileFD == NULL_FD)
 	{
 		
 		return NO;
 	}
 	
-	
+	// Creates a new dispatch queue to which blocks may be submitted.
 	readQueue = dispatch_queue_create("HTTPAsyncFileResponse", NULL);
+    
+    // Creates a new dispatch source to monitor low-level system objects and automatically submit a handler block to a dispatch queue in response to events.
 	readSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, fileFD, 0, readQueue);
 	
-	
+	// Sets the event handler block for the readSource
 	dispatch_source_set_event_handler(readSource, ^{
 		
 		
@@ -204,21 +217,22 @@
 			}
 		}
 		
+        ///////////////////////
 		// Perform the read
-		
+		///////////////////////
 		
 		ssize_t result = read(fileFD, readBuffer + readBufferOffset, (size_t)bytesToRead);
 		
 		// Check the results
 		if (result < 0)
 		{
-			
+			// pause the readSource and abort the connection
 			[self pauseReadSource];
 			[self abort];
 		}
 		else if (result == 0)
 		{
-			
+			// pause the readSource and abort the connection
 			[self pauseReadSource];
 			[self abort];
 		}
@@ -232,7 +246,7 @@
 			[self processReadBuffer];
 		}
 		
-	});
+	}); // END OF BLOCK
 	
 	int theFileFD = fileFD;
 	dispatch_source_t theReadSource = readSource;
@@ -254,7 +268,7 @@
 }
 
 /*
- 
+    Whether need to open file or if it has already been opened
  */
 - (BOOL)openFileIfNeeded
 {
@@ -276,7 +290,7 @@
 }	
 
 /*
- 
+    Get file length
  */
 - (UInt64)contentLength
 {
@@ -285,7 +299,7 @@
 }
 
 /*
- 
+    Get the file offset
  */
 - (UInt64)offset
 {
@@ -294,7 +308,7 @@
 }
 
 /*
- 
+    Set the file's offset
  */
 - (void)setOffset:(UInt64)offset
 {
@@ -316,8 +330,8 @@
 	}
 }
 
-/*
- 
+/*  
+    Reads a certain length of data from the file
  */
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
@@ -343,20 +357,21 @@
 			return nil;
 		}
 		
+        // Submits a block for synchronous execution on a dispatch queue
 		dispatch_sync(readQueue, ^{
 			
 			NSAssert(readSourceSuspended, @"Invalid logic - perhaps HTTPConnection has changed.");
 			
 			readRequestLength = length;
 			[self resumeReadSource];
-		});
+		});  // END OF BLOCK
 		
 		return nil;
 	}
 }
 
 /*
- 
+    If done reading the file
  */
 - (BOOL)isDone
 {
@@ -367,7 +382,7 @@
 }
 
 /*
- 
+    Gets the file path
  */
 - (NSString *)filePath
 {
@@ -375,7 +390,7 @@
 }
 
 /*
- 
+    Whether this response is asynchronous
  */
 - (BOOL)isAsynchronous
 {
@@ -388,9 +403,10 @@
  */
 - (void)connectionDidClose
 {
-	
+	// If there is a file decription (i.e. file handle)
 	if (fileFD != NULL_FD)
 	{
+        // Submits a block for synchronous execution on the readQueue
 		dispatch_sync(readQueue, ^{
 			
 			// Prevent any further calls to the connection
