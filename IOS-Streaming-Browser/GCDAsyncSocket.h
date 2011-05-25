@@ -54,7 +54,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	
 	int socket4FD;  // IP version 4 socket file descriptor
 	int socket6FD;  // IP version 6 socket file descriptor
-	int connectIndex;
+	int connectIndex; 
 	NSData * connectInterface4;  // IP version 4 interface
 	NSData * connectInterface6;  // IP version 6 interface
 	
