@@ -29,31 +29,31 @@
     // dispatch queues and invoke blocks submitted to them.
 	dispatch_queue_t serverQueue;
 	dispatch_queue_t connectionQueue;
-	GCDAsyncSocket *asyncSocket;
+	GCDAsyncSocket *asyncSocket;  // for reading and writing data
 	
     ///////////////////////////////////////////
 	// HTTP server configuration
     ///////////////////////////////////////////
-	NSString *documentRoot;
-	Class connectionClass;
-	NSString *interface;
-	UInt16 port;
+	NSString *documentRoot; // the document root
+	Class connectionClass; // default is HTTP connection
+	NSString *interface; // the interface the server should listen on, "en1", "lo0", etc
+	UInt16 port; // the listening port
 
     ///////////////////////////////////////////	
 	// NSNetService and related variables
     ///////////////////////////////////////////    
-	NSNetService *netService;
-	NSString *domain;
-	NSString *type;
-	NSString *name;
-	NSString *publishedName;
+	NSNetService *netService; // represents a network service
+	NSString *domain; // the domain the service should be published on, the default is 'local'
+	NSString *type; // tcp or udp
+	NSString *name; // default is the computers name that the server is running on
+	NSString *publishedName; // the published server name
 	NSDictionary *txtRecordDictionary;
 	
     ///////////////////////////////////////////    
 	// Connection management
     ///////////////////////////////////////////
-	NSMutableArray *connections;
-	NSMutableArray *webSockets;
+	NSMutableArray *connections; // the connections to the server
+	NSMutableArray *webSockets; // the web socket connections
 	NSLock *connectionsLock;
 	NSLock *webSocketsLock;
 	
@@ -73,6 +73,10 @@
  * the change will affect future incoming http connections.
 **/
 - (NSString *)documentRoot;
+
+/*
+    Sets the document root
+*/
 - (void)setDocumentRoot:(NSString *)value;
 
 /**
@@ -85,6 +89,10 @@
  * the change will affect future incoming http connections.
 **/
 - (Class)connectionClass;
+
+/*
+    Sets the connection class
+*/
 - (void)setConnectionClass:(Class)value;
 
 /**
@@ -96,6 +104,10 @@
  * the socket only accept connections from the local machine.
 **/
 - (NSString *)interface;
+
+/*
+    Sets the interface
+*/
 - (void)setInterface:(NSString *)value;
 
 /**
@@ -114,7 +126,15 @@
  * If the server is not running this method returns 0.
 **/
 - (UInt16)port;
+
+/*
+    Gets the listening port
+*/
 - (UInt16)listeningPort;
+
+/*
+    Sets the listening port
+*/
 - (void)setPort:(UInt16)value;
 
 /**
@@ -127,6 +147,10 @@
  * you'll need to invoke the republishBonjour method to update the broadcasted bonjour service.
 **/
 - (NSString *)domain;
+
+/*
+    Sets the domain
+*/
 - (void)setDomain:(NSString *)value;
 
 /**
@@ -147,7 +171,15 @@
  * If the service is not running this method returns nil.
 **/
 - (NSString *)name;
+
+/*
+    Gets the published name of the server
+*/
 - (NSString *)publishedName;
+
+/*
+    Sets the published name of the server
+*/
 - (void)setName:(NSString *)value;
 
 /**
@@ -161,6 +193,10 @@
  * you'll need to invoke the republishBonjour method to update the broadcasted bonjour service.
 **/
 - (NSString *)type;
+
+/*
+    Sets the type
+*/
 - (void)setType:(NSString *)value;
 
 /**
@@ -170,42 +206,42 @@
 - (void)republishBonjour;
 
 /**
- * 
+ *  Gets the TXT record dictionary
 **/
 - (NSDictionary *)TXTRecordDictionary;
 
 /*
- 
+    Sets the TXT record dictionary
 */
 - (void)setTXTRecordDictionary:(NSDictionary *)dict;
 
 /*
- 
+    Starts the server
 */
 - (BOOL)start:(NSError **)errPtr;
 
 /*
- 
+    Stops the server
 */
 - (BOOL)stop;
 
 /*
- 
+    Whether the server is running
 */
 - (BOOL)isRunning;
 
 /*
- 
+    Adds a web socket
 */
 - (void)addWebSocket:(WebSocket *)ws;
 
 /*
- 
+    Gets the number of HTTP connections
 */
 - (NSUInteger)numberOfHTTPConnections;
 
 /*
- 
+    Gets the number of web socket connections
 */
 - (NSUInteger)numberOfWebSocketConnections;
 

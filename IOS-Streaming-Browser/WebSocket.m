@@ -30,6 +30,9 @@
 
 @implementation WebSocket
 
+/*
+    Whether the HTTPRequest is a request for a web socket
+*/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request
 {
 	// Request (Draft 75):
@@ -64,31 +67,35 @@
 	
 	BOOL isWebSocket = YES;
 	
+    // Check if there is an upgrade and connection value.  If the header doesn't have an upgrade and connection header, then it is not a web-socket request
 	if (!upgradeHeaderValue || !connectionHeaderValue) {
 		isWebSocket = NO;
-	}
+	} // Make sure the upgrade header value is 'WebSocket'
 	else if (![upgradeHeaderValue caseInsensitiveCompare:@"WebSocket"] == NSOrderedSame) {
 		isWebSocket = NO;
-	}
+	} // Make sure the connection header value is 'Upgrade'
 	else if (![connectionHeaderValue caseInsensitiveCompare:@"Upgrade"] == NSOrderedSame) {
 		isWebSocket = NO;
 	}
 	
-	
+	// return that this request is a web socket request
 	return isWebSocket;
 }
 
 
 /**
     Class method
+    Whether the request is a version 76 of the web socket protocol
  **/
 + (BOOL)isVersion76Request:(HTTPMessage *)request
 {
+    
 	NSString *key1 = [request headerField:@"Sec-WebSocket-Key1"];
 	NSString *key2 = [request headerField:@"Sec-WebSocket-Key2"];
 	
 	BOOL isVersion76;
 	
+    // if there is no key1 or key2, then it is not version 76 compliant
 	if (!key1 || !key2) {
 		isVersion76 = NO;
 	}
@@ -104,12 +111,13 @@
 #pragma mark Setup and Teardown
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Creates the getters and setters for the delegate and the websocketQueue
 @synthesize delegate;
 @synthesize websocketQueue;
 
 
 /**
- 
+    Initialize the web socket with an HTTP request and a socket
  **/
 - (id)initWithRequest:(HTTPMessage *)aRequest socket:(GCDAsyncSocket *)socket
 {
@@ -122,16 +130,21 @@
 	
 	if ((self = [super init]))
 	{
-		
+		// Creates a new dispatch queue to which blocks may be submitted
 		websocketQueue = dispatch_queue_create("WebSocket", NULL);
 		request = [aRequest retain];
 		
 		asyncSocket = [socket retain];
+        
+        // Set this web socket instance as the asyncSocket delegate, and the websocketQueue as the delegate queue
 		[asyncSocket setDelegate:self delegateQueue:websocketQueue];
 		
 		isOpen = NO;
+        
+        // Get whether this request is a version 76 web socket compliant
 		isVersion76 = [[self class] isVersion76Request:request];
 		
+        // Creates a terminator
 		term = [[NSData alloc] initWithBytes:"\xFF" length:1];
 	}
 	return self;
@@ -139,11 +152,11 @@
 
 
 /**
- 
+    Standard deconstructor
  **/
 - (void)dealloc
 {
-	
+	// Decrement the reference count of a dispatch object.
 	dispatch_release(websocketQueue);
 	
 	[request release];
@@ -163,22 +176,24 @@
 {
 	__block id result = nil;
 	
+    // Submits a block for synchronous execution on the websocketQueue
 	dispatch_sync(websocketQueue, ^{
 		result = delegate;
-	});
+	}); // END OF BLOCK
 	
 	return result;
 }
 
 
 /**
- 
+    Sets the delegate
  **/
 - (void)setDelegate:(id)newDelegate
 {
+    // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
 		delegate = newDelegate;
-	});
+	}); // END OF BLOCK
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,24 +209,27 @@
 	// This method is not exactly designed to be overriden.
 	// Subclasses are encouraged to override the didOpen method instead.
 	
+    // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
+        
 		if (isStarted) return;
 		isStarted = YES;
 		
+        // if the request is version 76 compliant
 		if (isVersion76)
 		{
 			[self readRequestBody];
 		}
-		else
+		else // if the request is not version 76 compliant
 		{
 			[self sendResponseHeaders];
 			[self didOpen];
 		}
 		
 		[pool release];
-	});
+	}); // END OF BLOCK
 }
 
 /**
@@ -223,13 +241,14 @@
 	// This method is not exactly designed to be overriden.
 	// Subclasses are encouraged to override the didClose method instead.
 	
+    // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
 		[asyncSocket disconnect];
 		
 		[pool release];
-	});
+	}); // END OF BLOCK
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,38 +256,43 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
- 
+    Read the request body from the socket
 */
 - (void)readRequestBody
 {
 	
 	NSAssert(isVersion76, @"WebSocket version 75 doesn't contain a request body");
 	
+    // reads data from the socket
 	[asyncSocket readDataToLength:8 withTimeout:TIMEOUT_NONE tag:TAG_HTTP_REQUEST_BODY];
 }
 
 /*
- 
+    Get the header field Origin value
  */
 - (NSString *)originResponseHeaderValue
 {
 	
+    // The |Origin| field is used to protect against unauthorized cross-origin use of a WebSocket server by scripts using the |WebSocket| API in a Web browser.  The server specifies which origin it is willing to receive requests from by including a |Sec-WebSocket-Origin| field with that origin.  If multiple origins are authorized, the server echoes the value in the |Origin| field of the client's handshake.
+    
+    // Gets the Origin field
 	NSString *origin = [request headerField:@"Origin"];
 	
+    // Check if the origin header field is nil
 	if (origin == nil)
 	{
 		NSString *port = [NSString stringWithFormat:@"%hu", [asyncSocket localPort]];
 		
 		return [NSString stringWithFormat:@"http://localhost:%@", port];
 	}
-	else
+	else // if the origin header field is not nil
 	{
 		return origin;
 	}
 }
 
 /*
- 
+    Get the value for the 'Host' field in the request header
  */
 - (NSString *)locationResponseHeaderValue
 {
@@ -344,11 +368,11 @@
 	// 
 	// 8jKS'y:G*Co,Wxa-
 
-	
+	// Create a web socket response
 	HTTPMessage *wsResponse = [[HTTPMessage alloc] initResponseWithStatusCode:101
-	                                                              description:@"Web Socket Protocol Handshake"
-	                                                                  version:HTTPVersion1_1];
+                description:@"Web Socket Protocol Handshake"	                                                                  version:HTTPVersion1_1];
 	
+    // Set the web-socket response header fields
 	[wsResponse setHeaderField:@"Upgrade" value:@"WebSocket"];
 	[wsResponse setHeaderField:@"Connection" value:@"Upgrade"];
 	
@@ -365,6 +389,7 @@
 	NSString *locationValue = [self locationResponseHeaderValue];
 	
 	NSString *originField = isVersion76 ? @"Sec-WebSocket-Origin" : @"WebSocket-Origin";
+    
 	NSString *locationField = isVersion76 ? @"Sec-WebSocket-Location" : @"WebSocket-Location";
 	
 	[wsResponse setHeaderField:originField value:originValue];
@@ -374,19 +399,21 @@
 	
 	[wsResponse release];
 	
-	
+	// Write the response to the socket
 	[asyncSocket writeData:responseHeaders withTimeout:TIMEOUT_NONE tag:TAG_HTTP_RESPONSE_HEADERS];
 }
 
 
 /*
- 
+    Process the web socket key values from the request
  */
 - (NSData *)processKey:(NSString *)key
 {
 	
 	unichar c;
 	NSUInteger i;
+    
+    // Gets the key length
 	NSUInteger length = [key length];
 	
 	// Concatenate the digits into a string,
@@ -395,10 +422,12 @@
 	NSMutableString *numStr = [NSMutableString stringWithCapacity:10];
 	long long numSpaces = 0;
 	
+    // enumerates through each character in the key
 	for (i = 0; i < length; i++)
 	{
 		c = [key characterAtIndex:i];
 		
+        
 		if (c >= '0' && c <= '9')
 		{
 			[numStr appendFormat:@"%C", c];
@@ -409,15 +438,17 @@
 		}
 	}
 	
+    // converts a string value to a long
 	long long num = strtoll([numStr UTF8String], NULL, 10);
 	
 	long long resultHostNum;
 	
 	if (numSpaces == 0)
+    {
 		resultHostNum = 0;
-	else
+	}else{
 		resultHostNum = num / numSpaces;
-	
+	}
 	
 	// Convert result to 4 byte big-endian (network byte order)
 	// and then convert to raw data.
@@ -429,7 +460,7 @@
 
 
 /*
- 
+    Sends the response body
  */
 - (void)sendResponseBody:(NSData *)d3
 {
@@ -437,6 +468,7 @@
 	NSAssert(isVersion76, @"WebSocket version 75 doesn't contain a response body");
 	NSAssert([d3 length] == 8, @"Invalid requestBody length");
 	
+    // Sets the key values in the header
 	NSString *key1 = [request headerField:@"Sec-WebSocket-Key1"];
 	NSString *key2 = [request headerField:@"Sec-WebSocket-Key2"];
 	
@@ -454,6 +486,7 @@
 	
 	NSData *responseBody = [d0 md5Digest];
 	
+    // Writes the data to the socket
 	[asyncSocket writeData:responseBody withTimeout:TIMEOUT_NONE tag:TAG_HTTP_RESPONSE_BODY];
 	
 
@@ -464,7 +497,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
- 
+    If the web socket has been opened
  */
 - (void)didOpen
 {
@@ -556,20 +589,20 @@
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
 	
-	if (tag == TAG_HTTP_REQUEST_BODY)
+	if (tag == TAG_HTTP_REQUEST_BODY) // value is 100
 	{
 		[self sendResponseHeaders];
 		[self sendResponseBody:data];
 		[self didOpen];
 	}
-	else if (tag == TAG_PREFIX)
+	else if (tag == TAG_PREFIX) // value is 300
 	{
 		UInt8 *pFrame = (UInt8 *)[data bytes];
 		UInt8 frame = *pFrame;
 		
 		if (frame <= 0x7F)
 		{
-			[asyncSocket readDataToData:term withTimeout:TIMEOUT_NONE tag:TAG_MSG_PLUS_SUFFIX];
+			[asyncSocket readDataToData:term withTimeout:TIMEOUT_NONE tag:TAG_MSG_PLUS_SUFFIX]; // suffix value is 301
 		}
 		else
 		{
@@ -588,12 +621,12 @@
 		[msg release];
 		
 		// Read next message
-		[asyncSocket readDataToLength:1 withTimeout:TIMEOUT_NONE tag:TAG_PREFIX];
+		[asyncSocket readDataToLength:1 withTimeout:TIMEOUT_NONE tag:TAG_PREFIX]; // tag prefix value is 300
 	}
 }
 
 /*
-    
+    If the web socket did disconnect
  */
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {

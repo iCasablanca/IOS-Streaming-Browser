@@ -5,9 +5,11 @@
 
 /*
     Class method
+    Parse a string into a 64-bit signed integer
  */
 + (BOOL)parseString:(NSString *)str intoSInt64:(SInt64 *)pNum
 {
+    // Check if the passed-in string is nil, if so, return that we can't parse the string because it is nil
 	if(str == nil)
 	{
 		*pNum = 0;
@@ -20,10 +22,11 @@
 	
 	*pNum = strtoll([str UTF8String], NULL, 10);
 	
+    // If there is an error
 	if(errno != 0)
     {
 		return NO;
-	}else{
+	}else{ // if there is not an error
 		return YES;
     }
 }
@@ -31,9 +34,11 @@
 
 /*
     Class method
+    Parse a string into an unsigned 64-bit integer
  */
 + (BOOL)parseString:(NSString *)str intoUInt64:(UInt64 *)pNum
 {
+    // Check if the passed-in string is nil
 	if(str == nil)
 	{
 		*pNum = 0;
@@ -46,10 +51,11 @@
 	
 	*pNum = strtoull([str UTF8String], NULL, 10);
 	
+    // if there is an error
 	if(errno != 0)
     {
 		return NO;
-    }else{
+    }else{ // if there is not an error
 		return YES;
     }
 }
@@ -57,9 +63,11 @@
 
 /*
     Class method
+    Parse a string into an NSInteger
  */
 + (BOOL)parseString:(NSString *)str intoNSInteger:(NSInteger *)pNum
 {
+    // Check if the passed-in string is not empty
 	if(str == nil)
 	{
 		*pNum = 0;
@@ -73,10 +81,10 @@
 	
 	*pNum = strtol([str UTF8String], NULL, 10);
 	
-	if(errno != 0)
+	if(errno != 0) // if there is an error
     {
 		return NO;
-    }else{
+    }else{ // if there is not an error
 		return YES;
     }
 }
@@ -84,6 +92,7 @@
 
 /*
     Class method
+    Parse a string into an unsigned NSInteger
  */
 + (BOOL)parseString:(NSString *)str intoNSUInteger:(NSUInteger *)pNum
 {

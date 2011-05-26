@@ -1,6 +1,9 @@
 #import "DDRange.h"
 #import "DDNumber.h"
 
+/*
+ 
+*/
 DDRange DDUnionRange(DDRange range1, DDRange range2)
 {
 	DDRange result;
@@ -11,6 +14,9 @@ DDRange DDUnionRange(DDRange range1, DDRange range2)
 	return result;
 }
 
+/*
+ 
+*/
 DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 {
 	DDRange result;
@@ -26,11 +32,17 @@ DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 	return result;
 }
 
+/*
+ 
+*/
 NSString *DDStringFromRange(DDRange range)
 {
 	return [NSString stringWithFormat:@"{%qu, %qu}", range.location, range.length];
 }
 
+/*
+ 
+*/
 DDRange DDRangeFromString(NSString *aString)
 {
 	DDRange result = DDMakeRange(0, 0);
@@ -53,6 +65,9 @@ DDRange DDRangeFromString(NSString *aString)
 	return result;
 }
 
+/*
+ 
+*/
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 {
 	// Comparison basis:

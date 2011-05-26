@@ -138,6 +138,7 @@
  **/
 - (NSData *)messageData
 {
+    
 	return [NSMakeCollectable(CFHTTPMessageCopySerializedMessage(message)) autorelease];
 }
 

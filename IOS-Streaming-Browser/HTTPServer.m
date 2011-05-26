@@ -6,10 +6,24 @@
 
 @interface HTTPServer (PrivateAPI)
 
+/*
+    Unpublish the bonjour from the list of published network services
+*/
 - (void)unpublishBonjour;
+
+/*
+    Publish as a list of network services
+*/
 - (void)publishBonjour;
 
+/*
+    Starts the bonjour thread if needed
+*/
 + (void)startBonjourThreadIfNeeded;
+
+/*
+    Performs a block of code on the bonjour thread
+*/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone;
 
 @end
@@ -31,6 +45,8 @@
 		
 		// Initialize underlying dispatch queue and GCD based tcp socket
 		serverQueue = dispatch_queue_create("HTTPServer", NULL);
+        
+        // create an asynchronous socket and initialize with the HTTPServer as the delegate, and the serverQueue as the delegate queue
 		asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:serverQueue];
 		
 		// Use default connection class of HTTPConnection
@@ -55,10 +71,11 @@
 		// by automatically appending a digit to the end of the name.
 		name = @"";
 		
-		// Initialize arrays to hold all the HTTP and webSocket connections
+		// Initialize arrays to hold all the normal and webSocket connections
 		connections = [[NSMutableArray alloc] init];
 		webSockets  = [[NSMutableArray alloc] init];
 		
+        // Initialize locks for the normal and websocket connections
 		connectionsLock = [[NSLock alloc] init];
 		webSocketsLock  = [[NSLock alloc] init];
 		
@@ -74,6 +91,7 @@
 		                                             name:WebSocketDidDieNotification
 		                                           object:nil];
 		
+        // Note: Just initialized the HTTPServer, have not started it yet
 		isRunning = NO;
 	}
 	return self;
@@ -132,10 +150,13 @@
     
 	__block NSString *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
+    // This block increases the reference count for the documentRoot
 	dispatch_sync(serverQueue, ^{
 		result = [documentRoot retain];
-	});
+	}); // END OF BLOCK
 	
+    // Returns the documentRoot and autoreleases it after returning to the caller
 	return [result autorelease];
 }
 
@@ -155,10 +176,12 @@
 	
 	NSString *valueCopy = [value copy];
 	
+    
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		[documentRoot release];
 		documentRoot = [valueCopy retain];
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -173,19 +196,23 @@
 {
 	__block Class result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = connectionClass;
-	});
+	}); // END OF BLOCK
 	
 	return result;
 }
 
+/*
+    Sets the connection class on the serverQueue
+*/
 - (void)setConnectionClass:(Class)value
 {
-	
+	// Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		connectionClass = value;
-	});
+	}); // END OF BLOCK
 }
 
 /**
@@ -195,21 +222,27 @@
 {
 	__block NSString *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = [interface retain];
-	});
+	}); // END OF BLOCK
 	
 	return [result autorelease];
 }
 
+
+/*
+    Set the interface
+*/
 - (void)setInterface:(NSString *)value
 {
 	NSString *valueCopy = [value copy];
 	
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		[interface release];
 		interface = [valueCopy retain];
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -223,39 +256,43 @@
 {
 	__block UInt16 result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = port;
-	});
+	}); // END OF BLOCK
 	
     return result;
 }
 
 /*
- 
+    Get the servers port
 */
 - (UInt16)listeningPort
 {
 	__block UInt16 result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
-		if (isRunning)
+		if (isRunning)  // check if server is running
+        {
 			result = [asyncSocket localPort];
-		else
+		}else{ // if server is not running
 			result = 0;
-	});
+        }
+	}); // END OF BLOCK
 	
 	return result;
 }
 
 /*
- 
+    Set the servers port
 */
 - (void)setPort:(UInt16)value
 {
-	
+	// Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		port = value;
-	});
+	}); //END OF BLOCK
 }
 
 /**
@@ -266,9 +303,10 @@
 {
 	__block NSString *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = [domain retain];
-	});
+	}); // END OF BLOCK
 	
     return [domain autorelease];
 }
@@ -282,10 +320,11 @@
 	
 	NSString *valueCopy = [value copy];
 	
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		[domain release];
 		domain = [valueCopy retain];
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -299,53 +338,59 @@
 {
 	__block NSString *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = [name retain];
-	});
+	}); //END OF BLOCK
 	
 	return [name autorelease];
 }
 
 
 /*
- 
+    Gets the published name of the server
 */
 - (NSString *)publishedName
 {
 	__block NSString *result;
 	
+    
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		
+        // If there is a network service
 		if (netService == nil)
 		{
 			result = nil;
 		}
-		else
+		else // if there is not a network service 
 		{
 			
+            // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
 				result = [[netService name] copy];
-			};
+			}; // END OF BLOCK
 			
 			[[self class] performBonjourBlock:bonjourBlock waitUntilDone:YES];
 		}
-	});
+	}); // END OF BLOCK
 	
 	return [result autorelease];
 }
 
 
 /*
- 
+    Sets the published name of the server
 */
 - (void)setName:(NSString *)value
 {
 	NSString *valueCopy = [value copy];
 	
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		[name release];
 		name = [valueCopy retain];
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -358,9 +403,10 @@
 {
 	__block NSString *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = [type retain];
-	});
+	}); // END OF BLOCK
 	
 	return [result autorelease];
 }
@@ -372,10 +418,11 @@
 {
 	NSString *valueCopy = [value copy];
 	
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		[type release];
 		type = [valueCopy retain];
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -387,21 +434,24 @@
 {
 	__block NSDictionary *result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = [txtRecordDictionary retain];
-	});
+	}); // END OF BLOCK
 	
 	return [result autorelease];
 }
 
 /*
- 
+    Sets the TXT record dictionary
 */
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
 	
 	NSDictionary *valueCopy = [value copy];
 	
+    
+    // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 	
 		[txtRecordDictionary release];
@@ -415,13 +465,15 @@
 			if (txtRecordDictionary)
 				txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
 			
+            // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
 				[theNetService setTXTRecordData:txtRecordData];
-			};
+			}; // END OF BLOCK
 			
+            // Perform the bonjourBlock and don't wait for it to execute
 			[[self class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
 		}
-	});
+	}); // END OF BLOCK
 	
 	[valueCopy release];
 }
@@ -432,7 +484,7 @@
 
 
 /*
- 
+    Starts the server
 */
 - (BOOL)start:(NSError **)errPtr
 {
@@ -440,39 +492,49 @@
 	__block BOOL success = YES;
 	__block NSError *err = nil;
 	
+    // Submits a block for synchronous execution on serverQueue
 	dispatch_sync(serverQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
+        // if the socket accepts on an interface and port
 		success = [asyncSocket acceptOnInterface:interface port:port error:&err];
+        
+        // If the socket accepts on a specific interface and port
 		if (success)
 		{
-			
+            // flag that the server is running
 			isRunning = YES;
+            
+            // publish the server as a network service
 			[self publishBonjour];
 		}
-		else
+		else // if server does not accept connections on a specific interface and port then thow and error
 		{
 			[err retain];
 		}
 		
 		[pool release];
-	});
+	});  // END OF BLOCK
 	
+    
 	if (errPtr)
+    {
 		*errPtr = [err autorelease];
-	else
+	}else{ // if there is not an error
 		[err release];
-	
+	}
+    
+    // Return that the server is running
 	return success;
 }
 
 
 /*
- 
+    Stops the server
 */
 - (BOOL)stop
 {
-	
+	// Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -502,36 +564,40 @@
 		[webSocketsLock unlock];
 		
 		[pool release];
-	});
+	}); // END OF BLOCK
 	
 	return YES;
 }
 
 
 /*
- 
+    Whether the server is running
 */
 - (BOOL)isRunning
 {
 	__block BOOL result;
 	
+    // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
 		result = isRunning;
-	});
+	}); // END OF BLOCK
 	
 	return result;
 }
 
 
 /*
- 
+    Adds a web socket
 */
 - (void)addWebSocket:(WebSocket *)ws
 {
+    // Locks the web socker
 	[webSocketsLock lock];
-	
+    
+    // Adds a web socket
 	[webSockets addObject:ws];
-	
+    
+    // Unlocks the web socket
 	[webSocketsLock unlock];
 }
 
@@ -546,8 +612,13 @@
 {
 	NSUInteger result = 0;
 	
+    // Locks the connection
 	[connectionsLock lock];
+    
+    // Gets the count of connections to the this server
 	result = [connections count];
+    
+    // Unlocks the connection
 	[connectionsLock unlock];
 	
 	return result;
@@ -560,8 +631,13 @@
 {
 	NSUInteger result = 0;
 	
+    // Locks the web socket
 	[webSocketsLock lock];
+    
+    // Gets the count of web socket connections
 	result = [webSockets count];
+    
+    // Unlocks the web socket
 	[webSocketsLock unlock];
 	
 	return result;
@@ -572,7 +648,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
- 
+    Configures the server
 */
 - (HTTPConfig *)config
 {
@@ -592,16 +668,24 @@
 
 
 /*
- 
+    When the server accepts a new socket
 */
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
+    // Create a new HTTP connection
 	HTTPConnection *newConnection = (HTTPConnection *)[[connectionClass alloc] initWithAsyncSocket:newSocket
                     configuration:[self config]];
+    
+    // Locks the connections
 	[connectionsLock lock];
+    
+    // Adds a new connection
 	[connections addObject:newConnection];
+    
+    // Unlocks the connection
 	[connectionsLock unlock];
 	
+    // Start the new connection
 	[newConnection start];
 	[newConnection release];
 }
@@ -611,23 +695,33 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
- 
+    Publish the bonjour net service
 */
 - (void)publishBonjour
 {
-	
+	// Test whether the current queue is the serverQueue
 	NSAssert(dispatch_get_current_queue() == serverQueue, @"Invalid queue");
 	
+    // If there is a type
 	if (type)
 	{
+        // Create a new net service with a domain, type, name and port
 		netService = [[NSNetService alloc] initWithDomain:domain type:type name:name port:[asyncSocket localPort]];
+        
+        // set the net services' delegate as this instance of the HTTPServer
 		[netService setDelegate:self];
 		
+        
 		NSNetService *theNetService = netService;
 		NSData *txtRecordData = nil;
+        
+        
 		if (txtRecordDictionary)
+        {
 			txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
-		
+		}
+        
+        // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 		dispatch_block_t bonjourBlock = ^{
 			
 			[theNetService removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -640,31 +734,37 @@
 			{
 				[theNetService setTXTRecordData:txtRecordData];
 			}
-		};
+		}; // END OF BLOCK
 		
+        // Start the thread and run the block
 		[[self class] startBonjourThreadIfNeeded];
 		[[self class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
 	}
 }
 
 /*
- 
+    Unpublic the Bonjour service
 */
 - (void)unpublishBonjour
 {
-	
+	// Test whether the current queue is the serverQueue
 	NSAssert(dispatch_get_current_queue() == serverQueue, @"Invalid queue");
 	
+    // Test if there is a network service
 	if (netService)
 	{
 		NSNetService *theNetService = netService;
 		
+        
+        // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 		dispatch_block_t bonjourBlock = ^{
 			
 			[theNetService stop];
 			[theNetService release];
-		};
+		}; // END OF BLOCK
 		
+        
+        // Performs the bonjourBlock and do no wait for it to execute
 		[[self class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
 		
 		netService = nil;
@@ -677,12 +777,13 @@
 **/
 - (void)republishBonjour
 {
-	
+	// Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
 		
-		[self unpublishBonjour];
+        
+		[self unpublishBonjour]; 
 		[self publishBonjour];
-	});
+	}); // END OF BLOCK
 }
 
 /**
@@ -723,7 +824,6 @@
 	
 	[connectionsLock lock];
 	
-
 	[connections removeObject:[notification object]];
 	
 	[connectionsLock unlock];
@@ -739,7 +839,6 @@
 	
 	[webSocketsLock lock];
 	
-
 	[webSockets removeObject:[notification object]];
 	
 	[webSocketsLock unlock];
@@ -765,18 +864,21 @@ static NSThread *bonjourThread;
 
 /*
     Class method
+    Start the bonjour thread
 */
 + (void)startBonjourThreadIfNeeded
 {
-	
+	//  A predicate for use with dispatch_once(). It must be initialized to zero.
 	static dispatch_once_t predicate;
+    
+    // Execute a block once and only once
 	dispatch_once(&predicate, ^{
 		
 		bonjourThread = [[NSThread alloc] initWithTarget:self
 		                                        selector:@selector(bonjourThread)
 		                                          object:nil];
 		[bonjourThread start];
-	});
+	}); // END OF BLOCK
 }
 
 
@@ -802,29 +904,36 @@ static NSThread *bonjourThread;
 
 /*
     Class method
+    
+    Executes the block of code on the bonjour thread
 */
 + (void)performBonjourBlock:(dispatch_block_t)block
 {
-	
+	// Test whether the current thread is the bonjourThread
 	NSAssert([NSThread currentThread] == bonjourThread, @"Executed on incorrect thread");
 	
+    // Executes the block passed in to this method
 	block();
 }
 
 
 /*
     Class method
+    Executes a block on the bonjour thread
 */
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone
 {
 	
+    // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 	dispatch_block_t bonjourBlock = Block_copy(block);
 	
+    
 	[self performSelector:@selector(performBonjourBlock:)
 	             onThread:bonjourThread
 	           withObject:bonjourBlock
 	        waitUntilDone:waitUntilDone];
 	
+    
 	Block_release(bonjourBlock);
 }
 

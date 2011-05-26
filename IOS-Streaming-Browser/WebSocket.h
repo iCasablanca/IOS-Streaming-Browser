@@ -117,17 +117,17 @@
 @optional
 
 /*
-    
+    The websocket did open
  */
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
 /*
- 
+    The websocket did receive a message
  */
 - (void)webSocket:(WebSocket *)ws didReceiveMessage:(NSString *)msg;
 
 /*
- 
+    The websocket did close
  */
 - (void)webSocketDidClose:(WebSocket *)ws;
 

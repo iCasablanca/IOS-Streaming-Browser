@@ -1834,11 +1834,16 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
 	
-	
+	// Create a response and initialize with because the HTTP version is not supported
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:505 description:nil version:HTTPVersion1_1];
+    
+    // Set the content length to zero
 	[response setHeaderField:@"Content-Length" value:@"0"];
     
+    // 
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    // Write the reponse to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
 	
 	[response release];
@@ -1866,15 +1871,19 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
     // Test if using digest authentication
 	if ([self useDigestAccessAuthentication])
 	{
+        // Adds a digest authentication challenge to the given response
 		[self addDigestAuthChallenge:response];
 	}
 	else // if using basic authentication
 	{
+        // Adds a basic authentication challenge to the given response
 		[self addBasicAuthChallenge:response];
 	}
 	
     
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    
     
     // Writes the response to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
@@ -1894,13 +1903,23 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
 	
-	
+	/////////////////////////////////
 	// Status Code 400 - Bad Request
+    /////////////////////////////////
+    
+    // Create the response with a status code of 400 for a bad request
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:400 description:nil version:HTTPVersion1_1];
+    
+    // Set the content length to zero
 	[response setHeaderField:@"Content-Length" value:@"0"];
+    
+    // Set the header field so the connection is closed
 	[response setHeaderField:@"Connection" value:@"close"];
 	
+    
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    // Write the data to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_FINAL_RESPONSE];
 	
 	[response release];
@@ -1923,13 +1942,22 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// 
 	// See also: supportsMethod:atPath:
 	
-	
+	/////////////////////////////////////////
 	// Status code 405 - Method Not Allowed
+    /////////////////////////////////////////
+    
+    // Creates the response
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:405 description:nil version:HTTPVersion1_1];
+    
+    // Sets the content length to zero
 	[response setHeaderField:@"Content-Length" value:@"0"];
+    
+    // Sets the connection to be closed
 	[response setHeaderField:@"Connection" value:@"close"];
 	
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    // Write the data to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_FINAL_RESPONSE];
     
 	[response release];
@@ -1949,12 +1977,21 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
 	
-	
+	/////////////////////////////////
 	// Status Code 404 - Not Found
+    /////////////////////////////////
+    
+    // Creates the response
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:404 description:nil version:HTTPVersion1_1];
+    
+    // Sets content length to close
 	[response setHeaderField:@"Content-Length" value:@"0"];
 	
+    // Note:  We are not setting the header field to close the connection.  The client just requested a resource which is not found so give them another chance to request the resource
+    
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    // Write the response to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
 	
 	[response release];
@@ -1988,6 +2025,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	static NSDateFormatter *df;
 	
 	static dispatch_once_t onceToken;
+    
+    
 	dispatch_once(&onceToken, ^{
 		
 		// Example: Sun, 06 Nov 1994 08:49:37 GMT
@@ -1998,7 +2037,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		[df setDateFormat:@"EEE, dd MMM y HH:mm:ss 'GMT'"];
 		
 		// For some reason, using zzz in the format string produces GMT+00:00
-	});
+	});  // END OF BLOCK
 	
 	return [df stringFromDate:date];
 }
@@ -2016,6 +2055,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	
 	// Add standard headers
 	NSString *now = [self dateAsString:[NSDate date]];
+    
+    // Sets the date field in the response header
 	[response setHeaderField:@"Date" value:now];
 	
 	// Add server capability headers
@@ -2024,11 +2065,13 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// Add optional response headers
 	if ([httpResponse respondsToSelector:@selector(httpHeaders)])
 	{
+        
 		NSDictionary *responseHeaders = [httpResponse httpHeaders];
 		
 		NSEnumerator *keyEnumerator = [responseHeaders keyEnumerator];
 		NSString *key;
 		
+        // enumerate through the keys in the response header
 		while ((key = [keyEnumerator nextObject]))
 		{
 			NSString *value = [responseHeaders objectForKey:key];
@@ -2081,6 +2124,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		NSEnumerator *keyEnumerator = [responseHeaders keyEnumerator];
 		NSString *key;
 		
+        
 		while((key = [keyEnumerator nextObject]))
 		{
 			NSString *value = [responseHeaders objectForKey:key];
@@ -2104,15 +2148,18 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 {
     DDLogError(@"socket didReadData withTag");
     
+    // if a request header - equals 10
 	if (tag == HTTP_REQUEST_HEADER)
 	{
 		// Append the header line to the http message
 		BOOL result = [request appendData:data];
+        
+        // if there is no result
 		if (!result)
 		{
 			
 			[self handleInvalidRequest:data];
-		}
+		}// if there is a result, check to see if the header is not complete
 		else if (![request isHeaderComplete])
 		{
 			// We don't have a complete header yet
@@ -2126,7 +2173,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 				// Explictly return to ensure we don't do anything after the socket disconnect
 				return;
 			}
-			else
+			else // if the header is less than the maximum header lines
 			{
 				[asyncSocket readDataToData:[GCDAsyncSocket CRLFData]
 				                withTimeout:TIMEOUT_READ_SUBSEQUENT_HEADER_LINE
@@ -2134,7 +2181,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 				                        tag:HTTP_REQUEST_HEADER];
 			}
 		}
-		else
+		else // if there is a result, and the header is complete
 		{
 			// We have an entire HTTP request header from the client
 			
@@ -2151,8 +2198,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			// and MUST NOT be present for other methods.
 			BOOL expectsUpload = [self expectsRequestBodyFromMethod:method atPath:uri];
 			
+            // if expecting we need to get the data from a file at a specific path
 			if (expectsUpload)
 			{
+                
 				if (contentLength == nil)
 				{
 					
@@ -2160,6 +2209,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 					return;
 				}
 				
+                // The content length is not nil
+                
 				if (![NSNumber parseString:(NSString *)contentLength intoUInt64:&requestContentLength])
 				{
 					
@@ -2167,7 +2218,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 					return;
 				}
 			}
-			else
+			else // if not expecting an upload
 			{
 				if (contentLength != nil)
 				{
@@ -2202,6 +2253,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 				return;
 			}
 			
+            
 			if (expectsUpload)
 			{
 				// Reset the total amount of data received for the upload
@@ -2214,10 +2266,13 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 				{
 					// Start reading the request body
 					NSUInteger bytesToRead;
+                    
 					if(requestContentLength < POST_CHUNKSIZE)
+                    {
 						bytesToRead = (NSUInteger)requestContentLength;
-					else
+					}else{
 						bytesToRead = POST_CHUNKSIZE;
+                    }
 					
 					[asyncSocket readDataToLength:bytesToRead
 					                  withTimeout:TIMEOUT_READ_BODY
@@ -2243,13 +2298,15 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		requestContentLengthReceived += [data length];
 		[self processDataChunk:data];
 		
+        
 		if (requestContentLengthReceived < requestContentLength)
 		{
 			// We're not done reading the post body yet...
 			UInt64 bytesLeft = requestContentLength - requestContentLengthReceived;
 			
 			NSUInteger bytesToRead = bytesLeft < POST_CHUNKSIZE ? (NSUInteger)bytesLeft : POST_CHUNKSIZE;
-			
+		
+            // Read data from socket
 			[asyncSocket readDataToLength:bytesToRead
 			                  withTimeout:TIMEOUT_READ_BODY
 			                          tag:HTTP_REQUEST_BODY];
@@ -2417,27 +2474,30 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
+        // If have not sent the response headers
 		if (!sentResponseHeaders)
 		{
 			[self sendResponseHeadersAndBody];
 		}
-		else
+		else // if have sent the response headers
 		{
 			if (ranges == nil)
 			{
 				[self continueSendingStandardResponseBody];
 			}
-			else
+			else // if ranges is not nil
 			{
 				if ([ranges count] == 1)
+                {
 					[self continueSendingSingleRangeResponseBody];
-				else
+				}else{ // if ranges count is not equal to 1
 					[self continueSendingMultiRangeResponseBody];
+                }
 			}
 		}
 		
 		[pool release];
-	});
+	}); // END OF BLOCK
 }
 
 /**
@@ -2454,6 +2514,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// We do this to give the HTTPResponse classes the flexibility to call
 	// this method whenever they want, even from within a readDataOfLength method.
 	
+    // Submits a block for asynchronous execution on the connectionQueue
 	dispatch_async(connectionQueue, ^{
 		
 		if (sender != httpResponse)
@@ -2466,7 +2527,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		[asyncSocket disconnectAfterWriting];
 		
 		[pool release];
-	});
+	}); // END OF BLOCK
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2513,6 +2574,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			shouldDie = [connection caseInsensitiveCompare:@"Keep-Alive"] != NSOrderedSame;
 	}
 	
+    // if not HTTP version 1.0 or 1.1
 	return shouldDie;
 }
 
@@ -2552,13 +2614,15 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 
 @implementation HTTPConfig
 
+
+// Creates the getters and setters for server, documentRoot, and queue
 @synthesize server;
 @synthesize documentRoot;
 @synthesize queue;
 
 
 /*
- 
+    Initialize the HTTPConfig with a server and documentRoot
 */
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot
 {
@@ -2574,7 +2638,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 
 
 /*
- 
+    Initialize the HTTPConfig with a server, documentRoot and queue
 */
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot queue:(dispatch_queue_t)q
 {
