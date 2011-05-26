@@ -18101,7 +18101,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>328067475.24898899</real>
+		<real>328067975.87941802</real>
 		<string>{0, 395}</string>
 		<string>{0, 2501}</string>
 		<dict>
@@ -44367,7 +44367,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>328067475.252514</real>
+		<real>328067975.88177699</real>
 		<string>{0, 395}</string>
 		<string>{0, 2501}</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
@@ -45644,7 +45644,7 @@
 		<string>IDESCMStatusFilteringEnabled</string>
 		<string>IDESelectedObjects</string>
 		<string>IDEExpandedItemsSet</string>
-		<string>{{0, 313}, {320, 428}}</string>
+		<string>{{0, 833}, {320, 428}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -46512,7 +46512,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{90, 198}, {900, 548}}</string>
+		<string>{{86, 198}, {900, 548}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
