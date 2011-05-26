@@ -29,14 +29,18 @@ static char encodingTable[64] = {
 }
 
 /*
- 
+   SHA-1 (Secure Hash Algorithm) is a cryptographic hash function with a 160 bit output.
  */
 - (NSData *)sha1Digest
 {
 	unsigned char result[CC_SHA1_DIGEST_LENGTH]; // 20 - digest length in bytes 
     
+    
+    // CC_SHA1 computes the SHA-1 message digest of the len bytes at data and places it in md (i.e. [self length]) (which must have space for CC_SHA1_DIGEST_LENGTH == 20 bytes of output). It returns the md pointer.
 	CC_SHA1([self bytes], (CC_LONG)[self length], result);
     
+    
+    // CC_SHA1_DIGEST_LENGTH is 20 bytes long
     return [NSData dataWithBytes:result length:CC_SHA1_DIGEST_LENGTH];
 }
 
@@ -56,9 +60,11 @@ static char encodingTable[64] = {
     
     for (i = 0; i < [self length]; ++i)
 	{
+        // The 02 prefix makes sure the hex values are zero-padded
         [stringBuffer appendFormat:@"%02x", (unsigned long)dataBuffer[i]];
 	}
     
+    // Returns a copy of the stringBuffer and then autoreleases it
     return [[stringBuffer copy] autorelease];
 }
 
@@ -70,24 +76,36 @@ static char encodingTable[64] = {
     // Create a constant read only local attribute
 	const unsigned char	*bytes = [self bytes];
     
+    // Creates a mutable string with a capacity equal to the length of the data
 	NSMutableString *result = [NSMutableString stringWithCapacity:[self length]];
+    
+    
 	unsigned long ixtext = 0;
 	unsigned long lentext = [self length];
-	long ctremaining = 0;
+	long ctremaining = 0; // count remaining
 	unsigned char inbuf[3], outbuf[4];
 	unsigned short i = 0;
-	unsigned short charsonline = 0, ctcopy = 0;
+	unsigned short charsonline = 0, ctcopy = 0; //count copy
 	unsigned long ix = 0;
 	
 	while( YES )
 	{
 		ctremaining = lentext - ixtext;
-		if( ctremaining <= 0 ) break;
-		
+		if( ctremaining <= 0 )
+        {
+            break;
+		}
+        
+        
 		for( i = 0; i < 3; i++ ) {
 			ix = ixtext + i;
-			if( ix < lentext ) inbuf[i] = bytes[ix];
-			else inbuf [i] = 0;
+            
+			if( ix < lentext ) 
+            {
+                inbuf[i] = bytes[ix];
+			}else{
+                inbuf [i] = 0;
+            }
 		}
 		
 		outbuf [0] = (inbuf [0] & 0xFC) >> 2;
@@ -96,7 +114,7 @@ static char encodingTable[64] = {
 		outbuf [3] = inbuf [2] & 0x3F;
 		ctcopy = 4;
 		
-		switch( ctremaining )
+		switch( ctremaining ) // count remaining
 		{
 			case 1:
 				ctcopy = 2;
@@ -107,11 +125,17 @@ static char encodingTable[64] = {
 		}
 		
 		for( i = 0; i < ctcopy; i++ )
+        {
 			[result appendFormat:@"%c", encodingTable[outbuf[i]]];
-		
+		}
+        
+        
 		for( i = ctcopy; i < 4; i++ )
+        {
 			[result appendString:@"="];
-		
+		}
+        
+        
 		ixtext += 3;
 		charsonline += 4;
 	}
@@ -135,23 +159,43 @@ static char encodingTable[64] = {
 	unsigned char ch = 0;
 	unsigned char inbuf[4], outbuf[3];
 	short i = 0, ixinbuf = 0;
-	BOOL flignore = NO;
-	BOOL flendtext = NO;
+	BOOL flignore = NO;  // flag to ignore
+	BOOL flendtext = NO; // flag for end text
 	
 	while( YES )
 	{
-		if( ixtext >= lentext ) break;
+		if( ixtext >= lentext ) 
+        {
+            break;
+        }
+        
 		ch = bytes[ixtext++];
 		flignore = NO;
 		
-		if( ( ch >= 'A' ) && ( ch <= 'Z' ) ) ch = ch - 'A';
-		else if( ( ch >= 'a' ) && ( ch <= 'z' ) ) ch = ch - 'a' + 26;
-		else if( ( ch >= '0' ) && ( ch <= '9' ) ) ch = ch - '0' + 52;
-		else if( ch == '+' ) ch = 62;
-		else if( ch == '=' ) flendtext = YES;
-		else if( ch == '/' ) ch = 63;
-		else flignore = YES;
-		
+		if( ( ch >= 'A' ) && ( ch <= 'Z' ) ) 
+        {
+            ch = ch - 'A';
+		}else if( ( ch >= 'a' ) && ( ch <= 'z' ) ) 
+        {
+            ch = ch - 'a' + 26;
+		}else if( ( ch >= '0' ) && ( ch <= '9' ) ) 
+        {    
+            ch = ch - '0' + 52;
+		}else if( ch == '+' )
+        {    
+            ch = 62;
+		}else if( ch == '=' ) 
+        {    
+            flendtext = YES;
+		}else if( ch == '/' ) 
+        {    
+            ch = 63;
+		}else
+        {    
+            flignore = YES;
+		}
+        
+        // if not ignoring
 		if( ! flignore )
 		{
 			short ctcharsinbuf = 3;
@@ -159,9 +203,21 @@ static char encodingTable[64] = {
 			
 			if( flendtext )
 			{
-				if( ! ixinbuf ) break;
-				if( ( ixinbuf == 1 ) || ( ixinbuf == 2 ) ) ctcharsinbuf = 1;
-				else ctcharsinbuf = 2;
+				if( ! ixinbuf )
+                {    
+                    break;
+                }
+                
+                
+				if( ( ixinbuf == 1 ) || ( ixinbuf == 2 ) ) 
+                {    
+                    ctcharsinbuf = 1;
+                }else{ 
+                    
+                    ctcharsinbuf = 2;
+                }
+                
+                
 				ixinbuf = 3;
 				flbreak = YES;
 			}
@@ -175,6 +231,8 @@ static char encodingTable[64] = {
 				outbuf [1] = ( ( inbuf[1] & 0x0F ) << 4 ) | ( ( inbuf[2] & 0x3C ) >> 2 );
 				outbuf [2] = ( ( inbuf[2] & 0x03 ) << 6 ) | ( inbuf[3] & 0x3F );
 				
+                
+                // for each of the characters in the buffer
 				for( i = 0; i < ctcharsinbuf; i++ )
 					[result appendBytes:&outbuf[i] length:1];
 			}

@@ -26,15 +26,30 @@
 	
     
     // base64 encoding of basic authentication credentials    
-	NSString *base64Credentials;
+	NSString *base64Credentials; // basic or digest
 	
+    // The user's name in the specified realm.
 	NSString *username;
+    
+    // A string to be displayed to users so they know which username and    password to use. This string should contain at least the name of    the host performing the authentication and might additionally    indicate the collection of users who might have access. An example might be "registered_users@gotham.news.com".
 	NSString *realm;
+    
+    // A server-specified data string which should be uniquely generated each time a 401 response is made. It is recommended that this    string be base64 or hexadecimal data. Specifically, since the    string is passed in the header lines as a quoted string, the    double-quote character is not allowed.
 	NSString *nonce;
+    
+    // The URI from Request-URI of the Request-Line; duplicated here    because proxies are allowed to change the Request-Line in transit.
 	NSString *uri;
+    
+    // This directive is optional, but is made so only for backward    compatibility with RFC 2069 [6]; it SHOULD be used by all    implementations compliant with this version of the Digest scheme.    If present, it is a quoted string of one or more tokens indicating the "quality of protection" values supported by the server.  The value "auth" indicates authentication; the value "auth-int"indicates authentication with integrity protection;
 	NSString *qop;
+    
+    //  This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request.  For example, in the first request sent in response to a given nonce value, the client sends "nc=00000001".  The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. 
 	NSString *nc;
+    
+    // This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, to provide mutual authentication, and to provide some message integrity protection.
 	NSString *cnonce;
+    
+    // A string of 32 hex digits computed as defined below, which proves that the user knows a password
 	NSString *response;
 }
 

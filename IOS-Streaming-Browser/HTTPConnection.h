@@ -207,7 +207,7 @@
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path;
 
 /*
-
+    returns WebSocket
 */
 - (WebSocket *)webSocketForURI:(NSString *)path;
 
@@ -267,7 +267,7 @@
 - (BOOL)shouldDie;
 
 /*
- 
+    Closes the connection
  */
 - (void)die;
 

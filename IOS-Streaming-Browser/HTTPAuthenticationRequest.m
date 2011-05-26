@@ -19,15 +19,23 @@
 {
 	if ((self = [super init]))
 	{
+        // Get the Authorization header field from the HTTP message
 		NSString *authInfo = [request headerField:@"Authorization"];
 		
+        
 		isBasic = NO;
+        
+        // Check if the authorization header field to see if it has length greater than or equal to 6 characters. (i.e. the word 'Basic' plus a space
 		if ([authInfo length] >= 6)
 		{
+            
+            // Returns a new string containing the characters of the receiver up to, but not including, the one at a given index
 			isBasic = [[authInfo substringToIndex:6] caseInsensitiveCompare:@"Basic "] == NSOrderedSame;
 		}
 		
 		isDigest = NO;
+        
+        // Check is the authorization header field is 'Digest'
 		if ([authInfo length] >= 7)
 		{
 			isDigest = [[authInfo substringToIndex:7] caseInsensitiveCompare:@"Digest "] == NSOrderedSame;
@@ -71,7 +79,10 @@
             // If there is a quality of protection setting
 			if(qop && ([qop characterAtIndex:0] == '"'))
 			{
-                
+                // gets the quality of protection
+                // Possible values are:
+                //  auth-int indicate authentication with integrity protection
+                //  auth-param
 				qop  = [self quotedSubHeaderFieldValue:@"qop" fromHeaderFieldValue:authInfo];
 			}
             

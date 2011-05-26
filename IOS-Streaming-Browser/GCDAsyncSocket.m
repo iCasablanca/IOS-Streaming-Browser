@@ -100,6 +100,7 @@ NSString *const GCDAsyncSocketErrorDomain = @"GCDAsyncSocketErrorDomain";
 
 #if !TARGET_OS_IPHONE
 NSString *const GCDAsyncSocketSSLCipherSuites = @"GCDAsyncSocketSSLCipherSuites";
+
 NSString *const GCDAsyncSocketSSLDiffieHellmanParameters = @"GCDAsyncSocketSSLDiffieHellmanParameters";
 #endif
 
@@ -3316,6 +3317,7 @@ enum GCDAsyncSocketConfig
     // If IP version 4 connection interface
 	if (connectInterface4)
 	{
+        // Decrease the reference count and set to nil
 		[connectInterface4 release];
 		connectInterface4 = nil;
 	}
@@ -3323,6 +3325,7 @@ enum GCDAsyncSocketConfig
     // If IP version 6 connection interface
 	if (connectInterface6)
 	{
+        // Decrease the reference count and set to nil
 		[connectInterface6 release];
 		connectInterface6 = nil;
 	}
@@ -3431,6 +3434,7 @@ enum GCDAsyncSocketConfig
 	// So we have to unpause the source if needed.
 	// This allows the cancel handler to be run, which in turn releases the source and closes the socket.
 	
+    // If there is an accept source for IP version 4
 	if (accept4Source)
 	{
 		LogVerbose(@"dispatch_source_cancel(accept4Source)");
@@ -3441,6 +3445,7 @@ enum GCDAsyncSocketConfig
 		accept4Source = NULL;
 	}
 	
+    // If there is an accept source for IP version 6
 	if (accept6Source)
 	{
 		LogVerbose(@"dispatch_source_cancel(accept6Source)");
@@ -3451,9 +3456,12 @@ enum GCDAsyncSocketConfig
 		accept6Source = NULL;
 	}
 	
+    // if there is a readSource
 	if (readSource)
 	{
 		LogVerbose(@"dispatch_source_cancel(readSource)");
+        
+        //  Asynchronously cancel the dispatch source, preventing any further invocation of its event handler block.
 		dispatch_source_cancel(readSource);
 		
 		[self resumeReadSource];
@@ -3494,13 +3502,14 @@ enum GCDAsyncSocketConfig
 		{
 			id theDelegate = delegate;
 			
+            // Submits a block for asynchronous execution on the delegateQueue
 			dispatch_async(delegateQueue, ^{
 				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 				
 				[theDelegate socketDidDisconnect:self withError:error];
 				
 				[pool drain];
-			});
+			});  // END OF BLOCK
 		}	
 	}
 }
@@ -3513,6 +3522,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)disconnect
 {
+    // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -3524,7 +3534,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
-	};
+	}; // END OF BLOCK
 	
 	// Synchronous disconnection, as documented in the header file
 	
@@ -3540,6 +3550,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)disconnectAfterReading
 {
+    // Submits a block for asynchronous execution on the socketQueue
 	dispatch_async(socketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -3554,7 +3565,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
-	});
+	}); // END OF BLOCK
 }
 
 
@@ -3566,6 +3577,7 @@ enum GCDAsyncSocketConfig
  */
 - (void)disconnectAfterWriting
 {
+    // Submits a block for asynchronous execution on the socketQueue
 	dispatch_async(socketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -3576,7 +3588,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
-	});
+	}); // END OF BLOCK
 }
 
 
@@ -3588,6 +3600,8 @@ enum GCDAsyncSocketConfig
  */
 - (void)disconnectAfterReadingAndWriting
 {
+    
+    // Submits a block for asynchronous execution on the socketQueue
 	dispatch_async(socketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -3599,7 +3613,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
-	});
+	}); // END OF BLOCK
 }
 
 /**
@@ -3611,15 +3625,20 @@ enum GCDAsyncSocketConfig
 {
 	NSAssert(dispatch_get_current_queue() == socketQueue, @"Must be dispatched on socketQueue");
 	
+    
+    // Set the flag for whether we should close the connection until after we have checked the read and write queues, and check whether we are currently reading or writing to the socket
 	BOOL shouldClose = NO;
 	
     // If set, disconnect after no more reads are queued
 	if (flags & kDisconnectAfterReads)
 	{
+        // If there is anything in the readQueue and not currently reading from the socket
 		if (([readQueue count] == 0) && (currentRead == nil))
 		{
+            // If the flag is set to disconnect the socket after writing
 			if (flags & kDisconnectAfterWrites)
 			{
+                // Check if there is anything in the writeQueue and whether currently writing to the socket
 				if (([writeQueue count] == 0) && (currentWrite == nil))
 				{
 					shouldClose = YES;
@@ -3634,14 +3653,17 @@ enum GCDAsyncSocketConfig
     // If set, disconnect after no more writes are queued
 	else if (flags & kDisconnectAfterWrites)
 	{
+        // Check if there is anything in the writeQueue and whether currently writing to the socket
 		if (([writeQueue count] == 0) && (currentWrite == nil))
 		{
+            // Set the flag to close the socket
 			shouldClose = YES;
 		}
 	}
 	
 	if (shouldClose)
 	{
+        // Close without an error
 		[self closeWithError:nil];
 	}
 }
@@ -3652,7 +3674,7 @@ enum GCDAsyncSocketConfig
 
 
 /*
- 
+    Returns bad configuration error
  */
 - (NSError *)badConfigError:(NSString *)errMsg
 {
@@ -3663,7 +3685,7 @@ enum GCDAsyncSocketConfig
 
 
 /*
- 
+    Returns bad parameter error
 */
 - (NSError *)badParamError:(NSString *)errMsg
 {
@@ -3673,22 +3695,25 @@ enum GCDAsyncSocketConfig
 }
 
 /*
- 
+    
  */
 - (NSError *)gaiError:(int)gai_error
 {
 	NSString *errMsg = [NSString stringWithCString:gai_strerror(gai_error) encoding:NSASCIIStringEncoding];
+    
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:gai_error userInfo:userInfo];
 }
 
 /*
- 
+    Returns an error message based on the error number
  */
 - (NSError *)errnoErrorWithReason:(NSString *)reason
 {
 	NSString *errMsg = [NSString stringWithUTF8String:strerror(errno)];
+    
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:errMsg, NSLocalizedDescriptionKey,
             reason, NSLocalizedFailureReasonErrorKey, nil];
 	
@@ -3696,22 +3721,27 @@ enum GCDAsyncSocketConfig
 }
 
 /*
- 
+    Returns an error message based on the error number
  */
 - (NSError *)errnoError
 {
 	NSString *errMsg = [NSString stringWithUTF8String:strerror(errno)];
+    
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:NSPOSIXErrorDomain code:errno userInfo:userInfo];
 }
 
 /*
- 
+    Returns an SSL error message
  */
 - (NSError *)sslError:(OSStatus)ssl_error
 {
+    
 	NSString *msg = @"Error code definition can be found in Apple's SecureTransport.h";
+    
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedRecoverySuggestionErrorKey];
 	
 	return [NSError errorWithDomain:@"kCFStreamErrorDomainSSL" code:ssl_error userInfo:userInfo];
@@ -3719,14 +3749,16 @@ enum GCDAsyncSocketConfig
 
 
 /*
- 
+    Returns a connection timeout error message
  */
 - (NSError *)connectTimeoutError
 {
+    // Creates a localized erro message
 	NSString *errMsg = NSLocalizedStringWithDefaultValue(@"GCDAsyncSocketConnectTimeoutError",
             @"GCDAsyncSocket", [NSBundle mainBundle],
             @"Attempt to connect to host timed out", nil);
 	
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:GCDAsyncSocketErrorDomain code:GCDAsyncSocketConnectTimeoutError userInfo:userInfo];
@@ -3737,10 +3769,12 @@ enum GCDAsyncSocketConfig
 **/
 - (NSError *)readMaxedOutError
 {
+    // Creates a localized error message
 	NSString *errMsg = NSLocalizedStringWithDefaultValue(@"GCDAsyncSocketReadMaxedOutError",
             @"GCDAsyncSocket", [NSBundle mainBundle],
             @"Read operation reached set maximum length", nil);
 	
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:GCDAsyncSocketErrorDomain code:GCDAsyncSocketReadMaxedOutError userInfo:info];
@@ -3751,10 +3785,12 @@ enum GCDAsyncSocketConfig
 **/
 - (NSError *)readTimeoutError
 {
+    // Creates a localized error message
 	NSString *errMsg = NSLocalizedStringWithDefaultValue(@"GCDAsyncSocketReadTimeoutError",
             @"GCDAsyncSocket", [NSBundle mainBundle],
             @"Read operation timed out", nil);
 	
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:GCDAsyncSocketErrorDomain code:GCDAsyncSocketReadTimeoutError userInfo:userInfo];
@@ -3765,12 +3801,15 @@ enum GCDAsyncSocketConfig
 **/
 - (NSError *)writeTimeoutError
 {
+    // Creates a localized error message
 	NSString *errMsg = NSLocalizedStringWithDefaultValue(@"GCDAsyncSocketWriteTimeoutError",
                 @"GCDAsyncSocket", [NSBundle mainBundle],
                 @"Write operation timed out", nil);
 	
+    // Wraps the error message in an NSDictionary object
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
+    
 	return [NSError errorWithDomain:GCDAsyncSocketErrorDomain code:GCDAsyncSocketWriteTimeoutError userInfo:userInfo];
 }
 

@@ -173,15 +173,40 @@
  * 
 **/
 - (NSDictionary *)TXTRecordDictionary;
+
+/*
+ 
+*/
 - (void)setTXTRecordDictionary:(NSDictionary *)dict;
 
+/*
+ 
+*/
 - (BOOL)start:(NSError **)errPtr;
+
+/*
+ 
+*/
 - (BOOL)stop;
+
+/*
+ 
+*/
 - (BOOL)isRunning;
 
+/*
+ 
+*/
 - (void)addWebSocket:(WebSocket *)ws;
 
+/*
+ 
+*/
 - (NSUInteger)numberOfHTTPConnections;
+
+/*
+ 
+*/
 - (NSUInteger)numberOfWebSocketConnections;
 
 @end

@@ -382,7 +382,11 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// We use the Core Foundation UUID class to generate a nonce value for us
 	// UUIDs (Universally Unique Identifiers) are 128-bit values guaranteed to be unique.
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    
+    
 	NSString *newNonce = [NSMakeCollectable(CFUUIDCreateString(NULL, theUUID)) autorelease];
+    
+    
 	CFRelease(theUUID);
 	
 	// We have to remember that the HTTP protocol is stateless.
@@ -397,6 +401,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	
 	[recentNonces addObject:newNonce];
 	
+    
 	[NSTimer scheduledTimerWithTimeInterval:TIMEOUT_NONCE
 	                                 target:[HTTPConnection class]
 	                               selector:@selector(removeRecentNonce:)
@@ -1853,18 +1858,25 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		
 	// Status Code 401 - Unauthorized
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:401 description:nil version:HTTPVersion1_1];
+    
+    // Set the HTTPMessage "Content-Length" header field to a value of zero
 	[response setHeaderField:@"Content-Length" value:@"0"];
 	
+    
+    // Test if using digest authentication
 	if ([self useDigestAccessAuthentication])
 	{
 		[self addDigestAuthChallenge:response];
 	}
-	else
+	else // if using basic authentication
 	{
 		[self addBasicAuthChallenge:response];
 	}
 	
+    
 	NSData *responseData = [self preprocessErrorResponse:response];
+    
+    // Writes the response to the socket
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
 	
 	[response release];
@@ -2505,7 +2517,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 }
 
 /*
- 
+    Closes the connection
 */
 - (void)die
 {
