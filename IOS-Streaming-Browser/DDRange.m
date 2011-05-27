@@ -2,7 +2,7 @@
 #import "DDNumber.h"
 
 /*
- 
+    Note: C-style method
 */
 DDRange DDUnionRange(DDRange range1, DDRange range2)
 {
@@ -15,7 +15,7 @@ DDRange DDUnionRange(DDRange range1, DDRange range2)
 }
 
 /*
- 
+     Note: C-style method
 */
 DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 {
@@ -33,7 +33,7 @@ DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 }
 
 /*
- 
+     Note: C-style method
 */
 NSString *DDStringFromRange(DDRange range)
 {
@@ -41,7 +41,7 @@ NSString *DDStringFromRange(DDRange range)
 }
 
 /*
- 
+     Note: C-style method
 */
 DDRange DDRangeFromString(NSString *aString)
 {
@@ -66,7 +66,7 @@ DDRange DDRangeFromString(NSString *aString)
 }
 
 /*
- 
+     Note: C-style method
 */
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 {
@@ -98,6 +98,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 /*
     Class method
+    returns NSValue
  */
 + (NSValue *)valueWithDDRange:(DDRange)range
 {
@@ -106,7 +107,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 
 /*
- 
+    returns DDRange
  */
 - (DDRange)ddrangeValue
 {
@@ -116,7 +117,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 }
 
 /*
- 
+    returns NSInteger
  */
 - (NSInteger)ddrangeCompare:(NSValue *)other
 {

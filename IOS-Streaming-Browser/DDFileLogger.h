@@ -52,25 +52,62 @@
 
 // Public methods
 
+/*
+ 
+*/
 - (NSString *)logsDirectory;
 
+/*
+ 
+*/
 - (NSArray *)unsortedLogFilePaths;
+
+/*
+ 
+*/
 - (NSArray *)unsortedLogFileNames;
+
+/*
+ 
+*/
 - (NSArray *)unsortedLogFileInfos;
 
+/*
+ 
+*/
 - (NSArray *)sortedLogFilePaths;
+
+/*
+ 
+*/
 - (NSArray *)sortedLogFileNames;
+
+/*
+ 
+*/
 - (NSArray *)sortedLogFileInfos;
 
 // Private methods (only to be used by DDFileLogger)
 
+/*
+ 
+*/
 - (NSString *)createNewLogFile;
 
 @optional
 
+//////////////////////////////////////
 // Notifications from DDFileLogger
+//////////////////////////////////////
 
+/*
+ 
+*/
 - (void)didArchiveLogFile:(NSString *)logFilePath;
+
+/*
+ 
+*/
 - (void)didRollAndArchiveLogFile:(NSString *)logFilePath;
 
 @end
@@ -134,7 +171,14 @@
 	NSTimeInterval rollingFrequency;
 }
 
+/*
+    Initialize the DDFileLogger
+*/
 - (id)init;
+
+/*
+    Initialize the DDFileLogger with a file manager
+*/
 - (id)initWithLogFileManager:(id <DDLogFileManager>)logFileManager;
 
 // Configuration
@@ -224,11 +268,26 @@
 
 @property (nonatomic, readwrite) BOOL isArchived;
 
+
+/*
+    Class method
+*/
 + (id)logFileWithPath:(NSString *)filePath;
 
+
+/*
+    Initialize the DDLogFileInfo with a file path
+*/
 - (id)initWithFilePath:(NSString *)filePath;
 
+/*
+ 
+*/
 - (void)reset;
+
+/*
+ 
+*/
 - (void)renameFile:(NSString *)newFileName;
 
 #if TARGET_IPHONE_SIMULATOR
@@ -252,9 +311,20 @@
 // For example:
 // log-ABC123.txt -> log-ABC123.archived.txt
 
+
+/*
+ 
+*/
 - (BOOL)hasExtensionAttributeWithName:(NSString *)attrName;
 
+/*
+ 
+*/
 - (void)addExtensionAttributeWithName:(NSString *)attrName;
+
+/*
+ 
+*/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName;
 
 #else
@@ -262,14 +332,31 @@
 // Normal use of extended attributes used everywhere else,
 // such as on Macs and on iPhone devices.
 
+/*
+ 
+*/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName;
 
+/*
+ 
+*/
 - (void)addExtendedAttributeWithName:(NSString *)attrName;
+
+/*
+ 
+*/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName;
 
 #endif
 
+/*
+ 
+*/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another;
+
+/*
+ 
+*/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another;
 
 @end

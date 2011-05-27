@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <asl.h>
+#import <asl.h>  // For the Apple System Log facility
 
 #import "DDLog.h"
 

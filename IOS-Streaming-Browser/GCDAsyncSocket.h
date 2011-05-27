@@ -429,9 +429,20 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The host will be an IP address.
 **/
 - (NSString *)connectedHost;
+
+/*
+ 
+*/
 - (UInt16)connectedPort;
 
+/*
+ 
+*/
 - (NSString *)localHost;
+
+/*
+ 
+*/
 - (UInt16)localPort;
 
 /**
@@ -441,6 +452,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * See also the connectedHost, connectedPort, localHost and localPort methods.
 **/
 - (NSData *)connectedAddress;
+
+/*
+ 
+*/
 - (NSData *)localAddress;
 
 /**
@@ -448,6 +463,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * An accepting socket may be both.
 **/
 - (BOOL)isIPv4;
+
+/*
+ 
+*/
 - (BOOL)isIPv6;
 
 #pragma mark Reading
@@ -733,7 +752,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * it might actually have multiple internal socket file descriptors - one for IPv4 and one for IPv6.
 **/
 - (int)socketFD;
+
+/*
+ 
+*/
 - (int)socket4FD;
+
+/*
+ 
+*/
 - (int)socket6FD;
 
 #if TARGET_OS_IPHONE
@@ -754,6 +781,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * instead of the preferred and faster and more powerful SecureTransport.
 **/
 - (CFReadStreamRef)readStream;
+
+/*
+ 
+*/
 - (CFWriteStreamRef)writeStream;
 
 /**
@@ -834,21 +865,45 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * Extracting host and port information from raw address data.
 *****************************************************************/
 
-// Gets the host from an address
+/*
+    Class method
+    Gets the host from an address
+*/
 + (NSString *)hostFromAddress:(NSData *)address;
 
-// Get the port from an address
+/*
+    Class method
+    Get the port from an address
+*/
 + (UInt16)portFromAddress:(NSData *)address;
 
-
+/*
+    Class method
+*/
 + (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address;
 
 /**
  * A few common line separators, for use with the readDataToData:... methods.
 **/
+
+/*
+    Class method
+*/
 + (NSData *)CRLFData;   // 0x0D0A - Carriage return and line feed
+
+/*
+ Class method
+*/
 + (NSData *)CRData;     // 0x0D  - Carriage return
+
+/*
+ Class method
+*/
 + (NSData *)LFData;     // 0x0A - line feed
+
+/*
+ Class method
+*/
 + (NSData *)ZeroData;   // 0x00 - empty NSData object
 
 @end

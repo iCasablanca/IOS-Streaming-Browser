@@ -1,6 +1,10 @@
 #import "DDFileLogger.h"
 
-#import <unistd.h>
+
+
+#import <unistd.h>  // defines miscellaneous symbolic constants and types, and declares miscellaneous functions
+
+
 #import <sys/attr.h>
 #import <sys/xattr.h>
 #import <libkern/OSAtomic.h>
@@ -21,6 +25,9 @@
 
 @interface DDLogFileManagerDefault (PrivateAPI)
 
+/*
+ 
+*/
 - (void)deleteOldLogFiles;
 
 @end
@@ -29,16 +36,41 @@
 
 #if GCD_MAYBE_UNAVAILABLE
 
+/*
+ 
+*/
 - (void)lt_getMaximumFileSize:(NSMutableArray *)resultHolder;
+
+/*
+ 
+*/
 - (void)lt_setMaximumFileSize:(NSNumber *)maximumFileSizeWrapper;
 
+/*
+ 
+*/
 - (void)lt_getRollingFrequency:(NSMutableArray *)resultHolder;
+
+/*
+ 
+*/
 - (void)lt_setRollingFrequency:(NSNumber *)rollingFrequencyWrapper;
 
 #endif
 
+/*
+ 
+*/
 - (void)rollLogFileNow;
+
+/*
+ 
+*/
 - (void)maybeRollLogFileDueToAge:(NSTimer *)aTimer;
+
+/*
+ 
+*/
 - (void)maybeRollLogFileDueToSize;
 @end
 
@@ -51,6 +83,9 @@
 @synthesize maximumNumberOfLogFiles;
 
 
+/*
+    Initialize the DDLogFileManagerDefault
+*/
 - (id)init
 {
 	if ((self = [super init]))
@@ -67,6 +102,9 @@
 	return self;
 }
 
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	[super dealloc];
@@ -219,6 +257,10 @@
 	return logsDir;
 }
 
+
+/*
+ 
+*/
 - (BOOL)isLogFile:(NSString *)fileName
 {
 	// A log file has a name like "log-<uuid>.txt", where <uuid> is a HEX-string of 6 characters.
@@ -419,6 +461,9 @@
 
 @implementation DDLogFileFormatterDefault
 
+/*
+    Initialize the DDLogFileFormatterDefault
+*/
 - (id)init
 {
 	if((self = [super init]))
@@ -430,6 +475,10 @@
 	return self;
 }
 
+
+/*
+    returns NSString
+*/
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
 	NSString *dateAndTime = [dateFormatter stringFromDate:(logMessage->timestamp)];
@@ -437,6 +486,10 @@
 	return [NSString stringWithFormat:@"%@  %@", dateAndTime, logMessage->logMsg];
 }
 
+
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	[dateFormatter release];
@@ -455,6 +508,10 @@
 @synthesize rollingFrequency;
 @synthesize logFileManager;
 
+
+/*
+ 
+*/
 - (id)init
 {
 	DDLogFileManagerDefault *defaultLogFileManager = [[[DDLogFileManagerDefault alloc] init] autorelease];
@@ -462,6 +519,9 @@
 	return [self initWithLogFileManager:defaultLogFileManager];
 }
 
+/*
+ 
+*/
 - (id)initWithLogFileManager:(id <DDLogFileManager>)aLogFileManager
 {
 	if ((self = [super init]))
@@ -476,6 +536,10 @@
 	return self;
 }
 
+
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	[formatter release];
@@ -497,6 +561,9 @@
 #pragma mark Configuration
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+    returns unsigned long long
+*/
 - (unsigned long long)maximumFileSize
 {
 	// The design of this method is taken from the DDAbstractLogger implementation.
@@ -555,6 +622,10 @@
 	}
 }
 
+
+/*
+ 
+*/
 - (void)setMaximumFileSize:(unsigned long long)newMaximumFileSize
 {
 	// The design of this method is taken from the DDAbstractLogger implementation.
@@ -603,6 +674,10 @@
 	}
 }
 
+
+/*
+    returns NSTimeInterval
+*/
 - (NSTimeInterval)rollingFrequency
 {
 	// The design of this method is taken from the DDAbstractLogger implementation.
@@ -661,6 +736,10 @@
 	}
 }
 
+
+/*
+ 
+*/
 - (void)setRollingFrequency:(NSTimeInterval)newRollingFrequency
 {
 	// The design of this method is taken from the DDAbstractLogger implementation.
@@ -711,6 +790,10 @@
 
 #if GCD_MAYBE_UNAVAILABLE
 
+
+/*
+ 
+*/
 - (void)lt_getMaximumFileSize:(NSMutableArray *)resultHolder
 {
 	// This method is executed on the logging thread.
@@ -719,6 +802,10 @@
 	OSMemoryBarrier();
 }
 
+
+/*
+ 
+*/
 - (void)lt_setMaximumFileSize:(NSNumber *)maximumFileSizeWrapper
 {
 	// This method is executed on the logging thread.
@@ -728,6 +815,9 @@
 	[self maybeRollLogFileDueToSize];
 }
 
+/*
+ 
+*/
 - (void)lt_getRollingFrequency:(NSMutableArray *)resultHolder
 {
 	// This method is executed on the logging thread.
@@ -736,6 +826,9 @@
 	OSMemoryBarrier();
 }
 
+/*
+ 
+*/
 - (void)lt_setRollingFrequency:(NSNumber *)rollingFrequencyWrapper
 {
 	// This method is executed on the logging thread.
@@ -751,6 +844,9 @@
 #pragma mark File Rolling
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (void)scheduleTimerToRollLogFileDueToAge
 {
 	if (rollingTimer)
@@ -784,6 +880,10 @@
 	                                                repeats:NO] retain];
 }
 
+
+/*
+ 
+*/
 - (void)rollLogFile
 {
 	// This method is public.
@@ -815,6 +915,9 @@
 	}
 }
 
+/*
+ 
+*/
 - (void)rollLogFileNow
 {
 	NSLogVerbose(@"DDFileLogger: rollLogFileNow");
@@ -835,6 +938,9 @@
 	currentLogFileInfo = nil;
 }
 
+/*
+ 
+*/
 - (void)maybeRollLogFileDueToAge:(NSTimer *)aTimer
 {
 	if (currentLogFileInfo.age >= rollingFrequency)
@@ -849,6 +955,10 @@
 	}
 }
 
+
+/*
+ 
+*/
 - (void)maybeRollLogFileDueToSize
 {
 	// This method is called from logMessage.
@@ -938,6 +1048,9 @@
 	return currentLogFileInfo;
 }
 
+/*
+    returns NSFileHandle
+*/
 - (NSFileHandle *)currentLogFileHandle
 {
 	if (currentLogFileHandle == nil)
@@ -960,6 +1073,9 @@
 #pragma mark DDLogger Protocol
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	NSString *logMsg = logMessage->logMsg;
@@ -984,6 +1100,9 @@
 	}
 }
 
+/*
+ 
+*/
 - (NSString *)loggerName
 {
 	return @"cocoa.lumberjack.fileLogger";
@@ -1017,11 +1136,17 @@
 
 #pragma mark Lifecycle
 
+/*
+    Class method
+*/
 + (id)logFileWithPath:(NSString *)aFilePath
 {
 	return [[[DDLogFileInfo alloc] initWithFilePath:aFilePath] autorelease];
 }
 
+/*
+    Initialize with a file path
+*/
 - (id)initWithFilePath:(NSString *)aFilePath
 {
 	if ((self = [super init]))
@@ -1031,6 +1156,9 @@
 	return self;
 }
 
+/*
+    Standard deconstructor
+*/
 - (void)dealloc
 {
 	[filePath release];
@@ -1048,6 +1176,9 @@
 #pragma mark Standard Info
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (NSDictionary *)fileAttributes
 {
 	if (fileAttributes == nil)
@@ -1057,6 +1188,9 @@
 	return fileAttributes;
 }
 
+/*
+    returns NSString
+*/
 - (NSString *)fileName
 {
 	if (fileName == nil)
@@ -1066,6 +1200,10 @@
 	return fileName;
 }
 
+
+/*
+    returns NSDate
+*/
 - (NSDate *)modificationDate
 {
 	if (modificationDate == nil)
@@ -1076,6 +1214,9 @@
 	return modificationDate;
 }
 
+/*
+ 
+*/
 - (NSDate *)creationDate
 {
 	if (creationDate == nil)
@@ -1121,6 +1262,9 @@
 	return creationDate;
 }
 
+/*
+ 
+*/
 - (unsigned long long)fileSize
 {
 	if (fileSize == 0)
@@ -1131,6 +1275,9 @@
 	return fileSize;
 }
 
+/*
+ 
+*/
 - (NSTimeInterval)age
 {
 	return [[self creationDate] timeIntervalSinceNow] * -1.0;
@@ -1140,6 +1287,9 @@
 #pragma mark Archiving
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (BOOL)isArchived
 {
 	
@@ -1158,6 +1308,9 @@
 #endif
 }
 
+/*
+ 
+*/
 - (void)setIsArchived:(BOOL)flag
 {
 	
@@ -1186,6 +1339,9 @@
 #pragma mark Changes
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+ 
+*/
 - (void)reset
 {
 	[fileName release];
@@ -1201,6 +1357,9 @@
 	modificationDate = nil;
 }
 
+/*
+ 
+*/
 - (void)renameFile:(NSString *)newFileName
 {
 	// This method is only used on the iPhone simulator, where normal extended attributes are broken.
@@ -1237,6 +1396,9 @@
 // So we have to use a less attractive alternative.
 // See full explanation in the header file.
 
+/*
+    returns boolean
+*/
 - (BOOL)hasExtensionAttributeWithName:(NSString *)attrName
 {
 	// This method is only used on the iPhone simulator, where normal extended attributes are broken.
@@ -1274,6 +1436,10 @@
 	return NO;
 }
 
+
+/*
+ 
+*/
 - (void)addExtensionAttributeWithName:(NSString *)attrName
 {
 	// This method is only used on the iPhone simulator, where normal extended attributes are broken.
@@ -1333,6 +1499,10 @@
 	[self renameFile:newFileName];
 }
 
+
+/*
+ 
+*/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName
 {
 	// This method is only used on the iPhone simulator, where normal extended attributes are broken.
@@ -1382,6 +1552,9 @@
 
 #else
 
+/*
+    returns boolean
+*/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName
 {
     // Create a constant read only local attribute
@@ -1393,6 +1566,9 @@
 	return (result >= 0);
 }
 
+/*
+ 
+*/
 - (void)addExtendedAttributeWithName:(NSString *)attrName
 {
     // Create a constant read only local attribute
@@ -1407,6 +1583,9 @@
 	}
 }
 
+/*
+ 
+*/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName
 {
     // Create a constant read only local attribute
@@ -1427,6 +1606,9 @@
 #pragma mark Comparisons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+    returns boolean
+*/
 - (BOOL)isEqual:(id)object
 {
 	if ([object isKindOfClass:[self class]])
@@ -1439,6 +1621,10 @@
 	return NO;
 }
 
+
+/*
+    returns NSComparisonResult
+*/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another
 {
 	NSDate *us = [self creationDate];
@@ -1455,6 +1641,9 @@
 	return NSOrderedSame;
 }
 
+/*
+    returns NSComparisonResult
+*/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another
 {
 	NSDate *us = [self modificationDate];

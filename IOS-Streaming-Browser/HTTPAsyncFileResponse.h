@@ -11,6 +11,7 @@
  * An example of this is the HTTPDynamicFileResponse class.
 **/
 
+// Implements HTTPResponse protocol
 @interface HTTPAsyncFileResponse : NSObject <HTTPResponse>
 {	
 	HTTPConnection *connection;

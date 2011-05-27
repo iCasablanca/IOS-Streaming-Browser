@@ -321,13 +321,34 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * and also provides methods to get and set their log level during run time.
 **/
 
+/*
+    Class method
+*/
 + (NSArray *)registeredClasses;
+
+/*
+ Class method
+*/
 + (NSArray *)registeredClassNames;
 
+/*
+ Class method
+ */
 + (int)logLevelForClass:(Class)aClass;
+
+/*
+ Class method
+*/
 + (int)logLevelForClassWithName:(NSString *)aClassName;
 
+/*
+ Class method
+ */
 + (void)setLogLevel:(int)logLevel forClass:(Class)aClass;
+
+/*
+ Class method
+ */
 + (void)setLogLevel:(int)logLevel forClassWithName:(NSString *)aClassName;
 
 @end
@@ -364,6 +385,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 **/
 
 - (void)didAddLogger;
+
+/*
+ 
+*/
 - (void)willRemoveLogger;
 
 #if GCD_MAYBE_AVAILABLE
@@ -439,7 +464,14 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * }
 **/
 
+/*
+ Class method
+*/
 + (int)ddLogLevel;
+
+/*
+ Class method
+*/
 + (void)ddSetLogLevel:(int)logLevel;
 
 @end
@@ -544,7 +576,14 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #endif
 }
 
+/*
+ 
+*/
 - (id <DDLogFormatter>)logFormatter;
+
+/*
+ 
+*/
 - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 
 @end

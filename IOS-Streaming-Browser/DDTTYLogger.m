@@ -27,11 +27,19 @@ static DDTTYLogger *sharedInstance;
 	}
 }
 
+
+/*
+ Class method
+*/
 + (DDTTYLogger *)sharedInstance
 {
 	return sharedInstance;
 }
 
+
+/*
+    Initialize the DDTTYLogger
+*/
 - (id)init
 {
 	if (sharedInstance != nil)
@@ -78,6 +86,10 @@ static DDTTYLogger *sharedInstance;
 	return self;
 }
 
+
+/*
+ 
+*/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	if (!isaTTY) return;
@@ -171,6 +183,9 @@ static DDTTYLogger *sharedInstance;
 	}
 }
 
+/*
+    
+ */
 - (NSString *)loggerName
 {
 	return @"cocoa.lumberjack.ttyLogger";

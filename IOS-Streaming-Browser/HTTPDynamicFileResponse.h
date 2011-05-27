@@ -34,6 +34,7 @@
  * This class is also asynchronous, so it will perform the file IO using its own GCD queue.
 **/
 
+
 @interface HTTPDynamicFileResponse : HTTPAsyncFileResponse
 {
 	NSData *separator;  // separator string

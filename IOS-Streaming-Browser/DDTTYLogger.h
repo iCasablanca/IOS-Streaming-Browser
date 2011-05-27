@@ -39,6 +39,9 @@
 	size_t pidLen;
 }
 
+/*
+ Class method
+*/
 + (DDTTYLogger *)sharedInstance;
 
 // Inherited from DDAbstractLogger

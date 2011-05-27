@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "HTTPResponse.h"
 
-
+// Implements HTTPResponse protocol
 @interface HTTPDataResponse : NSObject <HTTPResponse>
 {
 	NSUInteger offset;

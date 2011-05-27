@@ -1,9 +1,12 @@
 #import "DDASLLogger.h"
 
+// Includes a group of functions for atomic reading and updating of values.
 #import <libkern/OSAtomic.h>
 
 
 @implementation DDASLLogger
+
+
 
 static DDASLLogger *sharedInstance;
 
@@ -17,6 +20,7 @@ static DDASLLogger *sharedInstance;
 **/
 + (void)initialize
 {
+    // Whether the DDASLLogger is initialized
 	static BOOL initialized = NO;
 	if (!initialized)
 	{
@@ -26,11 +30,18 @@ static DDASLLogger *sharedInstance;
 	}
 }
 
+/*
+    Class method
+*/
 + (DDASLLogger *)sharedInstance
 {
 	return sharedInstance;
 }
 
+
+/*
+    Initializes the DDASLLogger
+*/
 - (id)init
 {
 	if (sharedInstance != nil)
@@ -49,6 +60,9 @@ static DDASLLogger *sharedInstance;
 	return self;
 }
 
+/*
+ 
+*/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	NSString *logMsg = logMessage->logMsg;

@@ -50,16 +50,17 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
 /*
     Class method
+    returns NSValue
  */
 + (NSValue *)valueWithDDRange:(DDRange)range;
 
 /*
- 
+    returns DDRange
  */
 - (DDRange)ddrangeValue;
 
 /*
- 
+    returns NSInteger
  */
 - (NSInteger)ddrangeCompare:(NSValue *)ddrangeValue;
 

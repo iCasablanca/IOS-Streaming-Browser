@@ -26,6 +26,9 @@
 
 }
 
+/*
+    Class method
+*/
 + (void)list;
 
 @end
