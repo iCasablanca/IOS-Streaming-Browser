@@ -23,6 +23,8 @@
 
 /*
     Performs a block of code on the bonjour thread
+    param dispatch_block_t
+    param BOOL
 */
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone;
 
@@ -232,10 +234,12 @@
 
 
 /*
-    Set the interface
+    Set the server interface
+    param NSString
 */
 - (void)setInterface:(NSString *)value
 {
+    // copies the value into a local attribute
 	NSString *valueCopy = [value copy];
 	
     // Submits a block for asynchronous execution on the serverQueue
@@ -254,6 +258,7 @@
 **/
 - (UInt16)port
 {
+    // Creates a local attribute
 	__block UInt16 result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -266,9 +271,11 @@
 
 /*
     Get the servers port
+    returns UInt16
 */
 - (UInt16)listeningPort
 {
+    // Creates a local attribute
 	__block UInt16 result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -286,6 +293,7 @@
 
 /*
     Set the servers port
+    param UInt16
 */
 - (void)setPort:(UInt16)value
 {
@@ -298,9 +306,12 @@
 /**
  * Domain on which to broadcast this service via Bonjour.
  * The default domain is @"local".
+ 
+    returns NSString
 **/
 - (NSString *)domain
 {
+    // Creates a local attribute
 	__block NSString *result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -314,10 +325,11 @@
 
 /*
     Set the domain
+    param NSString
 */
 - (void)setDomain:(NSString *)value
 {
-	
+	// Copies the value into a local attribute
 	NSString *valueCopy = [value copy];
 	
     // Submits a block for asynchronous execution on the serverQueue
@@ -333,9 +345,11 @@
  * The name to use for this service via Bonjour.
  * The default name is an empty string,
  * which should result in the published name being the host name of the computer.
+    returns NSString
 **/
 - (NSString *)name
 {
+    // Creates a local attribute
 	__block NSString *result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -349,9 +363,11 @@
 
 /*
     Gets the published name of the server
+    returns NSString
 */
 - (NSString *)publishedName
 {
+    // Creates a local attribute
 	__block NSString *result;
 	
     
@@ -381,9 +397,11 @@
 
 /*
     Sets the published name of the server
+    param NSString
 */
 - (void)setName:(NSString *)value
 {
+    // Copies the value into a local attribute
 	NSString *valueCopy = [value copy];
 	
     // Submits a block for asynchronous execution on the serverQueue
@@ -398,9 +416,11 @@
 /**
  * The type of service to publish via Bonjour.
  * No type is set by default, and one must be set in order for the service to be published.
+    returns NSString
 **/
 - (NSString *)type
 {
+    // Creates a local attribute
 	__block NSString *result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -416,6 +436,7 @@
 */
 - (void)setType:(NSString *)value
 {
+    // Copies the value into a local attribute
 	NSString *valueCopy = [value copy];
 	
     // Submits a block for asynchronous execution on the serverQueue
@@ -432,6 +453,7 @@
 **/
 - (NSDictionary *)TXTRecordDictionary
 {
+    // Creates a local attribute
 	__block NSDictionary *result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -447,7 +469,7 @@
 */
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
-	
+	// Copies the value into a local attribute
 	NSDictionary *valueCopy = [value copy];
 	
     
@@ -462,9 +484,12 @@
 		{
 			NSNetService *theNetService = netService;
 			NSData *txtRecordData = nil;
+            
 			if (txtRecordDictionary)
+            {
 				txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
-			
+			}
+            
             // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
 				[theNetService setTXTRecordData:txtRecordData];
@@ -485,10 +510,12 @@
 
 /*
     Starts the server
+    param NSError
+    returns BOOL
 */
 - (BOOL)start:(NSError **)errPtr
 {
-	
+	// Creates local attributes
 	__block BOOL success = YES;
 	__block NSError *err = nil;
 	
@@ -531,6 +558,7 @@
 
 /*
     Stops the server
+    returns BOOL
 */
 - (BOOL)stop
 {
@@ -547,19 +575,26 @@
 		
 		// Now stop all HTTP connections the server owns
 		[connectionsLock lock];
+        
+        // Enumerates through the HTTP connections and stops them
 		for (HTTPConnection *connection in connections)
 		{
 			[connection stop];
 		}
+        
+        // Remove all the connections
 		[connections removeAllObjects];
 		[connectionsLock unlock];
 		
 		// Now stop all WebSocket connections the server owns
 		[webSocketsLock lock];
+        
+        // Enumerate through the web sockets
 		for (WebSocket *webSocket in webSockets)
 		{
 			[webSocket stop];
 		}
+        // remove all the web sockets
 		[webSockets removeAllObjects];
 		[webSocketsLock unlock];
 		
@@ -572,9 +607,11 @@
 
 /*
     Whether the server is running
+    returns BOOL
 */
 - (BOOL)isRunning
 {
+    // Creates a local attribute
 	__block BOOL result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -607,6 +644,7 @@
 
 /**
  * Returns the number of http client connections that are currently connected to the server.
+    returns NSUInteger
 **/
 - (NSUInteger)numberOfHTTPConnections
 {
@@ -626,6 +664,7 @@
 
 /**
  * Returns the number of websocket client connections that are currently connected to the server.
+    returns NSUInteger
 **/
 - (NSUInteger)numberOfWebSocketConnections
 {
@@ -649,6 +688,7 @@
 
 /*
     Configures the server
+    returns HTTPConfig
 */
 - (HTTPConfig *)config
 {
@@ -669,6 +709,9 @@
 
 /*
     When the server accepts a new socket
+    param GCDAsyncSocket
+    param GCDAsyncSocket
+ 
 */
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
@@ -896,8 +939,7 @@ static NSThread *bonjourThread;
 	[NSTimer scheduledTimerWithTimeInterval:DBL_MAX target:self selector:@selector(ignore:) userInfo:nil repeats:YES];
 	
 	[[NSRunLoop currentRunLoop] run];
-	
-	
+		
 	[pool release];
 }
 
@@ -906,6 +948,7 @@ static NSThread *bonjourThread;
     Class method
     
     Executes the block of code on the bonjour thread
+    param dispatch_block_t
 */
 + (void)performBonjourBlock:(dispatch_block_t)block
 {
@@ -920,6 +963,8 @@ static NSThread *bonjourThread;
 /*
     Class method
     Executes a block on the bonjour thread
+    param dispatch_block_t
+    param BOOL
 */
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone
 {

@@ -11,6 +11,11 @@
 /*
     Initialize the HTTPDynamicFileResponse with a file path for
     a specific connection, separator string, and dictionary
+    param NSSTring
+    param HTTPConnection
+    param NSString
+    param NSDictionary
+    returns id
  */
 - (id)initWithFilePath:(NSString *)fpath
          forConnection:(HTTPConnection *)parent
@@ -30,7 +35,8 @@
 
 /*
     Whether using chunked encoding to transfer the response in a series of chunks with its own size indicator
- */
+    returns BOOL
+*/
 - (BOOL)isChunked
 {
 	
@@ -39,7 +45,8 @@
 
 /*
     Does nothing
- */
+    returns UInt64
+*/
 - (UInt64)contentLength
 {
 	// This method shouldn't be called since we're using a chunked response.
@@ -71,7 +78,7 @@
 }
 
 /*
- 
+    Processes the read buffer
  */
 - (void)processReadBuffer
 {
@@ -105,6 +112,8 @@
     // Create a constant read only local attribute
 	const void *sep = [separator bytes];
 	
+    
+    // while the offset is less than the stop offset
 	while (offset < stopOffset)
 	{
         // Create a constant read only local attribute
@@ -247,7 +256,7 @@
 		data = [[NSData alloc] initWithBytes:readBuffer length:bufLen];
 		readBufferOffset = 0;
 	}
-	else
+	else  // if the read offset is not equal to the file length
 	{
 		// There are a couple different situations that we need to take into account here.
 		// 
@@ -288,6 +297,7 @@
 		readBufferOffset = remaining;
 	}
 	
+    //This informs us that the response object has generated more data that we may be able to send.
 	[connection responseHasAvailableData:self];
 }
 

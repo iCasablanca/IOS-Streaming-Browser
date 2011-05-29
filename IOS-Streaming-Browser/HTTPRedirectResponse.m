@@ -7,7 +7,9 @@
 
 /*
     Initializes the HTTPRedirectResponse object with a path
- */
+    param NSString
+    returns id
+*/
 - (id)initWithPath:(NSString *)path
 {
 	if ((self = [super init]))
@@ -20,7 +22,8 @@
 
 /*
     Returns zero
- */
+    returns UInt64
+*/
 - (UInt64)contentLength
 {
 	return 0;
@@ -28,7 +31,8 @@
 
 /*
     Returns zero
- */
+    returns UInt64
+*/
 - (UInt64)offset
 {
 	return 0;
@@ -36,7 +40,8 @@
 
 /*
     Does nothing
- */
+    param UInt64
+*/
 - (void)setOffset:(UInt64)offset
 {
 	// Nothing to do
@@ -44,7 +49,9 @@
 
 /*
     Returns nil
- */
+    param NSUInteger
+    returns NSData
+*/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	

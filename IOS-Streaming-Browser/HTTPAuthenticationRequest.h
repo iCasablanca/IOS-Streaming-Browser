@@ -55,20 +55,30 @@
 
 /*
     Initializes the HTTPAuthenticationRequest with an HTTPMessage
+    param HTTPMessage
+    returns id
 */
 - (id)initWithRequest:(HTTPMessage *)request;
 
 /*
     Getter method for accessing whether basic authentication
+    returns BOOL
 */
 - (BOOL)isBasic;
 
 /*
     Getter method for accessing whether digest authentication
+    returns BOOL
 */
 - (BOOL)isDigest;
 
-// Basic
+///////////////////////
+// Basic Authentication
+///////////////////////
+
+/*
+    returns NSString
+*/
 - (NSString *)base64Credentials;
 
 ///////////////////////////////

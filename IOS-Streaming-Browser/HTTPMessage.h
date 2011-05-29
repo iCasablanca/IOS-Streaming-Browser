@@ -26,18 +26,26 @@
 
 /**
     Initialize a request HTTPMessage with a URL and version
-    returns self (HTTPMessage)
+    param NSString
+    param NSURL
+    param NSString
+    returns id - self (HTTPMessage)
  **/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version;
 
 /**
      Initialize a response HTTPMessage with a code, description, and version
- **/
+    param NSString
+    param NSString
+    param NSString
+    returns id 
+**/
 - (id)initResponseWithStatusCode:(NSInteger)code description:(NSString *)description version:(NSString *)version;
 
 /**
     Returns whether can appendData with data
- **/
+    param NSData
+**/
 - (BOOL)appendData:(NSData *)data;
 
 /**
@@ -72,27 +80,34 @@
 
 /**
     Returns the header field as a string
- **/
+    param NSString
+    returns NSString
+**/
 - (NSString *)headerField:(NSString *)headerField;
 
 /**
     Sets the header field
- **/
+    param NSString
+    param NSString
+**/
 - (void)setHeaderField:(NSString *)headerField value:(NSString *)headerFieldValue;
 
 /**
     Returns the message data
- **/
+    returns NSData
+**/
 - (NSData *)messageData;
 
 /**
     Returns the body data
- **/
+    returns NSData
+**/
 - (NSData *)body;
 
 /**
     Set the body data
- **/
+    param NSData
+**/
 - (void)setBody:(NSData *)body;
 
 @end

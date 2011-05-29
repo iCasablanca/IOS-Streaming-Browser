@@ -14,7 +14,10 @@
 
 /*
     Initialize the HTTPFileResponse with a file path and HTTPConnection
- */
+    param NSString
+    param HTTPConnection
+    returns id
+*/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if((self = [super init]))
@@ -50,6 +53,7 @@
         
 		fileOffset = 0;
 		
+        // Whether file response has been aborted
 		aborted = NO;
 		
 		// We don't bother opening the file here.
@@ -72,7 +76,8 @@
 
 /*
     Whether can open the file or not
- */
+    returns BOOL
+*/
 - (BOOL)openFile
 {
 	
@@ -95,7 +100,8 @@
 
 /*
     Whether the file needs to be opened
- */
+    returns BOOL
+*/
 - (BOOL)openFileIfNeeded
 {
 	if (aborted)
@@ -122,7 +128,8 @@
 
 /*
     Get the file length
- */
+    returns UInt64
+*/
 - (UInt64)contentLength
 {
 	
@@ -131,7 +138,8 @@
 
 /*
     Gets the file offset
- */
+    returns UInt64
+*/
 - (UInt64)offset
 {
 	
@@ -141,7 +149,8 @@
 
 /*
     Set the file offset
- */
+    param UInt64
+*/
 - (void)setOffset:(UInt64)offset
 {
 	
@@ -165,7 +174,9 @@
 
 /*
     Reads a specific length of data from the file and returns as within an NSData object
- */
+    param NSUInteger
+    returns NSData
+*/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	
@@ -231,18 +242,19 @@
 
 /*
     If done reading the files
- */
+    returns BOOL
+*/
 - (BOOL)isDone
 {
 	BOOL result = (fileOffset == fileLength);
-	
 	
 	return result;
 }
 
 /*
     Returns the filePath as string
- */
+    returns NSString
+*/
 - (NSString *)filePath
 {
 	return filePath;
@@ -254,16 +266,18 @@
  */
 - (void)dealloc
 {
-	
+	// if the file descriptor is not null 
 	if (fileFD != NULL_FD)
 	{
-		
+		// close the file handle
 		close(fileFD);
 	}
 	
 	if (buffer)
+    {
 		free(buffer);
-	
+	}
+    
 	[filePath release];
 	[super dealloc];
 }

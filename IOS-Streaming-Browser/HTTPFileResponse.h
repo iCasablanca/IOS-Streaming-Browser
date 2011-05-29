@@ -8,24 +8,28 @@
 {
 	HTTPConnection *connection;
 	
-	NSString *filePath;
-	UInt64 fileLength;
-	UInt64 fileOffset;
+	NSString *filePath;  // the path to the file
+	UInt64 fileLength;  // the length of the file
+	UInt64 fileOffset;  // the file offset
 	
-	BOOL aborted;
+	BOOL aborted; // whether the file response has been aborted
 	
-	int fileFD;
-	void *buffer;
-	NSUInteger bufferSize;
+	int fileFD; // the file descriptor
+	void *buffer;  // the file buffer
+	NSUInteger bufferSize;  // the buffer size
 }
 
 /*
- 
+    Initialize the HTTPFile response with a filepath and connection
+    param NSSTring
+    param HTTPConnection
+    returns id
  */
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 
 /*
- 
+    Gets the file path
+    returns NSString
  */
 - (NSString *)filePath;
 

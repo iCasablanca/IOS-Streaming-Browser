@@ -14,6 +14,11 @@
  * file download resumption and optimized streaming on mobile devices.
 **/
 - (UInt64)offset;
+
+/*
+    Sets the offset
+    param UInt64
+*/
 - (void)setOffset:(UInt64)offset;
 
 /**

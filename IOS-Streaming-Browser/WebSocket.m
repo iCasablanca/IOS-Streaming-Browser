@@ -18,8 +18,21 @@
 
 @interface WebSocket (PrivateAPI)
 
+/*
+ 
+*/
 - (void)readRequestBody;
+
+
+/*
+ 
+*/
 - (void)sendResponseBody;
+
+
+/*
+ 
+*/
 - (void)sendResponseHeaders;
 
 @end
@@ -32,6 +45,8 @@
 
 /*
     Whether the HTTPRequest is a request for a web socket
+    param HTTPMessage
+    returns BOOL
 */
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request
 {
@@ -62,9 +77,14 @@
 	// If we find them, and they have the proper value,
 	// we can safely assume this is a websocket request.
 	
+    // Gets the Upgrade header value from the request
 	NSString *upgradeHeaderValue = [request headerField:@"Upgrade"];
+    
+    // Gets the Connection header value from the request
 	NSString *connectionHeaderValue = [request headerField:@"Connection"];
 	
+    
+    
 	BOOL isWebSocket = YES;
 	
     // Check if there is an upgrade and connection value.  If the header doesn't have an upgrade and connection header, then it is not a web-socket request
@@ -86,13 +106,19 @@
 /**
     Class method
     Whether the request is a version 76 of the web socket protocol
- **/
+    param HTTPMessage
+    returns BOOL
+**/
 + (BOOL)isVersion76Request:(HTTPMessage *)request
 {
     
+    // Gets the header field for the websocket key1
 	NSString *key1 = [request headerField:@"Sec-WebSocket-Key1"];
+    
+    // Gets the header field for the websocket key2
 	NSString *key2 = [request headerField:@"Sec-WebSocket-Key2"];
 	
+    // Whether version 76 protocol
 	BOOL isVersion76;
 	
     // if there is no key1 or key2, then it is not version 76 compliant
@@ -118,7 +144,10 @@
 
 /**
     Initialize the web socket with an HTTP request and a socket
- **/
+    param HTTPMessage
+    param GCDAsyncSocket
+    returns id
+**/
 - (id)initWithRequest:(HTTPMessage *)aRequest socket:(GCDAsyncSocket *)socket
 {
 	
@@ -170,7 +199,8 @@
 
 
 /**
- 
+    Get the websocket delegate
+    returns id
  **/
 - (id)delegate
 {
@@ -186,8 +216,9 @@
 
 
 /**
-    Sets the delegate
- **/
+    Sets the websocket delegate
+    param id
+**/
 - (void)setDelegate:(id)newDelegate
 {
     // Submits a block for asynchronous execution on the websocketQueue
@@ -213,8 +244,9 @@
 	dispatch_async(websocketQueue, ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-        
+        // If the websocket is started
 		if (isStarted) return;
+        
 		isStarted = YES;
 		
         // if the request is version 76 compliant
@@ -269,7 +301,8 @@
 
 /*
     Get the header field Origin value
- */
+    returns NSString
+*/
 - (NSString *)originResponseHeaderValue
 {
 	
@@ -293,7 +326,8 @@
 
 /*
     Get the value for the 'Host' field in the request header
- */
+    returns NSString
+*/
 - (NSString *)locationResponseHeaderValue
 {
 	
@@ -318,7 +352,7 @@
 
 
 /*
- 
+    Sends the response readers
  */
 - (void)sendResponseHeaders
 {
@@ -406,7 +440,9 @@
 
 /*
     Process the web socket key values from the request
- */
+    param NSString
+    returns NSData
+*/
 - (NSData *)processKey:(NSString *)key
 {
 	
@@ -461,7 +497,8 @@
 
 /*
     Sends the response body
- */
+    param NSData
+*/
 - (void)sendResponseBody:(NSData *)d3
 {
 	
@@ -519,7 +556,8 @@
 
 /*
     Sends a message
- */
+    param NSString
+*/
 - (void)sendMessage:(NSString *)msg
 {
 	// Encodes the message
@@ -541,7 +579,8 @@
 
 /*
     Did receive a message
- */
+    param NSString
+*/
 - (void)didReceiveMessage:(NSString *)msg
 {
 	
@@ -553,6 +592,7 @@
 	// Notify delegate that it did receive a message
 	if ([delegate respondsToSelector:@selector(webSocket:didReceiveMessage:)])
 	{
+        // Notify the socket it received a message
 		[delegate webSocket:self didReceiveMessage:msg];
 	}
 }
@@ -585,7 +625,10 @@
 
 /*
     Socket did read the request with a specific tag
- */
+    param GCDAsyncSocket
+    param NSData
+    param long
+*/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
 	

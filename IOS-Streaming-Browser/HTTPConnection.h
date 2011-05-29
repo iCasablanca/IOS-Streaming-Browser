@@ -78,7 +78,10 @@
 
 
 /*
-    returns HTTPConnection
+    Returns HTTPConnection
+    param GCDAsyncSocket
+    param HTTPConfig
+    returns id
 */
 - (id)initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig;
 
@@ -100,18 +103,23 @@
 - (void)startConnection;
 
 /**
- * Returns whether or not the server will accept messages of a given method
- * at a particular URI.
- **/
+    Returns whether or not the server will accept messages of a given method at a particular URI.
+    param NSString
+    param NSString
+    returns BOOL
+**/
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path;
 
 /**
- * Returns whether or not the server expects a body from the given method.
- * 
- * In other words, should the server expect a content-length header and associated body from this method.
- * This would be true in the case of a POST, where the client is sending data,
- * or for something like PUT where the client is supposed to be uploading a file.
- **/
+    Returns whether or not the server expects a body from the given method.
+ 
+    In other words, should the server expect a content-length header and associated body from this method.
+    This would be true in the case of a POST, where the client is sending data, or for something like PUT where the client is supposed to be uploading a file.
+ 
+    param NSString
+    param NSString
+    returns BOOL
+**/
 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path;
 
 /**
@@ -132,9 +140,11 @@
 - (NSArray *)sslIdentityAndCertificates;
 
 /**
- * Returns whether or not the requested resource is password protected.
- * In this generic implementation, nothing is password protected.
- **/
+    Returns whether or not the requested resource is password protected.
+    In this generic implementation, nothing is password protected.
+    param NSString
+    returns BOOL
+**/
 - (BOOL)isPasswordProtected:(NSString *)path;
 
 /**
@@ -147,14 +157,17 @@
 - (BOOL)useDigestAccessAuthentication;
 
 /**
- * Returns the authentication realm.
- * In this generic implmentation, a default realm is used for the entire server.
- **/
+    Returns the authentication realm.
+    In this generic implmentation, a default realm is used for the entire server.
+    returns NSString
+**/
 - (NSString *)realm;
 
 /**
- * Returns the password for the given username.
- **/
+    Returns the password for the given username.
+    param NSString
+    returns NSString
+**/
 - (NSString *)passwordForUser:(NSString *)username;
 
 /**
@@ -193,8 +206,10 @@
 - (NSArray *)directoryIndexFileNames;
 
 /**
- * Converts relative URI path into full file-system path.
- **/
+    Converts relative URI path into full file-system path.
+    param NSString
+    returns NSString
+**/
 - (NSString *)filePathForURI:(NSString *)path;
 
 /**
@@ -207,34 +222,38 @@
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path;
 
 /*
+    param NSString
     returns WebSocket
 */
 - (WebSocket *)webSocketForURI:(NSString *)path;
 
 /**
- * This method is called after receiving all HTTP headers, but before reading any of the request body.
+    This method is called after receiving all HTTP headers, but before reading any of the request body.
+    param UInt64
 **/
 - (void)prepareForBodyWithSize:(UInt64)contentLength;
 
 /**
- * This method is called to handle data read from a POST / PUT.
- * The given data is part of the request body.
+    This method is called to handle data read from a POST / PUT.
+    The given data is part of the request body.
+    param NSData
 **/
 - (void)processDataChunk:(NSData *)postDataChunk;
 
 /**
- * Called if the HTML version is other than what is supported
- **/
+    Called if the HTML version is other than what is supported
+    param NSString
+**/
 - (void)handleVersionNotSupported:(NSString *)version;
 
 /**
- * Called if the authentication information was required and absent, or if authentication failed.
+    Called if the authentication information was required and absent, or if authentication failed.
 **/
 - (void)handleAuthenticationFailed;
 
 /**
- * Called if we're unable to find the requested resource.
- **/
+    Called if we're unable to find the requested resource.
+**/
 - (void)handleResourceNotFound;
 
 /**
@@ -250,9 +269,11 @@
 - (void)handleUnknownMethod:(NSString *)method;
 
 /**
- * This method is called immediately prior to sending the response headers.
- * This method adds standard header fields, and then converts the response to an NSData object.
- **/
+    This method is called immediately prior to sending the response headers.
+    This method adds standard header fields, and then converts the response to an NSData object.
+    param HTTPMessage
+    returns NSData
+**/
 - (NSData *)preprocessResponse:(HTTPMessage *)response;
 
 /**
@@ -263,18 +284,28 @@
 
 /*
     Returns whether the HTTPConnection should die
- */
+    returns BOOL
+*/
 - (BOOL)shouldDie;
 
 /*
     Closes the connection
- */
+*/
 - (void)die;
 
 @end
 
 
 @interface HTTPConnection (AsynchronousHTTPResponse)
+
+/*
+    param NSObject with HTTPResponse protocol
+*/
 - (void)responseHasAvailableData:(NSObject<HTTPResponse> *)sender;
+
+/*
+    param NSObject with HTTPResponse protocl
+*/
 - (void)responseDidAbort:(NSObject<HTTPResponse> *)sender;
+
 @end

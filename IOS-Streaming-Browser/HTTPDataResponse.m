@@ -7,7 +7,9 @@
 
 /*
     Initializes the HTTPDataResponse with data
- */
+    param NSData
+    returns id
+*/
 - (id)initWithData:(NSData *)dataParam
 {
     
@@ -22,7 +24,7 @@
 
 /*
     Standard deconstructor
- */
+*/
 - (void)dealloc
 {
 	
@@ -32,7 +34,8 @@
 
 /*
     Returns the length of the data as an unsigned 64-bit integer 
- */
+    returns UInt64
+*/
 - (UInt64)contentLength
 {
 	UInt64 result = (UInt64)[data length];
@@ -42,7 +45,8 @@
 
 /*
     Returns the offset to the data
- */
+    returns UInt64
+*/
 - (UInt64)offset
 {
 	
@@ -51,7 +55,8 @@
 
 /*
     Sets the offset to the data
- */
+    param UInt64
+*/
 - (void)setOffset:(UInt64)offsetParam
 {
 	
@@ -60,7 +65,9 @@
 
 /*
     Returns the data of a certain length
- */
+    param NSUInteger
+    returns NSData
+*/
 - (NSData *)readDataOfLength:(NSUInteger)lengthParameter
 {
 	
@@ -77,11 +84,11 @@
 
 /*
     Returns whether done reading the data
- */
+    returns BOOL
+*/
 - (BOOL)isDone
 {
-	BOOL result = (offset == [data length]);
-	
+	BOOL result = (offset == [data length]);	
 	
 	return result;
 }

@@ -8,10 +8,10 @@
 
 @interface WebSocket : NSObject
 {
-	dispatch_queue_t websocketQueue;
+	dispatch_queue_t websocketQueue; // websocket queue
 	
-	HTTPMessage *request;
-	GCDAsyncSocket *asyncSocket;
+	HTTPMessage *request;  // the web socket request
+	GCDAsyncSocket *asyncSocket; // the socket (i.e. file handle)
 	
 	NSData *term;
 	
@@ -22,11 +22,15 @@
 
 /*
     Class method
+    param HTTPMessage
+    returns BOOL
 */
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request;
 
 /*
     Initialize with HTTPMessage request and a socket
+    param HTTPMessage
+    param GCDAsyncSocket
 */
 - (id)initWithRequest:(HTTPMessage *)request socket:(GCDAsyncSocket *)socket;
 
@@ -118,17 +122,21 @@
 
 /*
     The websocket did open
+    param WebSocket
  */
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
 /*
     The websocket did receive a message
- */
+    param WebSocket
+    param NSString
+*/
 - (void)webSocket:(WebSocket *)ws didReceiveMessage:(NSString *)msg;
 
 /*
     The websocket did close
- */
+    param WebSocket
+*/
 - (void)webSocketDidClose:(WebSocket *)ws;
 
 @end

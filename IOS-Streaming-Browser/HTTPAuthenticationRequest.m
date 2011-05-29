@@ -14,6 +14,8 @@
 
 /*
     Initialize the HTTPAuthenticationRequest with an HTTPMessage
+    param HTTPMessage
+    returns id
 */
 - (id)initWithRequest:(HTTPMessage *)request
 {
@@ -120,6 +122,7 @@
 
 /*
     Gets whether basic authentication
+    returns BOOL
 */
 - (BOOL)isBasic {
 	return isBasic;
@@ -128,6 +131,7 @@
 
 /*
     Whether digest authentication
+    returns BOOL
 */
 - (BOOL)isDigest {
 	return isDigest;
@@ -136,6 +140,7 @@
 
 /*
     Returns base64 credentials
+    returns NSString
 */
 - (NSString *)base64Credentials {
 	return base64Credentials;

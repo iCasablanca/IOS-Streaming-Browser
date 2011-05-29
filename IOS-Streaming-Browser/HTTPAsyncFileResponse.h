@@ -25,19 +25,22 @@
 	
 	NSData *data;
 	
-	int fileFD;
-	void *readBuffer;
+	int fileFD; // the file descriptior (i.e. file handle)
+	void *readBuffer; // the read buffer
 	NSUInteger readBufferSize;     // Malloced size of readBuffer
 	NSUInteger readBufferOffset;   // Offset within readBuffer where the end of existing data is
-	NSUInteger readRequestLength;
-	dispatch_queue_t readQueue;
-	dispatch_source_t readSource;
-	BOOL readSourceSuspended;
+	NSUInteger readRequestLength; // the read request length
+	dispatch_queue_t readQueue;  // the read queue
+	dispatch_source_t readSource; // the read source
+	BOOL readSourceSuspended;  // whether read source is suspended
 }
 
 /*
         Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
- */
+        param NSString
+        param HTTPConnection
+        returns id
+*/
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 
 /*

@@ -103,59 +103,99 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 }
 
 /**
- * GCDAsyncSocket uses the standard delegate paradigm,
- * but executes all delegate callbacks on a given delegate dispatch queue.
- * This allows for maximum concurrency, while at the same time providing easy thread safety.
- * 
- * You MUST set a delegate AND delegate dispatch queue before attempting to
- * use the socket, or you will get an error.
- * 
- * The socket queue is optional.
- * If you pass NULL, GCDAsyncSocket will automatically create it's own socket queue.
- * If you choose to provide a socket queue, the socket queue must not be a concurrent queue.
- * 
- * The delegate queue and socket queue can optionally be the same.
+    GCDAsyncSocket uses the standard delegate paradigm, but executes all delegate callbacks on a given delegate dispatch queue.
+    This allows for maximum concurrency, while at the same time providing easy thread safety.
+ 
+    You MUST set a delegate AND delegate dispatch queue before attempting to use the socket, or you will get an error.
+ 
+    The socket queue is optional.
+    If you pass NULL, GCDAsyncSocket will automatically create it's own socket queue.
+ 
+    If you choose to provide a socket queue, the socket queue must not be a concurrent queue.
+ 
+    The delegate queue and socket queue can optionally be the same.
 **/
 - (id)init;
 
-
-// Initialize the GCDAsyncSocket with a socket queue
+/*
+    Initialize the GCDAsyncSocket with a socket queue
+    param dispatch_queue_t
+    returns id (self)
+*/
 - (id)initWithSocketQueue:(dispatch_queue_t)sq;
 
-
-// Initialize the GCDAsyncSocket with a delegate and delegate queue
+/*
+    Initialize the GCDAsyncSocket with a delegate and delegate queue
+    param dispatch_queue_t
+    returns id (self)
+*/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq;
 
-// Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
+/*
+    Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
+    param id
+    param dispatch_queue_t
+    param dispatch_queue_t
+    returns id
+*/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq socketQueue:(dispatch_queue_t)sq;
 
 #pragma mark Configuration
 
-// Gets the delegate
+/*
+    Gets the delegate
+    returns id
+*/
 - (id)delegate;
 
-// Sets the delegate
+/*
+    Sets the delegate
+    param id
+ */
 - (void)setDelegate:(id)delegate;
 
-// Synchronously sets the delegate
+/*
+    Synchronously sets the delegate
+    param id
+*/
 - (void)synchronouslySetDelegate:(id)delegate;
 
-
-// Get the delegate queue
+/*
+    Get the delegate queue
+    returns dispatch_queue_t
+*/
 - (dispatch_queue_t)delegateQueue;
 
-// Set the delegate queue
+/*
+    Set the delegate queue
+    param dispatch_queue_t
+*/
 - (void)setDelegateQueue:(dispatch_queue_t)delegateQueue;
+
+/*
+    param dispatch_queue_t
+*/
 - (void)synchronouslySetDelegateQueue:(dispatch_queue_t)delegateQueue;
 
-
-// Get delegate and delegate queue
+/*
+    Get delegate and delegate queue
+    param id
+    param dispatch_queue_t
+*/
 - (void)getDelegate:(id *)delegatePtr delegateQueue:(dispatch_queue_t *)delegateQueuePtr;
 
-// Set the delegate and delegate queue
+/*
+    Set the delegate and delegate queue
+    param id
+    param dispatch_queue_t
+*/
 - (void)setDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
-// Synchronously set the delegate and delegate queue
+/*
+    Synchronously set the delegate and delegate queue
+    param id
+    param dispatch_queue_t
+*/
 - (void)synchronouslySetDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
@@ -189,10 +229,16 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The default value is YES.
 **/
 
-// Whether automatically disconnecting upon the closing of a read stream
+/*
+    Whether automatically disconnecting upon the closing of a read stream
+    returns BOOL
+*/
 - (BOOL)autoDisconnectOnClosedReadStream;
 
-// Sets the flag for whether automatically disconnecting upon the closing of a read stream
+/*
+    Sets the flag for whether automatically disconnecting upon the closing of a read stream
+    param BOOL
+*/
 - (void)setAutoDisconnectOnClosedReadStream:(BOOL)flag;
 
 /**
@@ -208,43 +254,72 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * By default, the preferred protocol is IPv4, but may be configured as desired.
 **/
 
-// Whether IP version 4 is enabled
+/*
+    Whether IP version 4 is enabled
+    returns BOOL
+*/
 - (BOOL)isIPv4Enabled;
 
-// Set the flag for whether IP version 4 protocol is enabled
+/*
+    Set the flag for whether IP version 4 protocol is enabled
+    param BOOL
+*/
 - (void)setIPv4Enabled:(BOOL)flag;
 
 
-// Whether IP version 6 protocol is enabled
+/*
+    Whether IP version 6 protocol is enabled
+    returns BOOL
+*/
 - (BOOL)isIPv6Enabled;
 
-// Set the flag for whether IP version 6 protocol is enabled
+
+/*
+    Set the flag for whether IP version 6 protocol is enabled
+    param BOOL
+*/
 - (void)setIPv6Enabled:(BOOL)flag;
 
 
-// Whether IP version 4 protocol is preferred over IP version 6 protocol
+/*
+    Whether IP version 4 protocol is preferred over IP version 6 protocol
+    returns BOOL
+*/
 - (BOOL)isIPv4PreferredOverIPv6;
 
-// Set the flag for whether IP version 4 protocol is preferred over IP version 6
+
+/*
+    Set the flag for whether IP version 4 protocol is preferred over IP version 6
+    param BOOL
+*/
 - (void)setPreferIPv4OverIPv6:(BOOL)flag;
 
 /**
- * User data allows you to associate arbitrary information with the socket.
- * This data is not used internally by socket in any way.
+    User data allows you to associate arbitrary information with the socket.
+    This data is not used internally by socket in any way.
+    returns id
 **/
 - (id)userData;
+
+/*
+    param id
+*/
 - (void)setUserData:(id)arbitraryUserData;
 
 #pragma mark Accepting
 
 /**
- * Tells the socket to begin listening and accepting connections on the given port.
- * When a connection is accepted, a new instance of GCDAsyncSocket will be spawned to handle it,
- * and the socket:didAcceptNewSocket: delegate method will be invoked.
- * 
- * The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
+    Tells the socket to begin listening and accepting connections on the given port.
+
+    When a connection is accepted, a new instance of GCDAsyncSocket will be spawned to handle it, and the socket:didAcceptNewSocket: delegate method will be invoked.
+ 
+    The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
+    param UInt16
+    param NSError
+    returns BOOL
 **/
 - (BOOL)acceptOnPort:(UInt16)port error:(NSError **)errPtr;
+
 
 /**
  * This method is the same as acceptOnPort:error: with the
@@ -267,17 +342,24 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #pragma mark Connecting
 
 /**
- * Connects to the given host and port.
- * 
- * This method invokes connectToHost:onPort:viaInterface:withTimeout:error:
- * and uses the default interface, and no timeout.
+    Connects to the given host and port.
+ 
+    This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface, and no timeout.
+    param NSString
+    param UInt16
+    returns BOOL
 **/
 - (BOOL)connectToHost:(NSString *)host onPort:(UInt16)port error:(NSError **)errPtr;
 
 /**
- * Connects to the given host and port with an optional timeout.
- * 
- * This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface.
+    Connects to the given host and port with an optional timeout.
+ 
+    This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface.
+    param NSString
+    param UInt16
+    param NSTimeInterval
+    param NSError
+    returns BOOL
 **/
 - (BOOL)connectToHost:(NSString *)host
                onPort:(UInt16)port
@@ -332,45 +414,54 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (BOOL)connectToAddress:(NSData *)remoteAddr error:(NSError **)errPtr;
 
 /**
- * This method is the same as connectToAddress:error: with an additional timeout option.
- * To not time out use a negative time interval, or simply use the connectToAddress:error: method.
+    This method is the same as connectToAddress:error: with an additional timeout option.
+    To not time out use a negative time interval, or simply use the connectToAddress:error: method.
+    param NSData
+    param NSTimeInterval
+    param NSError
+    returns BOOL
 **/
 - (BOOL)connectToAddress:(NSData *)remoteAddr withTimeout:(NSTimeInterval)timeout error:(NSError **)errPtr;
 
 /**
- * Connects to the given address, using the specified interface and timeout.
- * 
- * The address is specified as a sockaddr structure wrapped in a NSData object.
- * For example, a NSData object returned from NSNetservice's addresses method.
- * 
- * If you have an existing struct sockaddr you can convert it to a NSData object like so:
- * struct sockaddr sa  -> NSData *dsa = [NSData dataWithBytes:&remoteAddr length:remoteAddr.sa_len];
- * struct sockaddr *sa -> NSData *dsa = [NSData dataWithBytes:remoteAddr length:remoteAddr->sa_len];
- * 
- * The interface may be a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35").
- * The interface may also be used to specify the local port (see below).
- * 
- * The timeout is optional. To not time out use a negative time interval.
- * 
- * This method will return NO if an error is detected, and set the error pointer (if one was given).
- * Possible errors would be a nil host, invalid interface, or socket is already connected.
- * 
- * If no errors are detected, this method will start a background connect operation and immediately return YES.
- * The delegate callbacks are used to notify you when the socket connects, or if the host was unreachable.
- * 
- * Since this class supports queued reads and writes, you can immediately start reading and/or writing.
- * All read/write operations will be queued, and upon socket connection,
- * the operations will be dequeued and processed in order.
- * 
- * The interface may optionally contain a port number at the end of the string, separated by a colon.
- * This allows you to specify the local port that should be used for the outgoing connection. (read paragraph to end)
- * To specify both interface and local port: "en1:8082" or "192.168.4.35:2424".
- * To specify only local port: ":8082".
- * Please note this is an advanced feature, and is somewhat hidden on purpose.
- * You should understand that 99.999% of the time you should NOT specify the local port for an outgoing connection.
- * If you think you need to, there is a very good chance you have a fundamental misunderstanding somewhere.
- * Local ports do NOT need to match remote ports. In fact, they almost never do.
- * This feature is here for networking professionals using very advanced techniques.
+    Connects to the given address, using the specified interface and timeout.
+ 
+    The address is specified as a sockaddr structure wrapped in a NSData object.
+    For example, a NSData object returned from NSNetservice's addresses method.
+ 
+    If you have an existing struct sockaddr you can convert it to a NSData object like so:
+    struct sockaddr sa  -> NSData *dsa = [NSData dataWithBytes:&remoteAddr length:remoteAddr.sa_len];
+    struct sockaddr *sa -> NSData *dsa = [NSData dataWithBytes:remoteAddr length:remoteAddr->sa_len];
+ 
+    The interface may be a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35").
+    The interface may also be used to specify the local port (see below).
+  
+    The timeout is optional. To not time out use a negative time interval.
+  
+    This method will return NO if an error is detected, and set the error pointer (if one was given).
+    Possible errors would be a nil host, invalid interface, or socket is already connected.
+  
+    If no errors are detected, this method will start a background connect operation and immediately return YES.
+    The delegate callbacks are used to notify you when the socket connects, or if the host was unreachable.
+  
+    Since this class supports queued reads and writes, you can immediately start reading and/or writing.
+    All read/write operations will be queued, and upon socket connection, the operations will be dequeued and processed in order.
+  
+    The interface may optionally contain a port number at the end of the string, separated by a colon.
+    This allows you to specify the local port that should be used for the outgoing connection. (read paragraph to end)
+    To specify both interface and local port: "en1:8082" or "192.168.4.35:2424".
+    To specify only local port: ":8082".
+    Please note this is an advanced feature, and is somewhat hidden on purpose.
+    You should understand that 99.999% of the time you should NOT specify the local port for an outgoing connection.
+    If you think you need to, there is a very good chance you have a fundamental misunderstanding somewhere.
+    Local ports do NOT need to match remote ports. In fact, they almost never do.
+    This feature is here for networking professionals using very advanced techniques.
+ 
+    param NSData
+    param NSString
+    param NSTimeInterval
+    param NSError
+    returns BOOL
 **/
 - (BOOL)connectToAddress:(NSData *)remoteAddr
             viaInterface:(NSString *)interface
@@ -422,6 +513,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If a socket is in the process of connecting, it may be neither disconnected nor connected.
 **/
 - (BOOL)isDisconnected;
+
+/*
+    returns BOOL
+*/
 - (BOOL)isConnected;
 
 /**
@@ -431,41 +526,44 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (NSString *)connectedHost;
 
 /*
- 
+    returns UInt16
 */
 - (UInt16)connectedPort;
 
 /*
- 
+    returns NSString
 */
 - (NSString *)localHost;
 
 /*
- 
+    returns UInt16
 */
 - (UInt16)localPort;
 
 /**
- * Returns the local or remote address to which this socket is connected,
- * specified as a sockaddr structure wrapped in a NSData object.
- * 
- * See also the connectedHost, connectedPort, localHost and localPort methods.
+    Returns the local or remote address to which this socket is connected, specified as a sockaddr structure wrapped in a NSData object.
+ 
+    See also the connectedHost, connectedPort, localHost and localPort methods.
+ 
+    returns NSData
 **/
 - (NSData *)connectedAddress;
 
+
 /*
- 
+    returns NSData
 */
 - (NSData *)localAddress;
 
 /**
- * Returns whether the socket is IPv4 or IPv6.
- * An accepting socket may be both.
+    Returns whether the socket is IPv4 or IPv6.
+    An accepting socket may be both.
+    returns BOOL
 **/
 - (BOOL)isIPv4;
 
 /*
- 
+    returns BOOL
 */
 - (BOOL)isIPv6;
 
@@ -754,12 +852,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (int)socketFD;
 
 /*
- 
+    returns int
 */
 - (int)socket4FD;
 
 /*
- 
+    returns int
 */
 - (int)socket6FD;
 
@@ -783,7 +881,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (CFReadStreamRef)readStream;
 
 /*
- 
+    returns CFWriteStreamRef
 */
 - (CFWriteStreamRef)writeStream;
 
@@ -868,17 +966,25 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 /*
     Class method
     Gets the host from an address
+    param NSData
+    returns NSString
 */
 + (NSString *)hostFromAddress:(NSData *)address;
 
 /*
     Class method
     Get the port from an address
+    param NSData
+    returns UInt16
 */
 + (UInt16)portFromAddress:(NSData *)address;
 
 /*
     Class method
+    param NSString
+    param UInt16
+    param NSData
+    returns BOOL
 */
 + (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address;
 
@@ -888,21 +994,25 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 /*
     Class method
+    returns NSData
 */
 + (NSData *)CRLFData;   // 0x0D0A - Carriage return and line feed
 
 /*
- Class method
+    Class method
+    returns NSData
 */
 + (NSData *)CRData;     // 0x0D  - Carriage return
 
 /*
- Class method
+    Class method
+    returns NSData
 */
 + (NSData *)LFData;     // 0x0A - line feed
 
 /*
- Class method
+    Class method
+    returns NSData
 */
 + (NSData *)ZeroData;   // 0x00 - empty NSData object
 
@@ -954,8 +1064,11 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
 
 /**
- * Called when a socket has completed reading the requested data into memory.
- * Not called if there is an error.
+    Called when a socket has completed reading the requested data into memory.
+    Not called if there is an error.
+    param NCDAsyncSocket
+    param NSData
+    param long
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
 
@@ -993,42 +1106,55 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
             bytesDone:(NSUInteger)length;
 
 /**
- * Called if a write operation has reached its timeout without completing.
- * This method allows you to optionally extend the timeout.
- * If you return a positive time interval (> 0) the write's timeout will be extended by the given amount.
- * If you don't implement this method, or return a non-positive time interval (<= 0) the write will timeout as usual.
- * 
- * The elapsed parameter is the sum of the original timeout, plus any additions previously added via this method.
- * The length parameter is the number of bytes that have been written so far for the write operation.
- * 
- * Note that this method may be called multiple times for a single write if you return positive numbers.
+    Called if a write operation has reached its timeout without completing.
+ 
+    This method allows you to optionally extend the timeout.
+ 
+    If you return a positive time interval (> 0) the write's timeout will be extended by the given amount.
+ 
+    If you don't implement this method, or return a non-positive time interval (<= 0) the write will timeout as usual.
+ 
+    The elapsed parameter is the sum of the original timeout, plus any additions previously added via this method.
+ 
+    The length parameter is the number of bytes that have been written so far for the write operation.
+
+    Note that this method may be called multiple times for a single write if you return positive numbers.
+ 
+    param GCDAsyncSocket
+    param long
+    param NSTimeInterval
+    param NSUInteger
+    returns NSTimeInterval
 **/
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutWriteWithTag:(long)tag
         elapsed:(NSTimeInterval)elapsed
         bytesDone:(NSUInteger)length;
 
 /**
- * Conditionally called if the read stream closes, but the write stream may still be writeable.
- * 
- * This delegate method is only called if autoDisconnectOnClosedReadStream has been set to NO.
- * See the discussion on the autoDisconnectOnClosedReadStream method for more information.
+    Conditionally called if the read stream closes, but the write stream may still be writeable.
+
+    This delegate method is only called if autoDisconnectOnClosedReadStream has been set to NO.
+    See the discussion on the autoDisconnectOnClosedReadStream method for more information.
+    param GCDAsyncSocket
 **/
 - (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock;
 
 /**
- * Called when a socket disconnects with or without error.
- * 
- * If you call the disconnect method, and the socket wasn't already disconnected,
- * this delegate method will be called before the disconnect method returns.
+    Called when a socket disconnects with or without error.
+ 
+    If you call the disconnect method, and the socket wasn't already disconnected, this delegate method will be called before the disconnect method returns.
+    param GCDAsyncSocket
+    param NSError
 **/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 
 /**
- * Called after the socket has successfully completed SSL/TLS negotiation.
- * This method is not called unless you use the provided startTLS method.
- * 
- * If a SSL/TLS negotiation fails (invalid certificate, etc) then the socket will immediately close,
- * and the socketDidDisconnect:withError: delegate method will be called with the specific SSL error code.
+    Called after the socket has successfully completed SSL/TLS negotiation.
+ 
+    This method is not called unless you use the provided startTLS method.
+ 
+    If a SSL/TLS negotiation fails (invalid certificate, etc) then the socket will immediately close, and the socketDidDisconnect:withError: delegate method will be called with the specific SSL error code.
+    param GCDAsyncSocket
 **/
 - (void)socketDidSecure:(GCDAsyncSocket *)sock;
 
