@@ -20,6 +20,8 @@ typedef struct _DDRange {
 
 typedef DDRange *DDRangePointer;
 
+
+// Makes a range with a location and length
 NS_INLINE DDRange DDMakeRange(UInt64 loc, UInt64 len) {
     DDRange r;
     r.location = loc;
@@ -27,10 +29,12 @@ NS_INLINE DDRange DDMakeRange(UInt64 loc, UInt64 len) {
     return r;
 }
 
+// Returns the location and length
 NS_INLINE UInt64 DDMaxRange(DDRange range) {
     return (range.location + range.length);
 }
 
+// Returns the location within a range
 NS_INLINE BOOL DDLocationInRange(UInt64 loc, DDRange range) {
     return (loc - range.location < range.length);
 }

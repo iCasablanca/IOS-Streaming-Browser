@@ -55,6 +55,7 @@ NSString *DDStringFromRange(DDRange range)
 */
 DDRange DDRangeFromString(NSString *aString)
 {
+    // DDRange is the functional equivalent of a 64 bit NSRange
 	DDRange result = DDMakeRange(0, 0);
 	
 	// NSRange will ignore '-' characters, but not '+' characters
@@ -87,18 +88,25 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 	// Which range would you encouter first if you started at zero, and began walking towards infinity.
 	// If you encouter both ranges at the same time, which range would end first.
 	
+    // Check if the location from range 1 is less than the location from range2
 	if(pDDRange1->location < pDDRange2->location)
 	{
 		return NSOrderedAscending;
 	}
+    
+    // Check if the location from range1 is greater than the location from range2
 	if(pDDRange1->location > pDDRange2->location)
 	{
 		return NSOrderedDescending;
 	}
+    
+    // Check if the length from range1 is less than the length from range2
 	if(pDDRange1->length < pDDRange2->length)
 	{
 		return NSOrderedAscending;
 	}
+    
+    // Check if the length from range1 is greater than the length for range2
 	if(pDDRange1->length > pDDRange2->length)
 	{
 		return NSOrderedDescending;
@@ -125,7 +133,10 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
  */
 - (DDRange)ddrangeValue
 {
+    // DDRange is the functional equivalent of a 64 bit NSRange
 	DDRange result;
+    
+    
 	[self getValue:&result];
 	return result;
 }
@@ -136,9 +147,11 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
  */
 - (NSInteger)ddrangeCompare:(NSValue *)other
 {
+    // DDRange is the functional equivalent of a 64 bit NSRange
 	DDRange r1 = [self ddrangeValue];
 	DDRange r2 = [other ddrangeValue];
 	
+    // Compares the value from range1 and range2
 	return DDRangeCompare(&r1, &r2);
 }
 

@@ -23,6 +23,8 @@ extern NSString *const GCDAsyncSocketSSLCipherSuites;
 extern NSString *const GCDAsyncSocketSSLDiffieHellmanParameters;
 #endif
 
+
+// Creates a data type consisting of a set of named values for holding the various socket errors
 enum GCDAsyncSocketError
 {
 	GCDAsyncSocketNoError = 0,           // Never used
@@ -36,6 +38,7 @@ enum GCDAsyncSocketError
 	GCDAsyncSocketOtherError,            // Description provided in userInfo
 };
 typedef enum GCDAsyncSocketError GCDAsyncSocketError;
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -55,10 +58,14 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	int socket4FD;  // IP version 4 socket file descriptor
 	int socket6FD;  // IP version 6 socket file descriptor
 	int connectIndex; 
+    
+    // Object-oriented wrappers for byte buffers
 	NSData * connectInterface4;  // IP version 4 interface
 	NSData * connectInterface6;  // IP version 6 interface
 	
-	dispatch_queue_t socketQueue;  // dispatch queue
+    
+    // The dispatch queue upon which blocks are submitted
+	dispatch_queue_t socketQueue;  
 	
     
     // Dispatch sources are used to automatically submit event handler
@@ -76,12 +83,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	NSMutableArray *readQueue;  // The read queue
 	NSMutableArray *writeQueue;  // the write queue
 	
+    
+    
 	GCDAsyncReadPacket *currentRead; // the read packet
 	GCDAsyncWritePacket *currentWrite; // the write packet
 	
     // Value is 0 to 2,147,483,647
 	unsigned long socketFDBytesAvailable;  // socket file descriptor bytes available
 	
+    
 	NSMutableData *partialReadBuffer;  // partial read buffer
 		
 #if TARGET_OS_IPHONE

@@ -14,18 +14,20 @@
   #import <CFNetwork/CFNetwork.h>
 #endif
 
-#import <arpa/inet.h>
-#import <fcntl.h>
-#import <ifaddrs.h>
-#import <netdb.h>
-#import <netinet/in.h>
-#import <net/if.h>
-#import <sys/socket.h>
-#import <sys/types.h>
-#import <sys/ioctl.h>
-#import <sys/poll.h>
-#import <sys/uio.h>
-#import <unistd.h>
+#import <arpa/inet.h> // definitions for internet operations
+#import <fcntl.h> // file control options
+#import <ifaddrs.h> // Defines the type struct ifaddrs and declares the functions getifaddrs, freeifaddrs.
+
+#import <netdb.h> // definitions for network database operations
+#import <netinet/in.h> // Internet Protocol family
+#import <net/if.h> // sockets local interfaces
+#import <sys/socket.h> // Internet Protocol family
+#import <sys/types.h> // data types
+#import <sys/ioctl.h> // contains system I/O definitions and structures.
+#import <sys/poll.h> // Defines the structures and flags used by the poll subroutine.
+
+#import <sys/uio.h> // definitions for vector I/O operations
+#import <unistd.h> // standard symbolic constants and types
 
 
 #if 0
@@ -524,7 +526,7 @@ enum GCDAsyncSocketConfig
 /////////////////////////////////////////
 
 /*
- 
+    Conditionally start trasport layer security
 */
 - (void)maybeStartTLS;
 
@@ -532,7 +534,7 @@ enum GCDAsyncSocketConfig
 #if !TARGET_OS_IPHONE
 
 /*
- 
+    Continue the SSL handshake
 */
 - (void)continueSSLHandshake;
 #endif
@@ -611,14 +613,15 @@ enum GCDAsyncSocketConfig
     returns id
 */
 - (id)initWithData:(NSMutableData *)d
-       startOffset:(NSUInteger)s
-         maxLength:(NSUInteger)m
-           timeout:(NSTimeInterval)t
-        readLength:(NSUInteger)l
-        terminator:(NSData *)e
-               tag:(long)i;
+       startOffset:(NSUInteger)s // the starting offset for the read
+         maxLength:(NSUInteger)m // the maximum length of the read
+           timeout:(NSTimeInterval)t // the read timeout
+        readLength:(NSUInteger)l // the read length
+        terminator:(NSData *)e // the terminator
+               tag:(long)i; // an application defined integer or pointer
 
 /*
+    Ensure the read buffer has the capacity for additional data
     param NSUInteger
  */
 - (void)ensureCapacityForAdditionalDataOfLength:(NSUInteger)bytesToRead;
@@ -632,12 +635,14 @@ enum GCDAsyncSocketConfig
 - (NSUInteger)optimalReadLengthWithDefault:(NSUInteger)defaultValue shouldPreBuffer:(BOOL *)shouldPreBufferPtr;
 
 /*
+    Reads length from data without a terminator
     param NSUInteger
     returns NSUInteger
  */
 - (NSUInteger)readLengthForNonTermWithHint:(NSUInteger)bytesAvailable;
 
 /*
+    Reads length of data which has a terminator
     param NSUInteger
     param BOOL
     returns NSUInteger
@@ -645,6 +650,7 @@ enum GCDAsyncSocketConfig
 - (NSUInteger)readLengthForTermWithHint:(NSUInteger)bytesAvailable shouldPreBuffer:(BOOL *)shouldPreBufferPtr;
 
 /*
+    Reads length of data which has a terminator but which is larger than the buffer so we need to prebuffer the data
     param NSData
     param BOOL
     return NSUInteger
@@ -652,6 +658,7 @@ enum GCDAsyncSocketConfig
 - (NSUInteger)readLengthForTermWithPreBuffer:(NSData *)preBuffer found:(BOOL *)foundPtr;
 
 /*
+    Search for the terminator after prebuffering the data
     param ssize_t
     returns NSInteger
  */
@@ -767,10 +774,14 @@ enum GCDAsyncSocketConfig
     // Local variable for holding the result
 	NSUInteger result;
 	
+    // If the length of the bytes in the packet is greater than zero
 	if (readLength > 0)
 	{
+        ////////////////////////////////////
 		// Read a specific length of data
-		
+        ////////////////////////////////////
+        
+		// Set the result to the lesser of the default value of bytes, or the length of the read packet less the bytes already read
 		result = MIN(defaultValue, (readLength - bytesDone));
 		
 		// There is no need to prebuffer since we know exactly how much data we need to read.
@@ -829,6 +840,7 @@ enum GCDAsyncSocketConfig
 		}
 	}
 	
+    // Returns the optimal read length
 	return result;
 }
 
@@ -871,7 +883,7 @@ enum GCDAsyncSocketConfig
         // Get the number of bytes available to read
 		NSUInteger result = bytesAvailable;
 		
-        
+        // If the maximum length is set
 		if (maxLength > 0)
 		{
             // Get the lesser of the bytes available, or the maximum length minus the bytesDone reading or writing
@@ -915,6 +927,8 @@ enum GCDAsyncSocketConfig
     // if the maximum length of the read packet is greater than zero
 	if (maxLength > 0)
 	{
+        
+        // Get the lesser of the result or the maximum length less the number of bytes read from the read operation
 		result = MIN(result, (maxLength - bytesDone));
 	}
 	
@@ -975,6 +989,7 @@ enum GCDAsyncSocketConfig
         }
 	}
 	
+    // Returns the read length
 	return result;
 }
 

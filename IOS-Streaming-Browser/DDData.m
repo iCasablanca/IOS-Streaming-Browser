@@ -47,7 +47,7 @@ static char encodingTable[64] = {
 }
 
 /*
-    
+    Converts a hexidecimal to a string value
     returns NSString
  */
 - (NSString *)hexStringValue
@@ -73,7 +73,7 @@ static char encodingTable[64] = {
 }
 
 /*
-    
+    Converts a base 64 encoded value to a string
     returns NSString
  */
 - (NSString *)base64Encoded
@@ -122,22 +122,37 @@ static char encodingTable[64] = {
 		}
         
         
+        // Loop 3 times
 		for( i = 0; i < 3; i++ ) {
+            
+            // index
 			ix = ixtext + i;
             
+            // index less than length of text
 			if( ix < lentext ) 
             {
                 inbuf[i] = bytes[ix];
                 
 			}else{
+                
                 inbuf [i] = 0;
+                
             }
 		}
 		
+        // 0xFC is the hex for number 252
 		outbuf [0] = (inbuf [0] & 0xFC) >> 2;
+        
+        // 0x03 is the hex for number 3
+        // 0xF0 is the hex for number 204
 		outbuf [1] = ((inbuf [0] & 0x03) << 4) | ((inbuf [1] & 0xF0) >> 4);
-		outbuf [2] = ((inbuf [1] & 0x0F) << 2) | ((inbuf [2] & 0xC0) >> 6);
-		outbuf [3] = inbuf [2] & 0x3F;
+        
+        // 0x0F is the hex for number 15
+        // 0xC0 is the hex for number 207
+		outbuf [2] = ((inbuf [1] & 0x0F) << 2) | ((inbuf [2] & 0xC0) >> 6); 
+        
+        // Set item 3 in the output buffer 
+		outbuf [3] = inbuf [2] & 0x3F; // (0x3F is hex for the number 63)
         
         // Count copy
 		ctcopy = 4;
@@ -152,30 +167,34 @@ static char encodingTable[64] = {
 				break;
 		}
 		
+        
+        // Loops for the count copy
 		for( i = 0; i < ctcopy; i++ )
         {
 			[result appendFormat:@"%c", encodingTable[outbuf[i]]];
 		}
         
-        
+        // Loop 4 times
 		for( i = ctcopy; i < 4; i++ )
         {
 			[result appendString:@"="];
 		}
         
-        
+        // Index text
 		ixtext += 3;
         
         
 		charsonline += 4;
 	}
 	
+    // Converts the result to a string
 	return [NSString stringWithString:result];
 }
 
 
 /*
- 
+    
+    returns NSData
  */
 - (NSData *)base64Decoded
 {
@@ -196,7 +215,8 @@ static char encodingTable[64] = {
 	unsigned char ch = 0;
     
     // unsigned char has a range of 0 to 255
-	unsigned char inbuf[4], outbuf[3];
+	unsigned char inbuf[4];
+    unsigned char outbuf[3];
     
     // short has a range of 0 to 32,768
 	short i = 0;
@@ -212,37 +232,59 @@ static char encodingTable[64] = {
 	
 	while( YES )
 	{
+        // If the index text is greater or equal to the length of the text
 		if( ixtext >= lentext ) 
         {
             break;
         }
         
-        
+        // Gets the an item from the byte array at a particular index
 		ch = bytes[ixtext++];
         
         // flag to ignore
 		flignore = NO;
 		
+        // If the character is an upper case letter
 		if( ( ch >= 'A' ) && ( ch <= 'Z' ) ) 
         {
+            // Set character to the base 64 decimal for an upper case letter
             ch = ch - 'A';
+            
+        // If the character is a lower case letter
 		}else if( ( ch >= 'a' ) && ( ch <= 'z' ) ) 
         {
+            // Set character to the base 64 decimal for a lower case letter
             ch = ch - 'a' + 26;
+            
+            
+        // If the character is a number
 		}else if( ( ch >= '0' ) && ( ch <= '9' ) ) 
         {    
+            
+            // Set character to the base 64 decimal for a number
             ch = ch - '0' + 52;
+            
+        // If the character is a lus sign
 		}else if( ch == '+' )
-        {    
+        {   
+            // set character to 62 for the base 64 decimal for the plus sign
             ch = 62;
+            
+        // If the character is an equal sign
 		}else if( ch == '=' ) 
         {    
+            // Flag for the end of the text
             flendtext = YES;
+            
+        // If the character is a forward slash
 		}else if( ch == '/' ) 
         {    
+            // Set the character for the base 64 decimal for a forward slash
             ch = 63;
+            
 		}else
-        {    
+        {   
+            // Flag to ignore
             flignore = YES;
 		}
         
@@ -259,35 +301,46 @@ static char encodingTable[64] = {
             // flag to end text
 			if( flendtext )
 			{
+                // If there is not any index for the index buffer
 				if( ! ixinbuf )
                 {    
                     break;
                 }
                 
-                
+                // If the index in the index buffer is 1 or 2
 				if( ( ixinbuf == 1 ) || ( ixinbuf == 2 ) ) 
                 {    
                     // count of characters in the input buffer
                     ctcharsinbuf = 1;
+                    
                 }else{ 
                     
                     // count of characters in the input buffer
                     ctcharsinbuf = 2;
+                    
                 }
                 
-                
+                // Index for the input buffer
 				ixinbuf = 3;
+                
+                // Flag to break
 				flbreak = YES;
 			}
 			
-            
+            // Adds the character to the input buffer
 			inbuf [ixinbuf++] = ch;
 			
+            // If the index for the input buffer is 4
 			if( ixinbuf == 4 )
 			{
+                // Set the index buffer to zero
 				ixinbuf = 0;
+                
+                
 				outbuf [0] = ( inbuf[0] << 2 ) | ( ( inbuf[1] & 0x30) >> 4 );
+                
 				outbuf [1] = ( ( inbuf[1] & 0x0F ) << 4 ) | ( ( inbuf[2] & 0x3C ) >> 2 );
+                
 				outbuf [2] = ( ( inbuf[2] & 0x03 ) << 6 ) | ( inbuf[3] & 0x3F );
 				
                 

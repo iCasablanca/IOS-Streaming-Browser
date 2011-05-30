@@ -53,7 +53,9 @@
 		
 		// Use default connection class of HTTPConnection
 		connectionQueue = dispatch_queue_create("HTTPConnection", NULL);
-		connectionClass = [HTTPConnection self];
+
+		// Set the connectionClass to self (i.e. HTTPServer)
+        connectionClass = [HTTPConnection self];
 		
 		// By default bind on all available interfaces, en1, wifi etc
 		interface = nil;
@@ -75,24 +77,31 @@
 		
 		// Initialize arrays to hold all the normal and webSocket connections
 		connections = [[NSMutableArray alloc] init];
+        
+        // Initialize array to hold the web socket connections
 		webSockets  = [[NSMutableArray alloc] init];
 		
+        
         // Initialize locks for the normal and websocket connections
 		connectionsLock = [[NSLock alloc] init];
 		webSocketsLock  = [[NSLock alloc] init];
 		
+        
+        
 		// Register for notifications of closed connections
 		[[NSNotificationCenter defaultCenter] addObserver:self
-		                                         selector:@selector(connectionDidDie:)
-		                                             name:HTTPConnectionDidDieNotification
-		                                           object:nil];
+                    selector:@selector(connectionDidDie:)
+                    name:HTTPConnectionDidDieNotification
+                    object:nil];
 		
 		// Register for notifications of closed websocket connections
 		[[NSNotificationCenter defaultCenter] addObserver:self
-		                                         selector:@selector(webSocketDidDie:)
-		                                             name:WebSocketDidDieNotification
-		                                           object:nil];
+                    selector:@selector(webSocketDidDie:)
+                    name:WebSocketDidDieNotification
+                    object:nil];
 		
+        
+        
         // Note: Just initialized the HTTPServer, have not started it yet
 		isRunning = NO;
 	}
@@ -156,7 +165,9 @@
     // Submits a block for synchronous execution on the serverQueue
     // This block increases the reference count for the documentRoot
 	dispatch_sync(serverQueue, ^{
+        
 		result = [documentRoot retain];
+        
 	}); // END OF BLOCK
 	
     // Returns the documentRoot and autoreleases it after returning to the caller
@@ -563,6 +574,7 @@
 	
     // Submits a block for synchronous execution on serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
         // if the socket accepts on an interface and port
@@ -585,7 +597,7 @@
 		[pool release];
 	});  // END OF BLOCK
 	
-    
+    // If there is an error pointer
 	if (errPtr)
     {
 		*errPtr = [err autorelease];
@@ -691,6 +703,7 @@
 **/
 - (NSUInteger)numberOfHTTPConnections
 {
+    
 	NSUInteger result = 0;
 	
     // Locks the connection
@@ -797,11 +810,11 @@
         // set the net services' delegate as this instance of the HTTPServer
 		[netService setDelegate:self];
 		
-        
+        // Gets the netService
 		NSNetService *theNetService = netService;
 		NSData *txtRecordData = nil;
         
-        
+        // If there is a txtRecordDictionary
 		if (txtRecordDictionary)
         {
 			txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
@@ -810,20 +823,28 @@
         // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 		dispatch_block_t bonjourBlock = ^{
 			
+            // Removess the service to the specified run loop.
 			[theNetService removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+            
+            // Adds the service to the specified run loop.
 			[theNetService scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+            
+            // Attempts to advertise the receiver’s on the network.
 			[theNetService publish];
 			
 			// Do not set the txtRecordDictionary prior to publishing!!!
 			// This will cause the OS to crash!!!
 			if (txtRecordData)
 			{
+                
+                // Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
 				[theNetService setTXTRecordData:txtRecordData];
 			}
 		}; // END OF BLOCK
 		
         // Start the thread and run the block
 		[[self class] startBonjourThreadIfNeeded];
+        
 		[[self class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
 	}
 }
@@ -844,8 +865,11 @@
         
         // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 		dispatch_block_t bonjourBlock = ^{
-			
+		
+            // Halts a currently running attempt to publish or resolve a service.
 			[theNetService stop];
+            
+            
 			[theNetService release];
 		}; // END OF BLOCK
 		
@@ -960,10 +984,12 @@ static NSThread *bonjourThread;
     // Execute a block once and only once
 	dispatch_once(&predicate, ^{
 		
+        // Initialize and allocate a bonjour thread
 		bonjourThread = [[NSThread alloc] initWithTarget:self
 		                                        selector:@selector(bonjourThread)
 		                                          object:nil];
 		[bonjourThread start];
+        
 	}); // END OF BLOCK
 }
 
@@ -981,6 +1007,8 @@ static NSThread *bonjourThread;
 	
 	[NSTimer scheduledTimerWithTimeInterval:DBL_MAX target:self selector:@selector(ignore:) userInfo:nil repeats:YES];
 	
+    // Returns the NSRunLoop object for the current thread.
+    // Puts the receiver into a permanent loop, during which time it processes data from all attached input sources.
 	[[NSRunLoop currentRunLoop] run];
 		
 	[pool release];

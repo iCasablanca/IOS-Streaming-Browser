@@ -102,6 +102,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 + (void)initialize
 {
 	static BOOL initialized = NO;
+    
+    // If the HTTPConnection is not initialized
 	if(!initialized)
 	{
 		// Initialize class variables
@@ -142,6 +144,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		// if there is a dispatch queue for requests
 		if (aConfig.queue)
 		{
+            
 			connectionQueue = aConfig.queue;
 			dispatch_retain(connectionQueue);
 		}
@@ -182,6 +185,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 - (void)dealloc
 {
 	
+    // Decrement the reference count of a dispatch object.
 	dispatch_release(connectionQueue);
 	
 	[asyncSocket setDelegate:nil delegateQueue:NULL];
@@ -406,9 +410,12 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
     
     
+    // Makes a newly allocated Core Foundation object eligible for collection.
+    // Returns the string representation of a specified CFUUID object.
 	NSString *newNonce = [NSMakeCollectable(CFUUIDCreateString(NULL, theUUID)) autorelease];
     
     
+    // Release the UUID
 	CFRelease(theUUID);
 	
 	// We have to remember that the HTTP protocol is stateless.
@@ -421,6 +428,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// It then disconnects, and creates a new connection with the nonce, and proper authentication.
 	// If we don't honor the nonce for the second connection, QuickTime will repeat the process and never connect.
 	
+    
 	[recentNonces addObject:newNonce];
 	
     
@@ -496,6 +504,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			{
 				// Store nonce in local (cached) nonce variable to prevent array searches in the future
 				[nonce release];
+                
 				nonce = [[auth nonce] copy];
 				
 				// The client has switched to using a different nonce value
@@ -545,8 +554,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		NSString *HA2 = [[[HA2str dataUsingEncoding:NSUTF8StringEncoding] md5Digest] hexStringValue];
 		
         // Forms the response string with the MD5 encrypted values
-		NSString *responseStr = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",
-								 HA1, [auth nonce], [auth nc], [auth cnonce], [auth qop], HA2];
+		NSString *responseStr = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",HA1, [auth nonce], [auth nc], [auth cnonce], [auth qop], HA2];
 		
         // Encrypts the response string
 		NSString *response = [[[responseStr dataUsingEncoding:NSUTF8StringEncoding] md5Digest] hexStringValue];
@@ -558,6 +566,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	{
 		// Basic Authentication
 		
+        // If the authentication is not basic authentication
 		if (![auth isBasic])
 		{
 			// User didn't send proper base authentication credentials
@@ -572,13 +581,17 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		NSData *temp = [[base64Credentials dataUsingEncoding:NSUTF8StringEncoding] base64Decoded];
 		
         
+        // Create a string to hold the users credentials
 		NSString *credentials = [[[NSString alloc] initWithData:temp encoding:NSUTF8StringEncoding] autorelease];
 		
 		// The credentials should be of the form "username:password"
 		// The username is not allowed to contain a colon
 		
+        
+        // Finds and returns the range of the first occurrence of a given string within the receiver.
 		NSRange colonRange = [credentials rangeOfString:@":"];
 		
+        
 		if (colonRange.length == 0)
 		{
 			// Malformed credentials
@@ -588,7 +601,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
         // Gets the user name from the credentials
 		NSString *credUsername = [credentials substringToIndex:colonRange.location];
         
-        // Gets the password from the credentials
+        // Gets the password from the credentials.  This is the string past the location of the colon
 		NSString *credPassword = [credentials substringFromIndex:(colonRange.location + colonRange.length)];
 		
         
@@ -724,6 +737,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			[settings setObject:[NSNumber numberWithBool:YES]
 						 forKey:(NSString *)kCFStreamSSLIsServer];
 			
+            // Set the SSL certificate
 			[settings setObject:certificates
 						 forKey:(NSString *)kCFStreamSSLCertificates];
 			
@@ -768,8 +782,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 {
     DDLogError(@"parseParams: %@",query);
     
+    // Separates the compones which are separated by the '&' symbol
 	NSArray *components = [query componentsSeparatedByString:@"&"];
 
+    // Creates a mutable dictionary for the parameters key- value pairs
 	NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:[components count]];
 	
 	NSUInteger i;
@@ -784,34 +800,45 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		{
 			NSRange range = [component rangeOfString:@"="];
             
-            // If there is not an equal sign in the range
+            // If there is an equal sign in the range
 			if (range.location != NSNotFound)
 			{ 
+                // returns substring up to but not including index 
 				NSString *escapedKey = [component substringToIndex:(range.location + 0)]; 
                 
+                // returns substring up to but not including index (start counting at 0)
 				NSString *escapedValue = [component substringFromIndex:(range.location + 1)];
 				
                 // If there is an escape key in the parameters
 				if ([escapedKey length] > 0)
 				{
-					CFStringRef k, v;
+					CFStringRef k;  // The key
+                    CFStringRef v;  // The value
 					
+                    // The key
 					k = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedKey, CFSTR(""));
                     
+                    // The value
 					v = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedValue, CFSTR(""));
 					
-					NSString *key, *value;
+					NSString *key;
+                    NSString *value;
 					
+                    
 					key   = [NSMakeCollectable(k) autorelease];
 					value = [NSMakeCollectable(v) autorelease];
 	
                     
+                    // If there is a key
 					if (key)
 					{
+                        // If there is a value
 						if (value)
                         {
+                            // Adds the value and key to the dictionary
 							[result setObject:value forKey:key]; 
 						}else{ 
+                            // Adds the key to the dictionary with a null value
 							[result setObject:[NSNull null] forKey:key];
                         }
 					}
@@ -843,6 +870,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
         return nil;
 	}
     
+    // A disctionary for holding the keys and values from the parameters
 	NSDictionary *result = nil;
 	
     // Gets the request url
@@ -851,6 +879,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
     // If there is a url
 	if(url)
 	{
+        
 		NSString *query = [url query];
         
         // If there is a query string
@@ -898,7 +927,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
         return NO;
     }
 
+    // Location of the equal sign
 	NSUInteger tIndex = eqsignRange.location;
+    
+    
 	NSUInteger fIndex = eqsignRange.location + eqsignRange.length;
 	
 	NSString *rangeType  = [[[rangeHeader substringToIndex:tIndex] mutableCopy] autorelease];
@@ -908,13 +940,16 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	CFStringTrimWhitespace((CFMutableStringRef)rangeType);
 	CFStringTrimWhitespace((CFMutableStringRef)rangeValue);
 	
+    
 	if([rangeType caseInsensitiveCompare:@"bytes"] != NSOrderedSame)
     {
         return NO;
 	}
     
+    
 	NSArray *rangeComponents = [rangeValue componentsSeparatedByString:@","];
 	
+    // If there are no components separated by a comma
 	if([rangeComponents count] == 0) 
     {
         return NO;
@@ -936,6 +971,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	{
 		NSString *rangeComponent = [rangeComponents objectAtIndex:i];
 		
+        // Get the location and length of a dash
 		NSRange dashRange = [rangeComponent rangeOfString:@"-"];
 		
         // if there is no '-' in the range
@@ -944,6 +980,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 			// We're dealing with an individual byte number
 			
 			UInt64 byteIndex;
+            
 			if(![NSNumber parseString:rangeComponent intoUInt64:&byteIndex]) return NO;
 			
 			if(byteIndex >= contentLength) return NO;
@@ -954,13 +991,17 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		{
 			// We're dealing with a range of bytes
 			
+            // Get the location fo the dash
 			tIndex = dashRange.location;
+            
+            
 			fIndex = dashRange.location + dashRange.length;
 			
 			NSString *r1str = [rangeComponent substringToIndex:tIndex];
 			NSString *r2str = [rangeComponent substringFromIndex:fIndex];
 			
-			UInt64 r1, r2;
+			UInt64 r1;  // range 1
+            UInt64 r2;  // range 2
 			
 			BOOL hasR1 = [NSNumber parseString:r1str intoUInt64:&r1];
 			BOOL hasR2 = [NSNumber parseString:r2str intoUInt64:&r2];
@@ -1206,8 +1247,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	// Status Code 206 - Partial Content
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:206 description:nil version:HTTPVersion1_1];
 	
+    
 	DDRange range = [[ranges objectAtIndex:0] ddrangeValue];
 	
+    
 	NSString *contentLengthStr = [NSString stringWithFormat:@"%qu", range.length];
     
     // Set the response header content length
@@ -1279,10 +1322,14 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	{
 		DDRange range = [[ranges objectAtIndex:i] ddrangeValue];
 		
+        // Creates a string with the location and meximum range -1
 		NSString *rangeStr = [NSString stringWithFormat:@"%qu-%qu", range.location, DDMaxRange(range) - 1];
+        
         
 		NSString *contentRangeVal = [NSString stringWithFormat:@"bytes %@/%qu", rangeStr, contentLength];
         
+        
+        // The Content-Range entity-header is sent with a partial entity-body to specify where in the full entity-body the partial body should be applied.
 		NSString *contentRangeStr = [NSString stringWithFormat:@"Content-Range: %@\r\n\r\n", contentRangeVal];
 		
 		NSString *fullHeader = [startingBoundryStr stringByAppendingString:contentRangeStr];
@@ -1374,7 +1421,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 	
 	UInt64 contentLength = 0;
 	
-    // If the response is not chunked
+    // If the response is not serving content in a series of chunks
 	if (!isChunked)
 	{
         // Gets the http response content length
@@ -1407,6 +1454,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		// Default status code: 200 - OK
 		NSInteger status = 200;
 		
+        // If the response responds to the status selector
 		if ([httpResponse respondsToSelector:@selector(status)])
 		{
             // Gets the httpResponse status
@@ -1416,12 +1464,15 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
         // Allocate and initialize a HTTPMessage with a status code, description and version
 		response = [[HTTPMessage alloc] initResponseWithStatusCode:status description:nil version:HTTPVersion1_1];
 		
+        
+        // If the content is sent in a series of chunks
 		if (isChunked)
 		{
 			[response setHeaderField:@"Transfer-Encoding" value:@"chunked"];
 		}
-		else // Is not chunked
+		else // If not sending the content in a series of chunks
 		{
+            // Set the content length
 			NSString *contentLengthStr = [NSString stringWithFormat:@"%qu", contentLength];
             
             // Sets the response HTTPMessage header's content length
@@ -1441,6 +1492,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 		}
 	}
 	
+    // Whether the response has zero length
 	BOOL isZeroLengthResponse = !isChunked && (contentLength == 0);
     
 	// If they issue a 'HEAD' command, we don't have to include the file
@@ -1452,17 +1504,20 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
         // Preprocess the response
 		NSData *responseData = [self preprocessResponse:response];
         
-        // Write the data to the socket
+        // Write the data to the socket.  This is the response header
 		[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_HEAD tag:HTTP_RESPONSE];
 		
+        // Set the flag that we have sent the response headers
 		sentResponseHeaders = YES;
 	}
 	else // if the request method is not equal to 'HEAD'
 	{
 		// Write the header response
 		NSData *responseData = [self preprocessResponse:response];
+        
 		[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_HEAD tag:HTTP_PARTIAL_RESPONSE_HEADER];
 		
+        // Set the flag that we have sent the response headers
 		sentResponseHeaders = YES;
 		
 		// Now we need to send the body of the response
@@ -1474,6 +1529,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
             // if the httpResponse has length
 			if ([data length] > 0)
 			{
+                
 				[responseDataSizes addObject:[NSNumber numberWithUnsignedInteger:[data length]]];
 				
                 // if the response is chunked
@@ -1491,6 +1547,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
                     // Check whether done writing the response
 					if ([httpResponse isDone])
 					{
+                        
+                        // Gets the data that signals the end of a chunked transfer.
 						NSData *footer = [self chunkedTransferFooter];
                         
                         // Write data to the socket
@@ -1498,6 +1556,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 					}
 					else // If not done writing
 					{
+                        
 						NSData *footer = [GCDAsyncSocket CRLFData];
                         
                         // Writes a response footer to the socket
@@ -1506,6 +1565,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
 				}
 				else // if response is not chunked
 				{
+                    // Set the tag as 90 for HTTP_RESPONSE, or
+                    // sets the tag to 22 for partial response body
 					long tag = [httpResponse isDone] ? HTTP_RESPONSE : HTTP_PARTIAL_RESPONSE_BODY;
                     
                     // Write data to the socket
@@ -1525,9 +1586,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
                 // Set the response offset
 				[httpResponse setOffset:range.location];
 				
+                // If the range length is less than the read chunk size, then the bytes to read is the length.  If not, then read the chunk size
 				NSUInteger bytesToRead = range.length < READ_CHUNKSIZE ? (NSUInteger)range.length : READ_CHUNKSIZE;
 				
-                
+                // Reads data of a certain length
 				NSData *data = [httpResponse readDataOfLength:bytesToRead];
 				
                 // If there is a httpResponse
@@ -1536,6 +1598,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
                     // adds data to the response
 					[responseDataSizes addObject:[NSNumber numberWithUnsignedInteger:[data length]]];
 					
+                    // Whether a complete or partial response
 					long tag = [data length] == range.length ? HTTP_RESPONSE : HTTP_PARTIAL_RANGE_RESPONSE_BODY;
                     
                     // Write data to the socket
@@ -1559,6 +1622,8 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
                 // Set the httpResponse offset
 				[httpResponse setOffset:range.location];
 				
+                
+                // Determine the number of bytes to read
 				NSUInteger bytesToRead = range.length < READ_CHUNKSIZE ? (NSUInteger)range.length : READ_CHUNKSIZE;
 				
                 
@@ -1600,6 +1665,7 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
     // Loops through the response data
 	for(i = 0; i < [responseDataSizes count]; i++)
 	{
+        
 		result += [[responseDataSizes objectAtIndex:i] unsignedIntegerValue];
 	}
 	
@@ -1636,7 +1702,10 @@ static NSMutableArray *recentNonces;  // initialize with capacity of 5
     // If the writeQueue size is larger than the chunk size
 	if(writeQueueSize >= READ_CHUNKSIZE) return;
 	
+    
 	NSUInteger available = READ_CHUNKSIZE - writeQueueSize;
+
+    
 	NSData *data = [httpResponse readDataOfLength:available];
 	
     // If the response data has length
