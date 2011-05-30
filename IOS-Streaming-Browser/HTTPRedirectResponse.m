@@ -54,7 +54,6 @@
 */
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
-	
 	return nil;
 }
 
@@ -70,8 +69,7 @@
     Returns an NSDictionary object with a 'Location' key, and a value as the redirect path
  */
 - (NSDictionary *)httpHeaders
-{
-	
+{	
 	return [NSDictionary dictionaryWithObject:redirectPath forKey:@"Location"];
 }
 
@@ -79,8 +77,7 @@
     Returns the integer 302
  */
 - (NSInteger)status
-{
-	
+{	
 	return 302;
 }
 
@@ -88,8 +85,7 @@
     Standard deconstructor
  */
 - (void)dealloc
-{
-	
+{	
 	[redirectPath release];
 	[super dealloc];
 }

@@ -19,7 +19,6 @@
 	errno = 0;
 	
 	// On both 32-bit and 64-bit machines, long long = 64 bit
-	
 	*pNum = strtoll([str UTF8String], NULL, 10);
 	
     // If there is an error
@@ -117,7 +116,9 @@
 	if(errno != 0) // This means there was an error trying to parse the string
     {       
 		return NO;
+        
     }else{ // This means there was no error trying to parse the string
+
 		return YES;
     }
 }

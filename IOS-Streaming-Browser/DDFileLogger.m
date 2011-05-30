@@ -408,8 +408,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Generates a short UUID suitable for use in the log file's name.
- * The result will have six characters, all in the hexadecimal set [0123456789ABCDEF].
+    Generates a short UUID suitable for use in the log file's name.
+    The result will have six characters, all in the hexadecimal set [0123456789ABCDEF].
+    returns NSString
 **/
 - (NSString *)generateShortUUID
 {
@@ -425,7 +426,8 @@
 }
 
 /**
- * Generates a new unique log file path, and creates the corresponding log file.
+    Generates a new unique log file path, and creates the corresponding log file.
+    returns NSString
 **/
 - (NSString *)createNewLogFile
 {
@@ -463,6 +465,7 @@
 
 /*
     Initialize the DDLogFileFormatterDefault
+    returns id
 */
 - (id)init
 {
@@ -477,6 +480,7 @@
 
 
 /*
+    param DDLogMessage
     returns NSString
 */
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
@@ -562,7 +566,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-    returns unsigned long long
+    Gets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
+    returns unsigned long long. 
 */
 - (unsigned long long)maximumFileSize
 {
@@ -581,9 +586,11 @@
 			return maximumFileSize;
 		}
 		
+        // Result can be between 0 and 9,223,372,036,854,775,807
 		__block unsigned long long result;
 		
 		dispatch_block_t block = ^{
+            
 			result = maximumFileSize;
 		};
 		dispatch_sync([DDLog loggingQueue], block);
@@ -603,6 +610,7 @@
 			return maximumFileSize;
 		}
 		
+        // Results can be between 0 and 9,223,372,036,854,775,807
 		unsigned long long result;
 		NSMutableArray *resultHolder = [[NSMutableArray alloc] init];
 		
@@ -624,7 +632,7 @@
 
 
 /*
- 
+    Sets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
 */
 - (void)setMaximumFileSize:(unsigned long long)newMaximumFileSize
 {
@@ -964,6 +972,7 @@
 	// This method is called from logMessage.
 	// Keep it FAST.
 	
+    // File size can be between 0 and 9,223,372,036,854,775,807
 	unsigned long long fileSize = [currentLogFileHandle offsetInFile];
 	
 	// Note: Use direct access to maximumFileSize variable.
@@ -1263,7 +1272,8 @@
 }
 
 /*
- 
+    Gets the file size
+    returns value between 0 and 9,223,372,036,854,775,807
 */
 - (unsigned long long)fileSize
 {

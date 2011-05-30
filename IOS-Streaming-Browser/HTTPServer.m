@@ -143,9 +143,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * The document root is filesystem root for the webserver.
- * Thus requests for /index.html will be referencing the index.html file within the document root directory.
- * All file requests are relative to this document root.
+    The document root is filesystem root for the webserver.
+    Thus requests for /index.html will be referencing the index.html file within the document root directory.
+    All file requests are relative to this document root.
+    returns NSString
 **/
 - (NSString *)documentRoot
 {
@@ -164,6 +165,7 @@
 
 /*
     Set the documents root
+    param NSString
 */
 - (void)setDocumentRoot:(NSString *)value
 {
@@ -175,7 +177,7 @@
 	{
 		return;
 	}
-	
+	// Creates a local attributes and makes a copy of the document root
 	NSString *valueCopy = [value copy];
 	
     
@@ -189,13 +191,15 @@
 }
 
 /**
- * The connection class is the class that will be used to handle connections.
- * That is, when a new connection is created, an instance of this class will be intialized.
- * The default connection class is HTTPConnection.
- * If you use a different connection class, it is assumed that the class extends HTTPConnection
+    The connection class is the class that will be used to handle connections.
+    That is, when a new connection is created, an instance of this class will be intialized.
+    The default connection class is HTTPConnection.
+    If you use a different connection class, it is assumed that the class extends HTTPConnection
+    returns Class
 **/
 - (Class)connectionClass
 {
+    // Creates a local attributed
 	__block Class result;
 	
     // Submits a block for synchronous execution on the serverQueue
@@ -208,17 +212,21 @@
 
 /*
     Sets the connection class on the serverQueue
+    param Class
 */
 - (void)setConnectionClass:(Class)value
 {
 	// Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		connectionClass = value;
+        
 	}); // END OF BLOCK
 }
 
 /**
- * What interface to bind the listening socket to.
+    What interface to bind the listening socket to.
+    returns NSString
 **/
 - (NSString *)interface
 {
@@ -226,7 +234,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = [interface retain];
+        
 	}); // END OF BLOCK
 	
 	return [result autorelease];
@@ -244,8 +254,10 @@
 	
     // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		[interface release];
 		interface = [valueCopy retain];
+        
 	}); // END OF BLOCK
 	
 	[valueCopy release];
@@ -263,7 +275,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = port;
+        
 	}); // END OF BLOCK
 	
     return result;
@@ -280,12 +294,18 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		if (isRunning)  // check if server is running
         {
+            // Get the sockets local port
 			result = [asyncSocket localPort];
+            
 		}else{ // if server is not running
+            
+            
 			result = 0;
         }
+        
 	}); // END OF BLOCK
 	
 	return result;
@@ -299,14 +319,15 @@
 {
 	// Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		port = value;
+        
 	}); //END OF BLOCK
 }
 
 /**
- * Domain on which to broadcast this service via Bonjour.
- * The default domain is @"local".
- 
+    Domain on which to broadcast this service via Bonjour.
+    The default domain is @"local".
     returns NSString
 **/
 - (NSString *)domain
@@ -316,7 +337,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = [domain retain];
+        
 	}); // END OF BLOCK
 	
     return [domain autorelease];
@@ -334,8 +357,10 @@
 	
     // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+
 		[domain release];
 		domain = [valueCopy retain];
+        
 	}); // END OF BLOCK
 	
 	[valueCopy release];
@@ -354,7 +379,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = [name retain];
+        
 	}); //END OF BLOCK
 	
 	return [name autorelease];
@@ -384,7 +411,9 @@
 			
             // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
+                
 				result = [[netService name] copy];
+                
 			}; // END OF BLOCK
 			
 			[[self class] performBonjourBlock:bonjourBlock waitUntilDone:YES];
@@ -406,8 +435,10 @@
 	
     // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		[name release];
 		name = [valueCopy retain];
+        
 	}); // END OF BLOCK
 	
 	[valueCopy release];
@@ -425,7 +456,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = [type retain];
+        
 	}); // END OF BLOCK
 	
 	return [result autorelease];
@@ -441,8 +474,10 @@
 	
     // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		[type release];
 		type = [valueCopy retain];
+        
 	}); // END OF BLOCK
 	
 	[valueCopy release];
@@ -458,7 +493,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = [txtRecordDictionary retain];
+        
 	}); // END OF BLOCK
 	
 	return [result autorelease];
@@ -482,17 +519,22 @@
 		// Update the txtRecord of the netService if it has already been published
 		if (netService)
 		{
+            // Create a local attribute for the netService
 			NSNetService *theNetService = netService;
 			NSData *txtRecordData = nil;
             
+            // If there is a textRecordDictionary
 			if (txtRecordDictionary)
             {
+                // Gets the data from the dictionary
 				txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
 			}
             
             // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
+                
 				[theNetService setTXTRecordData:txtRecordData];
+                
 			}; // END OF BLOCK
 			
             // Perform the bonjourBlock and don't wait for it to execute
@@ -579,6 +621,7 @@
         // Enumerates through the HTTP connections and stops them
 		for (HTTPConnection *connection in connections)
 		{
+            // Stops the connection
 			[connection stop];
 		}
         

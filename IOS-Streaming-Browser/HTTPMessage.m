@@ -5,6 +5,7 @@
 
 
 /**
+    Initialize the HTTPMessage with an empty message
     returns self as an empty HTTP message
 **/
 - (id)initEmptyRequest

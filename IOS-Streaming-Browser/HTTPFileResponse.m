@@ -50,7 +50,7 @@
         // Gets the file size
 		fileLength = (UInt64)[[fileAttributes objectForKey:NSFileSize] unsignedLongLongValue];
         
-        
+        // Sets the file offset to the beginning of the file
 		fileOffset = 0;
 		
         // Whether file response has been aborted
@@ -69,7 +69,7 @@
  */
 - (void)abort
 {
-	
+	// Check if the connection did abort
 	[connection responseDidAbort:self];
 	aborted = YES;
 }
@@ -114,7 +114,7 @@
 	
     // If the connection has not been aborted
     
-    
+    // If the file descriptor is not null then the file is open
 	if (fileFD != NULL_FD)
 	{
 		// File has already been opened.
@@ -161,12 +161,16 @@
 		return;
 	}
 	
+    // Sets file file offset
 	fileOffset = offset;
 	
+    // repositions the file offset
 	off_t result = lseek(fileFD, (off_t)offset, SEEK_SET);
+
+    // if lseek return the resulting offset location as measured in bytes from the beginning of the file then it returns an error of -1
 	if (result == -1)
 	{
-		
+		// abort the file response
 		[self abort];
 	}
 }
@@ -201,30 +205,41 @@
 	
 	if (buffer == NULL || bufferSize < bytesToRead)
 	{
+        // Bytes left to read from the file
 		bufferSize = bytesToRead;
+        
+        // Try to change the size of the buffer
 		buffer = reallocf(buffer, (size_t)bufferSize);
 		
+        // If could not change the size of the buffer
 		if (buffer == NULL)
 		{
-			
+			// abort the file response
 			[self abort];
 			return nil;
 		}
 	}
 	
+    /////////////////////////
 	// Perform the read
-	
-	
+	/////////////////////////
+    
+	// reads bytes from file descriptor into buffer 
 	ssize_t result = read(fileFD, buffer, bytesToRead);
 	
+    
+    /////////////////////////
 	// Check the results
-	
+    /////////////////////////
+    
+    
+	// If there was an error attempting to read from the file
 	if (result < 0)
 	{
 		
 		[self abort];
 		return nil;
-	}
+	} // if nothing there is nothing to read
 	else if (result == 0)
 	{
 		
@@ -233,9 +248,10 @@
 	}
 	else // (result > 0)
 	{
-		
+		// Increases the file offset by the number of bytes read into the buffer
 		fileOffset += result;
 		
+        // Returns the bytes in the buffer
 		return [NSData dataWithBytes:buffer length:result];
 	}
 }
@@ -246,6 +262,7 @@
 */
 - (BOOL)isDone
 {
+    // Check if the fileOffset is at the end of the file.  This means we have read all the data from the file
 	BOOL result = (fileOffset == fileLength);
 	
 	return result;

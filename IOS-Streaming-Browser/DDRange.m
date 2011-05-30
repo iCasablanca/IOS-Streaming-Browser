@@ -3,6 +3,9 @@
 
 /*
     Note: C-style method
+    param DDRange
+    param DDRange
+    returns DDRange
 */
 DDRange DDUnionRange(DDRange range1, DDRange range2)
 {
@@ -16,6 +19,9 @@ DDRange DDUnionRange(DDRange range1, DDRange range2)
 
 /*
      Note: C-style method
+    param DDRange
+    param DDRange
+    returns DDRange
 */
 DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 {
@@ -34,6 +40,8 @@ DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 
 /*
      Note: C-style method
+    param DDRange
+    returns NSString
 */
 NSString *DDStringFromRange(DDRange range)
 {
@@ -42,6 +50,8 @@ NSString *DDStringFromRange(DDRange range)
 
 /*
      Note: C-style method
+    param NSString
+    returns DDRange
 */
 DDRange DDRangeFromString(NSString *aString)
 {
@@ -67,6 +77,9 @@ DDRange DDRangeFromString(NSString *aString)
 
 /*
      Note: C-style method
+    param DDRangePointer
+    param DDRangePointer
+    returns NSInteger
 */
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 {
@@ -98,6 +111,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 /*
     Class method
+    param DDRange
     returns NSValue
  */
 + (NSValue *)valueWithDDRange:(DDRange)range
@@ -117,6 +131,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 }
 
 /*
+    param NSValue
     returns NSInteger
  */
 - (NSInteger)ddrangeCompare:(NSValue *)other

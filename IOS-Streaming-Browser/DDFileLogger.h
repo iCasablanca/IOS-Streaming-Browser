@@ -163,11 +163,16 @@
 	id <DDLogFileManager> logFileManager;
 	
 	DDLogFileInfo *currentLogFileInfo;
+    
+    // The NSFileHandle class is an object-oriented wrapper for a file descriptor
 	NSFileHandle *currentLogFileHandle;
 	
 	NSTimer *rollingTimer;
 	
+    
+    // The maximum file size has to be between 0 and 9,223,372,036,854,775,807
 	unsigned long long maximumFileSize;
+    
 	NSTimeInterval rollingFrequency;
 }
 
@@ -206,7 +211,10 @@
 //   Allows you to retrieve the list of log files,
 //   and configure the maximum number of archived log files to keep.
 
+
+// The maximum file size has to be between 0 and 9,223,372,036,854,775,807
 @property (readwrite, assign) unsigned long long maximumFileSize;
+
 
 @property (readwrite, assign) NSTimeInterval rollingFrequency;
 
@@ -251,22 +259,24 @@
 	NSDate *creationDate;
 	NSDate *modificationDate;
 	
+    
+    // The filesize can be between 0 and 9,223,372,036,854,775,807
 	unsigned long long fileSize;
 }
 
-@property (nonatomic, readonly) NSString *filePath;
-@property (nonatomic, readonly) NSString *fileName;
+@property (nonatomic, readonly) NSString *filePath; // the file path
+@property (nonatomic, readonly) NSString *fileName; // the file name
 
-@property (nonatomic, readonly) NSDictionary *fileAttributes;
+@property (nonatomic, readonly) NSDictionary *fileAttributes; // the file attributes
 
-@property (nonatomic, readonly) NSDate *creationDate;
-@property (nonatomic, readonly) NSDate *modificationDate;
+@property (nonatomic, readonly) NSDate *creationDate; // the file creation date
+@property (nonatomic, readonly) NSDate *modificationDate; // the file modification date
 
-@property (nonatomic, readonly) unsigned long long fileSize;
+@property (nonatomic, readonly) unsigned long long fileSize;  // the size of the file
 
 @property (nonatomic, readonly) NSTimeInterval age;
 
-@property (nonatomic, readwrite) BOOL isArchived;
+@property (nonatomic, readwrite) BOOL isArchived;  // whether the file is archived
 
 
 /*

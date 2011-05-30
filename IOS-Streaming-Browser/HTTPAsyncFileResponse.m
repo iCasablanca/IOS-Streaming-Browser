@@ -30,7 +30,10 @@
 
 /*
     Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
- */
+    param NSString
+    param HTTPConnection
+    returns id
+*/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if ((self = [super init]))
@@ -88,8 +91,8 @@
 
 
 /*
-    
- */
+    Process the read buffer
+*/
 - (void)processReadBuffer
 {
 	// This method is here to allow superclasses to perform post-processing of the data.
@@ -137,7 +140,7 @@
 
 /*
     Cancel the read source
- */
+*/
 - (void)cancelReadSource
 {
 	
@@ -155,7 +158,8 @@
 
 /*
     Whether can open a file and setup the readSource
- */
+    returns BOOL
+*/
 - (BOOL)openFileAndSetupReadSource
 {
 	// Open file as read only
@@ -187,12 +191,17 @@
 		
 		UInt64 _bytesLeftInFile = fileLength - readOffset;
 		
+        // Bytes available on the file descriptor
 		NSUInteger bytesAvailableOnFD;
+        
+        // The bytes yet to read from the file
 		NSUInteger bytesLeftInFile;
 		
 		bytesAvailableOnFD = (_bytesAvailableOnFD > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesAvailableOnFD;
+
 		bytesLeftInFile    = (_bytesLeftInFile    > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesLeftInFile;
 		
+        
 		NSUInteger bytesLeftInRequest = readRequestLength - readBufferOffset;
 		
 		NSUInteger bytesLeft = MIN(bytesLeftInRequest, bytesLeftInFile);
@@ -206,7 +215,8 @@
 		{
 			readBufferSize = bytesToRead;
 			readBuffer = reallocf(readBuffer, (size_t)bytesToRead);
-			
+		
+            // If the read bufer is empty
 			if (readBuffer == NULL)
 			{
 				
@@ -248,7 +258,10 @@
 		
 	}); // END OF BLOCK
 	
+    // Gets the file descriptor
 	int theFileFD = fileFD;
+    
+    // Set the dispatch source to the readSource
 	dispatch_source_t theReadSource = readSource;
 	
 	dispatch_source_set_cancel_handler(readSource, ^{
@@ -260,8 +273,9 @@
 		
 		dispatch_release(theReadSource);
 		close(theFileFD);
-	});
+	}); // END OF BLOCK
 	
+    // Set the flag that the readSource is suspended
 	readSourceSuspended = YES;
 	
 	return YES;
@@ -280,18 +294,21 @@
 		return NO;
 	}
 	
+    // if there is a file descriptor, then return YES because we don't need to open the file
 	if (fileFD != NULL_FD)
 	{
 		// File has already been opened.
 		return YES;
 	}
 	
+    // Open the file and setup the readSource
 	return [self openFileAndSetupReadSource];
 }	
 
 /*
     Get file length
- */
+    returns UInt64
+*/
 - (UInt64)contentLength
 {
 	
@@ -300,7 +317,8 @@
 
 /*
     Get the file offset
- */
+    returns UInt64
+*/
 - (UInt64)offset
 {
 	
@@ -309,9 +327,11 @@
 
 /*
     Set the file's offset
- */
+    param Uint64
+*/
 - (void)setOffset:(UInt64)offset
 {
+    // Check if file could not be opened
 	if (![self openFileIfNeeded])
 	{
 		// File opening failed,
@@ -322,7 +342,10 @@
 	fileOffset = offset;
 	readOffset = offset;
 	
+    
 	off_t result = lseek(fileFD, (off_t)offset, SEEK_SET);
+
+    
 	if (result == -1)
 	{
 		
@@ -332,15 +355,18 @@
 
 /*  
     Reads a certain length of data from the file
- */
+    param NSUInteger
+    returns NSData
+*/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
-	
+    // if there is data 
 	if (data)
 	{
-		NSUInteger dataLength = [data length];
+        // Computes the length of the data
+		NSUInteger dataLength = [data length];		
 		
-		
+        
 		fileOffset += dataLength;
 		
 		NSData *result = data;
@@ -348,7 +374,7 @@
 		
 		return [result autorelease];
 	}
-	else
+	else // if there is no data 
 	{
 		if (![self openFileIfNeeded])
 		{
@@ -362,6 +388,7 @@
 			
 			NSAssert(readSourceSuspended, @"Invalid logic - perhaps HTTPConnection has changed.");
 			
+            
 			readRequestLength = length;
 			[self resumeReadSource];
 		});  // END OF BLOCK
@@ -372,18 +399,20 @@
 
 /*
     If done reading the file
- */
+    returns BOOL
+*/
 - (BOOL)isDone
 {
+    // Check if fileoffset is at the end of the file
 	BOOL result = (fileOffset == fileLength);
-	
 	
 	return result;
 }
 
 /*
     Gets the file path
- */
+    returns NSString
+*/
 - (NSString *)filePath
 {
 	return filePath;
@@ -391,19 +420,19 @@
 
 /*
     Whether this response is asynchronous
- */
+    returns BOOL
+*/
 - (BOOL)isAsynchronous
 {
-	
 	return YES;
 }
 
 /*
- 
+    Cancel the readSource and set connection to nil
  */
 - (void)connectionDidClose
 {
-	// If there is a file decription (i.e. file handle)
+	// If there is a file descriptor
 	if (fileFD != NULL_FD)
 	{
         // Submits a block for synchronous execution on the readQueue

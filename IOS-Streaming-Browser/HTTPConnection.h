@@ -73,7 +73,7 @@
 	UInt64 requestContentLength;  // the request content length
 	UInt64 requestContentLengthReceived;
 	
-	NSMutableArray *responseDataSizes;
+	NSMutableArray *responseDataSizes; // HTTP response sizes
 }
 
 

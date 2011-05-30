@@ -76,9 +76,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	NSMutableArray *readQueue;  // The read queue
 	NSMutableArray *writeQueue;  // the write queue
 	
-	GCDAsyncReadPacket *currentRead; // if current read from buffer
-	GCDAsyncWritePacket *currentWrite; // if current write to buffer
+	GCDAsyncReadPacket *currentRead; // the read packet
+	GCDAsyncWritePacket *currentWrite; // the write packet
 	
+    // Value is 0 to 2,147,483,647
 	unsigned long socketFDBytesAvailable;  // socket file descriptor bytes available
 	
 	NSMutableData *partialReadBuffer;  // partial read buffer
@@ -94,9 +95,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     // Is the interface for writing a byte stream either synchronously or asynchronously
 	CFWriteStreamRef writeStream;
 #else
-	SSLContextRef sslContext;
-	NSMutableData *sslReadBuffer;
-	size_t sslWriteCachedLength;
+	SSLContextRef sslContext; // the SSL context reference
+	NSMutableData *sslReadBuffer; // the SSL read buffer
+	size_t sslWriteCachedLength; // size of the SSL write cache
 #endif
 	
 	id userData; //user data

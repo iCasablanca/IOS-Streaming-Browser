@@ -49,7 +49,6 @@
 */
 - (UInt64)offset
 {
-	
 	return offset;
 }
 
@@ -58,8 +57,7 @@
     param UInt64
 */
 - (void)setOffset:(UInt64)offsetParam
-{
-	
+{	
 	offset = (NSUInteger)offsetParam;
 }
 
@@ -72,6 +70,8 @@
 {
 	
 	NSUInteger remaining = [data length] - offset;
+
+    
 	NSUInteger length = lengthParameter < remaining ? lengthParameter : remaining;
 	
 	void *bytes = (void *)([data bytes] + offset);

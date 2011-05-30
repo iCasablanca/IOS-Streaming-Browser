@@ -58,7 +58,8 @@
 
 /*
     Does nothing
- */
+    param UInt64
+*/
 - (void)setOffset:(UInt64)offset
 {
 	// This method shouldn't be called since we're using a chunked response.
@@ -87,12 +88,13 @@
 	// This method is in charge of updating the readBufferOffset.
 	
 	NSUInteger bufLen = readBufferOffset;
-	NSUInteger sepLen = [separator length];
+	NSUInteger sepLen = [separator length]; // separator length
 	
 	// We're going to start looking for the separator at the beginning of the buffer,
 	// and stop when we get to the point where the separator would no longer fit in the buffer.
 	
 	NSUInteger offset = 0;
+    
 	NSUInteger stopOffset = (bufLen > sepLen) ? bufLen - sepLen + 1 : 0;
 	
 	// In order to do the replacement, we need to find the starting and ending separator.
@@ -293,7 +295,10 @@
 		
 		NSUInteger remaining = bufLen - available;
 		
+        // copies a byte string
 		memmove(readBuffer, readBuffer + available, remaining);
+        
+        // set the read buffer's offset to the remaining bytes 
 		readBufferOffset = remaining;
 	}
 	

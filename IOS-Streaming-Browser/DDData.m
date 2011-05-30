@@ -18,6 +18,7 @@ static char encodingTable[64] = {
 {
     
     // Creates unsigned character with value of 16
+    // unsigned char has a range of 0 to 255
 	unsigned char result[CC_MD5_DIGEST_LENGTH];  // 16- digest length in bytes */
     
     
@@ -33,6 +34,7 @@ static char encodingTable[64] = {
  */
 - (NSData *)sha1Digest
 {
+    // unsigned char has a range of 0 to 255
 	unsigned char result[CC_SHA1_DIGEST_LENGTH]; // 20 - digest length in bytes 
     
     
@@ -45,7 +47,8 @@ static char encodingTable[64] = {
 }
 
 /*
- 
+    
+    returns NSString
  */
 - (NSString *)hexStringValue
 {
@@ -53,9 +56,10 @@ static char encodingTable[64] = {
 	NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([self length] * 2)];
 	
     // Create a constant read only local attribute
+    // unsigned char has a range of 0 to 255
     const unsigned char *dataBuffer = [self bytes];
     
-    
+    // int is a valued from 0 to 2,147,483,647
     int i;
     
     for (i = 0; i < [self length]; ++i)
@@ -69,28 +73,49 @@ static char encodingTable[64] = {
 }
 
 /*
- 
+    
+    returns NSString
  */
 - (NSString *)base64Encoded
 {
     // Create a constant read only local attribute
+    // unsigned char has a range of 0 to 255
 	const unsigned char	*bytes = [self bytes];
     
     // Creates a mutable string with a capacity equal to the length of the data
 	NSMutableString *result = [NSMutableString stringWithCapacity:[self length]];
     
     
+    // Value is 0 to 2,147,483,647
 	unsigned long ixtext = 0;
+    
+    // Value is 0 to 2,147,483,647
 	unsigned long lentext = [self length];
-	long ctremaining = 0; // count remaining
+    
+    // Count remaining
+	long ctremaining = 0; 
+    
+    // unsigned char has a range of 0 to 255
 	unsigned char inbuf[3], outbuf[4];
+    
+    // short has a range of 0 to 32,768
 	unsigned short i = 0;
-	unsigned short charsonline = 0, ctcopy = 0; //count copy
+    
+    // short has a range of 0 to 32,768
+	unsigned short charsonline = 0;
+
+    // count copy
+    unsigned short ctcopy = 0; 
+    
+    // Value is 0 to 2,147,483,647
 	unsigned long ix = 0;
 	
 	while( YES )
 	{
+        // count remainting
 		ctremaining = lentext - ixtext;
+        
+        // if the count remaining is less than or equal to zero
 		if( ctremaining <= 0 )
         {
             break;
@@ -103,6 +128,7 @@ static char encodingTable[64] = {
 			if( ix < lentext ) 
             {
                 inbuf[i] = bytes[ix];
+                
 			}else{
                 inbuf [i] = 0;
             }
@@ -112,15 +138,17 @@ static char encodingTable[64] = {
 		outbuf [1] = ((inbuf [0] & 0x03) << 4) | ((inbuf [1] & 0xF0) >> 4);
 		outbuf [2] = ((inbuf [1] & 0x0F) << 2) | ((inbuf [2] & 0xC0) >> 6);
 		outbuf [3] = inbuf [2] & 0x3F;
+        
+        // Count copy
 		ctcopy = 4;
 		
 		switch( ctremaining ) // count remaining
 		{
 			case 1:
-				ctcopy = 2;
+				ctcopy = 2; // count copy
 				break;
 			case 2:
-				ctcopy = 3;
+				ctcopy = 3; // count copy
 				break;
 		}
 		
@@ -137,6 +165,8 @@ static char encodingTable[64] = {
         
         
 		ixtext += 3;
+        
+        
 		charsonline += 4;
 	}
 	
@@ -150,17 +180,35 @@ static char encodingTable[64] = {
 - (NSData *)base64Decoded
 {
     // Create a constant read only local attribute
+    // unsigned char has a range of 0 to 255
 	const unsigned char	*bytes = [self bytes];
     
+    // NSMutableData (and its superclass NSData) provide data objects, object-oriented wrappers for byte buffers
 	NSMutableData *result = [NSMutableData dataWithCapacity:[self length]];
 	
+    // Value is 0 to 2,147,483,647
 	unsigned long ixtext = 0;
+    
+    // Value is 0 to 2,147,483,647
 	unsigned long lentext = [self length];
+    
+    // ch has a range of 0 to 255
 	unsigned char ch = 0;
+    
+    // unsigned char has a range of 0 to 255
 	unsigned char inbuf[4], outbuf[3];
-	short i = 0, ixinbuf = 0;
-	BOOL flignore = NO;  // flag to ignore
-	BOOL flendtext = NO; // flag for end text
+    
+    // short has a range of 0 to 32,768
+	short i = 0;
+
+    // short has a range of 0 to 32,768
+    short ixinbuf=0;
+    
+    // flag to ignore
+	BOOL flignore = NO;  
+    
+    // flag for end text
+	BOOL flendtext = NO; 
 	
 	while( YES )
 	{
@@ -169,7 +217,10 @@ static char encodingTable[64] = {
             break;
         }
         
+        
 		ch = bytes[ixtext++];
+        
+        // flag to ignore
 		flignore = NO;
 		
 		if( ( ch >= 'A' ) && ( ch <= 'Z' ) ) 
@@ -198,9 +249,14 @@ static char encodingTable[64] = {
         // if not ignoring
 		if( ! flignore )
 		{
+            // count of characters in the input buffer
+            // short has a range of 0 to 32,768
 			short ctcharsinbuf = 3;
+            
+            // flag to break
 			BOOL flbreak = NO;
-			
+		
+            // flag to end text
 			if( flendtext )
 			{
 				if( ! ixinbuf )
@@ -211,9 +267,11 @@ static char encodingTable[64] = {
                 
 				if( ( ixinbuf == 1 ) || ( ixinbuf == 2 ) ) 
                 {    
+                    // count of characters in the input buffer
                     ctcharsinbuf = 1;
                 }else{ 
                     
+                    // count of characters in the input buffer
                     ctcharsinbuf = 2;
                 }
                 
@@ -222,6 +280,7 @@ static char encodingTable[64] = {
 				flbreak = YES;
 			}
 			
+            
 			inbuf [ixinbuf++] = ch;
 			
 			if( ixinbuf == 4 )

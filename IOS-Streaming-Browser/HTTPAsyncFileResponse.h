@@ -23,7 +23,7 @@
 	
 	BOOL aborted;  // whether the file response is aborted
 	
-	NSData *data;
+	NSData *data;  // the data from the file
 	
 	int fileFD; // the file descriptior (i.e. file handle)
 	void *readBuffer; // the read buffer
