@@ -194,8 +194,11 @@
     
     // Submits a block for asynchronous execution on the serverQueue
 	dispatch_async(serverQueue, ^{
+        
 		[documentRoot release];
+        
 		documentRoot = [valueCopy retain];
+        
 	}); // END OF BLOCK
 	
 	[valueCopy release];
@@ -215,7 +218,9 @@
 	
     // Submits a block for synchronous execution on the serverQueue
 	dispatch_sync(serverQueue, ^{
+        
 		result = connectionClass;
+        
 	}); // END OF BLOCK
 	
 	return result;

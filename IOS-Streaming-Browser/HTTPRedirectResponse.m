@@ -14,7 +14,7 @@
 {
 	if ((self = [super init]))
 	{
-		
+		// Copies the path
 		redirectPath = [path copy];
 	}
 	return self;

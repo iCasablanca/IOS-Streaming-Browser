@@ -66,7 +66,7 @@
         // Gets the length of the file
 		fileLength = (UInt64)[[fileAttributes objectForKey:NSFileSize] unsignedLongLongValue];
         
-        
+        // Set the file offset to the beginning of the file (i.e. zero)
 		fileOffset = 0;
 		
 		aborted = NO;
@@ -84,7 +84,7 @@
  */
 - (void)abort
 {
-	
+	// abort the connection
 	[connection responseDidAbort:self];
 	aborted = YES;
 }
@@ -117,9 +117,10 @@
  */
 - (void)pauseReadSource
 {
+    // If the read source is not suspended then suspend it
 	if (!readSourceSuspended)
 	{
-		
+		// Set the flag
 		readSourceSuspended = YES;
 		dispatch_suspend(readSource);
 	}
@@ -130,10 +131,13 @@
  */
 - (void)resumeReadSource
 {
+    // If the read source is suspended
 	if (readSourceSuspended)
 	{
-		
+		// Set the flag
 		readSourceSuspended = NO;
+        
+        // Resume the read source
 		dispatch_resume(readSource);
 	}
 }
@@ -189,6 +193,7 @@
 		
 		unsigned long long _bytesAvailableOnFD = dispatch_source_get_data(readSource);
 		
+        // Bytes left to read from the file
 		UInt64 _bytesLeftInFile = fileLength - readOffset;
 		
         // Bytes available on the file descriptor
@@ -197,30 +202,44 @@
         // The bytes yet to read from the file
 		NSUInteger bytesLeftInFile;
 		
+        // Bytes available on the file descriptor
 		bytesAvailableOnFD = (_bytesAvailableOnFD > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesAvailableOnFD;
 
+        // Bytes left in the file
 		bytesLeftInFile    = (_bytesLeftInFile    > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesLeftInFile;
 		
-        
+        // Bytes left in the request
 		NSUInteger bytesLeftInRequest = readRequestLength - readBufferOffset;
 		
+        // Lesser of the bytes left in the request or in the file
 		NSUInteger bytesLeft = MIN(bytesLeftInRequest, bytesLeftInFile);
 		
+        // Lesser of bytes on file descriptor or bytes left in request
 		NSUInteger bytesToRead = MIN(bytesAvailableOnFD, bytesLeft);
 		
+        /////////////////////////////////////////////////////////
 		// Make sure buffer is big enough for read request.
 		// Do not over-allocate.
+        /////////////////////////////////////////////////////////
 		
+        
+        // if the readbuffer is null or the bytes to read is greater than the buffer size minus the offset
 		if (readBuffer == NULL || bytesToRead > (readBufferSize - readBufferOffset))
 		{
+            
+            // Set the read buffer size to the number of bytes to read.  We don't want to create a buffer is larger or smaller than the number of bytes we are reading into the buffer
 			readBufferSize = bytesToRead;
+            
+            // Realloate the size of the read buffer
 			readBuffer = reallocf(readBuffer, (size_t)bytesToRead);
 		
-            // If the read bufer is empty
+            // If the read buffer is null
 			if (readBuffer == NULL)
 			{
-				
+				// pause the read source
 				[self pauseReadSource];
+                
+                // abort the http connection
 				[self abort];
 				
 				return;
@@ -231,6 +250,7 @@
 		// Perform the read
 		///////////////////////
 		
+        // Reads data from the file descriptor
 		ssize_t result = read(fileFD, readBuffer + readBufferOffset, (size_t)bytesToRead);
 		
 		// Check the results
@@ -246,13 +266,18 @@
 			[self pauseReadSource];
 			[self abort];
 		}
-		else // (result > 0)
+		else // (result > 0) - we have successfully read some data
 		{
-			
+			// Increase the read offset by the amount of data read from the file descriptor
 			readOffset += result;
+            
+            // Increase the readbufer offset by the amount of data read from the file descriptor
 			readBufferOffset += result;
 			
+            // Pause the read source
 			[self pauseReadSource];
+            
+            // This method is here to allow superclasses to perform post-processing of the data.
 			[self processReadBuffer];
 		}
 		
@@ -272,7 +297,9 @@
 		
 		
 		dispatch_release(theReadSource);
+        
 		close(theFileFD);
+        
 	}); // END OF BLOCK
 	
     // Set the flag that the readSource is suspended
@@ -342,10 +369,10 @@
 	fileOffset = offset;
 	readOffset = offset;
 	
-    
+    // reposition read/write file offset
 	off_t result = lseek(fileFD, (off_t)offset, SEEK_SET);
 
-    
+    // At the end
 	if (result == -1)
 	{
 		
@@ -366,9 +393,10 @@
         // Computes the length of the data
 		NSUInteger dataLength = [data length];		
 		
-        
+        // Increase the file offset by the length of data read
 		fileOffset += dataLength;
 		
+        
 		NSData *result = data;
 		data = nil;
 		
@@ -390,7 +418,11 @@
 			
             
 			readRequestLength = length;
+            
+            // Resumes reading
 			[self resumeReadSource];
+            
+            
 		});  // END OF BLOCK
 		
 		return nil;

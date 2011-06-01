@@ -12,6 +12,7 @@
 {
 	if ((self = [super init]))
 	{
+        // Create an empty HTTP message
 		message = CFHTTPMessageCreateEmpty(NULL, YES);
 	}
 	return self;
@@ -28,6 +29,7 @@
 {
 	if ((self = [super init]))
 	{
+        // Create an http message with a method, url, and version
 		message = CFHTTPMessageCreateRequest(NULL, (CFStringRef)method, (CFURLRef)url, (CFStringRef)version);
 	}
 	return self;
@@ -43,6 +45,7 @@
 {
 	if ((self = [super init]))
 	{
+        // Create an empty HTTP message with a code, description and version 
 		message = CFHTTPMessageCreateResponse(NULL, (CFIndex)code, (CFStringRef)description, (CFStringRef)version);
 	}
 	return self;
@@ -66,6 +69,7 @@
 **/
 - (BOOL)appendData:(NSData *)data
 {
+    // Append date to the HTTP message
 	return CFHTTPMessageAppendBytes(message, [data bytes], [data length]);
 }
 
@@ -75,6 +79,7 @@
 **/
 - (BOOL)isHeaderComplete
 {
+    // Test whether the http message header is complete
 	return CFHTTPMessageIsHeaderComplete(message);
 }
 
@@ -145,8 +150,10 @@
     param NSString
     param NSString
 **/
-- (void)setHeaderField:(NSString *)headerField value:(NSString *)headerFieldValue
+- (void)setHeaderField:(NSString *)headerField 
+                 value:(NSString *)headerFieldValue
 {
+    
 	CFHTTPMessageSetHeaderFieldValue(message, (CFStringRef)headerField, (CFStringRef)headerFieldValue);
 }
 
@@ -178,6 +185,7 @@
 **/
 - (void)setBody:(NSData *)body
 {
+    // Set the message body
 	CFHTTPMessageSetBody(message, (CFDataRef)body);
 }
 

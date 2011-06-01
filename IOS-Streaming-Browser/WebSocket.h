@@ -90,7 +90,7 @@
 - (void)didOpen;
 
 /*
-    If the web socket did receive a message
+    If the web socket did receive an incoming message
  */
 - (void)didReceiveMessage:(NSString *)msg;
 
@@ -127,7 +127,7 @@
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
 /*
-    The websocket did receive a message
+    The websocket did receive an incoming message
     param WebSocket
     param NSString
 */

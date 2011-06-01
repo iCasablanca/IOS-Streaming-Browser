@@ -38,6 +38,7 @@
 */
 - (UInt64)contentLength
 {
+    // Get the number of bytes of data
 	UInt64 result = (UInt64)[data length];
 	return result;
 }
@@ -68,17 +69,19 @@
 */
 - (NSData *)readDataOfLength:(NSUInteger)lengthParameter
 {
-	
+	// Number of bytes yet to read
 	NSUInteger remaining = [data length] - offset;
 
-    
+    // Get the lesser of the length or the number of bytes remaining to read
 	NSUInteger length = lengthParameter < remaining ? lengthParameter : remaining;
 	
+    
 	void *bytes = (void *)([data bytes] + offset);
 	
     // Increases the offset by the length of data just read
 	offset += length;
 	
+    // Gets the data of a certain length
 	return [NSData dataWithBytesNoCopy:bytes length:length freeWhenDone:NO];
 }
 
@@ -88,6 +91,7 @@
 */
 - (BOOL)isDone
 {
+    // If the offset is at the end of the data
 	BOOL result = (offset == [data length]);	
 	
 	return result;

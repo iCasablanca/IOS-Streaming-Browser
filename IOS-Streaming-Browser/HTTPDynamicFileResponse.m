@@ -72,6 +72,7 @@
  */
 - (BOOL)isDone
 {
+    // if the readOffset is at the end of the file, and the readbuffer offet is zero
 	BOOL result = (readOffset == fileLength) && (readBufferOffset == 0);
 	
 	
@@ -94,6 +95,7 @@
 	// and stop when we get to the point where the separator would no longer fit in the buffer.
 	
 	NSUInteger offset = 0;
+    
     
 	NSUInteger stopOffset = (bufLen > sepLen) ? bufLen - sepLen + 1 : 0;
 	
@@ -120,9 +122,11 @@
 	{
         // Create a constant read only local attribute
 		const void *subBuffer = readBuffer + offset;
-		
+	
+        // compares the subbuffer to the separator
 		if (memcmp(subBuffer, sep, sepLen) == 0)
 		{
+            
 			if (!found1)
 			{
 				// Found the first separator
@@ -140,7 +144,7 @@
 				s2 = offset;
 				offset += sepLen;
 				
-			}
+			} // found the 1st and 2nd separator
 			
 			if (found1 && found2)
 			{
@@ -158,6 +162,7 @@
 				NSUInteger strLen = strRange.length;
 				
 				NSString *key = [[NSString alloc] initWithBytes:strBuf length:strLen encoding:NSUTF8StringEncoding];
+
 				if (key)
 				{
 					// Is there a given replacement for this key?
@@ -170,6 +175,7 @@
 						
 						
 						NSData *v = [value dataUsingEncoding:NSUTF8StringEncoding];
+
 						NSUInteger vLength = [v length];
 						
 						if (fullRange.length == vLength)
@@ -178,6 +184,7 @@
 							
 							// memcpy(void *restrict dst, const void *restrict src, size_t n);
 							
+                            // copies vlength bytes from vbytes to the readbuffer
 							memcpy(readBuffer + fullRange.location, [v bytes], vLength);
 						}
 						else // (fullRange.length != vLength)
@@ -194,6 +201,8 @@
 									NSUInteger inc = MAX(diff, 256);
 									
 									readBufferSize += inc;
+                                    
+                                    // Resize the read buffer
 									readBuffer = reallocf(readBuffer, readBufferSize);
 								}
 							}
@@ -212,10 +221,12 @@
 							// The two areas may overlap; the copy is always done in a non-destructive manner.
 							
 							void *src = readBuffer + fullRange.location + fullRange.length;
+                            
 							void *dst = readBuffer + fullRange.location + vLength;
 							
 							NSUInteger remaining = bufLen - (fullRange.location + fullRange.length);
 							
+                            // copy remaining bytes from source to destination
 							memmove(dst, src, remaining);
 							
 							// Now copy the replacement into its location.

@@ -383,8 +383,8 @@ enum GCDAsyncSocketConfig
     param NSString
     param unsigned 16-bit integer
  */
-- (void)getInterfaceAddress4:(NSData **)addr4Ptr
-                    address6:(NSData **)addr6Ptr
+- (void)getInterfaceAddress4:(NSData **)addr4Ptr // Pointer to a pointer
+                    address6:(NSData **)addr6Ptr // pointer to a pointer
              fromDescription:(NSString *)interfaceDescription
                         port:(UInt16)port;
 
@@ -2937,7 +2937,7 @@ enum GCDAsyncSocketConfig
                onPort:(UInt16)port
          viaInterface:(NSString *)interface
           withTimeout:(NSTimeInterval)timeout
-                error:(NSError **)errPtr;
+                error:(NSError **)errPtr; // pointer to a pointer
 {
 	LogTrace();
 	
@@ -3049,7 +3049,9 @@ enum GCDAsyncSocketConfig
     param NSError
     returns BOOL
 */
-- (BOOL)connectToAddress:(NSData *)remoteAddr withTimeout:(NSTimeInterval)timeout error:(NSError **)errPtr
+- (BOOL)connectToAddress:(NSData *)remoteAddr 
+             withTimeout:(NSTimeInterval)timeout 
+                   error:(NSError **)errPtr // pointer to a pointer
 {
 	return [self connectToAddress:remoteAddr viaInterface:nil withTimeout:timeout error:errPtr];
 }
@@ -3425,7 +3427,9 @@ enum GCDAsyncSocketConfig
     param NSError
     returns BOOL
 */
-- (BOOL)connectWithAddress4:(NSData *)address4 address6:(NSData *)address6 error:(NSError **)errPtr
+- (BOOL)connectWithAddress4:(NSData *)address4 
+                   address6:(NSData *)address6 
+                      error:(NSError **)errPtr // pointer to a pointer
 {
 	LogTrace();
 	
@@ -5006,8 +5010,8 @@ enum GCDAsyncSocketConfig
     param NSString
     param UInt16
 **/
-- (void)getInterfaceAddress4:(NSData **)interfaceAddr4Ptr
-                    address6:(NSData **)interfaceAddr6Ptr
+- (void)getInterfaceAddress4:(NSData **)interfaceAddr4Ptr // pointer to a pointer
+                    address6:(NSData **)interfaceAddr6Ptr // pointer to a pointer
              fromDescription:(NSString *)interfaceDescription
                         port:(UInt16)port
 {
@@ -7269,6 +7273,8 @@ enum GCDAsyncSocketConfig
 		dispatch_async(delegateQueue, ^{
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			
+            
+            // Called after successfully writing date to the string
 			[theDelegate socket:self didWriteDataWithTag:theWrite->tag];
 			
 			[pool drain];
@@ -9241,7 +9247,9 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
     param NSData
     returns BOOL
 */
-+ (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address
++ (BOOL)getHost:(NSString **)hostPtr // pointer to a pointer
+           port:(UInt16 *)portPtr 
+    fromAddress:(NSData *)address
 {
     // Check if address length is greater than sizoe of socket address
     // sockaddr is a structure used by kernel to store most addresses

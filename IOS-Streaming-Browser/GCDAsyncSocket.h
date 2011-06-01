@@ -477,7 +477,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (BOOL)connectToAddress:(NSData *)remoteAddr
             viaInterface:(NSString *)interface
              withTimeout:(NSTimeInterval)timeout
-                   error:(NSError **)errPtr;
+                   error:(NSError **)errPtr; // pointer to a pointer
 
 #pragma mark Disconnecting
 
@@ -992,7 +992,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 /*
     Class method
-    param NSString
+    param NSString (pointer to a pointer)
     param UInt16
     param NSData
     returns BOOL

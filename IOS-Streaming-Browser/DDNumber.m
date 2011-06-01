@@ -10,7 +10,8 @@
     param SInt64
     returns BOOL
  */
-+ (BOOL)parseString:(NSString *)str intoSInt64:(SInt64 *)pNum
++ (BOOL)parseString:(NSString *)str 
+         intoSInt64:(SInt64 *)pNum
 {
     // Check if the passed-in string is nil, if so, return that we can't parse the string because it is nil
 	if(str == nil)
@@ -44,7 +45,8 @@
     param UInt64
     returns BOOL
  */
-+ (BOOL)parseString:(NSString *)str intoUInt64:(UInt64 *)pNum
++ (BOOL)parseString:(NSString *)str 
+         intoUInt64:(UInt64 *)pNum
 {
     // Check if the passed-in string is nil
 	if(str == nil)
@@ -76,7 +78,8 @@
     param NSInteger
     returns BOOL
  */
-+ (BOOL)parseString:(NSString *)str intoNSInteger:(NSInteger *)pNum
++ (BOOL)parseString:(NSString *)str 
+      intoNSInteger:(NSInteger *)pNum
 {
     // Check if the passed-in string is not empty
 	if(str == nil)
@@ -108,7 +111,8 @@
     param NSUInteger
     returns BOOL
  */
-+ (BOOL)parseString:(NSString *)str intoNSUInteger:(NSUInteger *)pNum
++ (BOOL)parseString:(NSString *)str 
+     intoNSUInteger:(NSUInteger *)pNum
 {
     // Check if the string is nil, and if so, return NO because there is no string to parse
 	if(str == nil)

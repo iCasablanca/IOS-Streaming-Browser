@@ -24,12 +24,19 @@
 
 /*
     Initializes the HTTPconnection with a server and document root
+    param HTTPServer
+    param NSString
+    returns id (self)
 */
 - (id)initWithServer:(HTTPServer *)server documentRoot:(NSString *)documentRoot;
 
 /*
     Initializes the HTTPConnection with a server, document root, and 
     dispatch queue
+    param HTTPServer
+    param NSString
+    param dispatch_queue
+    returns id (self)
 */
 - (id)initWithServer:(HTTPServer *)server documentRoot:(NSString *)documentRoot queue:(dispatch_queue_t)q;
 

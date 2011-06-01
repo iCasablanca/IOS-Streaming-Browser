@@ -26,10 +26,17 @@
 	NSData *data;  // the data from the file
 	
 	int fileFD; // the file descriptior (i.e. file handle)
-	void *readBuffer; // the read buffer
+    
+    // The read buffer.  This is for holding the data read from a file, and waiting to be sent to the host
+	void *readBuffer; 
+    
+    
 	NSUInteger readBufferSize;     // Malloced size of readBuffer
+    
 	NSUInteger readBufferOffset;   // Offset within readBuffer where the end of existing data is
-	NSUInteger readRequestLength; // the read request length
+    
+	NSUInteger readRequestLength; // the read request length.  
+    
 	dispatch_queue_t readQueue;  // the read queue
 	dispatch_source_t readSource; // the read source
 	BOOL readSourceSuspended;  // whether read source is suspended

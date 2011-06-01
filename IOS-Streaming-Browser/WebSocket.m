@@ -578,7 +578,7 @@
 }
 
 /*
-    Did receive a message
+    Did receive an incoming message
     param NSString
 */
 - (void)didReceiveMessage:(NSString *)msg
@@ -612,6 +612,7 @@
 	// Notify delegate that the websocket did close
 	if ([delegate respondsToSelector:@selector(webSocketDidClose:)])
 	{
+        
 		[delegate webSocketDidClose:self];
 	}
 	
@@ -631,11 +632,16 @@
 */
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-	
+	// If a request body
 	if (tag == TAG_HTTP_REQUEST_BODY) // value is 100
 	{
+        // Sends the response headers
 		[self sendResponseHeaders];
+        
+        // Send the response body
 		[self sendResponseBody:data];
+        
+        // Web socket did open
 		[self didOpen];
 	}
 	else if (tag == TAG_PREFIX) // value is 300
@@ -643,11 +649,12 @@
 		UInt8 *pFrame = (UInt8 *)[data bytes];
 		UInt8 frame = *pFrame;
 		
-		if (frame <= 0x7F)
+        
+		if (frame <= 0x7F) // the number 127
 		{
 			[asyncSocket readDataToData:term withTimeout:TIMEOUT_NONE tag:TAG_MSG_PLUS_SUFFIX]; // suffix value is 301
 		}
-		else
+		else // frame is not 127
 		{
 			// Unsupported frame type
 			[self didClose];
@@ -655,10 +662,12 @@
 	}
 	else  // If not the HTTP_REQUEST_BODY or TAG_PREFIX
 	{
-		NSUInteger msgLength = [data length] - 1; // Excluding ending 0xFF frame
+		NSUInteger msgLength = [data length] - 1; // Excluding ending 0xFF frame (number 255)
 		
+        // Creates a UTF8 encoded string
 		NSString *msg = [[NSString alloc] initWithBytes:[data bytes] length:msgLength encoding:NSUTF8StringEncoding];
 		
+        // Did receive an incoming message
 		[self didReceiveMessage:msg];
 		
 		[msg release];
@@ -673,7 +682,7 @@
  */
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {
-	
+	// Web socket did close
 	[self didClose];
 }
 

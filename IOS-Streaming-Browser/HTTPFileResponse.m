@@ -198,6 +198,8 @@
 	
 	UInt64 bytesLeftInFile = fileLength - fileOffset;
 	
+    
+    // Get the number of bytes to read.  This will be the lesser of the length of the file, or the number of bytes left in the file
 	NSUInteger bytesToRead = (NSUInteger)MIN(length, bytesLeftInFile);
 	
 	// Make sure buffer is big enough for read request.
@@ -289,9 +291,11 @@
 		// close the file handle
 		close(fileFD);
 	}
-	
+    
+	// If there is a read buffer
 	if (buffer)
     {
+        // Empty the buffer
 		free(buffer);
 	}
     
