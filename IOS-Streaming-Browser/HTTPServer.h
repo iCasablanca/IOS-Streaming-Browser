@@ -54,8 +54,8 @@
     ///////////////////////////////////////////
 	NSMutableArray *connections; // the connections to the server
 	NSMutableArray *webSockets; // the web socket connections
-	NSLock *connectionsLock;
-	NSLock *webSocketsLock;
+	NSLock *connectionsLock; // locks the http connection
+	NSLock *webSocketsLock; // locks the websocket
 	
     // Whether the server is running or not
 	BOOL isRunning;

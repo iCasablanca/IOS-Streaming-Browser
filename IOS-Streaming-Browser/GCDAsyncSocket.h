@@ -91,8 +91,8 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     // Value is 0 to 2,147,483,647
 	unsigned long socketFDBytesAvailable;  // socket file descriptor bytes available
 	
-    
-	NSMutableData *partialReadBuffer;  // partial read buffer
+    // A partial read buffer for buffering the host request
+	NSMutableData *partialReadBuffer;  
 		
 #if TARGET_OS_IPHONE
     
@@ -106,7 +106,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	CFWriteStreamRef writeStream;
 #else
 	SSLContextRef sslContext; // the SSL context reference
-	NSMutableData *sslReadBuffer; // the SSL read buffer
+    
+    // The SSL read buffer for buffering the host response
+	NSMutableData *sslReadBuffer; 
+    
 	size_t sslWriteCachedLength; // size of the SSL write cache
 #endif
 	

@@ -88,13 +88,13 @@
 		
         
         
-		// Register for notifications of closed connections
+		// Register for notifications of closed connections.  This will notify self when an http connection dies
 		[[NSNotificationCenter defaultCenter] addObserver:self
                     selector:@selector(connectionDidDie:)
                     name:HTTPConnectionDidDieNotification
                     object:nil];
 		
-		// Register for notifications of closed websocket connections
+		// Register for notifications of closed websocket connections.  This will notify self when a web socket dies
 		[[NSNotificationCenter defaultCenter] addObserver:self
                     selector:@selector(webSocketDidDie:)
                     name:WebSocketDidDieNotification
@@ -183,16 +183,16 @@
 	
 	// Document root used to be of type NSURL.
 	// Add type checking for early warning to developers upgrading from older versions.
-	
 	if (value && ![value isKindOfClass:[NSString class]])
 	{
 		return;
 	}
+    
 	// Creates a local attributes and makes a copy of the document root
 	NSString *valueCopy = [value copy];
 	
     
-    // Submits a block for asynchronous execution on the serverQueue
+    // Submits a block for asynchronous execution on the serverQueue.  This block sets the servers document root
 	dispatch_async(serverQueue, ^{
         
 		[documentRoot release];
@@ -216,7 +216,7 @@
     // Creates a local attributed
 	__block Class result;
 	
-    // Submits a block for synchronous execution on the serverQueue
+    // Submits a block for synchronous execution on the serverQueue.  This block gets the connection class
 	dispatch_sync(serverQueue, ^{
         
 		result = connectionClass;
@@ -342,7 +342,7 @@
 }
 
 /**
-    Domain on which to broadcast this service via Bonjour.
+    Gets the domain on which to broadcast this service via Bonjour.
     The default domain is @"local".
     returns NSString
 **/
@@ -363,7 +363,7 @@
 
 
 /*
-    Set the domain
+    Set the domain on which to broadcast this service
     param NSString
 */
 - (void)setDomain:(NSString *)value
@@ -383,7 +383,7 @@
 }
 
 /**
- * The name to use for this service via Bonjour.
+ * Gets the name to use for this service via Bonjour.
  * The default name is an empty string,
  * which should result in the published name being the host name of the computer.
     returns NSString
@@ -461,7 +461,7 @@
 }
 
 /**
- * The type of service to publish via Bonjour.
+ * Gets the type of service to publish via Bonjour.
  * No type is set by default, and one must be set in order for the service to be published.
     returns NSString
 **/
@@ -482,6 +482,7 @@
 
 /*
     Set the type of service to be published via Bonjour
+    param NSString
 */
 - (void)setType:(NSString *)value
 {
@@ -500,7 +501,9 @@
 }
 
 /**
- * The extra data to use for this service via Bonjour.
+    Gets the TXTRecordDictionary
+    The extra data to use for this service via Bonjour.
+    returns NSDictionary
 **/
 - (NSDictionary *)TXTRecordDictionary
 {
@@ -519,6 +522,7 @@
 
 /*
     Sets the TXT record dictionary
+    param NSDictionary
 */
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
@@ -684,7 +688,7 @@
 
 
 /*
-    Adds a web socket
+    Adds a web sockets array
 */
 - (void)addWebSocket:(WebSocket *)ws
 {
@@ -850,6 +854,7 @@
         // Start the thread and run the block
 		[[self class] startBonjourThreadIfNeeded];
         
+        // Executes the block
 		[[self class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
 	}
 }
@@ -937,10 +942,13 @@
 {
 	// Note: This method is called on the connection queue that posted the notification
 	
+    // Locks the http connection
 	[connectionsLock lock];
 	
+    // removes the connections from the array of connections
 	[connections removeObject:[notification object]];
 	
+    // unloack the connection
 	[connectionsLock unlock];
 }
 
@@ -952,10 +960,13 @@
 {
 	// Note: This method is called on the connection queue that posted the notification
 	
+    // Locks the websocket
 	[webSocketsLock lock];
 	
+    // Removes the websocket from the array of web sockets
 	[webSockets removeObject:[notification object]];
 	
+    // Unlock the web socket
 	[webSocketsLock unlock];
 }
 
@@ -993,6 +1004,8 @@ static NSThread *bonjourThread;
 		bonjourThread = [[NSThread alloc] initWithTarget:self
 		                                        selector:@selector(bonjourThread)
 		                                          object:nil];
+        
+        // Start the bonjour thread
 		[bonjourThread start];
         
 	}); // END OF BLOCK
@@ -1048,7 +1061,7 @@ static NSThread *bonjourThread;
     // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 	dispatch_block_t bonjourBlock = Block_copy(block);
 	
-    
+    // Executes the block on the bonjour thread
 	[self performSelector:@selector(performBonjourBlock:)
 	             onThread:bonjourThread
 	           withObject:bonjourBlock

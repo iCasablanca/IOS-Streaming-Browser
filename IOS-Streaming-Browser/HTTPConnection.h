@@ -55,32 +55,47 @@
 @interface HTTPConnection : NSObject
 {
 	dispatch_queue_t connectionQueue; // queue with all the connections
-	GCDAsyncSocket *asyncSocket;  // Handles each request one at a time in order
-	HTTPConfig *config;  // HTTP server configuration
+
+	// Handles each request one at a time in order
+    GCDAsyncSocket *asyncSocket;  
+    
+    // HTTP server configuration
+	HTTPConfig *config;  
+    
+    // Flag for whether the connection started
+	BOOL started;  
 	
-	BOOL started;  // whether connection started
-	
-	HTTPMessage *request;  // the request 
+    
+    // The http request from the host 
+	HTTPMessage *request;  
+    
 	unsigned int numHeaderLines;  // number of header lines
 	
-	BOOL sentResponseHeaders;   // whether sent response headers
+    
+    // Flag for whether sent response headers to the host
+	BOOL sentResponseHeaders;   
 	
 	NSString *nonce;  // A nonce is a  server-specified string uniquely generated for each 401 response.
     
     
 	long lastNC; // the last nonce
 	
-	NSObject<HTTPResponse> *httpResponse; // the response
+    // The http response sent to the host
+	NSObject<HTTPResponse> *httpResponse; 
 	
 	NSMutableArray *ranges;
 	NSMutableArray *ranges_headers;
 	NSString *ranges_boundry;
 	int rangeIndex;
 	
-	UInt64 requestContentLength;  // the request content length
+    // The length of the http request from the host
+	UInt64 requestContentLength;
+    
+    // The number of bytes received from teh host
 	UInt64 requestContentLengthReceived;
 	
-	NSMutableArray *responseDataSizes; // HTTP response sizes
+    // HTTP response data sizes
+	NSMutableArray *responseDataSizes; 
 }
 
 

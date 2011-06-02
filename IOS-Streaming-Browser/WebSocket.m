@@ -223,7 +223,9 @@
 {
     // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
+        
 		delegate = newDelegate;
+        
 	}); // END OF BLOCK
 }
 
@@ -247,16 +249,21 @@
         // If the websocket is started
 		if (isStarted) return;
         
+        // Sets web socket flag to started
 		isStarted = YES;
 		
         // if the request is version 76 compliant
 		if (isVersion76)
 		{
+            // Read the request body
 			[self readRequestBody];
 		}
 		else // if the request is not version 76 compliant
 		{
+            // Set response headers
 			[self sendResponseHeaders];
+            
+            
 			[self didOpen];
 		}
 		
@@ -275,11 +282,13 @@
 	
     // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
 		[asyncSocket disconnect];
 		
 		[pool release];
+        
 	}); // END OF BLOCK
 }
 
@@ -314,12 +323,15 @@
     // Check if the origin header field is nil
 	if (origin == nil)
 	{
+        // Get the port
 		NSString *port = [NSString stringWithFormat:@"%hu", [asyncSocket localPort]];
 		
+        // Returns localhost as the origin
 		return [NSString stringWithFormat:@"http://localhost:%@", port];
 	}
 	else // if the origin header field is not nil
 	{
+        // Returns the origin of the request
 		return origin;
 	}
 }

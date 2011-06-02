@@ -1478,7 +1478,7 @@ enum GCDAsyncSocketConfig
 		writeQueue = [[NSMutableArray alloc] initWithCapacity:5];
 		currentWrite = nil;
 		
-        // Create partial read buffer
+        // Create partial read buffer for the host message
 		partialReadBuffer = [[NSMutableData alloc] init];
 	}
 	return self;
@@ -1525,6 +1525,7 @@ enum GCDAsyncSocketConfig
 	[partialReadBuffer release];
 	
 #if !TARGET_OS_IPHONE
+    
 	[sslReadBuffer release];
 #endif
 	
@@ -3832,7 +3833,7 @@ enum GCDAsyncSocketConfig
 	[readQueue removeAllObjects];
 	[writeQueue removeAllObjects];
 	
-    // Clear the partial read buffer
+    // Clear the partial read buffer.  This is the buffer for holding the host message sent to the server
 	[partialReadBuffer setLength:0];
 	
     
@@ -3877,7 +3878,7 @@ enum GCDAsyncSocketConfig
 		}
 	#else // if not an IPHONE Operating System
     
-        // Set the ssl readbuffer to zero length
+        // Set the ssl readbuffer to zero length.  The SSL read buffer is a buffer for holding the host SSL message sent to the server.
 		[sslReadBuffer setLength:0];
     
         // If there is an SSL context
@@ -5807,6 +5808,7 @@ enum GCDAsyncSocketConfig
 			
 		}
 	#else // if not IOS
+    
 		estimatedBytesAvailable = socketFDBytesAvailable + [sslReadBuffer length];
     
         // Sets the flag that there are bytes available to read
@@ -5877,6 +5879,7 @@ enum GCDAsyncSocketConfig
 	// STEP 1 - READ FROM PREBUFFER
 	///////////////////////////////////// 
 	
+    // Gets the length of the pre-buffer
 	NSUInteger partialReadBufferLength = [partialReadBuffer length];
 	
     
@@ -5898,9 +5901,11 @@ enum GCDAsyncSocketConfig
 			// Read type #3 - read up to a terminator
             ////////////////////////////////////////////
 			
+            // Read packets with a set terminator,returns the amount of data that can be read from the given preBuffer,without going over a terminator or the maxLength.
 			bytesToCopy = [currentRead readLengthForTermWithPreBuffer:partialReadBuffer found:&done];
 		}
-		else
+        // If there is not a terminator
+		else 
 		{
             /////////////////////////
 			// Read type #1 or #2
@@ -5908,28 +5913,39 @@ enum GCDAsyncSocketConfig
             // Reads a specific length of date
             /////////////////////////
 			
+            // For read packets without a set terminator, returns the amount of data that can be read without exceeding the readLength or maxLength.
 			bytesToCopy = [currentRead readLengthForNonTermWithHint:partialReadBufferLength];
 		}
 		
 		// Make sure we have enough room in the buffer for our read.
 		[currentRead ensureCapacityForAdditionalDataOfLength:bytesToCopy];
 		
+        ////////////////////////////////////////////////////
 		// Copy bytes from prebuffer into packet buffer
-		
+		////////////////////////////////////////////////////
+        
+        
 		void *buffer = [currentRead->buffer mutableBytes] + currentRead->startOffset + currentRead->bytesDone;
 		
+        // Copies bytes from the partial read buffer to the packet buffer
 		memcpy(buffer, [partialReadBuffer bytes], bytesToCopy);
 		
 		// Remove the copied bytes from the partial read buffer
 		[partialReadBuffer replaceBytesInRange:NSMakeRange(0, bytesToCopy) withBytes:NULL length:0];
+        
+        // Decrease the partial read buffer length by the number of bytes copied to the packet buffer
 		partialReadBufferLength -= bytesToCopy;
 		
 		LogVerbose(@"copied(%lu) partialReadBufferLength(%lu)", bytesToCopy, partialReadBufferLength);
 		
+        /////////////////////
 		// Update totals
-		
+		/////////////////////
+        
         // Bytes read on the read packet
 		currentRead->bytesDone += bytesToCopy;
+        
+        
 		totalBytesReadForCurrentRead += bytesToCopy;
 		
 		// Check to see if the read operation is done
@@ -5951,8 +5967,10 @@ enum GCDAsyncSocketConfig
 				// We're not done and there's a set maxLength.
 				// Have we reached that maxLength yet?
 				
+                
 				if (currentRead->bytesDone >= currentRead->maxLength)
 				{
+                    // Gets the standard AsyncSocket maxed out error.
 					error = [self readMaxedOutError];
 				}
 			}
@@ -7615,9 +7633,13 @@ enum GCDAsyncSocketConfig
 		}
 		else
 		{
+            /////////////////////////////////////////////////////////////
 			// Read available data from socket directly into dataBuffer.
-			
+            /////////////////////////////////////////////////////////////
+
+			// Not prebuffering
 			readIntoPreBuffer = NO;
+            
 			bytesToRead = totalBytesLeft;
 			buf = buffer + totalBytesRead;
 		}
@@ -7674,6 +7696,7 @@ enum GCDAsyncSocketConfig
             // If should read data into the prebuffer
 			if (readIntoPreBuffer)
 			{
+                
 				size_t bytesToCopy = MIN(totalBytesLeft, bytesReadFromSocket);
 				
 				LogVerbose(@"Copying %u bytes from sslReadBuffer", (unsigned)bytesToCopy);

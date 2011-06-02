@@ -193,7 +193,7 @@
 		
 		unsigned long long _bytesAvailableOnFD = dispatch_source_get_data(readSource);
 		
-        // Bytes left to read from the file
+        // Bytes left to read from the file.  This is computed by taking the file length and subtracting the reader offset 
 		UInt64 _bytesLeftInFile = fileLength - readOffset;
 		
         // Bytes available on the file descriptor
@@ -205,10 +205,10 @@
         // Bytes available on the file descriptor
 		bytesAvailableOnFD = (_bytesAvailableOnFD > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesAvailableOnFD;
 
-        // Bytes left in the file
+        // Bytes yet to read from the file
 		bytesLeftInFile    = (_bytesLeftInFile    > NSUIntegerMax) ? NSUIntegerMax : (NSUInteger)_bytesLeftInFile;
 		
-        // Bytes left in the request
+        // Bytes yet to read from the request
 		NSUInteger bytesLeftInRequest = readRequestLength - readBufferOffset;
 		
         // Lesser of the bytes left in the request or in the file
