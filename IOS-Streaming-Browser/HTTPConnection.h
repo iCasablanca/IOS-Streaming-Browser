@@ -22,22 +22,22 @@
 }
 
 
-/*
+/**
     Initializes the HTTPconnection with a server and document root
     param HTTPServer
     param NSString
     returns id (self)
-*/
+**/
 - (id)initWithServer:(HTTPServer *)server documentRoot:(NSString *)documentRoot;
 
-/*
+/**
     Initializes the HTTPConnection with a server, document root, and 
     dispatch queue
     param HTTPServer
     param NSString
     param dispatch_queue
     returns id (self)
-*/
+**/
 - (id)initWithServer:(HTTPServer *)server documentRoot:(NSString *)documentRoot queue:(dispatch_queue_t)q;
 
 
@@ -83,9 +83,11 @@
     // The http response sent to the host
 	NSObject<HTTPResponse> *httpResponse; 
 	
-	NSMutableArray *ranges;
-	NSMutableArray *ranges_headers;
-	NSString *ranges_boundry;
+	NSMutableArray *ranges; // Mutable array for the response ranges
+	NSMutableArray *ranges_headers; // mutable array for the response range headers
+    
+	NSString *ranges_boundry; // the response ranges boundary
+    
 	int rangeIndex;
 	
     // The length of the http request from the host
@@ -99,12 +101,12 @@
 }
 
 
-/*
+/**
     Returns HTTPConnection
     param GCDAsyncSocket
     param HTTPConfig
     returns id
-*/
+**/
 - (id)initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig;
 
 /**
@@ -216,9 +218,9 @@
  **/ 
 - (NSDictionary *)parseGetParams;
 
-/*
+/**
     Returns the URL as a string for the HTTPMessage
- */
+**/
 - (NSString *)requestURI;
 
 /**
@@ -243,10 +245,10 @@
  **/
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path;
 
-/*
+/**
     param NSString
     returns WebSocket
-*/
+**/
 - (WebSocket *)webSocketForURI:(NSString *)path;
 
 /**
@@ -304,15 +306,15 @@
  **/
 - (NSData *)preprocessErrorResponse:(HTTPMessage *)response;
 
-/*
+/**
     Returns whether the HTTPConnection should die
     returns BOOL
-*/
+**/
 - (BOOL)shouldDie;
 
-/*
+/**
     Closes the connection
-*/
+**/
 - (void)die;
 
 @end
@@ -320,14 +322,14 @@
 
 @interface HTTPConnection (AsynchronousHTTPResponse)
 
-/*
+/**
     param NSObject with HTTPResponse protocol
-*/
+**/
 - (void)responseHasAvailableData:(NSObject<HTTPResponse> *)sender;
 
-/*
+/**
     param NSObject with HTTPResponse protocl
-*/
+**/
 - (void)responseDidAbort:(NSObject<HTTPResponse> *)sender;
 
 @end

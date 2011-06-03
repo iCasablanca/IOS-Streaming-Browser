@@ -4,21 +4,23 @@
 @protocol HTTPResponse
 
 /**
- * Returns the length of the data in bytes.
+ * Gets the length of the HTTP response content length in bytes.
  * If you don't know the length in advance, implement the isChunked method and have it return YES.
+    returns UInt64
 **/
 - (UInt64)contentLength;
 
 /**
  * The HTTP server supports range requests in order to allow things like
  * file download resumption and optimized streaming on mobile devices.
+    returns UInt64
 **/
 - (UInt64)offset;
 
-/*
+/**
     Sets the offset
     param UInt64
-*/
+**/
 - (void)setOffset:(UInt64)offset;
 
 /**

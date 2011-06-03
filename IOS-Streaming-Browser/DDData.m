@@ -11,9 +11,9 @@ static char encodingTable[64] = {
 'w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/' };
 
 
-/*
+/**
  
- */
+**/
 - (NSData *)md5Digest
 {
     
@@ -29,9 +29,9 @@ static char encodingTable[64] = {
     return [NSData dataWithBytes:result length:CC_MD5_DIGEST_LENGTH];
 }
 
-/*
+/**
    SHA-1 (Secure Hash Algorithm) is a cryptographic hash function with a 160 bit output.
- */
+**/
 - (NSData *)sha1Digest
 {
     // unsigned char has a range of 0 to 255
@@ -46,10 +46,10 @@ static char encodingTable[64] = {
     return [NSData dataWithBytes:result length:CC_SHA1_DIGEST_LENGTH];
 }
 
-/*
+/**
     Converts a hexidecimal to a string value
     returns NSString
- */
+**/
 - (NSString *)hexStringValue
 {
     // Create a string buffer 
@@ -72,10 +72,10 @@ static char encodingTable[64] = {
     return [[stringBuffer copy] autorelease];
 }
 
-/*
+/**
     Converts a base 64 encoded value to a string
     returns NSString
- */
+**/
 - (NSString *)base64Encoded
 {
     // Create a constant read only local attribute
@@ -192,10 +192,10 @@ static char encodingTable[64] = {
 }
 
 
-/*
+/**
     
     returns NSData
- */
+**/
 - (NSData *)base64Decoded
 {
     // Create a constant read only local attribute

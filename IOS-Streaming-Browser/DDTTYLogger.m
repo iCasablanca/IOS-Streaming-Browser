@@ -19,6 +19,8 @@ static DDTTYLogger *sharedInstance;
 + (void)initialize
 {
 	static BOOL initialized = NO;
+    
+    
 	if (!initialized)
 	{
 		initialized = YES;
@@ -28,18 +30,20 @@ static DDTTYLogger *sharedInstance;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    Gets the shared instance
+    returns DDTTYLogger
+**/
 + (DDTTYLogger *)sharedInstance
 {
 	return sharedInstance;
 }
 
 
-/*
+/**
     Initialize the DDTTYLogger
-*/
+**/
 - (id)init
 {
 	if (sharedInstance != nil)
@@ -52,14 +56,21 @@ static DDTTYLogger *sharedInstance;
 	{
 		isaTTY = isatty(STDERR_FILENO);
 		
+        // If a TTY logger
 		if (isaTTY)
 		{
+            // Creates a data formatter
 			dateFormatter = [[NSDateFormatter alloc] init];
+            
 			[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+            
+            // Sets the format for the date formatter
 			[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
 			
+            //////////////////////////////////////
 			// Initialze 'app' variable (char *)
-			
+			//////////////////////////////////////
+            
 			NSString *appNStr = [[NSProcessInfo processInfo] processName];
             
             // Create a constant read only local attribute
@@ -79,7 +90,11 @@ static DDTTYLogger *sharedInstance;
 			
 			pidLen = strlen(pidCStr);
 			
+            
+            // Allocates memory the size of the process id length
 			pid = (char *)malloc(pidLen);
+            
+            // Copies the process id 'C' string to the pid - with length pidLen
 			strncpy(pid, pidCStr, pidLen); // Not null terminated
 		}
 	}
@@ -87,9 +102,9 @@ static DDTTYLogger *sharedInstance;
 }
 
 
-/*
- 
-*/
+/**
+    param DDLogMessage
+**/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	if (!isaTTY) return;
@@ -97,6 +112,7 @@ static DDTTYLogger *sharedInstance;
 	NSString *logMsg = logMessage->logMsg;
 	BOOL isFormatted = NO;
 	
+    
 	if (formatter)
 	{
 		logMsg = [formatter formatLogMessage:logMessage];
@@ -183,9 +199,10 @@ static DDTTYLogger *sharedInstance;
 	}
 }
 
-/*
-    
- */
+/**
+    Gets the logger name
+    returns NSString
+**/
 - (NSString *)loggerName
 {
 	return @"cocoa.lumberjack.ttyLogger";

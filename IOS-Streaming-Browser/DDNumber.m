@@ -3,13 +3,13 @@
 
 @implementation NSNumber (DDNumber)
 
-/*
+/**
     Class method
     Parse a string into a 64-bit signed integer
     param NSString
     param SInt64
     returns BOOL
- */
+**/
 + (BOOL)parseString:(NSString *)str 
          intoSInt64:(SInt64 *)pNum
 {
@@ -38,13 +38,13 @@
 }
 
 
-/*
+/**
     Class method
     Parse a string into an unsigned 64-bit integer
     param NSString
     param UInt64
     returns BOOL
- */
+**/
 + (BOOL)parseString:(NSString *)str 
          intoUInt64:(UInt64 *)pNum
 {
@@ -71,13 +71,13 @@
 }
 
 
-/*
+/**
     Class method
     Parse a string into an NSInteger
     param NSString
     param NSInteger
     returns BOOL
- */
+**/
 + (BOOL)parseString:(NSString *)str 
       intoNSInteger:(NSInteger *)pNum
 {
@@ -104,13 +104,13 @@
 }
 
 
-/*
+/**
     Class method
     Parse a string into an unsigned NSInteger
     param NSString
     param NSUInteger
     returns BOOL
- */
+**/
 + (BOOL)parseString:(NSString *)str 
      intoNSUInteger:(NSUInteger *)pNum
 {

@@ -30,18 +30,18 @@ static DDASLLogger *sharedInstance;
 	}
 }
 
-/*
+/**
     Class method
-*/
+**/
 + (DDASLLogger *)sharedInstance
 {
 	return sharedInstance;
 }
 
 
-/*
+/**
     Initializes the DDASLLogger
-*/
+**/
 - (id)init
 {
 	if (sharedInstance != nil)
@@ -60,9 +60,9 @@ static DDASLLogger *sharedInstance;
 	return self;
 }
 
-/*
+/**
  
-*/
+**/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	NSString *logMsg = logMessage->logMsg;

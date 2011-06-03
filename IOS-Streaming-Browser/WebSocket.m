@@ -18,21 +18,21 @@
 
 @interface WebSocket (PrivateAPI)
 
-/*
+/**
  
-*/
+**/
 - (void)readRequestBody;
 
 
-/*
+/**
  
-*/
+**/
 - (void)sendResponseBody;
 
 
-/*
+/**
  
-*/
+**/
 - (void)sendResponseHeaders;
 
 @end
@@ -43,11 +43,11 @@
 
 @implementation WebSocket
 
-/*
+/**
     Whether the HTTPRequest is a request for a web socket
     param HTTPMessage
     returns BOOL
-*/
+**/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request
 {
 	// Request (Draft 75):
@@ -296,9 +296,9 @@
 #pragma mark HTTP Response
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
     Read the request body from the socket
-*/
+**/
 - (void)readRequestBody
 {
 	
@@ -308,10 +308,10 @@
 	[asyncSocket readDataToLength:8 withTimeout:TIMEOUT_NONE tag:TAG_HTTP_REQUEST_BODY];
 }
 
-/*
+/**
     Get the header field Origin value
     returns NSString
-*/
+**/
 - (NSString *)originResponseHeaderValue
 {
 	
@@ -336,10 +336,10 @@
 	}
 }
 
-/*
+/**
     Get the value for the 'Host' field in the request header
     returns NSString
-*/
+**/
 - (NSString *)locationResponseHeaderValue
 {
 	
@@ -363,9 +363,9 @@
 }
 
 
-/*
+/**
     Sends the response readers
- */
+**/
 - (void)sendResponseHeaders
 {
 	
@@ -450,11 +450,11 @@
 }
 
 
-/*
+/**
     Process the web socket key values from the request
     param NSString
     returns NSData
-*/
+**/
 - (NSData *)processKey:(NSString *)key
 {
 	
@@ -507,10 +507,10 @@
 }
 
 
-/*
+/**
     Sends the response body
     param NSData
-*/
+**/
 - (void)sendResponseBody:(NSData *)d3
 {
 	
@@ -545,9 +545,9 @@
 #pragma mark Core Functionality
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
     If the web socket has been opened
- */
+**/
 - (void)didOpen
 {
 	
@@ -566,10 +566,10 @@
 	}
 }
 
-/*
+/**
     Sends a message
     param NSString
-*/
+**/
 - (void)sendMessage:(NSString *)msg
 {
 	// Encodes the message
@@ -589,10 +589,10 @@
 	[asyncSocket writeData:data withTimeout:TIMEOUT_NONE tag:0];
 }
 
-/*
+/**
     Did receive an incoming message
     param NSString
-*/
+**/
 - (void)didReceiveMessage:(NSString *)msg
 {
 	
@@ -610,9 +610,9 @@
 }
 
 
-/*
+/**
     Notifiy delegate that websocket did close
- */
+**/
 - (void)didClose
 {
 	
@@ -636,12 +636,12 @@
 #pragma mark AsyncSocket Delegate
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
     Socket did read the request with a specific tag
     param GCDAsyncSocket
     param NSData
     param long
-*/
+**/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
 	// If a request body
@@ -689,9 +689,9 @@
 	}
 }
 
-/*
+/**
     If the web socket did disconnect
- */
+**/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {
 	// Web socket did close

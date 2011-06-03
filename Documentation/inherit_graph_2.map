@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$protocol_d_d_logger-p.html" title="\&lt;DDLogger\&gt;" alt="" coords="7,67,116,95"/>
+<area shape="rect" id="node3" href="$interface_d_d_abstract_logger.html" title="DDAbstractLogger" alt="" coords="165,42,317,70"/>
+<area shape="rect" id="node5" href="$interface_d_d_a_s_l_logger.html" title="DDASLLogger" alt="" coords="367,5,487,33"/>
+<area shape="rect" id="node7" href="$interface_d_d_file_logger.html" title="DDFileLogger" alt="" coords="368,81,485,109"/>
+<area shape="rect" id="node9" href="$interface_d_d_t_t_y_logger.html" title="DDTTYLogger" alt="" coords="367,131,487,159"/>
+</map>

@@ -1,12 +1,12 @@
 #import "DDRange.h"
 #import "DDNumber.h"
 
-/*
+/**
     Note: C-style method
     param DDRange - DDRange is the functional equivalent of a 64 bit NSRange.
     param DDRange -  DDRange is the functional equivalent of a 64 bit NSRange.
     returns DDRange
-*/
+ **/
 DDRange DDUnionRange(DDRange range1, DDRange range2)
 {
 	DDRange result;
@@ -17,12 +17,12 @@ DDRange DDUnionRange(DDRange range1, DDRange range2)
 	return result;
 }
 
-/*
+/**
      Note: C-style method
     param DDRange - DDRange is the functional equivalent of a 64 bit NSRange.
     param DDRange
     returns DDRange
-*/
+**/
 DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 {
     // DDRange is the functional equivalent of a 64 bit NSRange.
@@ -44,23 +44,23 @@ DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 	return result;
 }
 
-/*
+/**
      Note: C-style method
     param DDRange
     returns NSString
-*/
+**/
 NSString *DDStringFromRange(DDRange range)
 {
     // Creates a string with the location and length of a range
 	return [NSString stringWithFormat:@"{%qu, %qu}", range.location, range.length];
 }
 
-/*
+/**
     Creates a DDRange from a string 
     Note: C-style method
     param NSString
     returns DDRange
-*/
+**/
 DDRange DDRangeFromString(NSString *aString)
 {
     // DDRange is the functional equivalent of a 64 bit NSRange
@@ -94,12 +94,12 @@ DDRange DDRangeFromString(NSString *aString)
 	return result;
 }
 
-/*
+/**
      Note: C-style method
     param DDRangePointer
     param DDRangePointer
     returns NSInteger
-*/
+**/
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 {
 	// Comparison basis:
@@ -135,11 +135,11 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 @implementation NSValue (NSValueDDRangeExtensions)
 
-/*
+/**
     Class method
     param DDRange
     returns NSValue
- */
+**/
 + (NSValue *)valueWithDDRange:(DDRange)range
 {
     
@@ -147,9 +147,9 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 }
 
 
-/*
+/**
     returns DDRange
- */
+**/
 - (DDRange)ddrangeValue
 {
     // DDRange is the functional equivalent of a 64 bit NSRange
@@ -162,10 +162,10 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 	return result;
 }
 
-/*
+/**
     param NSValue
     returns NSInteger
- */
+**/
 - (NSInteger)ddrangeCompare:(NSValue *)other
 {
     // DDRange is the functional equivalent of a 64 bit NSRange

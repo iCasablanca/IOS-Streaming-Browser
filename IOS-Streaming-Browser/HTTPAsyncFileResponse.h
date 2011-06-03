@@ -42,17 +42,17 @@
 	BOOL readSourceSuspended;  // whether read source is suspended
 }
 
-/*
+/**
         Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
         param NSString
         param HTTPConnection
         returns id
-*/
+**/
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 
-/*
+/**
     returns filePath as an NSString
- */
+**/
 - (NSString *)filePath;
 
 @end

@@ -12,12 +12,12 @@
 @implementation HTTPFileResponse
 
 
-/*
+/**
     Initialize the HTTPFileResponse with a file path and HTTPConnection
     param NSString
     param HTTPConnection
     returns id
-*/
+**/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if((self = [super init]))
@@ -64,9 +64,9 @@
 }
 
 
-/*
+/**
     Abort the connection
- */
+**/
 - (void)abort
 {
 	// Check if the connection did abort
@@ -74,10 +74,10 @@
 	aborted = YES;
 }
 
-/*
+/**
     Whether can open the file or not
     returns BOOL
-*/
+**/
 - (BOOL)openFile
 {
 	
@@ -98,10 +98,10 @@
 	return YES;
 }
 
-/*
+/**
     Whether the file needs to be opened
     returns BOOL
-*/
+**/
 - (BOOL)openFileIfNeeded
 {
 	if (aborted)
@@ -126,20 +126,20 @@
 }
 
 
-/*
+/**
     Get the file length
     returns UInt64
-*/
+**/
 - (UInt64)contentLength
 {
 	
 	return fileLength;
 }
 
-/*
+/**
     Gets the file offset
     returns UInt64
-*/
+**/
 - (UInt64)offset
 {
 	
@@ -147,10 +147,10 @@
 }
 
 
-/*
+/**
     Set the file offset
     param UInt64
-*/
+**/
 - (void)setOffset:(UInt64)offset
 {
 	
@@ -176,11 +176,11 @@
 }
 
 
-/*
+/**
     Reads a specific length of data from the file and returns as within an NSData object
     param NSUInteger
     returns NSData
-*/
+**/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
 	
@@ -258,10 +258,10 @@
 	}
 }
 
-/*
+/**
     If done reading the files
     returns BOOL
-*/
+**/
 - (BOOL)isDone
 {
     // Check if the fileOffset is at the end of the file.  This means we have read all the data from the file
@@ -270,19 +270,19 @@
 	return result;
 }
 
-/*
+/**
     Returns the filePath as string
     returns NSString
-*/
+**/
 - (NSString *)filePath
 {
 	return filePath;
 }
 
 
-/*
+/**
     Standard deconstructor
- */
+**/
 - (void)dealloc
 {
 	// if the file descriptor is not null 

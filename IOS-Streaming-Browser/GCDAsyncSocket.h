@@ -131,85 +131,86 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (id)init;
 
-/*
+/**
     Initialize the GCDAsyncSocket with a socket queue
+ 
     param dispatch_queue_t
     returns id (self)
-*/
+**/
 - (id)initWithSocketQueue:(dispatch_queue_t)sq;
 
-/*
+/**
     Initialize the GCDAsyncSocket with a delegate and delegate queue
     param dispatch_queue_t
     returns id (self)
-*/
+**/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq;
 
-/*
+/**
     Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
     param id
     param dispatch_queue_t
     param dispatch_queue_t
     returns id
-*/
+**/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq socketQueue:(dispatch_queue_t)sq;
 
 #pragma mark Configuration
 
-/*
+/**
     Gets the delegate
     returns id
-*/
+**/
 - (id)delegate;
 
-/*
+/**
     Sets the delegate
     param id
- */
+**/
 - (void)setDelegate:(id)delegate;
 
-/*
+/**
     Synchronously sets the delegate
     param id
-*/
+**/
 - (void)synchronouslySetDelegate:(id)delegate;
 
-/*
+/**
     Get the delegate queue
     returns dispatch_queue_t
-*/
+**/
 - (dispatch_queue_t)delegateQueue;
 
-/*
+/**
     Set the delegate queue
     param dispatch_queue_t
-*/
+**/
 - (void)setDelegateQueue:(dispatch_queue_t)delegateQueue;
 
-/*
+/**
     param dispatch_queue_t
-*/
+**/
 - (void)synchronouslySetDelegateQueue:(dispatch_queue_t)delegateQueue;
 
-/*
+/**
     Get delegate and delegate queue
     param id
     param dispatch_queue_t
-*/
+**/
 - (void)getDelegate:(id *)delegatePtr delegateQueue:(dispatch_queue_t *)delegateQueuePtr;
 
-/*
+/**
     Set the delegate and delegate queue
     param id
     param dispatch_queue_t
-*/
+**/
 - (void)setDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
-/*
+/**
     Synchronously set the delegate and delegate queue
     param id
     param dispatch_queue_t
-*/
+**/
 - (void)synchronouslySetDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
@@ -243,16 +244,16 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The default value is YES.
 **/
 
-/*
+/**
     Whether automatically disconnecting upon the closing of a read stream
     returns BOOL
-*/
+**/
 - (BOOL)autoDisconnectOnClosedReadStream;
 
-/*
+/**
     Sets the flag for whether automatically disconnecting upon the closing of a read stream
     param BOOL
-*/
+**/
 - (void)setAutoDisconnectOnClosedReadStream:(BOOL)flag;
 
 /**
@@ -268,44 +269,44 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * By default, the preferred protocol is IPv4, but may be configured as desired.
 **/
 
-/*
+/**
     Whether IP version 4 is enabled
     returns BOOL
-*/
+**/
 - (BOOL)isIPv4Enabled;
 
-/*
+/**
     Set the flag for whether IP version 4 protocol is enabled
     param BOOL
-*/
+**/
 - (void)setIPv4Enabled:(BOOL)flag;
 
 
-/*
+/**
     Whether IP version 6 protocol is enabled
     returns BOOL
-*/
+**/
 - (BOOL)isIPv6Enabled;
 
 
-/*
+/**
     Set the flag for whether IP version 6 protocol is enabled
     param BOOL
-*/
+**/
 - (void)setIPv6Enabled:(BOOL)flag;
 
 
-/*
+/**
     Whether IP version 4 protocol is preferred over IP version 6 protocol
     returns BOOL
-*/
+**/
 - (BOOL)isIPv4PreferredOverIPv6;
 
 
-/*
+/**
     Set the flag for whether IP version 4 protocol is preferred over IP version 6
     param BOOL
-*/
+**/
 - (void)setPreferIPv4OverIPv6:(BOOL)flag;
 
 /**
@@ -315,9 +316,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (id)userData;
 
-/*
+/**
     param id
-*/
+**/
 - (void)setUserData:(id)arbitraryUserData;
 
 #pragma mark Accepting
@@ -328,7 +329,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     When a connection is accepted, a new instance of GCDAsyncSocket will be spawned to handle it, and the socket:didAcceptNewSocket: delegate method will be invoked.
  
     The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
-    param UInt16
+    param (UInt16) port
     param NSError
     returns BOOL
 **/
@@ -528,9 +529,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (BOOL)isDisconnected;
 
-/*
+/**
     returns BOOL
-*/
+**/
 - (BOOL)isConnected;
 
 /**
@@ -539,19 +540,19 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (NSString *)connectedHost;
 
-/*
+/**
     returns UInt16
-*/
+**/
 - (UInt16)connectedPort;
 
-/*
+/**
     returns NSString
-*/
+**/
 - (NSString *)localHost;
 
-/*
+/**
     returns UInt16
-*/
+**/
 - (UInt16)localPort;
 
 /**
@@ -564,9 +565,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (NSData *)connectedAddress;
 
 
-/*
+/**
     returns NSData
-*/
+**/
 - (NSData *)localAddress;
 
 /**
@@ -576,9 +577,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (BOOL)isIPv4;
 
-/*
+/**
     returns BOOL
-*/
+**/
 - (BOOL)isIPv6;
 
 #pragma mark Reading
@@ -865,14 +866,14 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (int)socketFD;
 
-/*
+/**
     returns int
-*/
+**/
 - (int)socket4FD;
 
-/*
+/**
     returns int
-*/
+**/
 - (int)socket6FD;
 
 #if TARGET_OS_IPHONE
@@ -894,9 +895,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 - (CFReadStreamRef)readStream;
 
-/*
+/**
     returns CFWriteStreamRef
-*/
+**/
 - (CFWriteStreamRef)writeStream;
 
 /**
@@ -977,57 +978,57 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * Extracting host and port information from raw address data.
 *****************************************************************/
 
-/*
+/**
     Class method
     Gets the host from an address
     param NSData
     returns NSString
-*/
+**/
 + (NSString *)hostFromAddress:(NSData *)address;
 
-/*
+/**
     Class method
     Get the port from an address
     param NSData
     returns UInt16
-*/
+**/
 + (UInt16)portFromAddress:(NSData *)address;
 
-/*
+/**
     Class method
     param NSString (pointer to a pointer)
     param UInt16
     param NSData
     returns BOOL
-*/
+**/
 + (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address;
 
 /**
  * A few common line separators, for use with the readDataToData:... methods.
 **/
 
-/*
+/**
     Class method
     returns NSData
-*/
+**/
 + (NSData *)CRLFData;   // 0x0D0A - Carriage return and line feed
 
-/*
+/**
     Class method
     returns NSData
-*/
+**/
 + (NSData *)CRData;     // 0x0D  - Carriage return
 
-/*
+/**
     Class method
     returns NSData
-*/
+**/
 + (NSData *)LFData;     // 0x0A - line feed
 
-/*
+/**
     Class method
     returns NSData
-*/
+**/
 + (NSData *)ZeroData;   // 0x00 - empty NSData object
 
 @end

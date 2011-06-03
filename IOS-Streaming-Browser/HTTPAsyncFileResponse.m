@@ -28,12 +28,12 @@
 @implementation HTTPAsyncFileResponse
 
 
-/*
+/**
     Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
     param NSString
     param HTTPConnection
     returns id
-*/
+**/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
 	if ((self = [super init]))
@@ -79,9 +79,9 @@
 }
 
 
-/*
+/**
     Abort the HTTP connection
- */
+**/
 - (void)abort
 {
 	// abort the connection
@@ -90,9 +90,9 @@
 }
 
 
-/*
+/**
     Process the read buffer
-*/
+**/
 - (void)processReadBuffer
 {
 	// This method is here to allow superclasses to perform post-processing of the data.
@@ -112,9 +112,9 @@
 	[connection responseHasAvailableData:self];
 }
 
-/*
+/**
     Pause the read source
- */
+**/
 - (void)pauseReadSource
 {
     // If the read source is not suspended then suspend it
@@ -126,9 +126,9 @@
 	}
 }
 
-/*
+/**
     Resume the read source
- */
+**/
 - (void)resumeReadSource
 {
     // If the read source is suspended
@@ -142,9 +142,9 @@
 	}
 }
 
-/*
+/**
     Cancel the read source
-*/
+**/
 - (void)cancelReadSource
 {
 	
@@ -160,10 +160,10 @@
 	}
 }
 
-/*
+/**
     Whether can open a file and setup the readSource
     returns BOOL
-*/
+**/
 - (BOOL)openFileAndSetupReadSource
 {
 	// Open file as read only
@@ -308,9 +308,9 @@
 	return YES;
 }
 
-/*
+/**
     Whether need to open file or if it has already been opened
- */
+**/
 - (BOOL)openFileIfNeeded
 {
 	if (aborted)
@@ -332,30 +332,30 @@
 	return [self openFileAndSetupReadSource];
 }	
 
-/*
+/**
     Get file length
     returns UInt64
-*/
+**/
 - (UInt64)contentLength
 {
 	
 	return fileLength;
 }
 
-/*
+/**
     Get the file offset
     returns UInt64
-*/
+**/
 - (UInt64)offset
 {
 	
 	return fileOffset;
 }
 
-/*
+/**
     Set the file's offset
     param Uint64
-*/
+**/
 - (void)setOffset:(UInt64)offset
 {
     // Check if file could not be opened
@@ -380,11 +380,11 @@
 	}
 }
 
-/*  
+/**  
     Reads a certain length of data from the file
     param NSUInteger
     returns NSData
-*/
+**/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
     // if there is data 
@@ -429,10 +429,10 @@
 	}
 }
 
-/*
+/**
     If done reading the file
     returns BOOL
-*/
+**/
 - (BOOL)isDone
 {
     // Check if fileoffset is at the end of the file
@@ -441,27 +441,27 @@
 	return result;
 }
 
-/*
+/**
     Gets the file path
     returns NSString
-*/
+**/
 - (NSString *)filePath
 {
 	return filePath;
 }
 
-/*
+/**
     Whether this response is asynchronous
     returns BOOL
-*/
+**/
 - (BOOL)isAsynchronous
 {
 	return YES;
 }
 
-/*
+/**
     Cancel the readSource and set connection to nil
- */
+**/
 - (void)connectionDidClose
 {
 	// If there is a file descriptor
@@ -482,9 +482,9 @@
 	}
 }
 
-/*
+/**
     Standard deconstructor
- */
+**/
 - (void)dealloc
 {
 	// Check to see if there is anything in the read queue

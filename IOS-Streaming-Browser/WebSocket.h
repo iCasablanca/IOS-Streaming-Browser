@@ -20,18 +20,18 @@
 	BOOL isVersion76; // if version76
 }
 
-/*
+/**
     Class method
     param HTTPMessage
     returns BOOL
-*/
+**/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request;
 
-/*
+/**
     Initialize with HTTPMessage request and a socket
     param HTTPMessage
     param GCDAsyncSocket
-*/
+**/
 - (id)initWithRequest:(HTTPMessage *)request socket:(GCDAsyncSocket *)socket;
 
 /**
@@ -84,19 +84,19 @@
  * These methods are designed to be overriden by subclasses.
 **/
 
-/*
+/**
     If the web socket did open
-*/
+**/
 - (void)didOpen;
 
-/*
+/**
     If the web socket did receive an incoming message
- */
+**/
 - (void)didReceiveMessage:(NSString *)msg;
 
-/*
+/**
     If the web socket did close
- */
+**/
 - (void)didClose;
 
 @end
@@ -120,23 +120,23 @@
 @protocol WebSocketDelegate
 @optional
 
-/*
+/**
     The websocket did open
     param WebSocket
- */
+**/
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
-/*
+/**
     The websocket did receive an incoming message
     param WebSocket
     param NSString
-*/
+**/
 - (void)webSocket:(WebSocket *)ws didReceiveMessage:(NSString *)msg;
 
-/*
+/**
     The websocket did close
     param WebSocket
-*/
+**/
 - (void)webSocketDidClose:(WebSocket *)ws;
 
 @end

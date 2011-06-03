@@ -316,6 +316,7 @@
 				ECE61A03137C3E5F00622B58 /* Sources */,
 				ECE61A04137C3E5F00622B58 /* Frameworks */,
 				ECE61A05137C3E5F00622B58 /* Resources */,
+				EC899975139945DA00A83D4E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -368,6 +369,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EC899975139945DA00A83D4E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /Applications/Doxygen.app/Contents/Resources/doxygen;
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ECE61A03137C3E5F00622B58 /* Sources */ = {

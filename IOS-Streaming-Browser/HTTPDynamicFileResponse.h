@@ -41,9 +41,9 @@
 	NSDictionary *replacementDict;
 }
 
-/*
+/**
     Initialize the HTTPDyanmicFileResponse
- */
+**/
 - (id)initWithFilePath:(NSString *)filePath
          forConnection:(HTTPConnection *)connection
              separator:(NSString *)separatorStr

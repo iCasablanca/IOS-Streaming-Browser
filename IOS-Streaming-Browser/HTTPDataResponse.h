@@ -9,11 +9,11 @@
 	NSData *data;  // the data
 }
 
-/*
+/**
     Initializes the HTTPDataResponse with data
     param NSDAta
     returns id
-*/
+**/
 - (id)initWithData:(NSData *)data;
 
 @end

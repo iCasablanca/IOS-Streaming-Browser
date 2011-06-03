@@ -26,6 +26,10 @@
  * you may choose to use only a file logger and a tty logger.
 **/
 
+
+/**
+    Use the DDLogger protocol
+**/
 @interface DDTTYLogger : DDAbstractLogger <DDLogger>
 {
 	BOOL isaTTY;
@@ -36,12 +40,12 @@
 	char *pid; // Not null terminated
 	
 	size_t appLen;
-	size_t pidLen;
+	size_t pidLen; // process id length
 }
 
-/*
- Class method
-*/
+/**
+    Class method
+**/
 + (DDTTYLogger *)sharedInstance;
 
 // Inherited from DDAbstractLogger

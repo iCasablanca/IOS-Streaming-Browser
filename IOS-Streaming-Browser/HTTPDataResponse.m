@@ -5,11 +5,11 @@
 @implementation HTTPDataResponse
 
 
-/*
+/**
     Initializes the HTTPDataResponse with data
     param NSData
     returns id
-*/
+**/
 - (id)initWithData:(NSData *)dataParam
 {
     
@@ -22,9 +22,9 @@
 	return self;
 }
 
-/*
+/**
     Standard deconstructor
-*/
+**/
 - (void)dealloc
 {
 	
@@ -32,10 +32,10 @@
 	[super dealloc];
 }
 
-/*
+/**
     Returns the length of the data as an unsigned 64-bit integer 
     returns UInt64
-*/
+**/
 - (UInt64)contentLength
 {
     // Get the number of bytes of data
@@ -44,29 +44,29 @@
 }
 
 
-/*
+/**
     Returns the offset to the data
     returns UInt64
-*/
+**/
 - (UInt64)offset
 {
 	return offset;
 }
 
-/*
+/**
     Sets the offset to the data
     param UInt64
-*/
+**/
 - (void)setOffset:(UInt64)offsetParam
 {	
 	offset = (NSUInteger)offsetParam;
 }
 
-/*
+/**
     Returns the data of a certain length
     param NSUInteger
     returns NSData
-*/
+**/
 - (NSData *)readDataOfLength:(NSUInteger)lengthParameter
 {
 	// Number of bytes yet to read
@@ -85,10 +85,10 @@
 	return [NSData dataWithBytesNoCopy:bytes length:length freeWhenDone:NO];
 }
 
-/*
+/**
     Returns whether done reading the data
     returns BOOL
-*/
+**/
 - (BOOL)isDone
 {
     // If the offset is at the end of the data

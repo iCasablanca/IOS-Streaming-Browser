@@ -52,22 +52,22 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
 @interface NSValue (NSValueDDRangeExtensions)
 
-/*
+/**
     Class method
     param DDRange
     returns NSValue
- */
+**/
 + (NSValue *)valueWithDDRange:(DDRange)range;
 
-/*
+/**
     returns DDRange
- */
+**/
 - (DDRange)ddrangeValue;
 
-/*
+/**
     param NSValue
     returns NSInteger
- */
+**/
 - (NSInteger)ddrangeCompare:(NSValue *)ddrangeValue;
 
 @end

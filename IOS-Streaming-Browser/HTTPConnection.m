@@ -73,14 +73,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface HTTPConnection (PrivateAPI)
 
-/*
+/**
     Start reading the request
-*/
+**/
 - (void)startReadingRequest;
 
-/*
+/**
     Send response headers and body
-*/
+**/
 - (void)sendResponseHeadersAndBody;
 @end
 
@@ -100,6 +100,9 @@ static NSMutableArray *recentNonces;
 **/
 + (void)initialize
 {
+      
+    
+    
 	static BOOL initialized = NO;
     
     // If the HTTPConnection is not initialized
@@ -445,7 +448,7 @@ static NSMutableArray *recentNonces;
 	                               userInfo:newNonce
 	                                repeats:NO];
     
-    
+    // Returns the newly generated nonce
 	return newNonce;
 }
 
@@ -1161,10 +1164,10 @@ static NSMutableArray *recentNonces;
 }
 
 
-/*
+/**
     Gets the URL as a string for the request HTTPMessage
     returns NSSTring
-*/
+**/
 - (NSString *)requestURI
 {
     DDLogError(@"requestURI");
@@ -1487,9 +1490,9 @@ static NSMutableArray *recentNonces;
 }
 
 
-/*
+/**
     Sends the response header and body back to the host
-*/
+**/
 - (void)sendResponseHeadersAndBody
 {
     DDLogError(@"sendResponseHeaderAndBody");
@@ -1988,6 +1991,7 @@ static NSMutableArray *recentNonces;
 	UInt64 offset = [httpResponse offset];
     
     
+    
 	UInt64 bytesRead = offset - range.location;
     
     
@@ -2048,11 +2052,12 @@ static NSMutableArray *recentNonces;
 				[asyncSocket writeData:data withTimeout:TIMEOUT_WRITE_BODY tag:HTTP_PARTIAL_RANGES_RESPONSE_BODY];
 			}
 		}
-		else
+		else // if the rangeIndex >= to the range count
 		{
 			// We're not done yet - we still have to send the closing boundry tag
 			NSString *endingBoundryStr = [NSString stringWithFormat:@"\r\n--%@--\r\n", ranges_boundry];
             
+            // Sets the ending boundary to a UTF8 encoded string
 			NSData *endingBoundryData = [endingBoundryStr dataUsingEncoding:NSUTF8StringEncoding];
 			
             // Writes data to the socket
@@ -2066,8 +2071,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Returns an array of possible index pages.
- * For example: {"index.html", "index.htm"}
+    Returns an array of possible index pages.
+    For example: {"index.html", "index.htm"}
+    returns NSArray
 **/
 - (NSArray *)directoryIndexFileNames
 {
@@ -2269,10 +2275,10 @@ static NSMutableArray *recentNonces;
 }
 
 
-/*
+/**
     Gets the webSocket for a specific URI
     return WebSocket
-*/
+**/
 - (WebSocket *)webSocketForURI:(NSString *)path
 {
 	DDLogError(@"webSocketForURI: %@",path);
@@ -2344,7 +2350,7 @@ static NSMutableArray *recentNonces;
     // The response which will be sent to the host
 	NSData *responseData = [self preprocessErrorResponse:response];
     
-    // Write the reponse to the socket
+    // Write the reponse to the socket by creating a writePacket and sending the packet to the socket queue 
 	[asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
 	
 	[response release];
@@ -2777,7 +2783,7 @@ static NSMutableArray *recentNonces;
 				requestContentLengthReceived = 0;
 			}
 			
-			// Check to make sure the given method is supported
+			// Check to make sure the given method is supported.  For example, does the request have a GET or HEAD method
 			if (![self supportsMethod:method atPath:uri])
 			{
 				// The method is unsupported - either in general, or for this specific request
@@ -2786,6 +2792,8 @@ static NSMutableArray *recentNonces;
 				return;
 			}
 			
+            // The request has a 'GET' or 'HEAD' method
+            
             // If expecting an upload of data from the host
 			if (expectsUpload)
 			{
@@ -3166,9 +3174,9 @@ static NSMutableArray *recentNonces;
 	return shouldDie;
 }
 
-/*
+/**
     Closes the connection
-*/
+**/
 - (void)die
 {
 	DDLogError(@"die");
@@ -3210,9 +3218,9 @@ static NSMutableArray *recentNonces;
 @synthesize queue;
 
 
-/*
+/**
     Initialize the HTTPConfig with a server and documentRoot
-*/
+**/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot
 {
     DDLogError(@"initWithServer documentRoot: %@",aDocumentRoot);
@@ -3229,12 +3237,12 @@ static NSMutableArray *recentNonces;
 }
 
 
-/*
+/**
     Initialize the HTTPConfig with a server, documentRoot and queue
     param HTTPServer
     param NSString
     param dispatch_queue_t
-*/
+**/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot queue:(dispatch_queue_t)q
 {
     DDLogError(@"initWithServer documentRoot queue: %@",documentRoot);
@@ -3269,9 +3277,9 @@ static NSMutableArray *recentNonces;
 }
 
 
-/*
+/**
     Standard deconstructor
-*/
+**/
 - (void)dealloc
 {
 	[server release];

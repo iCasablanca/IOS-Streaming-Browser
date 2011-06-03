@@ -54,29 +54,29 @@ typedef struct LoggerNode LoggerNode;
 
 @interface DDLog (PrivateAPI)
 
-/*
+/**
     Class method
-*/
+**/
 + (void)lt_addLogger:(id <DDLogger>)logger;
 
-/*
+/**
  Class method
-*/
+**/
 + (void)lt_removeLogger:(id <DDLogger>)logger;
 
-/*
+/**
  Class method
-*/
+**/
 + (void)lt_removeAllLoggers;
 
-/*
+/**
  Class method
-*/
+**/
 + (void)lt_log:(DDLogMessage *)logMessage;
 
-/*
- Class method
-*/
+/**
+    Class method
+**/
 + (void)lt_flush;
 
 @end
@@ -232,9 +232,9 @@ typedef struct LoggerNode LoggerNode;
 #pragma mark Notifications
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
  Class method
-*/
+**/
 + (void)applicationWillTerminate:(NSNotification *)notification
 {
 	[self flushLog];
@@ -244,9 +244,9 @@ typedef struct LoggerNode LoggerNode;
 #pragma mark Logger Management
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
  Class method
-*/
+**/
 + (void)addLogger:(id <DDLogger>)logger
 {
 	if (logger == nil) return;
@@ -277,9 +277,9 @@ typedef struct LoggerNode LoggerNode;
 	}
 }
 
-/*
+/**
  Class method
-*/
+**/
 + (void)removeLogger:(id <DDLogger>)logger
 {
 	if (logger == nil) return;
@@ -310,9 +310,9 @@ typedef struct LoggerNode LoggerNode;
 	}
 }
 
-/*
+/**
  Class method
-*/
+**/
 + (void)removeAllLoggers
 {
 	if (IS_GCD_AVAILABLE)
@@ -345,9 +345,9 @@ typedef struct LoggerNode LoggerNode;
 #pragma mark Master Logging
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
  Class method
-*/
+**/
 + (void)queueLogMessage:(DDLogMessage *)logMessage synchronously:(BOOL)flag
 {
 	// We have a tricky situation here...
@@ -505,9 +505,17 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    param BOOL
+    param int
+    param in
+    param int
+    param const char
+    param const char
+    param int
+    param NSString
+**/
 + (void)log:(BOOL)synchronous
       level:(int)level
        flag:(int)flag
@@ -518,6 +526,7 @@ typedef struct LoggerNode LoggerNode;
      format:(NSString *)format, ...
 {
 	va_list args;
+    
 	if (format)
 	{
 		va_start(args, format);
@@ -540,9 +549,9 @@ typedef struct LoggerNode LoggerNode;
 	}
 }
 
-/*
- Class method
-*/
+/**
+    Class method
+**/
 + (void)flushLog
 {
 	if (IS_GCD_AVAILABLE)
@@ -575,9 +584,11 @@ typedef struct LoggerNode LoggerNode;
 #pragma mark Registered Dynamic Logging
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
- Class method
-*/
+/**
+    Class method    
+    param Class
+    returns BOOL
+**/
 + (BOOL)isRegisteredClass:(Class)class
 {
 	SEL getterSel = @selector(ddLogLevel);
@@ -594,9 +605,10 @@ typedef struct LoggerNode LoggerNode;
 	return NO;
 }
 
-/*
- Class method
-*/
+/**
+    Class method
+    returns NSArray
+**/
 + (NSArray *)registeredClasses
 {
 	int numClasses, i;
@@ -641,9 +653,10 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    returns NSArray
+**/
 + (NSArray *)registeredClassNames
 {
 	NSArray *registeredClasses = [self registeredClasses];
@@ -658,9 +671,11 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    param Class
+    returns int
+**/
 + (int)logLevelForClass:(Class)aClass
 {
 	if ([self isRegisteredClass:aClass])
@@ -672,9 +687,11 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    param NSSTring
+    returns int
+**/
 + (int)logLevelForClassWithName:(NSString *)aClassName
 {
 	Class aClass = NSClassFromString(aClassName);
@@ -683,9 +700,11 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    param int
+    param Class
+**/
 + (void)setLogLevel:(int)logLevel forClass:(Class)aClass
 {
 	if ([self isRegisteredClass:aClass])
@@ -695,9 +714,11 @@ typedef struct LoggerNode LoggerNode;
 }
 
 
-/*
- Class method
-*/
+/**
+    Class method
+    param int
+    param NSString
+**/
 + (void)setLogLevel:(int)logLevel forClassWithName:(NSString *)aClassName
 {
 	Class aClass = NSClassFromString(aClassName);
@@ -712,7 +733,8 @@ typedef struct LoggerNode LoggerNode;
 #if GCD_MAYBE_UNAVAILABLE
 
 /**
- * Entry point for logging thread.
+    Entry point for logging thread.
+    param id
 **/
 + (void)lt_main:(id)ignore
 {
@@ -730,7 +752,8 @@ typedef struct LoggerNode LoggerNode;
 #endif
 
 /**
- * This method should only be run on the logging thread/queue.
+    This method should only be run on the logging thread/queue.
+    param id <DDLogger>
 **/
 + (void)lt_addLogger:(id <DDLogger>)logger
 {
@@ -793,7 +816,8 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- * This method should only be run on the logging thread/queue.
+    This method should only be run on the logging thread/queue.
+    param id <DDLogger>
 **/
 + (void)lt_removeLogger:(id <DDLogger>)logger
 {
@@ -1082,9 +1106,12 @@ typedef struct LoggerNode LoggerNode;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*
- C-type method
- */
+/**
+    C-type method
+    param const char
+    param BOOL
+    returns NSString
+**/
 NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 {
 	if (filePath == NULL) return nil;
@@ -1165,9 +1192,17 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 @implementation DDLogMessage
 
-/*
+/**
     Initialize the DDLogMessage
-*/
+    param NSString
+    param int
+    param int
+    param int
+    param const char
+    param const char
+    param int
+    returns id
+**/
 - (id)initWithLogMsg:(NSString *)msg
                level:(int)level
                 flag:(int)flag
@@ -1194,9 +1229,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
- 
-*/
+/**
+    Gets the thread id
+    returns NSString
+**/
 - (NSString *)threadID
 {
 	if (threadID == nil)
@@ -1208,9 +1244,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
- 
-*/
+/**
+    Gets the file name
+    returns NSString
+**/
 - (NSString *)fileName
 {
 	if (fileName == nil)
@@ -1222,9 +1259,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
- 
-*/
+/**
+    Gets the method name
+    returns NSString
+**/
 - (NSString *)methodName
 {
 	if (methodName == nil && function != NULL)
@@ -1236,9 +1274,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
+/**
     Standard deconstructor
-*/
+**/
 - (void)dealloc
 {
 	[logMsg release];
@@ -1259,9 +1297,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 @implementation DDAbstractLogger
 
-/*
+/**
     Initialize the DDAbstracLogger
-*/
+**/
 - (id)init
 {
 	if ((self = [super init]))
@@ -1286,9 +1324,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
+/**
     Standard deconstructor
-*/
+**/
 - (void)dealloc
 {
 	if (IS_GCD_AVAILABLE)
@@ -1302,9 +1340,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
+/**
  
-*/
+**/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
 	// Override me
@@ -1313,9 +1351,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 #if GCD_MAYBE_UNAVAILABLE
 
 
-/*
+/**
  
-*/
+**/
 - (void)lt_getLogFormatter:(NSMutableArray *)resultHolder
 {
 	// This method is executed on the logging thread.
@@ -1325,9 +1363,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
- 
-*/
+/**
+    Set the log formatter
+    param id <DDLogFormatter>
+**/
 - (void)lt_setLogFormatter:(id <DDLogFormatter>)logFormatter
 {
 	// This method is executed on the logging thread.
@@ -1342,9 +1381,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 #endif
 
 
-/*
- 
-*/
+/**
+    Gets the logFormatter
+    returns id <DDLogFormatter>
+**/
 - (id <DDLogFormatter>)logFormatter
 {
 	// This method must be thread safe and intuitive.
@@ -1450,9 +1490,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 }
 
 
-/*
- 
-*/
+/**
+    Set the logFormatter
+    param id <DDLogFormatter>
+**/
 - (void)setLogFormatter:(id <DDLogFormatter>)logFormatter
 {
 	// This method must be thread safe and intuitive.
@@ -1518,13 +1559,17 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 				[formatter release];
 				formatter = [logFormatter retain];
 			}
-		};
+		}; // END OF BLOCK
 		
 		if (dispatch_get_current_queue() == loggerQueue)
+        {    
 			block();
-		else
+        
+        }else{
+                
 			dispatch_async([DDLog loggingQueue], block);
-		
+        }
+        
 	#endif
 	}
 	else
@@ -1539,6 +1584,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 		}
 		else
 		{
+            // Set the log formatter on the logging threate with a specific format and don't wait for it to finish (asychronous)
 			[self performSelector:@selector(lt_setLogFormatter:)
 			             onThread:loggingThread
 			           withObject:logFormatter
@@ -1552,9 +1598,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 #if GCD_MAYBE_AVAILABLE
 
 
-/*
- 
-*/
+/**
+    Gets the loggerQueue
+    returns dispatch_queue_t
+**/
 - (dispatch_queue_t)loggerQueue
 {
 	return loggerQueue;

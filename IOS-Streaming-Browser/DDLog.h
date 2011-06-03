@@ -116,7 +116,7 @@
 
 #endif
 
-/*
+/**
 // Uncomment for quick temporary test to see if it builds for older OS targets
 #undef IS_GCD_AVAILABLE
 #undef GCD_MAYBE_AVAILABLE
@@ -125,7 +125,7 @@
 #define IS_GCD_AVAILABLE      NO
 #define GCD_MAYBE_AVAILABLE   0
 #define GCD_MAYBE_UNAVAILABLE 1
-*/
+**/
 
 @class DDLogMessage;
 
@@ -321,34 +321,43 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * and also provides methods to get and set their log level during run time.
 **/
 
-/*
+/**
     Class method
-*/
+**/
 + (NSArray *)registeredClasses;
 
-/*
- Class method
-*/
+/**
+    Class method
+    returns NSArray
+**/
 + (NSArray *)registeredClassNames;
 
-/*
- Class method
- */
+/**
+    Class method
+    param Class
+    returns int
+**/
 + (int)logLevelForClass:(Class)aClass;
 
-/*
- Class method
-*/
+/**
+    Class method
+    param NSString
+    returns int
+**/
 + (int)logLevelForClassWithName:(NSString *)aClassName;
 
-/*
- Class method
- */
+/**
+    Class method
+    param int
+    param Class
+**/
 + (void)setLogLevel:(int)logLevel forClass:(Class)aClass;
 
-/*
- Class method
- */
+/**
+    Class method
+    param int
+    param NSString
+**/
 + (void)setLogLevel:(int)logLevel forClassWithName:(NSString *)aClassName;
 
 @end
@@ -386,9 +395,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 
 - (void)didAddLogger;
 
-/*
+/**
  
-*/
+**/
 - (void)willRemoveLogger;
 
 #if GCD_MAYBE_AVAILABLE
@@ -464,14 +473,16 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * }
 **/
 
-/*
- Class method
-*/
+/**
+    Class method
+    returns int
+**/
 + (int)ddLogLevel;
 
-/*
- Class method
-*/
+/**
+    Class method
+    param int
+**/
 + (void)ddSetLogLevel:(int)logLevel;
 
 @end
@@ -484,7 +495,6 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * The DDLogMessage class encapsulates information about the log message.
  * If you write custom loggers or formatters, you will be dealing with objects of this class.
 **/
-
 @interface DDLogMessage : NSObject
 {
 
@@ -511,6 +521,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 	NSString *methodName;
 }
 
+/**
 // The initializer is somewhat reserved for internal use.
 // However, if you find need to manually create logMessage objects,
 // there is one thing you should be aware of.
@@ -518,7 +529,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 // That is, it expects the given strings to exist for the duration of the object's lifetime,
 // and it expects the given strings to be immutable.
 // In other words, it does not copy these strings, it simply points to them.
-
+**/
 - (id)initWithLogMsg:(NSString *)logMsg
                level:(int)logLevel
                 flag:(int)logFlag
@@ -530,17 +541,20 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 /**
  * Returns the threadID as it appears in NSLog.
  * That is, it is a hexadecimal value which is calculated from the machThreadID.
+ returns NSSTring
 **/
 - (NSString *)threadID;
 
 /**
  * Convenience method to get just the file name, as the file variable is generally the full file path.
  * This method does not include the file extension, which is generally unwanted for logging purposes.
+    returns NSString
 **/
 - (NSString *)fileName;
 
 /**
  * Returns the function variable in NSString form.
+    returns NSString
 **/
 - (NSString *)methodName;
 
@@ -576,14 +590,14 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #endif
 }
 
-/*
+/**
  
-*/
+**/
 - (id <DDLogFormatter>)logFormatter;
 
-/*
+/**
  
-*/
+**/
 - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 
 @end

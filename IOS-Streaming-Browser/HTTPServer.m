@@ -6,26 +6,26 @@
 
 @interface HTTPServer (PrivateAPI)
 
-/*
+/**
     Unpublish the bonjour from the list of published network services
-*/
+**/
 - (void)unpublishBonjour;
 
-/*
+/**
     Publish as a list of network services
-*/
+**/
 - (void)publishBonjour;
 
-/*
+/**
     Starts the bonjour thread if needed
-*/
+**/
 + (void)startBonjourThreadIfNeeded;
 
-/*
+/**
     Performs a block of code on the bonjour thread
     param dispatch_block_t
     param BOOL
-*/
+**/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone;
 
 @end
@@ -174,10 +174,10 @@
 	return [result autorelease];
 }
 
-/*
+/**
     Set the documents root
     param NSString
-*/
+**/
 - (void)setDocumentRoot:(NSString *)value
 {
 	
@@ -226,10 +226,10 @@
 	return result;
 }
 
-/*
+/**
     Sets the connection class on the serverQueue
     param Class
-*/
+**/
 - (void)setConnectionClass:(Class)value
 {
 	// Submits a block for asynchronous execution on the serverQueue
@@ -259,10 +259,10 @@
 }
 
 
-/*
+/**
     Set the server interface
     param NSString
-*/
+**/
 - (void)setInterface:(NSString *)value
 {
     // copies the value into a local attribute
@@ -299,10 +299,10 @@
     return result;
 }
 
-/*
+/**
     Get the servers port
     returns UInt16
-*/
+**/
 - (UInt16)listeningPort
 {
     // Creates a local attribute
@@ -327,10 +327,10 @@
 	return result;
 }
 
-/*
+/**
     Set the servers port
     param UInt16
-*/
+**/
 - (void)setPort:(UInt16)value
 {
 	// Submits a block for asynchronous execution on the serverQueue
@@ -362,10 +362,10 @@
 }
 
 
-/*
+/**
     Set the domain on which to broadcast this service
     param NSString
-*/
+**/
 - (void)setDomain:(NSString *)value
 {
 	// Copies the value into a local attribute
@@ -404,10 +404,10 @@
 }
 
 
-/*
+/**
     Gets the published name of the server
     returns NSString
-*/
+**/
 - (NSString *)publishedName
 {
     // Creates a local attribute
@@ -440,10 +440,10 @@
 }
 
 
-/*
+/**
     Sets the published name of the server
     param NSString
-*/
+**/
 - (void)setName:(NSString *)value
 {
     // Copies the value into a local attribute
@@ -480,10 +480,10 @@
 	return [result autorelease];
 }
 
-/*
+/**
     Set the type of service to be published via Bonjour
     param NSString
-*/
+**/
 - (void)setType:(NSString *)value
 {
     // Copies the value into a local attribute
@@ -520,10 +520,10 @@
 	return [result autorelease];
 }
 
-/*
+/**
     Sets the TXT record dictionary
     param NSDictionary
-*/
+**/
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
 	// Copies the value into a local attribute
@@ -570,11 +570,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*
+/**
     Starts the server
     param NSError
     returns BOOL
-*/
+**/
 - (BOOL)start:(NSError **)errPtr
 {
 	// Creates local attributes
@@ -619,10 +619,10 @@
 }
 
 
-/*
+/**
     Stops the server
     returns BOOL
-*/
+**/
 - (BOOL)stop
 {
 	// Submits a block for synchronous execution on the serverQueue
@@ -669,10 +669,10 @@
 }
 
 
-/*
+/**
     Whether the server is running
     returns BOOL
-*/
+**/
 - (BOOL)isRunning
 {
     // Creates a local attribute
@@ -687,9 +687,9 @@
 }
 
 
-/*
+/**
     Adds a web sockets array
-*/
+**/
 - (void)addWebSocket:(WebSocket *)ws
 {
     // Locks the web socker
@@ -751,10 +751,10 @@
 #pragma mark Incoming Connections
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
     Configures the server
     returns HTTPConfig
-*/
+**/
 - (HTTPConfig *)config
 {
 	// Override me if you want to provide a custom config to the new connection.
@@ -772,12 +772,12 @@
 }
 
 
-/*
+/**
     When the server accepts a new socket
     param GCDAsyncSocket
     param GCDAsyncSocket
  
-*/
+**/
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
     // Create a new HTTP connection
@@ -802,9 +802,9 @@
 #pragma mark Bonjour
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+/**
     Publish the bonjour net service
-*/
+**/
 - (void)publishBonjour
 {
 	// Test whether the current queue is the serverQueue
@@ -859,9 +859,9 @@
 	}
 }
 
-/*
+/**
     Unpublic the Bonjour service
-*/
+**/
 - (void)unpublishBonjour
 {
 	// Test whether the current queue is the serverQueue
@@ -988,10 +988,10 @@
 static NSThread *bonjourThread;
 
 
-/*
+/**
     Class method
     Start the bonjour thread
-*/
+**/
 + (void)startBonjourThreadIfNeeded
 {
 	//  A predicate for use with dispatch_once(). It must be initialized to zero.
@@ -1012,9 +1012,9 @@ static NSThread *bonjourThread;
 }
 
 
-/*
+/**
     Class method
-*/
+**/
 + (void)bonjourThread
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -1033,12 +1033,12 @@ static NSThread *bonjourThread;
 }
 
 
-/*
+/**
     Class method
     
     Executes the block of code on the bonjour thread
     param dispatch_block_t
-*/
+**/
 + (void)performBonjourBlock:(dispatch_block_t)block
 {
 	// Test whether the current thread is the bonjourThread
@@ -1049,12 +1049,12 @@ static NSThread *bonjourThread;
 }
 
 
-/*
+/**
     Class method
     Executes a block on the bonjour thread
     param dispatch_block_t
     param BOOL
-*/
+**/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone
 {
 	

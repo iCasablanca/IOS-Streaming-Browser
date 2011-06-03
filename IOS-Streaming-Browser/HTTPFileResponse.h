@@ -19,18 +19,18 @@
 	NSUInteger bufferSize;  // the buffer size
 }
 
-/*
+/**
     Initialize the HTTPFile response with a filepath and connection
     param NSSTring
     param HTTPConnection
     returns id
- */
+**/
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 
-/*
+/**
     Gets the file path
     returns NSString
- */
+**/
 - (NSString *)filePath;
 
 @end

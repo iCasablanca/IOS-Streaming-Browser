@@ -74,9 +74,9 @@
 **/
 - (NSString *)documentRoot;
 
-/*
+/**
     Sets the document root
-*/
+**/
 - (void)setDocumentRoot:(NSString *)value;
 
 /**
@@ -90,9 +90,9 @@
 **/
 - (Class)connectionClass;
 
-/*
+/**
     Sets the connection class
-*/
+**/
 - (void)setConnectionClass:(Class)value;
 
 /**
@@ -105,9 +105,9 @@
 **/
 - (NSString *)interface;
 
-/*
+/**
     Sets the interface
-*/
+**/
 - (void)setInterface:(NSString *)value;
 
 /**
@@ -127,14 +127,14 @@
 **/
 - (UInt16)port;
 
-/*
+/**
     Gets the listening port
-*/
+**/
 - (UInt16)listeningPort;
 
-/*
+/**
     Sets the listening port
-*/
+**/
 - (void)setPort:(UInt16)value;
 
 /**
@@ -148,9 +148,9 @@
 **/
 - (NSString *)domain;
 
-/*
+/**
     Sets the domain
-*/
+**/
 - (void)setDomain:(NSString *)value;
 
 /**
@@ -172,14 +172,14 @@
 **/
 - (NSString *)name;
 
-/*
+/**
     Gets the published name of the server
-*/
+**/
 - (NSString *)publishedName;
 
-/*
+/**
     Sets the published name of the server
-*/
+**/
 - (void)setName:(NSString *)value;
 
 /**
@@ -194,9 +194,9 @@
 **/
 - (NSString *)type;
 
-/*
+/**
     Sets the type
-*/
+**/
 - (void)setType:(NSString *)value;
 
 /**
@@ -210,39 +210,39 @@
 **/
 - (NSDictionary *)TXTRecordDictionary;
 
-/*
+/**
     Sets the TXT record dictionary
-*/
+**/
 - (void)setTXTRecordDictionary:(NSDictionary *)dict;
 
-/*
+/**
     Starts the server
-*/
+**/
 - (BOOL)start:(NSError **)errPtr;
 
-/*
+/**
     Stops the server
-*/
+**/
 - (BOOL)stop;
 
-/*
+/**
     Whether the server is running
-*/
+**/
 - (BOOL)isRunning;
 
-/*
+/**
     Adds a web socket
-*/
+**/
 - (void)addWebSocket:(WebSocket *)ws;
 
-/*
+/**
     Gets the number of HTTP connections
-*/
+**/
 - (NSUInteger)numberOfHTTPConnections;
 
-/*
+/**
     Gets the number of web socket connections
-*/
+**/
 - (NSUInteger)numberOfWebSocketConnections;
 
 @end
