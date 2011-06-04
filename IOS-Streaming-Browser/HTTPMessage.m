@@ -100,6 +100,7 @@
 **/
 - (NSString *)method
 {
+    
 	return [NSMakeCollectable(CFHTTPMessageCopyRequestMethod(message)) autorelease];
 }
 
@@ -120,16 +121,18 @@
 **/
 - (NSInteger)statusCode
 {
+    // Returns the status code for the response as an integer
 	return (NSInteger)CFHTTPMessageGetResponseStatusCode(message);
 }
 
 
 /**
-    Gets all the header fields
+    Gets a CFDictionary containing all of the header fields.
     returns NSDictionary
 **/
 - (NSDictionary *)allHeaderFields
 {
+    // Returns a CFDictionary containing all of the header fields.
 	return [NSMakeCollectable(CFHTTPMessageCopyAllHeaderFields(message)) autorelease];
 }
 

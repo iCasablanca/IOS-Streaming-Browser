@@ -5,6 +5,9 @@
 // Implements HTTPResponse protocol
 @interface HTTPRedirectResponse : NSObject <HTTPResponse>
 {
+    /**
+        The redirect path
+    **/
 	NSString *redirectPath;
 }
 

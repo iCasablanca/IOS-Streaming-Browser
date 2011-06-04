@@ -6,17 +6,47 @@
 // Implements HTTPResponse protocol
 @interface HTTPFileResponse : NSObject <HTTPResponse>
 {
+    
+    /**
+     
+    **/
 	HTTPConnection *connection;
 	
-	NSString *filePath;  // the path to the file
-	UInt64 fileLength;  // the length of the file
-	UInt64 fileOffset;  // the file offset
+    
+    /**
+        The path to the file
+    **/
+	NSString *filePath;  
+    
+    /**
+        The length of the file
+    **/
+	UInt64 fileLength;  
+    
+    /**
+        The file offset
+    **/
+	UInt64 fileOffset;  
 	
-	BOOL aborted; // whether the file response has been aborted
+    /**
+        Whether the file response has been aborted
+    **/
+	BOOL aborted; 
 	
-	int fileFD; // the file descriptor
-	void *buffer;  // the file buffer
-	NSUInteger bufferSize;  // the buffer size
+    /**
+        The file descriptor
+    **/
+	int fileFD; 
+    
+    /**
+        The file buffer
+    **/
+	void *buffer;
+    
+    /**
+        The buffer size
+    **/
+	NSUInteger bufferSize;  
 }
 
 /**

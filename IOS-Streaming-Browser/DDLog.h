@@ -1,3 +1,4 @@
+
 #import <Foundation/Foundation.h>
 
 /**
@@ -58,7 +59,12 @@
   
     #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 40000 // 4.0 supported and required
 
+      /**
+            Sets the flag for whether grand central dispatch is available to YES
+       **/
       #define IS_GCD_AVAILABLE      YES
+
+
       #define GCD_MAYBE_AVAILABLE   1
       #define GCD_MAYBE_UNAVAILABLE 0
 
@@ -76,6 +82,9 @@
 
   #else                                        // 4.0 not supported
 
+    /**
+        Sets the flag for whether grand central dispatch is available to NO
+     **/
     #define IS_GCD_AVAILABLE      NO
     #define GCD_MAYBE_AVAILABLE   0
     #define GCD_MAYBE_UNAVAILABLE 1
@@ -90,9 +99,12 @@
   
     #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060 // 10.6 supported and required
 
-      #define IS_GCD_AVAILABLE      YES
-      #define GCD_MAYBE_AVAILABLE   1
-      #define GCD_MAYBE_UNAVAILABLE 0
+        /**
+            Sets the flag for whether grand central dispatch is available to YES
+         **/
+        #define IS_GCD_AVAILABLE      YES
+        #define GCD_MAYBE_AVAILABLE   1
+        #define GCD_MAYBE_UNAVAILABLE 0
 
     #else                                     // 10.6 supported but not required
 
@@ -108,6 +120,9 @@
   
   #else                                    // 10.6 not supported
 
+    /**
+        Sets the flag for whether grand central dispatch is available to NO
+    **/
     #define IS_GCD_AVAILABLE      NO
     #define GCD_MAYBE_AVAILABLE   0
     #define GCD_MAYBE_UNAVAILABLE 1
@@ -183,6 +198,8 @@
 
 #define  SYNC_LOG_C_MAYBE(lvl, flg, ctx, frmt, ...) \
               LOG_C_MAYBE(YES, lvl, flg, ctx, frmt, ##__VA_ARGS__)
+
+
 
 #define ASYNC_LOG_C_MAYBE(lvl, flg, ctx, frmt, ...) \
               LOG_C_MAYBE( NO, lvl, flg, ctx, frmt, ##__VA_ARGS__)
@@ -369,14 +386,22 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 @protocol DDLogger <NSObject>
 @required
 
-- (void)logMessage:(DDLogMessage *)logMessage;
 
 /**
- * Formatters may optionally be added to any logger.
- * If no formatter is set, the logger simply logs the message as it is given in logMessage.
- * Or it may use its own built in formatting style.
+    param DDLogMessage
+**/
+- (void)logMessage:(DDLogMessage *)logMessage;
+
+
+/**
+    Formatters may optionally be added to any logger.   If no formatter is set, the logger simply logs the message as it is given in logMessage.  Or it may use its own built in formatting style.
+    returns id <DDLogFormatter>
 **/
 - (id <DDLogFormatter>)logFormatter;
+
+/**
+    param id <DDLogFormatter>
+**/
 - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 
 @optional
@@ -502,22 +527,70 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 // For example: logMessage->logLevel
 	
 @public
+    
+    /**
+     
+    **/
 	int logLevel;
-	int logFlag;
+
+    /**
+     
+     **/	
+    int logFlag;
+    
+    /**
+     
+     **/
 	int logContext;
+    
+    /**
+     
+     **/
 	NSString *logMsg;
+    
+    /**
+     
+     **/
 	NSDate *timestamp;
+    
+    /**
+     
+     **/
 	const char *file;
+    
+    /**
+     
+     **/
 	const char *function;
+    
+    /**
+     
+     **/
 	int lineNumber;
+    
+    /**
+     
+     **/
 	mach_port_t machThreadID;
 
 // The private variables below are only calculated if needed.
 // You should use the public methods to access this information.
 	
 @private
+    
+    /**
+     
+     **/
 	NSString *threadID;
+    
+    /**
+     
+     **/
 	NSString *fileName;
+    
+    /**
+     
+     **/
 	NSString *methodName;
 }
 
@@ -583,6 +656,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 
 @interface DDAbstractLogger : NSObject <DDLogger>
 {
+    /**
+        Follows the DDLogFormatter protocol
+    **/
 	id <DDLogFormatter> formatter;
 	
 #if GCD_MAYBE_AVAILABLE

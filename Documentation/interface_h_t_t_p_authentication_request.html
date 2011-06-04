@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -88,47 +88,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="HTTPAuthenticationRequest" -->
-<p><a href="class_h_t_t_p_authentication_request-members.html">List of all members.</a></p>
+<p><code>#import &lt;<a class="el" href="">HTTPAuthenticationRequest.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a7e011454e7eda409d3c3c10aafe5314a">initWithRequest:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a3ead809efa0b1297348fd7f1ad37061c">isBasic</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a7d33b845fdae1eb9f927391dbba5b9eb">isDigest</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#af252971d89f612147776b316e1c094eb">base64Credentials</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#aa633648423a9cede3cb322a0fae06c1f">username</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#ad0fccc696d475a10b7152dc59b023dce">realm</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#aa9bfe42e66623428dc29aafea7a6c130">nonce</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a5334577dbdff67f1e16452c96b920661">uri</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a2bae8640ac675c0038c4d7be8ef177ef">qop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a345617dae869ccb6b261319aa7a3095b">nc</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a8f0ec5b2409120770101f5e05a97dbc9">cnonce</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a4b6c2e80e3f2814d876c38ecd8b67c6b">response</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ccadcfb839079508c7c7dfa25786eb9"></a><!-- doxytag: member="HTTPAuthenticationRequest::quotedSubHeaderFieldValue:fromHeaderFieldValue:" ref="a3ccadcfb839079508c7c7dfa25786eb9" args="(NSString *param,[fromHeaderFieldValue] NSString *header)" -->
-(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <b>quotedSubHeaderFieldValue:fromHeaderFieldValue:</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7342d3b0666587b4b08461bca2e6bdf6"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonquotedSubHeaderFieldValue:fromHeaderFieldValue:" ref="a7342d3b0666587b4b08461bca2e6bdf6" args="(NSString *param,[fromHeaderFieldValue] NSString *header)" -->
-(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <b>nonquotedSubHeaderFieldValue:fromHeaderFieldValue:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a1087ab9aef25296aa39960b9ad3e3160">initWithRequest:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#ad3ca93d4065f7b8fb6c069f53f488e0b">isBasic</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#aa260526398279ffc8328be6cc8351b51">isDigest</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#ac062a998657f67d7b219726993a4719d">base64Credentials</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a46ac1d13a26a1226e2387c158e82b74f">username</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a3629c94ae611c4ab16a4db3712c70900">realm</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#ab616da4c98b3861c04331027f3f27f63">nonce</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#afa2062cae80a810bcfec459f323bf59f">uri</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#acfd5bcf9b712fa1edc4082e86a651cf2">qop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a2dc293022a3b1951125385b014c31a14">nc</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#ace67f7a9ef3682a747d3e9719025cb6b">cnonce</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a144aa621bd07b919a86298b0054866aa">response</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a40cd5a6d58cc931bd5b24f5650178e9b">quotedSubHeaderFieldValue:fromHeaderFieldValue:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_authentication_request.html#a14b81f0a5da3ffff95449c9bfb25141d">nonquotedSubHeaderFieldValue:fromHeaderFieldValue:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a4e56aaa0a9b58c1753f14d7211851608">isBasic</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#aae2faa229099ee37aa31a7122a77bcce">isDigest</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a69ef68e1c04c1cce343727f6e8774324">base64Credentials</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#acc69f11ec7d9f8d4ca02c7e5081cca9d">username</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a779176a1d8dad80edb7579b9f60e7705">realm</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a07afa074b1449add4742e3e4650f0e02">nonce</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#abc7ac74710cedecb42f242e1c04b4331">uri</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a292deef6eb7484e232d401c57d135d75">qop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a13c1752f970f907dde0cd0884027dea1">nc</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#ac7bc119f7dfd510923a8b29d39703fc9">cnonce</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a34c84f400690c5b1c558556c99fd443f">response</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#aa08fdc8ab1a2ebdd3f3a8e4dfd669313">isBasic</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a88b068c656f62dbf7f5ec1a93c7a8cbd">isDigest</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a38b42f89af6ce047e17a0471720dd2b8">base64Credentials</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#adf18fc78791979a8bcee4008569e8e36">username</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a0bb3cb6e166f60c16541e67b5dfdd07b">realm</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a8730f7546ae54e4719670cb1ec8511dc">nonce</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a3e35c5498f4f5fdc1a2fc21682f7db2f">uri</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a451aac56c21aa4d9ee28d8fe0b608e2f">qop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a64b7ab2b759f281c8ab79f3f0d3138a8">nc</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a9c708d3b903b1e8bcf7556190a1f5350">cnonce</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_authentication_request.html#a778cbeca13f4023879bad800f6345fd8">response</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af252971d89f612147776b316e1c094eb"></a><!-- doxytag: member="HTTPAuthenticationRequest::base64Credentials" ref="af252971d89f612147776b316e1c094eb" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L11">11</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac062a998657f67d7b219726993a4719d"></a><!-- doxytag: member="HTTPAuthenticationRequest::base64Credentials" ref="ac062a998657f67d7b219726993a4719d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a69ef68e1c04c1cce343727f6e8774324">base64Credentials</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a38b42f89af6ce047e17a0471720dd2b8">base64Credentials</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -140,12 +141,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8f0ec5b2409120770101f5e05a97dbc9"></a><!-- doxytag: member="HTTPAuthenticationRequest::cnonce" ref="a8f0ec5b2409120770101f5e05a97dbc9" args="()" -->
+<a class="anchor" id="ace67f7a9ef3682a747d3e9719025cb6b"></a><!-- doxytag: member="HTTPAuthenticationRequest::cnonce" ref="ace67f7a9ef3682a747d3e9719025cb6b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#ac7bc119f7dfd510923a8b29d39703fc9">cnonce</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a9c708d3b903b1e8bcf7556190a1f5350">cnonce</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -157,7 +158,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7e011454e7eda409d3c3c10aafe5314a"></a><!-- doxytag: member="HTTPAuthenticationRequest::initWithRequest:" ref="a7e011454e7eda409d3c3c10aafe5314a" args="(HTTPMessage *request)" -->
+<a class="anchor" id="a1087ab9aef25296aa39960b9ad3e3160"></a><!-- doxytag: member="HTTPAuthenticationRequest::initWithRequest:" ref="a1087ab9aef25296aa39960b9ad3e3160" args="(HTTPMessage *request)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -174,14 +175,104 @@ Protected Attributes</h2></td></tr>
 <p>Initializes the <a class="el" href="interface_h_t_t_p_authentication_request.html">HTTPAuthenticationRequest</a> with an <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns id</p>
 <p>Initialize the <a class="el" href="interface_h_t_t_p_authentication_request.html">HTTPAuthenticationRequest</a> with an <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns id </p>
 
+<p>Definition at line <a class="el" href="#L32">32</a> of file <a class="el" href="">HTTPAuthenticationRequest.m</a>.</p>
+<div class="fragment"><pre class="fragment">                     :(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)request
+{
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init]))
+        {
+        <span class="comment">// Get the Authorization header field from the HTTP message</span>
+                NSString *authInfo = [request <a class="code" href="interface_h_t_t_p_message.html#ab42cedc7ff26adf1b581683abfb05cbd">headerField</a>:@&quot;Authorization&quot;];
+                
+        <span class="comment">// Set the basic authentication flag to no</span>
+                <a class="code" href="interface_h_t_t_p_authentication_request.html#ad3ca93d4065f7b8fb6c069f53f488e0b">isBasic</a> = NO;
+        
+        <span class="comment">// Check if the authorization header field to see if it has length greater than or equal to 6 characters. (i.e. the word &#39;Basic&#39; plus a space</span>
+                <span class="keywordflow">if</span> ([authInfo length] &gt;= 6)
+                {
+            
+            <span class="comment">// Returns a new string containing the characters of the receiver up to, but not including, the one at a given index</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#ad3ca93d4065f7b8fb6c069f53f488e0b">isBasic</a> = [[authInfo substringToIndex:6] caseInsensitiveCompare:@&quot;Basic &quot;] == NSOrderedSame;
+                }
+                
+        <span class="comment">// Set the digest authentication flag to no</span>
+                <a class="code" href="interface_h_t_t_p_authentication_request.html#aa260526398279ffc8328be6cc8351b51">isDigest</a> = NO;
+        
+        <span class="comment">// Check is the authorization header field is &#39;Digest&#39;</span>
+                <span class="keywordflow">if</span> ([authInfo length] &gt;= 7)
+                {
+            <span class="comment">// a new string containing the characters of the receiver up to, but not including, the one at a given index.</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#aa260526398279ffc8328be6cc8351b51">isDigest</a> = [[authInfo substringToIndex:7] caseInsensitiveCompare:@&quot;Digest &quot;] == NSOrderedSame;
+                }
+                
+        <span class="comment">// if using basic authentication</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_authentication_request.html#ad3ca93d4065f7b8fb6c069f53f488e0b">isBasic</a>)
+                {
+            
+            <span class="comment">// Gets the substring in the 7th position, makes a copy, and then schedules it for autorelease</span>
+                        NSMutableString *temp = [[[authInfo substringFromIndex:6] mutableCopy] autorelease];
+            
+            <span class="comment">// Trims any whitespace from the string</span>
+                        CFStringTrimWhitespace((CFMutableStringRef)temp);
+                        
+            <span class="comment">// Copies the value in the temp string to the base64Credentials variable</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#ac062a998657f67d7b219726993a4719d">base64Credentials</a> = [temp copy];
+                }
+                
+        
+        <span class="comment">// If using digest authentication</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_authentication_request.html#aa260526398279ffc8328be6cc8351b51">isDigest</a>)
+                {
+            <span class="comment">// Get the username from the header</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#a46ac1d13a26a1226e2387c158e82b74f">username</a> = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;username&quot; fromHeaderFieldValue:authInfo] retain];
+            
+            <span class="comment">// Get the realm from the header</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#a3629c94ae611c4ab16a4db3712c70900">realm</a>    = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;realm&quot; fromHeaderFieldValue:authInfo] retain];
+            
+            <span class="comment">// Get the nonce from the header</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#ab616da4c98b3861c04331027f3f27f63">nonce</a>    = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;nonce&quot; fromHeaderFieldValue:authInfo] retain];
+            
+            <span class="comment">// Get the URI from the header</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#afa2062cae80a810bcfec459f323bf59f">uri</a>      = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;uri&quot; fromHeaderFieldValue:authInfo] retain];
+                        
+                        <span class="comment">// It appears from RFC 2617 that the qop is to be given unquoted</span>
+                        <span class="comment">// Tests show that Firefox performs this way, but Safari does not</span>
+                        <span class="comment">// Thus we&#39;ll attempt to retrieve the value as nonquoted, but we&#39;ll verify it doesn&#39;t start with a quote</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#acfd5bcf9b712fa1edc4082e86a651cf2">qop</a>      = [<span class="keyword">self</span> nonquotedSubHeaderFieldValue:@&quot;qop&quot; fromHeaderFieldValue:authInfo];
+            
+            <span class="comment">// If there is a quality of protection setting</span>
+                        <span class="keywordflow">if</span>(<a class="code" href="interface_h_t_t_p_authentication_request.html#acfd5bcf9b712fa1edc4082e86a651cf2">qop</a> &amp;&amp; ([<a class="code" href="interface_h_t_t_p_authentication_request.html#acfd5bcf9b712fa1edc4082e86a651cf2">qop</a> characterAtIndex:0] == <span class="charliteral">&#39;&quot;&#39;</span>))
+                        {
+                <span class="comment">// gets the quality of protection</span>
+                <span class="comment">// Possible values are:</span>
+                <span class="comment">//  auth-int indicate authentication with integrity protection</span>
+                <span class="comment">//  auth-param</span>
+                                <a class="code" href="interface_h_t_t_p_authentication_request.html#acfd5bcf9b712fa1edc4082e86a651cf2">qop</a>  = [<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;qop&quot; fromHeaderFieldValue:authInfo];
+                        }
+            
+            <span class="comment">// Increment the reference count for the quality of protection</span>
+                        [qop retain];
+                        
+            <span class="comment">//Retrieves a nonquoted &quot;Sub Header Field Value&quot; from a given header field value.</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#a2dc293022a3b1951125385b014c31a14">nc</a>       = [[<span class="keyword">self</span> nonquotedSubHeaderFieldValue:@&quot;nc&quot; fromHeaderFieldValue:authInfo] retain];
+            
+            <span class="comment">// Retrieves a quoted &quot;Sub Header Field Value&quot; from a given header field value.</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#ace67f7a9ef3682a747d3e9719025cb6b">cnonce</a>   = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;cnonce&quot; fromHeaderFieldValue:authInfo] retain];
+            
+            <span class="comment">// Retrieves a quoted &quot;Sub Header Field Value&quot; from a given header field value.</span>
+                        <a class="code" href="interface_h_t_t_p_authentication_request.html#a144aa621bd07b919a86298b0054866aa">response</a> = [[<span class="keyword">self</span> quotedSubHeaderFieldValue:@&quot;response&quot; fromHeaderFieldValue:authInfo] retain];
+                }
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a3ead809efa0b1297348fd7f1ad37061c"></a><!-- doxytag: member="HTTPAuthenticationRequest::isBasic" ref="a3ead809efa0b1297348fd7f1ad37061c" args="()" -->
+<a class="anchor" id="ad3ca93d4065f7b8fb6c069f53f488e0b"></a><!-- doxytag: member="HTTPAuthenticationRequest::isBasic" ref="ad3ca93d4065f7b8fb6c069f53f488e0b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#a4e56aaa0a9b58c1753f14d7211851608">isBasic</a> </td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#aa08fdc8ab1a2ebdd3f3a8e4dfd669313">isBasic</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -193,12 +284,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7d33b845fdae1eb9f927391dbba5b9eb"></a><!-- doxytag: member="HTTPAuthenticationRequest::isDigest" ref="a7d33b845fdae1eb9f927391dbba5b9eb" args="()" -->
+<a class="anchor" id="aa260526398279ffc8328be6cc8351b51"></a><!-- doxytag: member="HTTPAuthenticationRequest::isDigest" ref="aa260526398279ffc8328be6cc8351b51" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#aae2faa229099ee37aa31a7122a77bcce">isDigest</a> </td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#a88b068c656f62dbf7f5ec1a93c7a8cbd">isDigest</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -210,12 +301,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a345617dae869ccb6b261319aa7a3095b"></a><!-- doxytag: member="HTTPAuthenticationRequest::nc" ref="a345617dae869ccb6b261319aa7a3095b" args="()" -->
+<a class="anchor" id="a2dc293022a3b1951125385b014c31a14"></a><!-- doxytag: member="HTTPAuthenticationRequest::nc" ref="a2dc293022a3b1951125385b014c31a14" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a13c1752f970f907dde0cd0884027dea1">nc</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a64b7ab2b759f281c8ab79f3f0d3138a8">nc</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -227,12 +318,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa9bfe42e66623428dc29aafea7a6c130"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonce" ref="aa9bfe42e66623428dc29aafea7a6c130" args="()" -->
+<a class="anchor" id="ab616da4c98b3861c04331027f3f27f63"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonce" ref="ab616da4c98b3861c04331027f3f27f63" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a07afa074b1449add4742e3e4650f0e02">nonce</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a8730f7546ae54e4719670cb1ec8511dc">nonce</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -244,12 +335,40 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2bae8640ac675c0038c4d7be8ef177ef"></a><!-- doxytag: member="HTTPAuthenticationRequest::qop" ref="a2bae8640ac675c0038c4d7be8ef177ef" args="()" -->
+<a class="anchor" id="a14b81f0a5da3ffff95449c9bfb25141d"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonquotedSubHeaderFieldValue:fromHeaderFieldValue:" ref="a14b81f0a5da3ffff95449c9bfb25141d" args="(NSString *param,[fromHeaderFieldValue] NSString *header)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a292deef6eb7484e232d401c57d135d75">qop</a> </td>
+          <td class="memname">- (NSString *) nonquotedSubHeaderFieldValue: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>param</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">fromHeaderFieldValue:</td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>header</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString param NSString returns NSString </p>
+
+</div>
+</div>
+<a class="anchor" id="acfd5bcf9b712fa1edc4082e86a651cf2"></a><!-- doxytag: member="HTTPAuthenticationRequest::qop" ref="acfd5bcf9b712fa1edc4082e86a651cf2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a451aac56c21aa4d9ee28d8fe0b608e2f">qop</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -261,12 +380,39 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad0fccc696d475a10b7152dc59b023dce"></a><!-- doxytag: member="HTTPAuthenticationRequest::realm" ref="ad0fccc696d475a10b7152dc59b023dce" args="()" -->
+<a class="anchor" id="a40cd5a6d58cc931bd5b24f5650178e9b"></a><!-- doxytag: member="HTTPAuthenticationRequest::quotedSubHeaderFieldValue:fromHeaderFieldValue:" ref="a40cd5a6d58cc931bd5b24f5650178e9b" args="(NSString *param,[fromHeaderFieldValue] NSString *header)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a779176a1d8dad80edb7579b9f60e7705">realm</a> </td>
+          <td class="memname">- (NSString *) quotedSubHeaderFieldValue: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>param</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">fromHeaderFieldValue:</td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>header</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3629c94ae611c4ab16a4db3712c70900"></a><!-- doxytag: member="HTTPAuthenticationRequest::realm" ref="a3629c94ae611c4ab16a4db3712c70900" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a0bb3cb6e166f60c16541e67b5dfdd07b">realm</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -278,12 +424,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4b6c2e80e3f2814d876c38ecd8b67c6b"></a><!-- doxytag: member="HTTPAuthenticationRequest::response" ref="a4b6c2e80e3f2814d876c38ecd8b67c6b" args="()" -->
+<a class="anchor" id="a144aa621bd07b919a86298b0054866aa"></a><!-- doxytag: member="HTTPAuthenticationRequest::response" ref="a144aa621bd07b919a86298b0054866aa" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a34c84f400690c5b1c558556c99fd443f">response</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a778cbeca13f4023879bad800f6345fd8">response</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -295,12 +441,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5334577dbdff67f1e16452c96b920661"></a><!-- doxytag: member="HTTPAuthenticationRequest::uri" ref="a5334577dbdff67f1e16452c96b920661" args="()" -->
+<a class="anchor" id="afa2062cae80a810bcfec459f323bf59f"></a><!-- doxytag: member="HTTPAuthenticationRequest::uri" ref="afa2062cae80a810bcfec459f323bf59f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#abc7ac74710cedecb42f242e1c04b4331">uri</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a3e35c5498f4f5fdc1a2fc21682f7db2f">uri</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -316,12 +462,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa633648423a9cede3cb322a0fae06c1f"></a><!-- doxytag: member="HTTPAuthenticationRequest::username" ref="aa633648423a9cede3cb322a0fae06c1f" args="()" -->
+<a class="anchor" id="a46ac1d13a26a1226e2387c158e82b74f"></a><!-- doxytag: member="HTTPAuthenticationRequest::username" ref="a46ac1d13a26a1226e2387c158e82b74f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#acc69f11ec7d9f8d4ca02c7e5081cca9d">username</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#adf18fc78791979a8bcee4008569e8e36">username</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -333,171 +479,204 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a69ef68e1c04c1cce343727f6e8774324"></a><!-- doxytag: member="HTTPAuthenticationRequest::base64Credentials" ref="a69ef68e1c04c1cce343727f6e8774324" args="" -->
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a38b42f89af6ce047e17a0471720dd2b8"></a><!-- doxytag: member="HTTPAuthenticationRequest::base64Credentials" ref="a38b42f89af6ce047e17a0471720dd2b8" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a69ef68e1c04c1cce343727f6e8774324">base64Credentials</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a38b42f89af6ce047e17a0471720dd2b8">base64Credentials</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>base64 encoding of basic authentication credentials</p>
 <p>Returns base64 credentials returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L26">26</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="ac7bc119f7dfd510923a8b29d39703fc9"></a><!-- doxytag: member="HTTPAuthenticationRequest::cnonce" ref="ac7bc119f7dfd510923a8b29d39703fc9" args="" -->
+<a class="anchor" id="a9c708d3b903b1e8bcf7556190a1f5350"></a><!-- doxytag: member="HTTPAuthenticationRequest::cnonce" ref="a9c708d3b903b1e8bcf7556190a1f5350" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#ac7bc119f7dfd510923a8b29d39703fc9">cnonce</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a9c708d3b903b1e8bcf7556190a1f5350">cnonce</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field. The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, to provide mutual authentication, and to provide some message integrity protection.</p>
 <p>A cnonce is a a client-specified data string which MUST be different each time a digest-response is sent as part of initial authentication. The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, and to provide mutual authentication. The security of the implementation depends on a good choice. It is RECOMMENDED that it contain at least 64 bits of entropy. This directive is required and MUST be present exactly once; otherwise, authentication fails. </p>
 
+<p>Definition at line <a class="el" href="#L62">62</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a4e56aaa0a9b58c1753f14d7211851608"></a><!-- doxytag: member="HTTPAuthenticationRequest::isBasic" ref="a4e56aaa0a9b58c1753f14d7211851608" args="" -->
+<a class="anchor" id="aa08fdc8ab1a2ebdd3f3a8e4dfd669313"></a><!-- doxytag: member="HTTPAuthenticationRequest::isBasic" ref="aa08fdc8ab1a2ebdd3f3a8e4dfd669313" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#a4e56aaa0a9b58c1753f14d7211851608">isBasic</a><code> [protected]</code></td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#aa08fdc8ab1a2ebdd3f3a8e4dfd669313">isBasic</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Whether basic authentication basic access authentication is a method designed to allow a web browser, or other client program, to provide credentials – in the form of a user name and password – when making a request</p>
 <p>Gets whether basic authentication returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L16">16</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="aae2faa229099ee37aa31a7122a77bcce"></a><!-- doxytag: member="HTTPAuthenticationRequest::isDigest" ref="aae2faa229099ee37aa31a7122a77bcce" args="" -->
+<a class="anchor" id="a88b068c656f62dbf7f5ec1a93c7a8cbd"></a><!-- doxytag: member="HTTPAuthenticationRequest::isDigest" ref="a88b068c656f62dbf7f5ec1a93c7a8cbd" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#aae2faa229099ee37aa31a7122a77bcce">isDigest</a><code> [protected]</code></td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_authentication_request.html#a88b068c656f62dbf7f5ec1a93c7a8cbd">isDigest</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Digest access authentication is one of the agreed methods a web server can use to negotiate credentials with a web user's browser. It uses encryption to send the password over the network which is safer than the Basic access authentication that sends plaintext.</p>
 <p>Whether digest authentication returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L21">21</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a13c1752f970f907dde0cd0884027dea1"></a><!-- doxytag: member="HTTPAuthenticationRequest::nc" ref="a13c1752f970f907dde0cd0884027dea1" args="" -->
+<a class="anchor" id="a64b7ab2b759f281c8ab79f3f0d3138a8"></a><!-- doxytag: member="HTTPAuthenticationRequest::nc" ref="a64b7ab2b759f281c8ab79f3f0d3138a8" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a13c1752f970f907dde0cd0884027dea1">nc</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a64b7ab2b759f281c8ab79f3f0d3138a8">nc</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field. The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request. For example, in the first request sent in response to a given nonce value, the client sends "nc=00000001". The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay.</p>
 <p>Returns the nonce count The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request. For example, in the first request sent in response to a given nonce value, the client sends "nc=00000001". The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. See the description below of the construction of the response value. This directive may appear at most once; if multiple instances are present, the client should abort the authentication exchange. </p>
 
+<p>Definition at line <a class="el" href="#L57">57</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a07afa074b1449add4742e3e4650f0e02"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonce" ref="a07afa074b1449add4742e3e4650f0e02" args="" -->
+<a class="anchor" id="a8730f7546ae54e4719670cb1ec8511dc"></a><!-- doxytag: member="HTTPAuthenticationRequest::nonce" ref="a8730f7546ae54e4719670cb1ec8511dc" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a07afa074b1449add4742e3e4650f0e02">nonce</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a8730f7546ae54e4719670cb1ec8511dc">nonce</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>A server-specified data string which should be uniquely generated each time a 401 response is made. It is recommended that this string be base64 or hexadecimal data. Specifically, since the string is passed in the header lines as a quoted string, the double-quote character is not allowed.</p>
 <p>Returns the nonce The server-specified data string received in the preceding digest-challenge. This directive is required and MUST be present exactly once; otherwise, authentication fails. </p>
 
+<p>Definition at line <a class="el" href="#L42">42</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a292deef6eb7484e232d401c57d135d75"></a><!-- doxytag: member="HTTPAuthenticationRequest::qop" ref="a292deef6eb7484e232d401c57d135d75" args="" -->
+<a class="anchor" id="a451aac56c21aa4d9ee28d8fe0b608e2f"></a><!-- doxytag: member="HTTPAuthenticationRequest::qop" ref="a451aac56c21aa4d9ee28d8fe0b608e2f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a292deef6eb7484e232d401c57d135d75">qop</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a451aac56c21aa4d9ee28d8fe0b608e2f">qop</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>This directive is optional, but is made so only for backward compatibility with RFC 2069 [6]; it SHOULD be used by all implementations compliant with this version of the Digest scheme. If present, it is a quoted string of one or more tokens indicating the "quality of protection" values supported by the server. The value "auth" indicates authentication; the value "auth-int"indicates authentication with integrity protection;</p>
 <p>Returns the quality of protection Indicates what "quality of protection" the client accepted. If present, it may appear exactly once and its value MUST be one of the alternatives in qop-options. If not present, it defaults to "auth". These values affect the computation of the response. Note that this is a single token, not a quoted list of alternatives. </p>
 
+<p>Definition at line <a class="el" href="#L52">52</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a779176a1d8dad80edb7579b9f60e7705"></a><!-- doxytag: member="HTTPAuthenticationRequest::realm" ref="a779176a1d8dad80edb7579b9f60e7705" args="" -->
+<a class="anchor" id="a0bb3cb6e166f60c16541e67b5dfdd07b"></a><!-- doxytag: member="HTTPAuthenticationRequest::realm" ref="a0bb3cb6e166f60c16541e67b5dfdd07b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a779176a1d8dad80edb7579b9f60e7705">realm</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a0bb3cb6e166f60c16541e67b5dfdd07b">realm</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>A string to be displayed to users so they know which username and password to use. This string should contain at least the name of the host performing the authentication and might additionally indicate the collection of users who might have access. An example might be "registered_users@gotham.news.com".</p>
 <p>Returns the realm The realm containing the user's account. This directive is required if the server provided any realms in the "digest-challenge", in which case it may appear exactly once and its value SHOULD be one of those realms. If the directive is missing, "realm-value" will set to the empty string when computing A1 (see below for details). </p>
 
+<p>Definition at line <a class="el" href="#L36">36</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a34c84f400690c5b1c558556c99fd443f"></a><!-- doxytag: member="HTTPAuthenticationRequest::response" ref="a34c84f400690c5b1c558556c99fd443f" args="" -->
+<a class="anchor" id="a778cbeca13f4023879bad800f6345fd8"></a><!-- doxytag: member="HTTPAuthenticationRequest::response" ref="a778cbeca13f4023879bad800f6345fd8" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a34c84f400690c5b1c558556c99fd443f">response</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a778cbeca13f4023879bad800f6345fd8">response</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>A string of 32 hex digits computed as defined below, which proves that the user knows a password</p>
 <p>Returns the response A string of 32 hex digits computed as defined below, which proves that the user knows a password. This directive is required and MUST be present exactly once; otherwise, authentication fails. </p>
 
-</div>
-</div>
-<a class="anchor" id="abc7ac74710cedecb42f242e1c04b4331"></a><!-- doxytag: member="HTTPAuthenticationRequest::uri" ref="abc7ac74710cedecb42f242e1c04b4331" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#abc7ac74710cedecb42f242e1c04b4331">uri</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Returns the URI </p>
+<p>Definition at line <a class="el" href="#L67">67</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acc69f11ec7d9f8d4ca02c7e5081cca9d"></a><!-- doxytag: member="HTTPAuthenticationRequest::username" ref="acc69f11ec7d9f8d4ca02c7e5081cca9d" args="" -->
+<a class="anchor" id="a3e35c5498f4f5fdc1a2fc21682f7db2f"></a><!-- doxytag: member="HTTPAuthenticationRequest::uri" ref="a3e35c5498f4f5fdc1a2fc21682f7db2f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#acc69f11ec7d9f8d4ca02c7e5081cca9d">username</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#a3e35c5498f4f5fdc1a2fc21682f7db2f">uri</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>The URI from Request-URI of the Request-Line; duplicated here because proxies are allowed to change the Request-Line in transit.</p>
+<p>Returns the URI </p>
+
+<p>Definition at line <a class="el" href="#L47">47</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adf18fc78791979a8bcee4008569e8e36"></a><!-- doxytag: member="HTTPAuthenticationRequest::username" ref="adf18fc78791979a8bcee4008569e8e36" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_authentication_request.html#adf18fc78791979a8bcee4008569e8e36">username</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The user's name in the specified realm.</p>
 <p>Returns the username The user's name in the specified realm, encoded according to the value of the "charset" directive. This directive is required and MUST be present exactly once; otherwise, authentication fails. </p>
+
+<p>Definition at line <a class="el" href="#L31">31</a> of file <a class="el" href="">HTTPAuthenticationRequest.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_authentication_request_8h_source.html">HTTPAuthenticationRequest.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAuthenticationRequest.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPAuthenticationRequest.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPAuthenticationRequest.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_authentication_request.html">HTTPAuthenticationRequest</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -507,7 +686,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,37 +82,89 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDTTYLogger.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a href="_d_d_t_t_y_logger_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="preprocessor">#import &quot;DDLog.h&quot;</span>
-<a name="l00004"></a>00004 
+<a name="l00003"></a>00003 <span class="preprocessor">#import &quot;<a class="code" href="_d_d_log_8h.html">DDLog.h</a>&quot;</span>
+<a name="l00004"></a>00004 <span class="comment"></span>
+<a name="l00005"></a>00005 <span class="comment">/**</span>
+<a name="l00006"></a>00006 <span class="comment"> * Welcome to Cocoa Lumberjack!</span>
+<a name="l00007"></a>00007 <span class="comment"> * </span>
+<a name="l00008"></a>00008 <span class="comment"> * The Google Code page has a wealth of documentation if you have any questions.</span>
+<a name="l00009"></a>00009 <span class="comment"> * http://code.google.com/p/cocoalumberjack/</span>
+<a name="l00010"></a>00010 <span class="comment"> * </span>
+<a name="l00011"></a>00011 <span class="comment"> * If you&#39;re new to the project you may wish to read the &quot;Getting Started&quot; page.</span>
+<a name="l00012"></a>00012 <span class="comment"> * http://code.google.com/p/cocoalumberjack/wiki/GettingStarted</span>
+<a name="l00013"></a>00013 <span class="comment"> * </span>
+<a name="l00014"></a>00014 <span class="comment"> * </span>
+<a name="l00015"></a>00015 <span class="comment"> * This class provides a logger for Terminal output or Xcode console output,</span>
+<a name="l00016"></a>00016 <span class="comment"> * depending on where you are running your code.</span>
+<a name="l00017"></a>00017 <span class="comment"> * </span>
+<a name="l00018"></a>00018 <span class="comment"> * As described in the &quot;Getting Started&quot; page,</span>
+<a name="l00019"></a>00019 <span class="comment"> * the traditional NSLog() function directs it&#39;s output to two places:</span>
+<a name="l00020"></a>00020 <span class="comment"> * </span>
+<a name="l00021"></a>00021 <span class="comment"> * - Apple System Log (so it shows up in Console.app)</span>
+<a name="l00022"></a>00022 <span class="comment"> * - StdErr (if stderr is a TTY, so log statements show up in Xcode console)</span>
+<a name="l00023"></a>00023 <span class="comment"> * </span>
+<a name="l00024"></a>00024 <span class="comment"> * To duplicate NSLog() functionality you can simply add this logger and an asl logger.</span>
+<a name="l00025"></a>00025 <span class="comment"> * However, if you instead choose to use file logging (for faster performance),</span>
+<a name="l00026"></a>00026 <span class="comment"> * you may choose to use only a file logger and a tty logger.</span>
+<a name="l00027"></a>00027 <span class="comment">**/</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 <span class="comment"></span>
+<a name="l00030"></a>00030 <span class="comment">/**</span>
+<a name="l00031"></a>00031 <span class="comment">    Use the DDLogger protocol</span>
+<a name="l00032"></a>00032 <span class="comment">**/</span>
 <a name="l00033"></a><a class="code" href="interface_d_d_t_t_y_logger.html">00033</a> <span class="keyword">@interface </span><a class="code" href="interface_d_d_t_t_y_logger.html">DDTTYLogger</a> : <a class="code" href="interface_d_d_abstract_logger.html">DDAbstractLogger</a> &lt;<a class="code" href="protocol_d_d_logger-p.html">DDLogger</a>&gt;
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035         BOOL isaTTY;
-<a name="l00036"></a>00036         
-<a name="l00037"></a>00037         NSDateFormatter *dateFormatter;
-<a name="l00038"></a>00038         
-<a name="l00039"></a>00039         <span class="keywordtype">char</span> *app; <span class="comment">// Not null terminated</span>
-<a name="l00040"></a>00040         <span class="keywordtype">char</span> *pid; <span class="comment">// Not null terminated</span>
-<a name="l00041"></a>00041         
-<a name="l00042"></a>00042         <span class="keywordtype">size_t</span> appLen;
-<a name="l00043"></a>00043         <span class="keywordtype">size_t</span> pidLen; <span class="comment">// process id length</span>
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00049"></a>00049 + (<a class="code" href="interface_d_d_t_t_y_logger.html">DDTTYLogger</a> *)sharedInstance;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="comment">// Inherited from DDAbstractLogger</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="comment">// - (id &lt;DDLogFormatter&gt;)logFormatter;</span>
-<a name="l00054"></a>00054 <span class="comment">// - (void)setLogFormatter:(id &lt;DDLogFormatter&gt;)formatter;</span>
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="keyword">@end</span>
+<a name="l00034"></a>00034 {<span class="comment"></span>
+<a name="l00035"></a>00035 <span class="comment">    /**</span>
+<a name="l00036"></a>00036 <span class="comment">     </span>
+<a name="l00037"></a>00037 <span class="comment">    **/</span>
+<a name="l00038"></a>00038         BOOL <a class="code" href="interface_d_d_t_t_y_logger.html#ade3e1ff956fc206c4c4e4c69420e397d">isaTTY</a>;
+<a name="l00039"></a><a class="code" href="interface_d_d_t_t_y_logger.html#ade3e1ff956fc206c4c4e4c69420e397d">00039</a>         
+<a name="l00040"></a>00040     <span class="comment"></span>
+<a name="l00041"></a>00041 <span class="comment">    /**</span>
+<a name="l00042"></a>00042 <span class="comment">     </span>
+<a name="l00043"></a>00043 <span class="comment">    **/</span>
+<a name="l00044"></a>00044         NSDateFormatter *<a class="code" href="interface_d_d_t_t_y_logger.html#a0ca4636401f44abb28dd1de4d13e4588">dateFormatter</a>;
+<a name="l00045"></a><a class="code" href="interface_d_d_t_t_y_logger.html#a0ca4636401f44abb28dd1de4d13e4588">00045</a>         <span class="comment"></span>
+<a name="l00046"></a>00046 <span class="comment">    /**</span>
+<a name="l00047"></a>00047 <span class="comment">      Not null terminated</span>
+<a name="l00048"></a>00048 <span class="comment">    **/</span>
+<a name="l00049"></a>00049         <span class="keywordtype">char</span> *<a class="code" href="interface_d_d_t_t_y_logger.html#a9e5f57131367eff409b9e0bd7b31aa1a">app</a>; 
+<a name="l00050"></a><a class="code" href="interface_d_d_t_t_y_logger.html#a9e5f57131367eff409b9e0bd7b31aa1a">00050</a>     <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">    /**</span>
+<a name="l00052"></a>00052 <span class="comment">      Not null terminated</span>
+<a name="l00053"></a>00053 <span class="comment">    **/</span>
+<a name="l00054"></a>00054         <span class="keywordtype">char</span> *<a class="code" href="interface_d_d_t_t_y_logger.html#aca2dbe38e002239b106d230253c0a1de">pid</a>; 
+<a name="l00055"></a><a class="code" href="interface_d_d_t_t_y_logger.html#aca2dbe38e002239b106d230253c0a1de">00055</a>         <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">    /**</span>
+<a name="l00057"></a>00057 <span class="comment">     </span>
+<a name="l00058"></a>00058 <span class="comment">    **/</span>
+<a name="l00059"></a>00059         <span class="keywordtype">size_t</span> <a class="code" href="interface_d_d_t_t_y_logger.html#aae7a3fc65c6b299810a675e5739b4e1a">appLen</a>;
+<a name="l00060"></a><a class="code" href="interface_d_d_t_t_y_logger.html#aae7a3fc65c6b299810a675e5739b4e1a">00060</a>     <span class="comment"></span>
+<a name="l00061"></a>00061 <span class="comment">    /**</span>
+<a name="l00062"></a>00062 <span class="comment">      process id length</span>
+<a name="l00063"></a>00063 <span class="comment">    **/</span>
+<a name="l00064"></a>00064         <span class="keywordtype">size_t</span> <a class="code" href="interface_d_d_t_t_y_logger.html#ab871d23cc971625404b3a0682b2309b9">pidLen</a>; 
+<a name="l00065"></a><a class="code" href="interface_d_d_t_t_y_logger.html#ab871d23cc971625404b3a0682b2309b9">00065</a> }
+<a name="l00066"></a>00066 <span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">/**</span>
+<a name="l00068"></a>00068 <span class="comment">    Class method</span>
+<a name="l00069"></a>00069 <span class="comment">**/</span>
+<a name="l00070"></a>00070 + (<a class="code" href="interface_d_d_t_t_y_logger.html">DDTTYLogger</a> *)sharedInstance;
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="comment">// Inherited from DDAbstractLogger</span>
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="comment">// - (id &lt;DDLogFormatter&gt;)logFormatter;</span>
+<a name="l00075"></a>00075 <span class="comment">// - (void)setLogFormatter:(id &lt;DDLogFormatter&gt;)formatter;</span>
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>DDTTYLogger.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_d_d_t_t_y_logger_8h.html">DDTTYLogger.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:47 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -121,7 +174,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

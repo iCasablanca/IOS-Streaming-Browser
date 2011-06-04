@@ -19,8 +19,20 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 @interface IOS_Streaming_BrowserViewController()
+
+/**
+    Start recording
+**/
 -(void) startRecording;
+
+/**
+    Stop recording
+**/
 -(void) stopRecording;
+
+/**
+    Take a screen shot
+**/
 -(UIImage*) screenshot;
 @end
 
@@ -36,7 +48,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Deallocate the object
+    Deallocate the object
 **/
 - (void)dealloc
 {
@@ -52,7 +64,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Executed upon the receipt of a memory warning
+    Executed upon the receipt of a memory warning
 **/
 - (void)didReceiveMemoryWarning
 {
@@ -64,8 +76,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark screenshot
 
+/**
 // copied from http://developer.apple.com/library/ios/#qa/qa1703/_index.html ,
 // with new imageScale to take Retina-to-320x480 scaling into account
+    returns UIImage
+**/
 - (UIImage*)screenshot 
 {
     
@@ -144,16 +159,21 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark helpers
 
 /**
- Gets the path to the document directory
+    Gets the path to the document directory
+    returns NSString
 **/
 -(NSString*) pathToDocumentsDirectory {
+    
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
 	NSString *documentsDirectory = [paths objectAtIndex:0];
+    
 	return documentsDirectory;
 }
 
 /**
- Write the image
+    Write the image
+    param NSTimer
 **/
 -(void) writeImage: (NSTimer*) _timer {
     
@@ -229,7 +249,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Stop the HTTP server
+    Stop the HTTP server
 **/
 -(void) stopHttpServer
 {
@@ -240,7 +260,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Starts Recording images
+    Starts Recording images
 **/
 -(void) startRecording 
 { 
@@ -255,7 +275,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Stop recording images
+    Stop recording images
 **/
 -(void) stopRecording {
     DDLogError(@"stopRecording");
@@ -282,7 +302,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark - View lifecycle
 
 /**
- 
+    The view will appear
+    param BOOL
 **/
 - (void) viewWillAppear:(BOOL)animated {
     DDLogError(@"viewWillAppear");
@@ -327,7 +348,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Executed upon the view unloading
+    Executed upon the view unloading
 **/
 - (void)viewDidUnload
 {
@@ -341,7 +362,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Whether the screen should autorotate
+    Whether the screen should autorotate
+    param UIInterfaceOrientation
+    returns BOOL
 **/
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -353,7 +376,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark event handlers
 
 /**
- Upon the start/stop button being pressed
+    Upon the start/stop button being pressed
+    param id
+    returns IBAction
 **/
 -(IBAction) handleStartStopTapped: (id) sender 
 {
@@ -375,8 +400,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Gets the address from the address bar, and updates
- the webview with the requested URL
+    Gets the address from the address bar, and updates the webview with the requested URL
+    param id
+    returns IBAction
 **/
 -(IBAction)gotoAddress:(id) sender 
 {
@@ -397,7 +423,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Upon the back button being pressed on the webview
+    Upon the back button being pressed on the webview
+    param id
+    returns IBAction
 **/
 -(IBAction) goBack:(id)sender 
 {
@@ -406,7 +434,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Upon the configure button being pressed
+    Upon the configure button being pressed
+    param id
+    returns IBAction
 **/
 -(IBAction) configureButton:(id)sender 
 {
@@ -423,7 +453,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Upon the forward button being pressed on the webview
+    Upon the forward button being pressed on the webview
+    param id
+    returns IBAction
 **/
 -(IBAction) goForward:(id)sender 
 {
@@ -433,7 +465,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Upon the reload image beinging pressed on the webview
+    Upon the reload image beinging pressed on the webview
+    param id
+    returns IBAction
 **/
 -(IBAction) reloadPage:(id)sender 
 {
@@ -443,7 +477,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- Upon the stop loading button beinging pressed on the webview
+    Upon the stop loading button beinging pressed on the webview
+    param id
+    returns IBAction
 **/
 -(IBAction) stopLoading:(id)sender 
 {
@@ -454,7 +490,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Upon the Home button being pressed on the webview
+    Upon the Home button being pressed on the webview
+    param id
+    returns IBAction
 **/
 -(IBAction) goHome:(id)sender {
     DDLogError(@"goHome");
@@ -467,10 +505,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 	
     NSMutableURLRequest *requestObj = [NSMutableURLRequest requestWithURL:url];
 	
-
-
-   
-	
 	[webView loadRequest:requestObj];
 	[addressBar setText:urlAddress];
 }
@@ -478,6 +512,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 /**
     Whether should load the request in the UIWebView
+    param UIWebView
+    param NSMutableURLRequest
+    param UIWebViewNavigationType
     returns BOOL
 **/
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSMutableURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
@@ -681,8 +718,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Start the activity indicator when the webview
- starts loading a webpage
+    Start the activity indicator when the webview starts loading a webpage
+    param UIWebView
 **/
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
@@ -692,8 +729,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
- Stop the activity indicator when the webview
- finishes loading the webpage
+    Stop the activity indicator when the webview finishes loading the webpage
+    param UIWebView
 **/
 - (void)webViewDidFinishLoad:(UIWebView *)webView 
 {
@@ -703,7 +740,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- 
+    The webView did load with an error
+    param UIWebView
+    param NSError
 **/
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     DDLogError(@"webView didFailLoadWithError: %@",error);
@@ -713,6 +752,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 /**
     Updates the broadcast ip/port label on the view
+    param NSNotification
 **/
 - (void)displayInfoUpdate:(NSNotification *) notification
 {

@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,7 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HTTPRedirectResponse Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPRedirectResponse" --><!-- doxytag: inherits="HTTPResponse-p" --><div class="dynheader">
+<!-- doxytag: class="HTTPRedirectResponse" --><!-- doxytag: inherits="HTTPResponse-p" -->
+<p><code>#import &lt;<a class="el" href="">HTTPRedirectResponse.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for HTTPRedirectResponse:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_h_t_t_p_redirect_response__inherit__graph.png" border="0" usemap="#_h_t_t_p_redirect_response_inherit__map" alt="Inheritance graph"/></div>
@@ -101,19 +103,19 @@ Collaboration diagram for HTTPRedirectResponse:</div>
 <map name="_h_t_t_p_redirect_response_coll__map" id="_h_t_t_p_redirect_response_coll__map">
 <area shape="rect" id="node2" href="protocol_h_t_t_p_response-p.html" title="\&lt;HTTPResponse\&gt;" alt="" coords="25,6,172,34"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_h_t_t_p_redirect_response-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_redirect_response.html#a0e3949c2e2a8ca35d5ac78d48d5f3fd7">initWithPath:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_redirect_response.html#a363e9f094258ecfaeb1f52cbc87fb593">initWithPath:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bd27b7327ac954ae0b26333cf9d40cf"></a><!-- doxytag: member="HTTPRedirectResponse::redirectPath" ref="a0bd27b7327ac954ae0b26333cf9d40cf" args="" -->
-NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>redirectPath</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_redirect_response.html#ac11dcb871f7067b8f5aaf70ef03c4959">redirectPath</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0e3949c2e2a8ca35d5ac78d48d5f3fd7"></a><!-- doxytag: member="HTTPRedirectResponse::initWithPath:" ref="a0e3949c2e2a8ca35d5ac78d48d5f3fd7" args="(NSString *redirectPath)" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L6">6</a> of file <a class="el" href="">HTTPRedirectResponse.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a363e9f094258ecfaeb1f52cbc87fb593"></a><!-- doxytag: member="HTTPRedirectResponse::initWithPath:" ref="a363e9f094258ecfaeb1f52cbc87fb593" args="(NSString *redirectPath)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -129,18 +131,47 @@ NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>redirectPath</b
 <div class="memdoc">
 <p>Initialize the <a class="el" href="interface_h_t_t_p_redirect_response.html">HTTPRedirectResponse</a> with a redirectPath param NSString returns id </p>
 
+<p>Definition at line <a class="el" href="#L5">5</a> of file <a class="el" href="">HTTPRedirectResponse.m</a>.</p>
+<div class="fragment"><pre class="fragment">                  :(NSString *)path
+{
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init]))
+        {
+                <span class="comment">// Copies the path</span>
+                <a class="code" href="interface_h_t_t_p_redirect_response.html#ac11dcb871f7067b8f5aaf70ef03c4959">redirectPath</a> = [path copy];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+
+</pre></div>
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="ac11dcb871f7067b8f5aaf70ef03c4959"></a><!-- doxytag: member="HTTPRedirectResponse::redirectPath" ref="ac11dcb871f7067b8f5aaf70ef03c4959" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString*) <a class="el" href="interface_h_t_t_p_redirect_response.html#ac11dcb871f7067b8f5aaf70ef03c4959">redirectPath</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The redirect path </p>
+
+<p>Definition at line <a class="el" href="#L12">12</a> of file <a class="el" href="">HTTPRedirectResponse.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_redirect_response_8h_source.html">HTTPRedirectResponse.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPRedirectResponse.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPRedirectResponse.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPRedirectResponse.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_redirect_response.html">HTTPRedirectResponse</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -150,7 +181,7 @@ NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>redirectPath</b
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

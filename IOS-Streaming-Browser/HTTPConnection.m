@@ -1979,10 +1979,12 @@ static NSMutableArray *recentNonces;
     // Gets the number of bytes of the http response body that are sitting in asyncSocket's write queue, and ready to sent to the host
 	NSUInteger writeQueueSize = [self writeQueueSize];
 	
+    
 	if(writeQueueSize >= READ_CHUNKSIZE) 
     {
         return;
     }
+    
     
     
 	DDRange range = [[ranges objectAtIndex:rangeIndex] ddrangeValue];
@@ -2162,11 +2164,13 @@ static NSMutableArray *recentNonces;
 	//           fullPath="/Users/robbie/Sites_Secret/TopSecret"
 	//////////////////////////////////////////////////////////////
     
+    // If the document root does NOT have a forward slash as a suffix
 	if (![documentRoot hasSuffix:@"/"])
 	{
 		documentRoot = [documentRoot stringByAppendingString:@"/"];
 	}
 	
+    
 	if (![fullPath hasPrefix:documentRoot])
 	{
 		return nil;
@@ -2537,6 +2541,8 @@ static NSMutableArray *recentNonces;
 	// 
 	// Thus, we are using a static NSDateFormatter here.
 	
+    
+    
 	static NSDateFormatter *df;
 	
 	static dispatch_once_t onceToken;
@@ -2778,8 +2784,11 @@ static NSMutableArray *recentNonces;
 						return;
 					}
 				}
-				
+                
+				// Set the http request's content length to zero
 				requestContentLength = 0;
+                
+                // Sets the number of bytes received from the host to zero
 				requestContentLengthReceived = 0;
 			}
 			
@@ -2968,6 +2977,7 @@ static NSMutableArray *recentNonces;
 			[httpResponse release];
 			httpResponse = nil;
 			
+            // Release the ranges, headers, boundary and set to nil
 			[ranges release];
 			[ranges_headers release];
 			[ranges_boundry release];
@@ -2975,11 +2985,14 @@ static NSMutableArray *recentNonces;
 			ranges_headers = nil;
 			ranges_boundry = nil;
 			
+            // If the connection should dies
 			if ([self shouldDie])
 			{
 				// The only time we should invoke [self die] is from socketDidDisconnect,
 				// or if the socket gets taken over by someone else like a WebSocket.
 				
+                
+                // Immediatley disconnects the socket by sending a notification to the socket on the socketQueue
 				[asyncSocket disconnect];
 			}
 			else // if should not die
@@ -2990,8 +3003,10 @@ static NSMutableArray *recentNonces;
                 // Create and http request message
 				request = [[HTTPMessage alloc] initEmptyRequest];
 				
-                
+                // Set the header lines to zero
 				numHeaderLines = 0;
+                
+                // Set the flag for whether response headers have been sent to zero
 				sentResponseHeaders = NO;
 				
 				// And start listening for more requests
@@ -3212,7 +3227,7 @@ static NSMutableArray *recentNonces;
 @implementation HTTPConfig
 
 
-// Creates the getters and setters for server, documentRoot, and queue
+// Creates the getters and setters for server, documentRoot, and queue connection attributes
 @synthesize server;
 @synthesize documentRoot;
 @synthesize queue;

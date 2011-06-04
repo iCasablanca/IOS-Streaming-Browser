@@ -19,19 +19,19 @@
 @interface WebSocket (PrivateAPI)
 
 /**
- 
+    Read the http request body
 **/
 - (void)readRequestBody;
 
 
 /**
- 
+    Send a response body
 **/
 - (void)sendResponseBody;
 
 
 /**
- 
+    Send the response headers
 **/
 - (void)sendResponseHeaders;
 
@@ -150,13 +150,16 @@
 **/
 - (id)initWithRequest:(HTTPMessage *)aRequest socket:(GCDAsyncSocket *)socket
 {
-	
+	// If the http request is not nil
 	if (aRequest == nil)
 	{
 		[self release];
 		return nil;
 	}
 	
+    // If the http request is nil
+    
+    
 	if ((self = [super init]))
 	{
 		// Creates a new dispatch queue to which blocks may be submitted
@@ -167,7 +170,8 @@
         
         // Set this web socket instance as the asyncSocket delegate, and the websocketQueue as the delegate queue
 		[asyncSocket setDelegate:self delegateQueue:websocketQueue];
-		
+
+		// Set the flag for whether the socket is open
 		isOpen = NO;
         
         // Get whether this request is a version 76 web socket compliant
@@ -208,7 +212,9 @@
 	
     // Submits a block for synchronous execution on the websocketQueue
 	dispatch_sync(websocketQueue, ^{
+        
 		result = delegate;
+        
 	}); // END OF BLOCK
 	
 	return result;
@@ -244,6 +250,7 @@
 	
     // Submits a block for asynchronous execution on the websocketQueue
 	dispatch_async(websocketQueue, ^{
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
         // If the websocket is started
@@ -263,7 +270,7 @@
             // Set response headers
 			[self sendResponseHeaders];
             
-            
+            // if web socket has been opened
 			[self didOpen];
 		}
 		
@@ -344,17 +351,22 @@
 {
 	
 	NSString *location;
+    
+    // Gets the value for the host
 	NSString *host = [request headerField:@"Host"];
 	
+    // Get the request url as a string
 	NSString *requestUri = [[request url] relativeString];
 	
+    // If the host from the request header is nil
 	if (host == nil)
 	{
+        
 		NSString *port = [NSString stringWithFormat:@"%hu", [asyncSocket localPort]];
 		
 		location = [NSString stringWithFormat:@"ws://localhost:%@%@", port, requestUri];
 	}
-	else
+	else // If the host from the request header is not nil
 	{
 		location = [NSString stringWithFormat:@"ws://%@%@", host, requestUri];
 	}
@@ -441,6 +453,7 @@
 	[wsResponse setHeaderField:originField value:originValue];
 	[wsResponse setHeaderField:locationField value:locationValue];
 	
+    
 	NSData *responseHeaders = [wsResponse messageData];
 	
 	[wsResponse release];
@@ -458,8 +471,8 @@
 - (NSData *)processKey:(NSString *)key
 {
 	
-	unichar c;
-	NSUInteger i;
+	unichar c; // character
+	NSUInteger i; // index of the character in the key
     
     // Gets the key length
 	NSUInteger length = [key length];
@@ -473,15 +486,19 @@
     // enumerates through each character in the key
 	for (i = 0; i < length; i++)
 	{
+        // Gets the character at a specific index
 		c = [key characterAtIndex:i];
 		
-        
+        // Check if a number
 		if (c >= '0' && c <= '9')
 		{
+            
 			[numStr appendFormat:@"%C", c];
 		}
+        // Check if a space
 		else if (c == ' ')
 		{
+            // Counter for the number of spaces in the key
 			numSpaces++;
 		}
 	}
@@ -489,12 +506,14 @@
     // converts a string value to a long
 	long long num = strtoll([numStr UTF8String], NULL, 10);
 	
+    
 	long long resultHostNum;
 	
+    // Check the counter to see if there are any spaces in the key
 	if (numSpaces == 0)
     {
 		resultHostNum = 0;
-	}else{
+	}else{ // if there are spaces in the key
 		resultHostNum = num / numSpaces;
 	}
 	
@@ -503,6 +522,7 @@
 	
 	UInt32 result = OSSwapHostToBigInt32((uint32_t)resultHostNum);
 	
+    // &result is the address
 	return [NSData dataWithBytes:&result length:4];
 }
 
@@ -527,6 +547,7 @@
 	// Concatenated d1, d2 & d3
 	
 	NSMutableData *d0 = [NSMutableData dataWithCapacity:(4+4+8)];
+    
 	[d0 appendData:d1];
 	[d0 appendData:d2];
 	[d0 appendData:d3];
@@ -562,6 +583,7 @@
 	// Notify delegate that the web socket did open
 	if ([delegate respondsToSelector:@selector(webSocketDidOpen:)])
 	{
+        
 		[delegate webSocketDidOpen:self];
 	}
 }
@@ -580,8 +602,12 @@
 	
     
 	[data appendBytes:"\x00" length:1];  // NULL 0x00
+
 	[data appendData:msgData];
+
+    
 	[data appendBytes:"\xFF" length:1];  // End of transmission 0x04
+
 	
 	// Remember: GCDAsyncSocket is thread-safe
 	
@@ -656,9 +682,13 @@
         // Web socket did open
 		[self didOpen];
 	}
+    // If TAG is not the HTTP request body, then check if a prefix
 	else if (tag == TAG_PREFIX) // value is 300
 	{
+        // Gets the number of bytes in the data which was read from the socket
 		UInt8 *pFrame = (UInt8 *)[data bytes];
+        
+        
 		UInt8 frame = *pFrame;
 		
         

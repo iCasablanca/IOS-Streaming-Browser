@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,26 +82,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDataResponse.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
-<a name="l00002"></a>00002 <span class="preprocessor">#import &quot;HTTPResponse.h&quot;</span>
+<a href="_h_t_t_p_data_response_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a name="l00002"></a>00002 <span class="preprocessor">#import &quot;<a class="code" href="_h_t_t_p_response_8h.html">HTTPResponse.h</a>&quot;</span>
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 <span class="comment">// Implements HTTPResponse protocol</span>
 <a name="l00005"></a><a class="code" href="interface_h_t_t_p_data_response.html">00005</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a> : NSObject &lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt;
 <a name="l00006"></a>00006 {
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008         NSUInteger <a class="code" href="protocol_h_t_t_p_response-p.html#a585064d867b140748aaf65d641918f01">offset</a>;
-<a name="l00009"></a><a class="code" href="interface_h_t_t_p_data_response.html#ac7d0ca00f9a44f0ceb8c9b42ddaf1c31">00009</a>         <a class="code" href="class_n_s_data.html">NSData</a> *data;  <span class="comment">// the data</span>
-<a name="l00010"></a>00010 }
-<a name="l00011"></a>00011 
-<a name="l00017"></a>00017 - (id)initWithData:(<a class="code" href="class_n_s_data.html">NSData</a> *)data;
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="keyword">@end</span>
+<a name="l00007"></a>00007 <span class="comment"></span>
+<a name="l00008"></a>00008 <span class="comment">    /**</span>
+<a name="l00009"></a>00009 <span class="comment">     </span>
+<a name="l00010"></a>00010 <span class="comment">    **/</span>
+<a name="l00011"></a>00011         NSUInteger <a class="code" href="protocol_h_t_t_p_response-p.html#accae801ae3d31712b8a7a5d94445082d">offset</a>;
+<a name="l00012"></a><a class="code" href="interface_h_t_t_p_data_response.html#a7c85c342ca85af51f9245eb0d9b9b46b">00012</a>     <span class="comment"></span>
+<a name="l00013"></a>00013 <span class="comment">    /**</span>
+<a name="l00014"></a>00014 <span class="comment">      the data</span>
+<a name="l00015"></a>00015 <span class="comment">    **/</span>
+<a name="l00016"></a>00016         <a class="code" href="class_n_s_data.html">NSData</a> *<a class="code" href="interface_h_t_t_p_data_response.html#a3d47178b517e0136e2dc8e73eeb91905">data</a>;  
+<a name="l00017"></a><a class="code" href="interface_h_t_t_p_data_response.html#a3d47178b517e0136e2dc8e73eeb91905">00017</a> }
+<a name="l00018"></a>00018 <span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">/**</span>
+<a name="l00020"></a>00020 <span class="comment">    Initializes the HTTPDataResponse with data</span>
+<a name="l00021"></a>00021 <span class="comment">    param NSDAta</span>
+<a name="l00022"></a>00022 <span class="comment">    returns id</span>
+<a name="l00023"></a>00023 <span class="comment">**/</span>
+<a name="l00024"></a>00024 - (id)initWithData:(<a class="code" href="class_n_s_data.html">NSData</a> *)data;
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>HTTPDataResponse.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_h_t_t_p_data_response_8h.html">HTTPDataResponse.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:48 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -110,7 +123,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

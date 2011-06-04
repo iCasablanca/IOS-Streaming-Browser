@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserViewController.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<a href="_i_o_s___streaming___browser_view_controller_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
 <a name="l00002"></a>00002 <span class="comment">//  IOS_Streaming_BrowserViewController.h</span>
 <a name="l00003"></a>00003 <span class="comment">//  IOS-Streaming-Browser</span>
 <a name="l00004"></a>00004 <span class="comment">//</span>
@@ -99,82 +100,143 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00016"></a>00016 <span class="comment">// the delegate for our UIWebview.  </span>
 <a name="l00017"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html">00017</a> <span class="keyword">@interface </span><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html">IOS_Streaming_BrowserViewController</a> : UIViewController &lt;UIWebViewDelegate&gt; {
 <a name="l00018"></a>00018     
-<a name="l00019"></a>00019   
-<a name="l00020"></a>00020     
-<a name="l00021"></a>00021     <span class="comment">// Creates timer objects</span>
-<a name="l00022"></a>00022     NSTimer *clockTimer;
-<a name="l00023"></a>00023         NSTimer *assetWriterTimer;
-<a name="l00024"></a>00024     
-<a name="l00025"></a>00025     <span class="comment">// Mutable data from mutiple files</span>
-<a name="l00026"></a>00026         AVMutableComposition *mutableComposition;
-<a name="l00027"></a>00027     
-<a name="l00028"></a>00028     <span class="comment">// Object to write media data to a new file</span>
-<a name="l00029"></a>00029         AVAssetWriter *assetWriter;
-<a name="l00030"></a>00030     
-<a name="l00031"></a>00031         <span class="comment">// Used to append media samples packaged as CMSampleBuffer </span>
-<a name="l00032"></a>00032     <span class="comment">// objects, or collections of metadata, to a single track </span>
-<a name="l00033"></a>00033     <span class="comment">// of the output file of an AVAssetWriter object.</span>
-<a name="l00034"></a>00034         AVAssetWriterInput *assetWriterInput;
-<a name="l00035"></a>00035     
-<a name="l00036"></a>00036         <span class="comment">// Used to append video samples packaged as CVPixelBuffer objects </span>
-<a name="l00037"></a>00037     <span class="comment">// to a single AVAssetWriterInput object.</span>
-<a name="l00038"></a>00038         AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferAdaptor;
-<a name="l00039"></a>00039     
-<a name="l00040"></a>00040     <span class="comment">// used to represent a specific point in time relative to the </span>
-<a name="l00041"></a>00041     <span class="comment">// absolute reference date of 1 Jan 2001 00:00:00 GMT.</span>
-<a name="l00042"></a>00042         CFAbsoluteTime firstFrameWallClockTime;
-<a name="l00043"></a>00043     
-<a name="l00044"></a>00044     <span class="comment">// The web view on the xib file</span>
-<a name="l00045"></a>00045     IBOutlet UIWebView *webView;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047     
-<a name="l00048"></a>00048     <span class="comment">// the address bar in the xib file</span>
-<a name="l00049"></a>00049     IBOutlet UITextField *addressBar;
-<a name="l00050"></a>00050     
-<a name="l00051"></a>00051     <span class="comment">// Indicator is a “gear” that is animated to spin.</span>
-<a name="l00052"></a>00052     IBOutlet UIActivityIndicatorView *activityIndicator;
-<a name="l00053"></a>00053     
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     <span class="comment">// The ip address and port of the http server which is</span>
-<a name="l00057"></a>00057     <span class="comment">// displayed on the view of the xib file</span>
-<a name="l00058"></a>00058     IBOutlet UILabel *displayInfo;
-<a name="l00059"></a>00059     
-<a name="l00060"></a>00060     <span class="comment">// Dictionary containing the search addresses</span>
-<a name="l00061"></a>00061     NSDictionary *addresses;
-<a name="l00062"></a>00062     
-<a name="l00063"></a>00063     <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *httpServer;
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 @property (nonatomic, retain) IBOutlet UIButton *startStopButton;
-<a name="l00070"></a>00070 @property(nonatomic,retain) UIWebView *webView;
-<a name="l00071"></a>00071 @property(nonatomic,retain) UITextField *addressBar;
-<a name="l00072"></a>00072 @property(nonatomic,retain) UIActivityIndicatorView *activityIndicator;
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076 - (<span class="keywordtype">void</span>)displayInfoUpdate:(NSNotification *) notification;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 -(IBAction) handleStartStopTapped: (<span class="keywordtype">id</span>) sender;
-<a name="l00080"></a>00080 -(IBAction) gotoAddress:(<span class="keywordtype">id</span>)sender;
-<a name="l00081"></a>00081 -(IBAction) goBack:(<span class="keywordtype">id</span>)sender;
-<a name="l00082"></a>00082 -(IBAction) goForward:(<span class="keywordtype">id</span>)sender;
-<a name="l00083"></a>00083 -(IBAction) goHome:(<span class="keywordtype">id</span>)sender;
-<a name="l00084"></a>00084 -(IBAction) reloadPage:(<span class="keywordtype">id</span>)sender;
-<a name="l00085"></a>00085 -(IBAction) stopLoading:(<span class="keywordtype">id</span>)sender;
-<a name="l00086"></a>00086 -(IBAction) configureButton:(<span class="keywordtype">id</span>)sender;
+<a name="l00019"></a>00019   <span class="comment"></span>
+<a name="l00020"></a>00020 <span class="comment">    /**</span>
+<a name="l00021"></a>00021 <span class="comment">        Creates timer objects</span>
+<a name="l00022"></a>00022 <span class="comment">    **/</span>
+<a name="l00023"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afe3f61fa358e732119a169e9b5f340d2">00023</a>     NSTimer *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afe3f61fa358e732119a169e9b5f340d2">clockTimer</a>;
+<a name="l00024"></a>00024     <span class="comment"></span>
+<a name="l00025"></a>00025 <span class="comment">    /**</span>
+<a name="l00026"></a>00026 <span class="comment">        Creates the assetWrite timer</span>
+<a name="l00027"></a>00027 <span class="comment">    **/</span>
+<a name="l00028"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a3a44914b861be4ee0f5ab8579784b3e1">00028</a>         NSTimer *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a3a44914b861be4ee0f5ab8579784b3e1">assetWriterTimer</a>;
+<a name="l00029"></a>00029     <span class="comment"></span>
+<a name="l00030"></a>00030 <span class="comment">    /**</span>
+<a name="l00031"></a>00031 <span class="comment">        Mutable data from mutiple files</span>
+<a name="l00032"></a>00032 <span class="comment">    **/</span>
+<a name="l00033"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#ad95801aa32c2230039ba8685350337ae">00033</a>         AVMutableComposition *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#ad95801aa32c2230039ba8685350337ae">mutableComposition</a>;
+<a name="l00034"></a>00034     <span class="comment"></span>
+<a name="l00035"></a>00035 <span class="comment">    /**</span>
+<a name="l00036"></a>00036 <span class="comment">        Object to write media data to a new file</span>
+<a name="l00037"></a>00037 <span class="comment">    **/</span>
+<a name="l00038"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a8331b894401365838d11e89db79c0bdf">00038</a>         AVAssetWriter *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a8331b894401365838d11e89db79c0bdf">assetWriter</a>;
+<a name="l00039"></a>00039     <span class="comment"></span>
+<a name="l00040"></a>00040 <span class="comment">    /**</span>
+<a name="l00041"></a>00041 <span class="comment">        Used to append media samples packaged as CMSampleBuffer objects, or collections of metadata, to a single track of the output file of an AVAssetWriter object.</span>
+<a name="l00042"></a>00042 <span class="comment">    **/</span>
+<a name="l00043"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a6879de935c1743a560271410a6a0159a">00043</a>         AVAssetWriterInput *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a6879de935c1743a560271410a6a0159a">assetWriterInput</a>;
+<a name="l00044"></a>00044     <span class="comment"></span>
+<a name="l00045"></a>00045 <span class="comment">    /**</span>
+<a name="l00046"></a>00046 <span class="comment">        Used to append video samples packaged as CVPixelBuffer objects to a single AVAssetWriterInput object.</span>
+<a name="l00047"></a>00047 <span class="comment">    **/</span>
+<a name="l00048"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#af0ea5d289a9b7f0dcb33d5e0b2051055">00048</a>         AVAssetWriterInputPixelBufferAdaptor *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#af0ea5d289a9b7f0dcb33d5e0b2051055">assetWriterPixelBufferAdaptor</a>;
+<a name="l00049"></a>00049     
+<a name="l00050"></a>00050     <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">    /**</span>
+<a name="l00052"></a>00052 <span class="comment">        Used to represent a specific point in time relative to the absolute reference date of 1 Jan 2001 00:00:00 GMT.</span>
+<a name="l00053"></a>00053 <span class="comment">    **/</span>
+<a name="l00054"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a2bc429108278e6fad5245a7ca77c4171">00054</a>         CFAbsoluteTime <a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a2bc429108278e6fad5245a7ca77c4171">firstFrameWallClockTime</a>;
+<a name="l00055"></a>00055     <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">    /**</span>
+<a name="l00057"></a>00057 <span class="comment">        The web view on the xib file</span>
+<a name="l00058"></a>00058 <span class="comment">    **/</span>
+<a name="l00059"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afbd73894706a75c9fbf68d7b6ff33f6c">00059</a>     IBOutlet UIWebView *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afbd73894706a75c9fbf68d7b6ff33f6c">webView</a>;
+<a name="l00060"></a>00060 <span class="comment"></span>
+<a name="l00061"></a>00061 <span class="comment">    /**</span>
+<a name="l00062"></a>00062 <span class="comment">        The address bar in the xib file</span>
+<a name="l00063"></a>00063 <span class="comment">    **/</span>
+<a name="l00064"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a0d194c026dd397787df7c7caa598f1fa">00064</a>     IBOutlet UITextField *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a0d194c026dd397787df7c7caa598f1fa">addressBar</a>;
+<a name="l00065"></a>00065     <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">    /**</span>
+<a name="l00067"></a>00067 <span class="comment">        Indicator is a “gear” that is animated to spin.</span>
+<a name="l00068"></a>00068 <span class="comment">    **/</span>
+<a name="l00069"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a4066d029be6ce4f3ae33b607f0955f6a">00069</a>     IBOutlet UIActivityIndicatorView *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a4066d029be6ce4f3ae33b607f0955f6a">activityIndicator</a>;
+<a name="l00070"></a>00070     <span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">    /**</span>
+<a name="l00072"></a>00072 <span class="comment">        The ip address and port of the http server which is displayed on the view of the xib file</span>
+<a name="l00073"></a>00073 <span class="comment">    **/</span>
+<a name="l00074"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afd3df00bd33ae6875fde7c27f4b94854">00074</a>     IBOutlet UILabel *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#afd3df00bd33ae6875fde7c27f4b94854">displayInfo</a>;
+<a name="l00075"></a>00075     <span class="comment"></span>
+<a name="l00076"></a>00076 <span class="comment">    /**</span>
+<a name="l00077"></a>00077 <span class="comment">        Dictionary containing the search addresses</span>
+<a name="l00078"></a>00078 <span class="comment">    **/</span>
+<a name="l00079"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a8b56433a6941b6956b4b94f019736bfe">00079</a>     NSDictionary *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a8b56433a6941b6956b4b94f019736bfe">addresses</a>;
+<a name="l00080"></a>00080     <span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">    /**</span>
+<a name="l00082"></a>00082 <span class="comment">     </span>
+<a name="l00083"></a>00083 <span class="comment">    **/</span>
+<a name="l00084"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a0b9f6998473578a4c4cf4929d093d458">00084</a>     <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *<a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a0b9f6998473578a4c4cf4929d093d458">httpServer</a>;
+<a name="l00085"></a>00085     
+<a name="l00086"></a>00086 
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088 @end
+<a name="l00088"></a>00088 }
+<a name="l00089"></a>00089 
+<a name="l00090"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a3e860f048da171d178dbdf6af3ba6ac2">00090</a> @property (nonatomic, retain) IBOutlet UIButton *startStopButton;
+<a name="l00091"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#aac328a407275054317cb1839c32c75dc">00091</a> @property(nonatomic,retain) UIWebView *webView;
+<a name="l00092"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#a319bb892e49d479dab2eb3b88ac48bd0">00092</a> @property(nonatomic,retain) UITextField *addressBar;
+<a name="l00093"></a><a class="code" href="interface_i_o_s___streaming___browser_view_controller.html#ac43f1d7ccf52cd2d3784fe7912eb56d4">00093</a> @property(nonatomic,retain) UIActivityIndicatorView *activityIndicator;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">/**</span>
+<a name="l00097"></a>00097 <span class="comment">    param NSNotification</span>
+<a name="l00098"></a>00098 <span class="comment">**/</span>
+<a name="l00099"></a>00099 - (<span class="keywordtype">void</span>)displayInfoUpdate:(NSNotification *) notification;
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">/**</span>
+<a name="l00102"></a>00102 <span class="comment">    param id</span>
+<a name="l00103"></a>00103 <span class="comment">    returns IBAction</span>
+<a name="l00104"></a>00104 <span class="comment">**/</span>
+<a name="l00105"></a>00105 -(IBAction) handleStartStopTapped: (<span class="keywordtype">id</span>) sender;
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">/**</span>
+<a name="l00108"></a>00108 <span class="comment">    param id</span>
+<a name="l00109"></a>00109 <span class="comment">    returns IBAction</span>
+<a name="l00110"></a>00110 <span class="comment">**/</span>
+<a name="l00111"></a>00111 -(IBAction) gotoAddress:(<span class="keywordtype">id</span>)sender;
+<a name="l00112"></a>00112 <span class="comment"></span>
+<a name="l00113"></a>00113 <span class="comment">/**</span>
+<a name="l00114"></a>00114 <span class="comment">    param id</span>
+<a name="l00115"></a>00115 <span class="comment">    returns IBAction</span>
+<a name="l00116"></a>00116 <span class="comment">**/</span>
+<a name="l00117"></a>00117 -(IBAction) goBack:(<span class="keywordtype">id</span>)sender;
+<a name="l00118"></a>00118 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">/**</span>
+<a name="l00120"></a>00120 <span class="comment">    param id</span>
+<a name="l00121"></a>00121 <span class="comment">    returns IBAction</span>
+<a name="l00122"></a>00122 <span class="comment">**/</span>
+<a name="l00123"></a>00123 -(IBAction) goForward:(<span class="keywordtype">id</span>)sender;
+<a name="l00124"></a>00124 <span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">/**</span>
+<a name="l00126"></a>00126 <span class="comment">    param id</span>
+<a name="l00127"></a>00127 <span class="comment">    returns IBAction</span>
+<a name="l00128"></a>00128 <span class="comment">**/</span>
+<a name="l00129"></a>00129 -(IBAction) goHome:(<span class="keywordtype">id</span>)sender;
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">/**</span>
+<a name="l00132"></a>00132 <span class="comment">    param id</span>
+<a name="l00133"></a>00133 <span class="comment">    returns IBAction</span>
+<a name="l00134"></a>00134 <span class="comment">**/</span>
+<a name="l00135"></a>00135 -(IBAction) reloadPage:(<span class="keywordtype">id</span>)sender;
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">/**</span>
+<a name="l00138"></a>00138 <span class="comment">    param id</span>
+<a name="l00139"></a>00139 <span class="comment">    returns IBAction</span>
+<a name="l00140"></a>00140 <span class="comment">**/</span>
+<a name="l00141"></a>00141 -(IBAction) stopLoading:(<span class="keywordtype">id</span>)sender;
+<a name="l00142"></a>00142 <span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">/**</span>
+<a name="l00144"></a>00144 <span class="comment">    param id</span>
+<a name="l00145"></a>00145 <span class="comment">    returns IBAction</span>
+<a name="l00146"></a>00146 <span class="comment">**/</span>
+<a name="l00147"></a>00147 -(IBAction) configureButton:(<span class="keywordtype">id</span>)sender;
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 @end
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>IOS_Streaming_BrowserViewController.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_i_o_s___streaming___browser_view_controller_8h.html">IOS_Streaming_BrowserViewController.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:48 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -184,7 +246,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

@@ -23,19 +23,23 @@ extern NSString *const GCDAsyncSocketSSLCipherSuites;
 extern NSString *const GCDAsyncSocketSSLDiffieHellmanParameters;
 #endif
 
-
-// Creates a data type consisting of a set of named values for holding the various socket errors
+/** 
+ *
+ * \enum GCDAsyncSocketError
+ *
+ * \brief Creates a data type consisting of a set of named values for holding the various socket errors 
+**/
 enum GCDAsyncSocketError
 {
-	GCDAsyncSocketNoError = 0,           // Never used
-	GCDAsyncSocketBadConfigError,        // Invalid configuration
-	GCDAsyncSocketBadParamError,         // Invalid parameter was passed
-	GCDAsyncSocketConnectTimeoutError,   // A connect operation timed out
-	GCDAsyncSocketReadTimeoutError,      // A read operation timed out
-	GCDAsyncSocketWriteTimeoutError,     // A write operation timed out
-	GCDAsyncSocketReadMaxedOutError,     // Reached set maxLength without completing
-	GCDAsyncSocketClosedError,           // The remote peer closed the connection
-	GCDAsyncSocketOtherError,            // Description provided in userInfo
+	GCDAsyncSocketNoError = 0,           ///< Never used
+	GCDAsyncSocketBadConfigError,        ///< Invalid configuration
+	GCDAsyncSocketBadParamError,         ///< Invalid parameter was passed
+	GCDAsyncSocketConnectTimeoutError,   ///< A connect operation timed out
+	GCDAsyncSocketReadTimeoutError,      ///< A read operation timed out
+	GCDAsyncSocketWriteTimeoutError,     ///< A write operation timed out
+	GCDAsyncSocketReadMaxedOutError,     ///< Reached set maxLength without completing
+	GCDAsyncSocketClosedError,           ///< The remote peer closed the connection
+	GCDAsyncSocketOtherError,            ///< Description provided in userInfo
 };
 typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
@@ -46,74 +50,164 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 @interface GCDAsyncSocket : NSObject
 {
+    /**
+     
+    **/
 	UInt16 flags;
+    
+    
+    /**
+     
+    **/
 	UInt16 config;
 	
+    /**
+     
+    **/
 	id delegate;
     
-    // Dispatch queues are lightweight objects to which blocks may be submitted.
-    // The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them.
+    /**
+        Dispatch queues are lightweight objects to which blocks may be submitted.
+        The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them.
+    **/
 	dispatch_queue_t delegateQueue;  //dispatch queue
 	
-	int socket4FD;  // IP version 4 socket file descriptor
-	int socket6FD;  // IP version 6 socket file descriptor
+    /**
+      IP version 4 socket file descriptor
+    **/
+	int socket4FD;  
+
+	/**
+      IP version 6 socket file descriptor
+    **/
+    int socket6FD;  
+
 	int connectIndex; 
     
-    // Object-oriented wrappers for byte buffers
-	NSData * connectInterface4;  // IP version 4 interface
-	NSData * connectInterface6;  // IP version 6 interface
-	
+    /**
+        Object-oriented wrappers for byte buffers
+        IP version 4 interface
+    **/
+	NSData * connectInterface4;  
     
-    // The dispatch queue upon which blocks are submitted
+    /**
+        IP version 6 interface
+    **/
+	NSData * connectInterface6;  
+	
+    /**
+        The dispatch queue upon which blocks are submitted
+    **/
 	dispatch_queue_t socketQueue;  
 	
-    
-    // Dispatch sources are used to automatically submit event handler
-    // blocks to dispatch queues in response to external events.
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+    **/
 	dispatch_source_t accept4Source; 
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t accept6Source;
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t connectTimer;
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t readSource;
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t writeSource;
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t readTimer;
+    
+    /**
+     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+     **/
 	dispatch_source_t writeTimer;
 	
     
+    /**
+      The read queue
+    **/
+	NSMutableArray *readQueue;  
     
-	NSMutableArray *readQueue;  // The read queue
-	NSMutableArray *writeQueue;  // the write queue
+    /**
+        the write queue
+    **/
+	NSMutableArray *writeQueue;  
 	
     
+    /**
+      the read packet
+    **/
+	GCDAsyncReadPacket *currentRead; 
     
-	GCDAsyncReadPacket *currentRead; // the read packet
-	GCDAsyncWritePacket *currentWrite; // the write packet
+    /**
+      the write packet
+    **/
+	GCDAsyncWritePacket *currentWrite; 
 	
+    /**
+    // socket file descriptor bytes available
     // Value is 0 to 2,147,483,647
-	unsigned long socketFDBytesAvailable;  // socket file descriptor bytes available
+    **/
+	unsigned long socketFDBytesAvailable;  
 	
-    // A partial read buffer for buffering the host request
+    /**
+        A partial read buffer for buffering the host request
+    **/
 	NSMutableData *partialReadBuffer;  
 		
 #if TARGET_OS_IPHONE
     
-    // A struct for holding client information
+    /**
+        A struct for holding client information
+    **/
 	CFStreamClientContext streamContext;
     
-    // Is the interface for reading a byte stream either synchronously or asynchronously.
+    /**
+        Is the interface for reading a byte stream either synchronously or asynchronously.
+    **/
 	CFReadStreamRef readStream;
     
-    // Is the interface for writing a byte stream either synchronously or asynchronously
+    /**
+        Is the interface for writing a byte stream either synchronously or asynchronously
+    **/
 	CFWriteStreamRef writeStream;
-#else
-	SSLContextRef sslContext; // the SSL context reference
     
-    // The SSL read buffer for buffering the host response
+#else
+    
+    /**
+      the SSL context reference
+    **/
+	SSLContextRef sslContext; 
+    
+    /**
+        The SSL read buffer for buffering the host response
+    **/
 	NSMutableData *sslReadBuffer; 
     
-	size_t sslWriteCachedLength; // size of the SSL write cache
+    /**
+        size of the SSL write cache
+    **/
+	size_t sslWriteCachedLength; 
+    
 #endif
 	
-	id userData; //user data
+    /**
+        user data
+    **/
+	id userData; 
 }
 
 /**

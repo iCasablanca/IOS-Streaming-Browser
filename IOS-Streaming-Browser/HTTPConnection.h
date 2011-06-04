@@ -16,9 +16,20 @@
 @interface HTTPConfig : NSObject
 {
 
-	HTTPServer *server; // The HTTPServer which is handling the connection
-	NSString *documentRoot; // The document root for the server
-	dispatch_queue_t queue;  // The dispatch queue for requests
+    /**
+        The HTTPServer which is handling the connection
+    **/
+	HTTPServer *server;
+    
+    /**
+        The document root for the server
+    **/
+	NSString *documentRoot; 
+    
+    /**
+        The dispatch queue for requests
+    **/
+	dispatch_queue_t queue;  
 }
 
 
@@ -54,49 +65,92 @@
 
 @interface HTTPConnection : NSObject
 {
-	dispatch_queue_t connectionQueue; // queue with all the connections
+    
+    /**
+      queue with all the connections
+    **/
+	dispatch_queue_t connectionQueue; 
 
-	// Handles each request one at a time in order
+    /**
+        Handles each request one at a time in order
+    **/
     GCDAsyncSocket *asyncSocket;  
     
-    // HTTP server configuration
+    /**
+     HTTP server configuration
+    **/
 	HTTPConfig *config;  
     
-    // Flag for whether the connection started
+    /**
+        Flag for whether the connection started
+    **/
 	BOOL started;  
 	
-    
-    // The http request from the host 
+    /**
+        The http request from the host 
+    **/
 	HTTPMessage *request;  
     
-	unsigned int numHeaderLines;  // number of header lines
+    /**
+        number of header lines
+    **/
+	unsigned int numHeaderLines;  
 	
-    
-    // Flag for whether sent response headers to the host
+    /**
+        Flag for whether sent response headers to the host
+    **/
 	BOOL sentResponseHeaders;   
 	
-	NSString *nonce;  // A nonce is a  server-specified string uniquely generated for each 401 response.
     
+    /**
+      A nonce is a  server-specified string uniquely generated for each 401 response.
+    **/
+	NSString *nonce;  
     
-	long lastNC; // the last nonce
+    /**
+        The last nonce
+    **/
+	long lastNC; 
 	
-    // The http response sent to the host
+    /**
+        The http response sent to the host
+    **/
 	NSObject<HTTPResponse> *httpResponse; 
 	
-	NSMutableArray *ranges; // Mutable array for the response ranges
-	NSMutableArray *ranges_headers; // mutable array for the response range headers
+    /**
+      Mutable array for the response ranges
+    **/
+	NSMutableArray *ranges; 
+
+    /**
+        Mutable array for the response range headers
+    **/
+	NSMutableArray *ranges_headers; 
     
-	NSString *ranges_boundry; // the response ranges boundary
     
+    /**
+        The response ranges boundary
+    **/
+	NSString *ranges_boundry; 
+    
+    /**
+     
+    **/
 	int rangeIndex;
 	
-    // The length of the http request from the host
-	UInt64 requestContentLength;
+    /**
+        The length of the http request from the host
+    **/
+    UInt64 requestContentLength;
     
-    // The number of bytes received from teh host
+    /**
+        The number of bytes received from the host
+    **/
 	UInt64 requestContentLengthReceived;
 	
-    // HTTP response data sizes
+    /**
+        HTTP response data sizes
+    **/
 	NSMutableArray *responseDataSizes; 
 }
 

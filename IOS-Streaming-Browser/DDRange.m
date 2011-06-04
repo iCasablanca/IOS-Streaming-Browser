@@ -11,7 +11,10 @@ DDRange DDUnionRange(DDRange range1, DDRange range2)
 {
 	DDRange result;
 	
+    // Get the minimum of range1 or range2 location
 	result.location = MIN(range1.location, range2.location);
+    
+    
 	result.length   = MAX(DDMaxRange(range1), DDMaxRange(range2)) - result.location;
 	
 	return result;
@@ -36,7 +39,9 @@ DDRange DDIntersectionRange(DDRange range1, DDRange range2)
 		return DDMakeRange(0, 0);
 	}
 	
+    // Gets the greater of range1 or range2 location
 	result.location = MAX(range1.location, range2.location);
+    
     
     
 	result.length   = MIN(DDMaxRange(range1), DDMaxRange(range2)) - result.location;
@@ -137,12 +142,14 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 
 /**
     Class method
+    Address value of the DDRange???
     param DDRange
     returns NSValue
 **/
 + (NSValue *)valueWithDDRange:(DDRange)range
 {
-    
+    // &range is the address of the range
+    // objCtype - gets a C string containing the Objective-C type of the data contained in the receiver, as encoded by the @encode() compiler directive.
 	return [NSValue valueWithBytes:&range objCType:@encode(DDRange)];
 }
 
@@ -163,6 +170,7 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2)
 }
 
 /**
+    Compares range 1 and range 2 to determine if they are equal
     param NSValue
     returns NSInteger
 **/

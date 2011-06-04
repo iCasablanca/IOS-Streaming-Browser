@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,7 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HTTPFileResponse Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPFileResponse" --><!-- doxytag: inherits="HTTPResponse-p" --><div class="dynheader">
+<!-- doxytag: class="HTTPFileResponse" --><!-- doxytag: inherits="HTTPResponse-p" -->
+<p><code>#import &lt;<a class="el" href="">HTTPFileResponse.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for HTTPFileResponse:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_h_t_t_p_file_response__inherit__graph.png" border="0" usemap="#_h_t_t_p_file_response_inherit__map" alt="Inheritance graph"/></div>
@@ -101,38 +103,32 @@ Collaboration diagram for HTTPFileResponse:</div>
 <map name="_h_t_t_p_file_response_coll__map" id="_h_t_t_p_file_response_coll__map">
 <area shape="rect" id="node2" href="protocol_h_t_t_p_response-p.html" title="\&lt;HTTPResponse\&gt;" alt="" coords="151,289,298,317"/><area shape="rect" id="node4" href="interface_h_t_t_p_connection.html" title="HTTPConnection" alt="" coords="322,289,461,317"/><area shape="rect" id="node6" href="interface_g_c_d_async_socket.html" title="GCDAsyncSocket" alt="" coords="173,195,314,223"/><area shape="rect" id="node8" href="interface_g_c_d_async_write_packet.html" title="GCDAsyncWritePacket" alt="" coords="154,101,333,129"/><area shape="rect" id="node10" href="class_n_s_data.html" title="NSData" alt="" coords="207,6,279,34"/><area shape="rect" id="node13" href="interface_g_c_d_async_read_packet.html" title="GCDAsyncReadPacket" alt="" coords="357,101,533,129"/><area shape="rect" id="node16" href="interface_h_t_t_p_config.html" title="HTTPConfig" alt="" coords="338,195,445,223"/><area shape="rect" id="node18" href="interface_h_t_t_p_message.html" title="HTTPMessage" alt="" coords="469,195,589,223"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_h_t_t_p_file_response-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_file_response.html#ada0a39ae75780801c5fdececa0c2c519">initWithFilePath:forConnection:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_file_response.html#ae68c409328c5efc5a695b34198b03b92">filePath</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_file_response.html#a3ab1925aa89f112f9f54e7da2ad8007d">initWithFilePath:forConnection:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_file_response.html#a7347df562ba768a7fc770b42879b088e">filePath</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98e3e2440ac5c2fdbfc44347b4f97b44"></a><!-- doxytag: member="HTTPFileResponse::connection" ref="a98e3e2440ac5c2fdbfc44347b4f97b44" args="" -->
-<a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>connection</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#a891916a064b499d7b0ec3c6eaae42443">filePath</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae25951a943b6041d10bdead14be6f465"></a><!-- doxytag: member="HTTPFileResponse::fileLength" ref="ae25951a943b6041d10bdead14be6f465" args="" -->
-UInt64&#160;</td><td class="memItemRight" valign="bottom"><b>fileLength</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48dff3ab33dad1e6d4d13fa6b2348286"></a><!-- doxytag: member="HTTPFileResponse::fileOffset" ref="a48dff3ab33dad1e6d4d13fa6b2348286" args="" -->
-UInt64&#160;</td><td class="memItemRight" valign="bottom"><b>fileOffset</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac82deffbf549d164e977a87ff2a4c903"></a><!-- doxytag: member="HTTPFileResponse::aborted" ref="ac82deffbf549d164e977a87ff2a4c903" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>aborted</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae69c8d7f4f2550594aff654a74e843d3"></a><!-- doxytag: member="HTTPFileResponse::fileFD" ref="ae69c8d7f4f2550594aff654a74e843d3" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>fileFD</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3531da8af4d0558b807346ad2fe8f841"></a><!-- doxytag: member="HTTPFileResponse::buffer" ref="a3531da8af4d0558b807346ad2fe8f841" args="" -->
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>buffer</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71d6eaf1b41993ee09a7b65872b8113e"></a><!-- doxytag: member="HTTPFileResponse::bufferSize" ref="a71d6eaf1b41993ee09a7b65872b8113e" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>bufferSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#af5664d54ee345559b6a834acfbade07c">connection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UInt64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#a427465667b139ad49c69c645f05c567e">fileLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UInt64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#acfd45c35245f4a5c88f916ff75c2a0cd">fileOffset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#aa0ab2234724f22544ca3ab7e1dc83f82">aborted</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#a1919f68d9ba2f91c33e24d8336ecc86b">fileFD</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#a368f7094dc38acca20612bbb392552f4">buffer</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_file_response.html#a4e911dd6f2085270967b50f8df118f79">bufferSize</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ae68c409328c5efc5a695b34198b03b92"></a><!-- doxytag: member="HTTPFileResponse::filePath" ref="ae68c409328c5efc5a695b34198b03b92" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L7">7</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a7347df562ba768a7fc770b42879b088e"></a><!-- doxytag: member="HTTPFileResponse::filePath" ref="a7347df562ba768a7fc770b42879b088e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_file_response.html#a891916a064b499d7b0ec3c6eaae42443">filePath</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_file_response.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -144,7 +140,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>bufferSize</b><
 
 </div>
 </div>
-<a class="anchor" id="ada0a39ae75780801c5fdececa0c2c519"></a><!-- doxytag: member="HTTPFileResponse::initWithFilePath:forConnection:" ref="ada0a39ae75780801c5fdececa0c2c519" args="(NSString *filePath,[forConnection] HTTPConnection *connection)" -->
+<a class="anchor" id="a3ab1925aa89f112f9f54e7da2ad8007d"></a><!-- doxytag: member="HTTPFileResponse::initWithFilePath:forConnection:" ref="a3ab1925aa89f112f9f54e7da2ad8007d" args="(NSString *filePath,[forConnection] HTTPConnection *connection)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -171,33 +167,193 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>bufferSize</b><
 <p>Initialize the HTTPFile response with a filepath and connection param NSSTring param <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> returns id</p>
 <p>Initialize the <a class="el" href="interface_h_t_t_p_file_response.html">HTTPFileResponse</a> with a file path and <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> param NSString param <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> returns id </p>
 
+<p>Definition at line <a class="el" href="#L21">21</a> of file <a class="el" href="">HTTPFileResponse.m</a>.</p>
+<div class="fragment"><pre class="fragment">                      :(NSString *)fpath forConnection:(<a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> *)parent
+{
+        <span class="keywordflow">if</span>((<span class="keyword">self</span> = [super init]))
+        {
+                
+                <a class="code" href="interface_h_t_t_p_file_response.html#af5664d54ee345559b6a834acfbade07c">connection</a> = parent; <span class="comment">// Parents retain children, children do NOT retain parents</span>
+                
+        <span class="comment">// copies the file path into the instance variable</span>
+                <a class="code" href="interface_h_t_t_p_file_response.html#a7347df562ba768a7fc770b42879b088e">filePath</a> = [fpath copy];
+        
+        <span class="comment">// If there is no file path then decrement the reference count for self and return nil</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_file_response.html#a7347df562ba768a7fc770b42879b088e">filePath</a> == nil)
+                {
+                        
+                        [<span class="keyword">self</span> release];
+                        <span class="keywordflow">return</span> nil;
+                }
+                
+        <span class="comment">// Gets an NSDictionary of key/value pairs containing the attributes of the item (file, directory, symlink, etc.)</span>
+                NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+        
+        <span class="comment">// If there are no file attributed, then decrement the </span>
+                <span class="keywordflow">if</span> (fileAttributes == nil)
+                {
+                        
+                        [<span class="keyword">self</span> release];
+                        <span class="keywordflow">return</span> nil;
+                }
+                
+        <span class="comment">// Gets the file size</span>
+                <a class="code" href="interface_h_t_t_p_file_response.html#a427465667b139ad49c69c645f05c567e">fileLength</a> = (UInt64)[[fileAttributes objectForKey:NSFileSize] unsignedLongLongValue];
+        
+        <span class="comment">// Sets the file offset to the beginning of the file</span>
+                <a class="code" href="interface_h_t_t_p_file_response.html#acfd45c35245f4a5c88f916ff75c2a0cd">fileOffset</a> = 0;
+                
+        <span class="comment">// Whether file response has been aborted</span>
+                <a class="code" href="interface_h_t_t_p_file_response.html#aa0ab2234724f22544ca3ab7e1dc83f82">aborted</a> = NO;
+                
+                <span class="comment">// We don&#39;t bother opening the file here.</span>
+                <span class="comment">// If this is a HEAD request we only need to know the fileLength.</span>
+                <a class="code" href="interface_h_t_t_p_file_response.html#a1919f68d9ba2f91c33e24d8336ecc86b">fileFD</a> = <a class="code" href="_h_t_t_p_file_response_8m.html#a2031e21e2947c0cfb7dd9505b0e806ee">NULL_FD</a>;
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a891916a064b499d7b0ec3c6eaae42443"></a><!-- doxytag: member="HTTPFileResponse::filePath" ref="a891916a064b499d7b0ec3c6eaae42443" args="" -->
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="aa0ab2234724f22544ca3ab7e1dc83f82"></a><!-- doxytag: member="HTTPFileResponse::aborted" ref="aa0ab2234724f22544ca3ab7e1dc83f82" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_file_response.html#a891916a064b499d7b0ec3c6eaae42443">filePath</a><code> [protected]</code></td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_file_response.html#aa0ab2234724f22544ca3ab7e1dc83f82">aborted</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Whether the file response has been aborted </p>
+
+<p>Definition at line <a class="el" href="#L35">35</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a368f7094dc38acca20612bbb392552f4"></a><!-- doxytag: member="HTTPFileResponse::buffer" ref="a368f7094dc38acca20612bbb392552f4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void*) <a class="el" href="interface_h_t_t_p_file_response.html#a368f7094dc38acca20612bbb392552f4">buffer</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The file buffer </p>
+
+<p>Definition at line <a class="el" href="#L45">45</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e911dd6f2085270967b50f8df118f79"></a><!-- doxytag: member="HTTPFileResponse::bufferSize" ref="a4e911dd6f2085270967b50f8df118f79" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_h_t_t_p_file_response.html#a4e911dd6f2085270967b50f8df118f79">bufferSize</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The buffer size </p>
+
+<p>Definition at line <a class="el" href="#L50">50</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af5664d54ee345559b6a834acfbade07c"></a><!-- doxytag: member="HTTPFileResponse::connection" ref="af5664d54ee345559b6a834acfbade07c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a>*) <a class="el" href="interface_h_t_t_p_file_response.html#af5664d54ee345559b6a834acfbade07c">connection</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L14">14</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1919f68d9ba2f91c33e24d8336ecc86b"></a><!-- doxytag: member="HTTPFileResponse::fileFD" ref="a1919f68d9ba2f91c33e24d8336ecc86b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (int) <a class="el" href="interface_h_t_t_p_file_response.html#a1919f68d9ba2f91c33e24d8336ecc86b">fileFD</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The file descriptor </p>
+
+<p>Definition at line <a class="el" href="#L40">40</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a427465667b139ad49c69c645f05c567e"></a><!-- doxytag: member="HTTPFileResponse::fileLength" ref="a427465667b139ad49c69c645f05c567e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_file_response.html#a427465667b139ad49c69c645f05c567e">fileLength</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The length of the file </p>
+
+<p>Definition at line <a class="el" href="#L25">25</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acfd45c35245f4a5c88f916ff75c2a0cd"></a><!-- doxytag: member="HTTPFileResponse::fileOffset" ref="acfd45c35245f4a5c88f916ff75c2a0cd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_file_response.html#acfd45c35245f4a5c88f916ff75c2a0cd">fileOffset</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The file offset </p>
+
+<p>Definition at line <a class="el" href="#L30">30</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af591a8da749e5b4d35fc4aa7fb69f4b7"></a><!-- doxytag: member="HTTPFileResponse::filePath" ref="af591a8da749e5b4d35fc4aa7fb69f4b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_file_response.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The path to the file</p>
 <p>Returns the filePath as string returns NSString </p>
+
+<p>Definition at line <a class="el" href="#L20">20</a> of file <a class="el" href="">HTTPFileResponse.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_file_response_8h_source.html">HTTPFileResponse.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPFileResponse.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPFileResponse.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPFileResponse.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_file_response.html">HTTPFileResponse</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -207,7 +363,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>bufferSize</b><
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a>  </div>
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <h1>GCDAsyncReadPacket Class Reference</h1>  </div>
 </div>
@@ -94,40 +94,28 @@ Collaboration diagram for GCDAsyncReadPacket:</div>
 <map name="_g_c_d_async_read_packet_coll__map" id="_g_c_d_async_read_packet_coll__map">
 <area shape="rect" id="node2" href="class_n_s_data.html" title="NSData" alt="" coords="57,6,129,34"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_g_c_d_async_read_packet-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#ab0735cd2830b86e4ab4c4811529d6250">initWithData:startOffset:maxLength:timeout:readLength:terminator:tag:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a771662910118b78de8db67d7a5467c19">ensureCapacityForAdditionalDataOfLength:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a47a4e7ec5cef39b518eeed1945521d56">optimalReadLengthWithDefault:shouldPreBuffer:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a802a921f83dbf743a669e24b1eb0606d">readLengthForNonTermWithHint:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a6e2570f8a47dd791a0d244bcad8fbf5b">readLengthForTermWithHint:shouldPreBuffer:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a8fb46d3ba9cde4c7d4b57d790d504379">readLengthForTermWithPreBuffer:found:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#aa032e1c07841b0c1ad437c88fbc580ec">searchForTermAfterPreBuffering:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a4436fce4ebeab5bd3c95fc02fa1a69c3">initWithData:startOffset:maxLength:timeout:readLength:terminator:tag:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#ade0dcd4770cf0b0fdbf0ef1079332b3f">ensureCapacityForAdditionalDataOfLength:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#acb91f09ee91aa6a39ad951adfb4d3095">optimalReadLengthWithDefault:shouldPreBuffer:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#aa3f07c7dcd5a963718d5e059a2779308">readLengthForNonTermWithHint:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#afed7fbed6868daffad1669d412591eb9">readLengthForTermWithHint:shouldPreBuffer:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a8cc6fdacb71d51f89441318e35b08a5f">readLengthForTermWithPreBuffer:found:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_g_c_d_async_read_packet.html#a6fbcbaa0f70464faafa3200e69eca2b0">searchForTermAfterPreBuffering:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad81ba9e0403b0e01ea04d2af7f42f6e9"></a><!-- doxytag: member="GCDAsyncReadPacket::buffer" ref="ad81ba9e0403b0e01ea04d2af7f42f6e9" args="" -->
-NSMutableData *&#160;</td><td class="memItemRight" valign="bottom"><b>buffer</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1e38c3473418e18e452aebfb61401bb"></a><!-- doxytag: member="GCDAsyncReadPacket::startOffset" ref="af1e38c3473418e18e452aebfb61401bb" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>startOffset</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57d3b687812ec6c0cb32ce2a0d13ac27"></a><!-- doxytag: member="GCDAsyncReadPacket::bytesDone" ref="a57d3b687812ec6c0cb32ce2a0d13ac27" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>bytesDone</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30ac2f93832fbf93800193ec256ec384"></a><!-- doxytag: member="GCDAsyncReadPacket::maxLength" ref="a30ac2f93832fbf93800193ec256ec384" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>maxLength</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1268ca19a05015bc85c8105f1ce78876"></a><!-- doxytag: member="GCDAsyncReadPacket::timeout" ref="a1268ca19a05015bc85c8105f1ce78876" args="" -->
-NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><b>timeout</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa30af1129977b2b21a3ccac388c8cef3"></a><!-- doxytag: member="GCDAsyncReadPacket::readLength" ref="aa30af1129977b2b21a3ccac388c8cef3" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>readLength</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a513f951acaf4293c3feac8ccd8f7f092"></a><!-- doxytag: member="GCDAsyncReadPacket::term" ref="a513f951acaf4293c3feac8ccd8f7f092" args="" -->
-<a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>term</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a132cc542e10157f818edc1c64f106227"></a><!-- doxytag: member="GCDAsyncReadPacket::bufferOwner" ref="a132cc542e10157f818edc1c64f106227" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>bufferOwner</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3592eb27d223e7b83c3b02764aaccc6e"></a><!-- doxytag: member="GCDAsyncReadPacket::originalBufferLength" ref="a3592eb27d223e7b83c3b02764aaccc6e" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>originalBufferLength</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a444a19df40e670caff546752fefcf2ef"></a><!-- doxytag: member="GCDAsyncReadPacket::tag" ref="a444a19df40e670caff546752fefcf2ef" args="" -->
-long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
+Data Fields</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a7ab0bf89e1cb8317d120c9c44ab611f0">buffer</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a39233eb85b4cbae04411577510e7c5e6">timeout</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#accec9974ec2def72cad1543d9a76d429">bufferOwner</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#a905e3b38997be141c88b5922210b0480">originalBufferLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_g_c_d_async_read_packet.html#ae10c29173f0af40507d7e787905c7130">tag</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="interface_g_c_d_async_read_packet.html">GCDAsyncReadPacket</a> encompasses the instructions for any given read. The content of a read packet allows the code to determine if we're:</p>
@@ -136,8 +124,10 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <li>reading to a certain separator</li>
 <li>or simply reading the first chunk of available data </li>
 </ul>
+
+<p>Definition at line <a class="el" href="#L596">596</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a771662910118b78de8db67d7a5467c19"></a><!-- doxytag: member="GCDAsyncReadPacket::ensureCapacityForAdditionalDataOfLength:" ref="a771662910118b78de8db67d7a5467c19" args="(NSUInteger bytesToRead)" -->
+<a class="anchor" id="ade0dcd4770cf0b0fdbf0ef1079332b3f"></a><!-- doxytag: member="GCDAsyncReadPacket::ensureCapacityForAdditionalDataOfLength:" ref="ade0dcd4770cf0b0fdbf0ef1079332b3f" args="(NSUInteger bytesToRead)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -154,9 +144,37 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>Ensure the read buffer has the capacity for additional data param NSUInteger</p>
 <p>Increases the length of the buffer (if needed) to ensure a read of the given size will fit. param NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L782">782</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                               :(NSUInteger)bytesToRead
+{
+    <span class="comment">// Gets the read buffer size</span>
+        NSUInteger buffSize = [buffer length];
+    
+    <span class="comment">// Determines the amount of the buffer used by adding the buffer</span>
+    <span class="comment">// offset plus the number of bytes that have been read so far for the read operation</span>
+        NSUInteger buffUsed = <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> + <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>;
+        
+    <span class="comment">// Computes the space available on the buffer by subtracting</span>
+    <span class="comment">// the amount of the buffer used from the total buffer size</span>
+        NSUInteger buffSpace = buffSize - buffUsed;
+        
+    <span class="comment">// If the bytes yet to read is greater than the buffer size then</span>
+    <span class="comment">// increase the size of the buffer by the difference</span>
+        <span class="keywordflow">if</span> (bytesToRead &gt; buffSpace)
+        {
+        
+        <span class="comment">// Determine the size to increase the buffer</span>
+                NSUInteger buffInc = bytesToRead - buffSpace;
+                
+        
+        <span class="comment">// Increase the size of the read buffer</span>
+                [buffer increaseLengthBy:buffInc];
+        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ab0735cd2830b86e4ab4c4811529d6250"></a><!-- doxytag: member="GCDAsyncReadPacket::initWithData:startOffset:maxLength:timeout:readLength:terminator:tag:" ref="ab0735cd2830b86e4ab4c4811529d6250" args="(NSMutableData *d,[startOffset] NSUInteger s,[maxLength] NSUInteger m,[timeout] NSTimeInterval t,[readLength] NSUInteger l,[terminator] NSData *e,[tag] long i)" -->
+<a class="anchor" id="a4436fce4ebeab5bd3c95fc02fa1a69c3"></a><!-- doxytag: member="GCDAsyncReadPacket::initWithData:startOffset:maxLength:timeout:readLength:terminator:tag:" ref="a4436fce4ebeab5bd3c95fc02fa1a69c3" args="(NSMutableData *d,[startOffset] NSUInteger s,[maxLength] NSUInteger m,[timeout] NSTimeInterval t,[readLength] NSUInteger l,[terminator] NSData *e,[tag] long i)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -213,9 +231,57 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>param NSMutableData param NSUInteger param NSUInteger param NSTimeInterval param NSUInteger param <a class="el" href="class_n_s_data.html">NSData</a> param long returns id</p>
 <p>Initialize the <a class="el" href="interface_g_c_d_async_read_packet.html">GCDAsyncReadPacket</a> param NSMutableData param NSUInteger param NSUInteger param NSTimeInterval param NSUInteger param <a class="el" href="class_n_s_data.html">NSData</a> param long returns id </p>
 
+<p>Definition at line <a class="el" href="#L731">731</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                  :(NSMutableData *)d
+       <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a>:(NSUInteger)s  <span class="comment">// Number of characerts from the start</span>
+         <a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a>:(NSUInteger)m  <span class="comment">// maximum length</span>
+           <a class="code" href="interface_g_c_d_async_read_packet.html#a39233eb85b4cbae04411577510e7c5e6">timeout</a>:(NSTimeInterval)t  <span class="comment">// timeout for the packet</span>
+        <a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a>:(NSUInteger)l 
+        terminator:(<a class="code" href="class_n_s_data.html">NSData</a> *)e 
+               <a class="code" href="interface_g_c_d_async_read_packet.html#ae10c29173f0af40507d7e787905c7130">tag</a>:(long)i
+{
+        <span class="keywordflow">if</span>((<span class="keyword">self</span> = [super init]))
+        {
+                <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a> = 0; <span class="comment">// number of bytes that have been read so far for the read operation</span>
+        
+                <a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> = m; <span class="comment">// set the maximum length of the read packet</span>
+                <a class="code" href="interface_g_c_d_async_read_packet.html#a39233eb85b4cbae04411577510e7c5e6">timeout</a> = t;  <span class="comment">// set the read timeout</span>
+                <a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> = l; <span class="comment">// set the read length</span>
+                <a class="code" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a> = [e copy];  <span class="comment">// set the terminator</span>
+                <a class="code" href="interface_g_c_d_async_read_packet.html#ae10c29173f0af40507d7e787905c7130">tag</a> = i;
+                
+                <span class="keywordflow">if</span> (d) <span class="comment">// if there is mutable data passed-in to initialize the method then copy the buffer, set the offset and buffer length</span>
+                {
+            <span class="comment">// the read buffer</span>
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#a7ab0bf89e1cb8317d120c9c44ab611f0">buffer</a> = [d retain];
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> = s; 
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#accec9974ec2def72cad1543d9a76d429">bufferOwner</a> = NO; <span class="comment">// if there is not a buffer owner</span>
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#a905e3b38997be141c88b5922210b0480">originalBufferLength</a> = [d length];
+                }
+                <span class="keywordflow">else</span> <span class="comment">// if there is not mutable data</span>
+                {
+                        <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> &gt; 0)
+            {
+                <span class="comment">// Initialize the read buffer with a specific length</span>
+                                <a class="code" href="interface_g_c_d_async_read_packet.html#a7ab0bf89e1cb8317d120c9c44ab611f0">buffer</a> = [[NSMutableData alloc] initWithLength:readLength];
+                
+                
+                        }<span class="keywordflow">else</span>{ <span class="comment">// If readLength is less than or equal to zero</span>
+                                <a class="code" href="interface_g_c_d_async_read_packet.html#a7ab0bf89e1cb8317d120c9c44ab611f0">buffer</a> = [[NSMutableData alloc] initWithLength:0];
+                        }
+            
+            
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> = 0;
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#accec9974ec2def72cad1543d9a76d429">bufferOwner</a> = YES; <span class="comment">// If there is a buffer owner</span>
+                        <a class="code" href="interface_g_c_d_async_read_packet.html#a905e3b38997be141c88b5922210b0480">originalBufferLength</a> = 0; 
+                }
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a47a4e7ec5cef39b518eeed1945521d56"></a><!-- doxytag: member="GCDAsyncReadPacket::optimalReadLengthWithDefault:shouldPreBuffer:" ref="a47a4e7ec5cef39b518eeed1945521d56" args="(NSUInteger defaultValue,[shouldPreBuffer] BOOL *shouldPreBufferPtr)" -->
+<a class="anchor" id="acb91f09ee91aa6a39ad951adfb4d3095"></a><!-- doxytag: member="GCDAsyncReadPacket::optimalReadLengthWithDefault:shouldPreBuffer:" ref="acb91f09ee91aa6a39ad951adfb4d3095" args="(NSUInteger defaultValue,[shouldPreBuffer] BOOL *shouldPreBufferPtr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -243,9 +309,83 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>This method is used when we do NOT know how much data is available to be read from the socket. This method returns the default value unless it exceeds the specified readLength or maxLength.</p>
 <p>Furthermore, the shouldPreBuffer decision is based upon the packet type, and whether the returned value would fit in the current buffer without requiring a resize of the buffer. param NSUInteger param BOOL returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L819">819</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                          :(NSUInteger)defaultValue shouldPreBuffer:(BOOL *)shouldPreBufferPtr
+{
+    <span class="comment">// Local variable for holding the result</span>
+        NSUInteger result;
+        
+    <span class="comment">// If the length of the bytes in the packet is greater than zero</span>
+        <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> &gt; 0)
+        {
+                <span class="comment">// Read a specific length of data</span>
+<span class="comment"></span>        
+                <span class="comment">// Set the result to the lesser of the default value of bytes, or the length of the read packet less the bytes already read</span>
+                result = MIN(defaultValue, (<a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+                
+                <span class="comment">// There is no need to prebuffer since we know exactly how much data we need to read.</span>
+                <span class="comment">// Even if the buffer isn&#39;t currently big enough to fit this amount of data,</span>
+                <span class="comment">// it would have to be resized eventually anyway.</span>
+                
+        <span class="comment">// Whether should prebuffer the data</span>
+                <span class="keywordflow">if</span> (shouldPreBufferPtr){
+                        *shouldPreBufferPtr = NO;
+        }
+        }
+        <span class="keywordflow">else</span> <span class="comment">// if readLength is equal to zero</span>
+        {
+                <span class="comment">// Either reading until we find a specified terminator,</span>
+                <span class="comment">// or we&#39;re simply reading all available data.</span>
+                <span class="comment">// </span>
+                <span class="comment">// In other words, one of:</span>
+                <span class="comment">// </span>
+                <span class="comment">// - readDataToData packet</span>
+                <span class="comment">// - readDataWithTimeout packet</span>
+                
+                <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> &gt; 0)
+        {
+                        result =  MIN(defaultValue, (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+            
+                }<span class="keywordflow">else</span>{ <span class="comment">// if maximum length is not greater than zero</span>
+            
+                        result = defaultValue;
+                }
+        
+                <span class="comment">// Since we don&#39;t know the size of the read in advance,</span>
+                <span class="comment">// the shouldPreBuffer decision is based upon whether the returned value would fit in the current buffer without requiring a resize of the buffer.</span>
+                <span class="comment">// </span>
+                <span class="comment">// This is because, in all likelyhood, the amount read from the socket will be less than the default value.</span>
+                <span class="comment">// Thus we should avoid over-allocating the read buffer when we can simply use the pre-buffer instead.</span>
+                
+        <span class="comment">// Whether should pre-buffer</span>
+                <span class="keywordflow">if</span> (shouldPreBufferPtr)
+                {
+            <span class="comment">// Gets the buffer size</span>
+                        NSUInteger buffSize = [buffer length];
+            
+            <span class="comment">// Get the amount of the buffer which has been utilized</span>
+                        NSUInteger buffUsed = <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> + <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>;
+                        
+            <span class="comment">// Gets the amount of available space in the bufer</span>
+                        NSUInteger buffSpace = buffSize - buffUsed;
+                        
+            <span class="comment">// If the available space in the read buffer is larger than the default size than we don&#39;t need to prebuffer</span>
+                        <span class="keywordflow">if</span> (buffSpace &gt;= result)
+            {
+                                *shouldPreBufferPtr = NO;
+                        }<span class="keywordflow">else</span>{ <span class="comment">// if the available space in the read buffer is less than the default size than we need to prebuffer the request</span>
+                                *shouldPreBufferPtr = YES;
+            }
+                }
+        }
+        
+    <span class="comment">// Returns the optimal read length</span>
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a802a921f83dbf743a669e24b1eb0606d"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForNonTermWithHint:" ref="a802a921f83dbf743a669e24b1eb0606d" args="(NSUInteger bytesAvailable)" -->
+<a class="anchor" id="aa3f07c7dcd5a963718d5e059a2779308"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForNonTermWithHint:" ref="aa3f07c7dcd5a963718d5e059a2779308" args="(NSUInteger bytesAvailable)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -264,9 +404,59 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>The given parameter indicates the number of bytes estimated to be available on the socket, which is taken into consideration during the calculation.</p>
 <p>The given hint MUST be greater than zero. param NSUInteger returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L903">903</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                          :(NSUInteger)bytesAvailable
+{
+    <span class="comment">// Test whether there is a terminator</span>
+        NSAssert(<a class="code" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a> == nil, <span class="stringliteral">@&quot;This method does not apply to term reads&quot;</span>);
+        
+    <span class="comment">// Test if there are bytes available to read</span>
+    NSAssert(bytesAvailable &gt; 0, <span class="stringliteral">@&quot;Invalid parameter: bytesAvailable&quot;</span>);
+        
+    <span class="comment">// If the read packet has length</span>
+        <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> &gt; 0)
+        {
+                <span class="comment">// Read a specific length of data</span>
+                
+                <span class="keywordflow">return</span> MIN(bytesAvailable, (<a class="code" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+                
+                <span class="comment">// No need to avoid resizing the buffer.</span>
+                <span class="comment">// If the user provided their own buffer,</span>
+                <span class="comment">// and told us to read a certain length of data that exceeds the size of the buffer,</span>
+                <span class="comment">// then it is clear that our code will resize the buffer during the read operation.</span>
+                <span class="comment">// </span>
+                <span class="comment">// This method does not actually do any resizing.</span>
+                <span class="comment">// The resizing will happen elsewhere if needed.</span>
+        }
+        <span class="keywordflow">else</span>
+        {
+                <span class="comment">// Read all available data</span>
+                
+        <span class="comment">// Get the number of bytes available to read</span>
+                NSUInteger result = bytesAvailable;
+                
+        <span class="comment">// If the maximum length is set</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> &gt; 0)
+                {
+            <span class="comment">// Get the lesser of the bytes available, or the maximum length minus the bytesDone reading or writing</span>
+                        result = MIN(result, (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+                }
+                
+                <span class="comment">// No need to avoid resizing the buffer.</span>
+                <span class="comment">// If the user provided their own buffer,</span>
+                <span class="comment">// and told us to read all available data without giving us a maxLength,</span>
+                <span class="comment">// then it is clear that our code might resize the buffer during the read operation.</span>
+                <span class="comment">// </span>
+                <span class="comment">// This method does not actually do any resizing.</span>
+                <span class="comment">// The resizing will happen elsewhere if needed.</span>
+                
+                <span class="keywordflow">return</span> result;
+        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a6e2570f8a47dd791a0d244bcad8fbf5b"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForTermWithHint:shouldPreBuffer:" ref="a6e2570f8a47dd791a0d244bcad8fbf5b" args="(NSUInteger bytesAvailable,[shouldPreBuffer] BOOL *shouldPreBufferPtr)" -->
+<a class="anchor" id="afed7fbed6868daffad1669d412591eb9"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForTermWithHint:shouldPreBuffer:" ref="afed7fbed6868daffad1669d412591eb9" args="(NSUInteger bytesAvailable,[shouldPreBuffer] BOOL *shouldPreBufferPtr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -295,9 +485,90 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>The given parameter indicates the number of bytes estimated to be available on the socket, which is taken into consideration during the calculation.</p>
 <p>To optimize memory allocations, mem copies, and mem moves the shouldPreBuffer boolean value will indicate if the data should be read into a prebuffer first, or if the data can be read directly into the read packet's buffer. param NSUInteger (count of bytes available to read) param BOOL returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L963">963</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                       :(NSUInteger)bytesAvailable shouldPreBuffer:(BOOL *)shouldPreBufferPtr
+{
+    <span class="comment">// Test whether the terminator is not nil</span>
+        NSAssert(<a class="code" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a> != nil, <span class="stringliteral">@&quot;This method does not apply to non-term reads&quot;</span>);
+    
+    <span class="comment">// Test whether there are bytes available to read</span>
+        NSAssert(bytesAvailable &gt; 0, <span class="stringliteral">@&quot;Invalid parameter: bytesAvailable&quot;</span>);
+        
+        <span class="comment">// Gets teh number of bytes available to read</span>
+        NSUInteger result = bytesAvailable;
+        
+    <span class="comment">// if the maximum length of the read packet is greater than zero</span>
+        <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> &gt; 0)
+        {
+        
+        <span class="comment">// Get the lesser of the result or the maximum length less the number of bytes read from the read operation</span>
+                result = MIN(result, (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+        }
+        
+        <span class="comment">// Should the data be read into the read packet&#39;s buffer, or into a pre-buffer first?</span>
+        <span class="comment">// </span>
+        <span class="comment">// One would imagine the preferred option is the faster one.</span>
+        <span class="comment">// So which one is faster?</span>
+        <span class="comment">// </span>
+        <span class="comment">// Reading directly into the packet&#39;s buffer requires:</span>
+        <span class="comment">// 1. Possibly resizing packet buffer (malloc/realloc)</span>
+        <span class="comment">// 2. Filling buffer (read)</span>
+        <span class="comment">// 3. Searching for term (memcmp)</span>
+        <span class="comment">// 4. Possibly copying overflow into prebuffer (malloc/realloc, memcpy)</span>
+        <span class="comment">// </span>
+        <span class="comment">// Reading into prebuffer first:</span>
+        <span class="comment">// 1. Possibly resizing prebuffer (malloc/realloc)</span>
+        <span class="comment">// 2. Filling buffer (read)</span>
+        <span class="comment">// 3. Searching for term (memcmp)</span>
+        <span class="comment">// 4. Copying underflow into packet buffer (malloc/realloc, memcpy)</span>
+        <span class="comment">// 5. Removing underflow from prebuffer (memmove)</span>
+        <span class="comment">// </span>
+        <span class="comment">// Comparing the performance of the two we can see that reading</span>
+        <span class="comment">// data into the prebuffer first is slower due to the extra memove.</span>
+        <span class="comment">// </span>
+        <span class="comment">// However:</span>
+        <span class="comment">// The implementation of NSMutableData is open source via core foundation&#39;s CFMutableData.</span>
+        <span class="comment">// Decreasing the length of a mutable data object doesn&#39;t cause a realloc.</span>
+        <span class="comment">// In other words, the capacity of a mutable data object can grow, but doesn&#39;t shrink.</span>
+        <span class="comment">// </span>
+        <span class="comment">// This means the prebuffer will rarely need a realloc.</span>
+        <span class="comment">// The packet buffer, on the other hand, may often need a realloc.</span>
+        <span class="comment">// This is especially true if we are the buffer owner.</span>
+        <span class="comment">// Furthermore, if we are constantly realloc&#39;ing the packet buffer,</span>
+        <span class="comment">// and then moving the overflow into the prebuffer,</span>
+        <span class="comment">// then we&#39;re consistently over-allocating memory for each term read.</span>
+        <span class="comment">// And now we get into a bit of a tradeoff between speed and memory utilization.</span>
+        <span class="comment">// </span>
+        <span class="comment">// The end result is that the two perform very similarly.</span>
+        <span class="comment">// And we can answer the original question very simply by another means.</span>
+        <span class="comment">// </span>
+        <span class="comment">// If we can read all the data directly into the packet&#39;s buffer without resizing it first,</span>
+        <span class="comment">// then we do so. Otherwise we use the prebuffer.</span>
+        
+        <span class="keywordflow">if</span> (shouldPreBufferPtr)
+        {
+        <span class="comment">// Gets the buffer size</span>
+                NSUInteger buffSize = [buffer length];
+        
+        <span class="comment">// Gets the amount of the buffer used by getting the offset and adding the number of bytes that have been read so far for the read operation</span>
+                NSUInteger buffUsed = <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> + <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>;
+                
+        <span class="comment">// Check if the buffer size is large enough to hold the result.  If so, then we don&#39;t need to prebuffer</span>
+                <span class="keywordflow">if</span> ((buffSize - buffUsed) &gt;= result)
+        {
+                        *shouldPreBufferPtr = NO;
+                }<span class="keywordflow">else</span>{  <span class="comment">// If the buffer size is not large enough to hold the result, then pre-buffer</span>
+                        *shouldPreBufferPtr = YES;
+        }
+        }
+        
+    <span class="comment">// Returns the read length</span>
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a8fb46d3ba9cde4c7d4b57d790d504379"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForTermWithPreBuffer:found:" ref="a8fb46d3ba9cde4c7d4b57d790d504379" args="(NSData *preBuffer,[found] BOOL *foundPtr)" -->
+<a class="anchor" id="a8cc6fdacb71d51f89441318e35b08a5f"></a><!-- doxytag: member="GCDAsyncReadPacket::readLengthForTermWithPreBuffer:found:" ref="a8cc6fdacb71d51f89441318e35b08a5f" args="(NSData *preBuffer,[found] BOOL *foundPtr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -326,9 +597,185 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>It is assumed the terminator has not already been read.</p>
 <p>param <a class="el" href="class_n_s_data.html">NSData</a> param BOOL returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L1052">1052</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                            :(<a class="code" href="class_n_s_data.html">NSData</a> *)preBuffer found:(BOOL *)foundPtr
+{
+    <span class="comment">// Test whether the terminator is not nil</span>
+        NSAssert(<a class="code" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a> != nil, <span class="stringliteral">@&quot;This method does not apply to non-term reads&quot;</span>);
+    
+    <span class="comment">// Test whether the prebuffer length is greater than zero</span>
+        NSAssert([preBuffer length] &gt; 0, <span class="stringliteral">@&quot;Invoked with empty pre buffer!&quot;</span>);
+        
+        <span class="comment">// We know that the terminator, as a whole, doesn&#39;t exist in our own buffer.</span>
+        <span class="comment">// But it is possible that a portion of it exists in our buffer.</span>
+        <span class="comment">// So we&#39;re going to look for the terminator starting with a portion of our own buffer.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Example:</span>
+        <span class="comment">// </span>
+        <span class="comment">// term length      = 3 bytes</span>
+        <span class="comment">// bytesDone        = 5 bytes</span>
+        <span class="comment">// preBuffer length = 5 bytes</span>
+        <span class="comment">// </span>
+        <span class="comment">// If we append the preBuffer to our buffer,</span>
+        <span class="comment">// it would look like this:</span>
+        <span class="comment">// </span>
+        <span class="comment">// ---------------------</span>
+        <span class="comment">// |B|B|B|B|B|P|P|P|P|P|</span>
+        <span class="comment">// ---------------------</span>
+        <span class="comment">// </span>
+        <span class="comment">// So we start our search here:</span>
+        <span class="comment">// </span>
+        <span class="comment">// ---------------------</span>
+        <span class="comment">// |B|B|B|B|B|P|P|P|P|P|</span>
+        <span class="comment">// -------^-^-^---------</span>
+        <span class="comment">// </span>
+        <span class="comment">// And move forwards...</span>
+        <span class="comment">// </span>
+        <span class="comment">// ---------------------</span>
+        <span class="comment">// |B|B|B|B|B|P|P|P|P|P|</span>
+        <span class="comment">// ---------^-^-^-------</span>
+        <span class="comment">// </span>
+        <span class="comment">// Until we find the terminator or reach the end.</span>
+        <span class="comment">// </span>
+        <span class="comment">// ---------------------</span>
+        <span class="comment">// |B|B|B|B|B|P|P|P|P|P|</span>
+        <span class="comment">// ---------------^-^-^-</span>
+        
+        BOOL found = NO;
+        
+    <span class="comment">// Get the length of the terminator</span>
+        NSUInteger termLength = [term length];
+    
+    <span class="comment">// Get the preBuffer length</span>
+        NSUInteger preBufferLength = [preBuffer length];
+        
+    
+    <span class="comment">// Check if the bytes done plus prebuffer lengh is less than the </span>
+    <span class="comment">// termination length.  The bytes done is the number of bytes that have been read so far for the read operation</span>
+        <span class="keywordflow">if</span> ((<a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a> + preBufferLength) &lt; termLength)
+        {
+                <span class="comment">// Not enough data for a full term sequence yet</span>
+                <span class="keywordflow">return</span> preBufferLength;
+        }
+        
+    
+    <span class="comment">// Maximum prebuffer length</span>
+        NSUInteger maxPreBufferLength;
+    
+    <span class="comment">// If the maximum prebuffer length is greater than zero</span>
+        <span class="keywordflow">if</span> (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> &gt; 0) {
+        
+        <span class="comment">// Gets the maximum prebuffer length</span>
+                maxPreBufferLength = MIN(preBufferLength, (<a class="code" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a> - <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>));
+                
+                <span class="comment">// Note: maxLength &gt;= termLength</span>
+        }
+    <span class="comment">// If the maximum prebuffer length is equal to or less than zero</span>
+        <span class="keywordflow">else</span> {
+        
+        <span class="comment">// Sets the maximum prebuffer length to the prebuffer length</span>
+                maxPreBufferLength = preBufferLength;
+        }
+        
+    <span class="comment">// the byte sequence</span>
+        Byte seq[termLength];
+    
+    <span class="comment">// Create a constant read only local attribute</span>
+        <span class="keyword">const</span> <span class="keywordtype">void</span> *termBuf = [term bytes];
+        
+    
+    <span class="comment">// Buffer length</span>
+        NSUInteger bufLen = MIN(<a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a>, (termLength - 1));
+    
+    
+        <span class="keywordtype">void</span> *buf = [buffer mutableBytes] + <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> + <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a> - bufLen;
+        
+    
+    <span class="comment">// Prebuffer length</span>
+        NSUInteger preLen = termLength - bufLen;
+    
+    
+        <span class="keywordtype">void</span> *pre = (<span class="keywordtype">void</span> *)[preBuffer bytes];
+        
+    <span class="comment">// Set the loop count for searching through the buffer and prebuffer</span>
+        NSUInteger loopCount = bufLen + maxPreBufferLength - termLength + 1; <span class="comment">// Plus one. See example above.</span>
+        
+    
+    <span class="comment">// Prebuffer length</span>
+        NSUInteger result = preBufferLength;
+        
+    
+        NSUInteger i;
+    
+    <span class="comment">// Loop is the length of the buffer and pre-buffer</span>
+        <span class="keywordflow">for</span> (i = 0; i &lt; loopCount; i++)
+        {
+        <span class="comment">// If there are bytes in the buffer</span>
+                <span class="keywordflow">if</span> (bufLen &gt; 0)
+                {
+                        <span class="comment">// Combining bytes from buffer and preBuffer</span>
+<span class="comment"></span>            
+            <span class="comment">// Copies bufLen bytes from the bufer to the seq</span>
+                        memcpy(seq, buf, bufLen);
+            
+            <span class="comment">// Copies preLen bytes from pre to seq plus bufLen</span>
+                        memcpy(seq + bufLen, pre, preLen);
+                        
+            <span class="comment">// compare bytes in memory</span>
+                        <span class="keywordflow">if</span> (memcmp(seq, termBuf, termLength) == 0)
+                        {
+                                result = preLen;
+                                found = YES;
+                                <span class="keywordflow">break</span>;
+                        }
+                        
+            <span class="comment">// Increases the buffer size</span>
+                        buf++;
+            
+            <span class="comment">// Decreases the buffer length</span>
+                        bufLen--;
+            
+            <span class="comment">// Increases the prebuffer length</span>
+                        preLen++;
+                }
+                <span class="keywordflow">else</span> <span class="comment">// if buffer length is not greater than zero</span>
+                {
+                        <span class="comment">// Comparing directly from preBuffer</span>
+<span class="comment"></span>            
+                        <span class="comment">// compares byte string.  Compares prebuffer with termBuf - both bytes are assumed to be termLength long.  The memcmp function returns zero is the two byte strings are equal</span>
+                        <span class="keywordflow">if</span> (memcmp(pre, termBuf, termLength) == 0)
+                        {
+                
+                <span class="comment">// Sets the prebuffer offset</span>
+                                NSUInteger preOffset = pre - [preBuffer bytes]; <span class="comment">// pointer arithmetic</span>
+                                
+                <span class="comment">// Sets the result equal to the prebuffer offset plus the termLength (i.e. length of the terminator)</span>
+                                result = preOffset + termLength;
+                
+                <span class="comment">// Found the terminator in the prebuffer</span>
+                                found = YES;
+                
+                                <span class="keywordflow">break</span>;
+                        }
+                        
+            <span class="comment">// Increments the prebuffer</span>
+                        pre++;
+                }
+        }
+        
+        <span class="comment">// There is no need to avoid resizing the buffer in this particular situation.</span>
+        
+        <span class="keywordflow">if</span> (foundPtr) 
+    {
+        *foundPtr = found;
+    }
+    
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aa032e1c07841b0c1ad437c88fbc580ec"></a><!-- doxytag: member="GCDAsyncReadPacket::searchForTermAfterPreBuffering:" ref="aa032e1c07841b0c1ad437c88fbc580ec" args="(ssize_t numBytes)" -->
+<a class="anchor" id="a6fbcbaa0f70464faafa3200e69eca2b0"></a><!-- doxytag: member="GCDAsyncReadPacket::searchForTermAfterPreBuffering:" ref="a6fbcbaa0f70464faafa3200e69eca2b0" args="(ssize_t numBytes)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -351,17 +798,225 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
 <p>Prerequisites: The given number of bytes have been added to the end of our buffer. Our bytesDone variable has NOT been changed due to the prebuffered bytes.</p>
 <p>param ssize_t returns NSInteger </p>
 
+<p>Definition at line <a class="el" href="#L1250">1250</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                           :(ssize_t)numBytes
+{
+    <span class="comment">// Test whether the terminator is not nil</span>
+        NSAssert(<a class="code" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a> != nil, <span class="stringliteral">@&quot;This method does not apply to non-term reads&quot;</span>);
+        
+        <span class="comment">// The implementation of this method is very similar to the above method.</span>
+        <span class="comment">// See the above method for a discussion of the algorithm used here.</span>
+        
+        <span class="keywordtype">void</span> *buff = [buffer mutableBytes];
+    
+    
+    <span class="comment">// The number of bytes that have been read so far for the read operation plus the number of bytes for prebuffering</span>
+        NSUInteger buffLength = <a class="code" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a> + numBytes;
+        
+    <span class="comment">// Create a constant read only local attribute</span>
+    <span class="comment">// Gets the size of the terminator</span>
+        <span class="keyword">const</span> <span class="keywordtype">void</span> *termBuff = [term bytes];
+    
+    <span class="comment">// Gets the length of the terminator</span>
+        NSUInteger termLength = [term length];
+        
+        <span class="comment">// Note: We are dealing with unsigned integers,</span>
+        <span class="comment">// so make sure the math doesn&#39;t go below zero.</span>
+        
+        NSUInteger i = ((buffLength - numBytes) &gt;= termLength) ? (buffLength - numBytes - termLength + 1) : 0;
+        
+    <span class="comment">// While the terimination length is less than or equal to the buffer length</span>
+        <span class="keywordflow">while</span> (i + termLength &lt;= buffLength)
+        {
+        
+                <span class="keywordtype">void</span> *subBuffer = buff + <a class="code" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a> + i;
+                
+        <span class="comment">// compare bytes in memory</span>
+        <span class="comment">// Checks if the subBuffer equals the terminator buffer</span>
+                <span class="keywordflow">if</span> (memcmp(subBuffer, termBuff, termLength) == 0)
+                {
+            <span class="comment">// if the subBuffer and termBuffer are the same</span>
+                        <span class="keywordflow">return</span> buffLength - (i + termLength);
+                }
+                
+                i++;
+        }
+        
+        <span class="keywordflow">return</span> -1;
+}
+</pre></div>
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a7ab0bf89e1cb8317d120c9c44ab611f0"></a><!-- doxytag: member="GCDAsyncReadPacket::buffer" ref="a7ab0bf89e1cb8317d120c9c44ab611f0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableData*) <a class="el" href="interface_g_c_d_async_read_packet.html#a7ab0bf89e1cb8317d120c9c44ab611f0">buffer</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>read buffer </p>
+
+<p>Definition at line <a class="el" href="#L603">603</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="accec9974ec2def72cad1543d9a76d429"></a><!-- doxytag: member="GCDAsyncReadPacket::bufferOwner" ref="accec9974ec2def72cad1543d9a76d429" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_g_c_d_async_read_packet.html#accec9974ec2def72cad1543d9a76d429">bufferOwner</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>whether there is a buffer owner </p>
+
+<p>Definition at line <a class="el" href="#L639">639</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19e34e7d78011c64d9320be5be7f7080"></a><!-- doxytag: member="GCDAsyncReadPacket::bytesDone" ref="a19e34e7d78011c64d9320be5be7f7080" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_g_c_d_async_read_packet.html#a19e34e7d78011c64d9320be5be7f7080">bytesDone</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>number of bytes that have been read so far for the read operation </p>
+
+<p>Definition at line <a class="el" href="#L613">613</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a786b76fb3ef6c4d817c06dea78bed863"></a><!-- doxytag: member="GCDAsyncReadPacket::maxLength" ref="a786b76fb3ef6c4d817c06dea78bed863" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_g_c_d_async_read_packet.html#a786b76fb3ef6c4d817c06dea78bed863">maxLength</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>maximum length </p>
+
+<p>Definition at line <a class="el" href="#L618">618</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a905e3b38997be141c88b5922210b0480"></a><!-- doxytag: member="GCDAsyncReadPacket::originalBufferLength" ref="a905e3b38997be141c88b5922210b0480" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_g_c_d_async_read_packet.html#a905e3b38997be141c88b5922210b0480">originalBufferLength</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>original buffer length </p>
+
+<p>Definition at line <a class="el" href="#L644">644</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8527367b5c530994b2c522afbca02ae7"></a><!-- doxytag: member="GCDAsyncReadPacket::readLength" ref="a8527367b5c530994b2c522afbca02ae7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_g_c_d_async_read_packet.html#a8527367b5c530994b2c522afbca02ae7">readLength</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>read length </p>
+
+<p>Definition at line <a class="el" href="#L628">628</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea3d7b4fd77937133adf696035109a21"></a><!-- doxytag: member="GCDAsyncReadPacket::startOffset" ref="aea3d7b4fd77937133adf696035109a21" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) <a class="el" href="interface_g_c_d_async_read_packet.html#aea3d7b4fd77937133adf696035109a21">startOffset</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>start offset for read buffer </p>
+
+<p>Definition at line <a class="el" href="#L608">608</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae10c29173f0af40507d7e787905c7130"></a><!-- doxytag: member="GCDAsyncReadPacket::tag" ref="ae10c29173f0af40507d7e787905c7130" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (long) <a class="el" href="interface_g_c_d_async_read_packet.html#ae10c29173f0af40507d7e787905c7130">tag</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>An application-defined integer or pointer that will be sent as an argument to the -socket:didReadData:withTag: message sent to the delegate. </p>
+
+<p>Definition at line <a class="el" href="#L649">649</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac09dba8aa168ea0ea2797060e554412e"></a><!-- doxytag: member="GCDAsyncReadPacket::term" ref="ac09dba8aa168ea0ea2797060e554412e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="class_n_s_data.html">NSData</a>*) <a class="el" href="interface_g_c_d_async_read_packet.html#ac09dba8aa168ea0ea2797060e554412e">term</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>terminator </p>
+
+<p>Definition at line <a class="el" href="#L634">634</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a39233eb85b4cbae04411577510e7c5e6"></a><!-- doxytag: member="GCDAsyncReadPacket::timeout" ref="a39233eb85b4cbae04411577510e7c5e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSTimeInterval) <a class="el" href="interface_g_c_d_async_read_packet.html#a39233eb85b4cbae04411577510e7c5e6">timeout</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the timeout value for reading from a host </p>
+
+<p>Definition at line <a class="el" href="#L623">623</a> of file <a class="el" href="">GCDAsyncSocket.m</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/GCDAsyncSocket.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">GCDAsyncSocket.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_g_c_d_async_read_packet.html">GCDAsyncReadPacket</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -371,7 +1026,7 @@ long&#160;</td><td class="memItemRight" valign="bottom"><b>tag</b></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

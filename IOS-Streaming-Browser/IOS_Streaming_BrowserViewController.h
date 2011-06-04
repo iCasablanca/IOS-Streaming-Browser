@@ -17,49 +17,70 @@
 @interface IOS_Streaming_BrowserViewController : UIViewController <UIWebViewDelegate> {
     
   
-    
-    // Creates timer objects
+    /**
+        Creates timer objects
+    **/
     NSTimer *clockTimer;
+    
+    /**
+        Creates the assetWrite timer
+    **/
 	NSTimer *assetWriterTimer;
     
-    // Mutable data from mutiple files
+    /**
+        Mutable data from mutiple files
+    **/
 	AVMutableComposition *mutableComposition;
     
-    // Object to write media data to a new file
+    /**
+        Object to write media data to a new file
+    **/
 	AVAssetWriter *assetWriter;
     
-	// Used to append media samples packaged as CMSampleBuffer 
-    // objects, or collections of metadata, to a single track 
-    // of the output file of an AVAssetWriter object.
+    /**
+        Used to append media samples packaged as CMSampleBuffer objects, or collections of metadata, to a single track of the output file of an AVAssetWriter object.
+    **/
 	AVAssetWriterInput *assetWriterInput;
     
-	// Used to append video samples packaged as CVPixelBuffer objects 
-    // to a single AVAssetWriterInput object.
+    /**
+        Used to append video samples packaged as CVPixelBuffer objects to a single AVAssetWriterInput object.
+    **/
 	AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferAdaptor;
     
-    // used to represent a specific point in time relative to the 
-    // absolute reference date of 1 Jan 2001 00:00:00 GMT.
+    
+    /**
+        Used to represent a specific point in time relative to the absolute reference date of 1 Jan 2001 00:00:00 GMT.
+    **/
 	CFAbsoluteTime firstFrameWallClockTime;
     
-    // The web view on the xib file
+    /**
+        The web view on the xib file
+    **/
     IBOutlet UIWebView *webView;
 
-    
-    // the address bar in the xib file
+    /**
+        The address bar in the xib file
+    **/
     IBOutlet UITextField *addressBar;
     
-    // Indicator is a “gear” that is animated to spin.
+    /**
+        Indicator is a “gear” that is animated to spin.
+    **/
     IBOutlet UIActivityIndicatorView *activityIndicator;
     
-
-    
-    // The ip address and port of the http server which is
-    // displayed on the view of the xib file
+    /**
+        The ip address and port of the http server which is displayed on the view of the xib file
+    **/
     IBOutlet UILabel *displayInfo;
     
-    // Dictionary containing the search addresses
+    /**
+        Dictionary containing the search addresses
+    **/
     NSDictionary *addresses;
     
+    /**
+     
+    **/
     HTTPServer *httpServer;
     
 
@@ -72,17 +93,57 @@
 @property(nonatomic,retain) UIActivityIndicatorView *activityIndicator;
 
 
-
+/**
+    param NSNotification
+**/
 - (void)displayInfoUpdate:(NSNotification *) notification;
 
-
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) handleStartStopTapped: (id) sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) gotoAddress:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) goBack:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) goForward:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) goHome:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) reloadPage:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) stopLoading:(id)sender;
+
+/**
+    param id
+    returns IBAction
+**/
 -(IBAction) configureButton:(id)sender;
 
 @end

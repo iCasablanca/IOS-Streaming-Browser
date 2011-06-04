@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -89,55 +89,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>WebSocket Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="WebSocket" --><div class="dynheader">
+<!-- doxytag: class="WebSocket" -->
+<p><code>#import &lt;<a class="el" href="">WebSocket.h</a>&gt;</code></p>
+<div class="dynheader">
 Collaboration diagram for WebSocket:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_web_socket__coll__graph.png" border="0" usemap="#_web_socket_coll__map" alt="Collaboration graph"/></div>
 <map name="_web_socket_coll__map" id="_web_socket_coll__map">
 <area shape="rect" id="node2" href="interface_g_c_d_async_socket.html" title="GCDAsyncSocket" alt="" coords="95,195,236,223"/><area shape="rect" id="node4" href="interface_g_c_d_async_write_packet.html" title="GCDAsyncWritePacket" alt="" coords="174,101,352,129"/><area shape="rect" id="node6" href="class_n_s_data.html" title="NSData" alt="" coords="58,6,130,34"/><area shape="rect" id="node9" href="interface_g_c_d_async_read_packet.html" title="GCDAsyncReadPacket" alt="" coords="376,101,552,129"/><area shape="rect" id="node12" href="interface_h_t_t_p_message.html" title="HTTPMessage" alt="" coords="260,195,380,223"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_web_socket-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#abaa9f8c7251f9a42cfc751f493aefe43">initWithRequest:socket:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a41fec2797e9b6312845355967eb9fe5a">start</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a7f3e5655c5742e8d06b5bd86e5e7f860">stop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a50848023c8bff93321cbc9952615d20f">sendMessage:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#ab5501c0921026aeb4322f01a13672ae4">didOpen</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a5524957c1532a4cc6e72776c37b5d08b">didReceiveMessage:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a665aa822f1ff213009d874d74ce907b5">didClose</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ab33de5d04d3ac91ac52d40905e2d23"></a><!-- doxytag: member="WebSocket::readRequestBody" ref="a4ab33de5d04d3ac91ac52d40905e2d23" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>readRequestBody</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2172e0a13a1ad1706ce0e69b062d497f"></a><!-- doxytag: member="WebSocket::sendResponseBody" ref="a2172e0a13a1ad1706ce0e69b062d497f" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>sendResponseBody</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60e3740c2426996ae07bc8f01fe25616"></a><!-- doxytag: member="WebSocket::sendResponseHeaders" ref="a60e3740c2426996ae07bc8f01fe25616" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>sendResponseHeaders</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#abcad44f4e7bee87c3d3ee7d64daf0224">initWithRequest:socket:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a60de64d75454385b23995437f1d72669">start</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a8c528baf37154d347366083f0f816846">stop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a1b56bf7fe9924089ba4e3d3fff375f57">sendMessage:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#af64941676d576bb003ee306ab8d10c9c">didOpen</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#ae611f7ce14183af6ee7258a60a13c6d9">didReceiveMessage:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a32a753e3228522f356d40f1809b41ad3">didClose</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a3a7425ba99bf4e3071c09b6252c01e5b">readRequestBody</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a9feb267d36d79b93ee87b06d1606a742">sendResponseBody</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_web_socket.html#a6c20fedd2ade5a26a1a5c57f8efada55">sendResponseHeaders</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_web_socket.html#a2788ff0ff14141fe221c85b9da1cd9e1">isWebSocketRequest:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_web_socket.html#a2a90011c0bbbcae2e6ba6b0e4f3d76ca">isWebSocketRequest:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2730a9504db948b7eec81c0bfdc3fb4a"></a><!-- doxytag: member="WebSocket::request" ref="a2730a9504db948b7eec81c0bfdc3fb4a" args="" -->
-<a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>request</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73308592a21fd0edbb096ad1da9734df"></a><!-- doxytag: member="WebSocket::asyncSocket" ref="a73308592a21fd0edbb096ad1da9734df" args="" -->
-<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>asyncSocket</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4321df6fe203ebd8fd0f7c21ccae55f"></a><!-- doxytag: member="WebSocket::term" ref="ac4321df6fe203ebd8fd0f7c21ccae55f" args="" -->
-<a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>term</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f0f5b3ab8e8e4b30c29144c9754ae43"></a><!-- doxytag: member="WebSocket::isStarted" ref="a2f0f5b3ab8e8e4b30c29144c9754ae43" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isStarted</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60ee374f9b048e2298bd09d4468c5462"></a><!-- doxytag: member="WebSocket::isOpen" ref="a60ee374f9b048e2298bd09d4468c5462" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isOpen</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a545c2c80399d77af26b4e09838c06968"></a><!-- doxytag: member="WebSocket::isVersion76" ref="a545c2c80399d77af26b4e09838c06968" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isVersion76</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a237ae179626a75354a174bc779ddd076">request</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#ac09dba8aa168ea0ea2797060e554412e">term</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a29daf6e72cb0f08f1dfde44167fd2850">isStarted</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#abbaf57b67958ea9e9c9bc8a5a88cc9ee">isOpen</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a6dc1c1938cbb3b607869193d952addaa">isVersion76</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#ad7f17eac2a979c7bf016a69249114453">delegate</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a7e0201b68239df2545bcf240032b213b">websocketQueue</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a8d9332fcd23523b1e2520b8765577423">delegate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_web_socket.html#a282b47fb695a214321ea0b32548634de">websocketQueue</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a665aa822f1ff213009d874d74ce907b5"></a><!-- doxytag: member="WebSocket::didClose" ref="a665aa822f1ff213009d874d74ce907b5" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L9">9</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a32a753e3228522f356d40f1809b41ad3"></a><!-- doxytag: member="WebSocket::didClose" ref="a32a753e3228522f356d40f1809b41ad3" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -153,9 +147,28 @@ Properties</h2></td></tr>
 <p>If the web socket did close</p>
 <p>Notifiy delegate that websocket did close </p>
 
+<p>Definition at line <a class="el" href="#L642">642</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to perform any cleanup when the socket is closed</span>
+        <span class="comment">// This method is invoked on the websocketQueue.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Don&#39;t forget to invoke [super didClose] at the end of your method.</span>
+        
+        <span class="comment">// Notify delegate that the websocket did close</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_web_socket.html#a8d9332fcd23523b1e2520b8765577423">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(webSocketDidClose:)])
+        {
+        
+                [delegate webSocketDidClose:self];
+        }
+        
+        <span class="comment">// Notify HTTPServer</span>
+        [[NSNotificationCenter defaultCenter] postNotificationName:WebSocketDidDieNotification object:self];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ab5501c0921026aeb4322f01a13672ae4"></a><!-- doxytag: member="WebSocket::didOpen" ref="ab5501c0921026aeb4322f01a13672ae4" args="()" -->
+<a class="anchor" id="af64941676d576bb003ee306ab8d10c9c"></a><!-- doxytag: member="WebSocket::didOpen" ref="af64941676d576bb003ee306ab8d10c9c" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -172,9 +185,28 @@ Properties</h2></td></tr>
 <p>These methods are designed to be overriden by subclasses. If the web socket did open</p>
 <p>If the web socket has been opened </p>
 
+<p>Definition at line <a class="el" href="#L572">572</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to perform any custom actions once the WebSocket has been opened.</span>
+        <span class="comment">// This method is invoked on the websocketQueue.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Don&#39;t forget to invoke [super didOpen] in your method.</span>
+        
+        <span class="comment">// Start reading for messages</span>
+        [asyncSocket readDataToLength:1 withTimeout:TIMEOUT_NONE tag:TAG_PREFIX];
+        
+        <span class="comment">// Notify delegate that the web socket did open</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_web_socket.html#a8d9332fcd23523b1e2520b8765577423">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(webSocketDidOpen:)])
+        {
+        
+                [delegate webSocketDidOpen:self];
+        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a5524957c1532a4cc6e72776c37b5d08b"></a><!-- doxytag: member="WebSocket::didReceiveMessage:" ref="a5524957c1532a4cc6e72776c37b5d08b" args="(NSString *msg)" -->
+<a class="anchor" id="ae611f7ce14183af6ee7258a60a13c6d9"></a><!-- doxytag: member="WebSocket::didReceiveMessage:" ref="ae611f7ce14183af6ee7258a60a13c6d9" args="(NSString *msg)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -191,9 +223,26 @@ Properties</h2></td></tr>
 <p>If the web socket did receive an incoming message</p>
 <p>Did receive an incoming message param NSString </p>
 
+<p>Definition at line <a class="el" href="#L622">622</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                         :(NSString *)msg
+{
+        
+        <span class="comment">// Override me to process incoming messages.</span>
+        <span class="comment">// This method is invoked on the websocketQueue.</span>
+        <span class="comment">// </span>
+        <span class="comment">// For completeness, you should invoke [super didReceiveMessage:msg] in your method.</span>
+        
+        <span class="comment">// Notify delegate that it did receive a message</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_web_socket.html#a8d9332fcd23523b1e2520b8765577423">delegate</a> respondsToSelector:<span class="keyword">@selector</span>(webSocket:didReceiveMessage:)])
+        {
+        <span class="comment">// Notify the socket it received a message</span>
+                [delegate webSocket:self didReceiveMessage:msg];
+        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="abaa9f8c7251f9a42cfc751f493aefe43"></a><!-- doxytag: member="WebSocket::initWithRequest:socket:" ref="abaa9f8c7251f9a42cfc751f493aefe43" args="(HTTPMessage *request,[socket] GCDAsyncSocket *socket)" -->
+<a class="anchor" id="abcad44f4e7bee87c3d3ee7d64daf0224"></a><!-- doxytag: member="WebSocket::initWithRequest:socket:" ref="abcad44f4e7bee87c3d3ee7d64daf0224" args="(HTTPMessage *request,[socket] GCDAsyncSocket *socket)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -220,9 +269,45 @@ Properties</h2></td></tr>
 <p>Initialize with <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> request and a socket param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> param <a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a></p>
 <p>Initialize the web socket with an HTTP request and a socket param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> param <a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> returns id </p>
 
+<p>Definition at line <a class="el" href="#L151">151</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                     :(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)aRequest socket:(<a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *)socket
+{
+        <span class="comment">// If the http request is not nil</span>
+        <span class="keywordflow">if</span> (aRequest == nil)
+        {
+                [<span class="keyword">self</span> release];
+                <span class="keywordflow">return</span> nil;
+        }
+        
+    <span class="comment">// If the http request is nil</span>
+    
+    
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init]))
+        {
+                <span class="comment">// Creates a new dispatch queue to which blocks may be submitted</span>
+                <a class="code" href="interface_web_socket.html#a282b47fb695a214321ea0b32548634de">websocketQueue</a> = dispatch_queue_create(<span class="stringliteral">&quot;WebSocket&quot;</span>, NULL);
+                <a class="code" href="interface_web_socket.html#a237ae179626a75354a174bc779ddd076">request</a> = [aRequest retain];
+                
+                <a class="code" href="interface_web_socket.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a> = [socket retain];
+        
+        <span class="comment">// Set this web socket instance as the asyncSocket delegate, and the websocketQueue as the delegate queue</span>
+                [asyncSocket setDelegate:self delegateQueue:websocketQueue];
+
+                <span class="comment">// Set the flag for whether the socket is open</span>
+                <a class="code" href="interface_web_socket.html#abbaf57b67958ea9e9c9bc8a5a88cc9ee">isOpen</a> = NO;
+        
+        <span class="comment">// Get whether this request is a version 76 web socket compliant</span>
+                <a class="code" href="interface_web_socket.html#a6dc1c1938cbb3b607869193d952addaa">isVersion76</a> = [[<span class="keyword">self</span> class] isVersion76Request:request];
+                
+        <span class="comment">// Creates a terminator</span>
+                <a class="code" href="interface_web_socket.html#ac09dba8aa168ea0ea2797060e554412e">term</a> = [[<a class="code" href="class_n_s_data.html">NSData</a> alloc] initWithBytes:&quot;\xFF&quot; length:1];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a2788ff0ff14141fe221c85b9da1cd9e1"></a><!-- doxytag: member="WebSocket::isWebSocketRequest:" ref="a2788ff0ff14141fe221c85b9da1cd9e1" args="(HTTPMessage *request)" -->
+<a class="anchor" id="a2a90011c0bbbcae2e6ba6b0e4f3d76ca"></a><!-- doxytag: member="WebSocket::isWebSocketRequest:" ref="a2a90011c0bbbcae2e6ba6b0e4f3d76ca" args="(HTTPMessage *request)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -239,9 +324,81 @@ Properties</h2></td></tr>
 <p>Class method param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns BOOL</p>
 <p>Whether the HTTPRequest is a request for a web socket param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L51">51</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                          :(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)request
+{
+        <span class="comment">// Request (Draft 75):</span>
+        <span class="comment">// </span>
+        <span class="comment">// GET /demo HTTP/1.1</span>
+        <span class="comment">// Upgrade: WebSocket</span>
+        <span class="comment">// Connection: Upgrade</span>
+        <span class="comment">// Host: example.com</span>
+        <span class="comment">// Origin: http://example.com</span>
+        <span class="comment">// WebSocket-Protocol: sample</span>
+        <span class="comment">// </span>
+        <span class="comment">// </span>
+        <span class="comment">// Request (Draft 76):</span>
+        <span class="comment">//</span>
+        <span class="comment">// GET /demo HTTP/1.1</span>
+        <span class="comment">// Upgrade: WebSocket</span>
+        <span class="comment">// Connection: Upgrade</span>
+        <span class="comment">// Host: example.com</span>
+        <span class="comment">// Origin: http://example.com</span>
+        <span class="comment">// Sec-WebSocket-Protocol: sample</span>
+        <span class="comment">// Sec-WebSocket-Key1: 4 @1  46546xW%0l 1 5</span>
+        <span class="comment">// Sec-WebSocket-Key2: 12998 5 Y3 1  .P00</span>
+        <span class="comment">// </span>
+        <span class="comment">// ^n:ds[4U</span>
+        
+        <span class="comment">// Look for Upgrade: and Connection: headers.</span>
+        <span class="comment">// If we find them, and they have the proper value,</span>
+        <span class="comment">// we can safely assume this is a websocket request.</span>
+        
+    <span class="comment">// Gets the Upgrade header value from the request</span>
+        NSString *upgradeHeaderValue = [request <a class="code" href="interface_h_t_t_p_message.html#ab42cedc7ff26adf1b581683abfb05cbd">headerField</a>:@&quot;Upgrade&quot;];
+    
+    <span class="comment">// Gets the Connection header value from the request</span>
+        NSString *connectionHeaderValue = [request <a class="code" href="interface_h_t_t_p_message.html#ab42cedc7ff26adf1b581683abfb05cbd">headerField</a>:@&quot;Connection&quot;];
+        
+    
+    
+        BOOL isWebSocket = YES;
+        
+    <span class="comment">// Check if there is an upgrade and connection value.  If the header doesn&#39;t have an upgrade and connection header, then it is not a web-socket request</span>
+        <span class="keywordflow">if</span> (!upgradeHeaderValue || !connectionHeaderValue) {
+                isWebSocket = NO;
+        } <span class="comment">// Make sure the upgrade header value is &#39;WebSocket&#39;</span>
+        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (![upgradeHeaderValue caseInsensitiveCompare:<span class="stringliteral">@&quot;WebSocket&quot;</span>] == NSOrderedSame) {
+                isWebSocket = NO;
+        } <span class="comment">// Make sure the connection header value is &#39;Upgrade&#39;</span>
+        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (![connectionHeaderValue caseInsensitiveCompare:<span class="stringliteral">@&quot;Upgrade&quot;</span>] == NSOrderedSame) {
+                isWebSocket = NO;
+        }
+        
+        <span class="comment">// return that this request is a web socket request</span>
+        <span class="keywordflow">return</span> isWebSocket;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a50848023c8bff93321cbc9952615d20f"></a><!-- doxytag: member="WebSocket::sendMessage:" ref="a50848023c8bff93321cbc9952615d20f" args="(NSString *msg)" -->
+<a class="anchor" id="a3a7425ba99bf4e3071c09b6252c01e5b"></a><!-- doxytag: member="WebSocket::readRequestBody" ref="a3a7425ba99bf4e3071c09b6252c01e5b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) readRequestBody </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Read the http request body </p>
+
+</div>
+</div>
+<a class="anchor" id="a1b56bf7fe9924089ba4e3d3fff375f57"></a><!-- doxytag: member="WebSocket::sendMessage:" ref="a1b56bf7fe9924089ba4e3d3fff375f57" args="(NSString *msg)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -259,9 +416,67 @@ Properties</h2></td></tr>
 <p>Sends a message over the <a class="el" href="interface_web_socket.html">WebSocket</a>. This method is thread-safe.</p>
 <p>Sends a message param NSString </p>
 
+<p>Definition at line <a class="el" href="#L595">595</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">                   :(NSString *)msg
+{
+        <span class="comment">// Encodes the message</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *msgData = [msg dataUsingEncoding:NSUTF8StringEncoding];
+        
+    <span class="comment">// Puts message into a NSMutableData</span>
+        NSMutableData *data = [NSMutableData dataWithCapacity:([msgData length] + 2)];
+        
+    
+        [data appendBytes:&quot;\x00&quot; length:1];  <span class="comment">// NULL 0x00</span>
+
+        [data appendData:msgData];
+
+    
+        [data appendBytes:&quot;\xFF&quot; length:1];  <span class="comment">// End of transmission 0x04</span>
+
+        
+        <span class="comment">// Remember: GCDAsyncSocket is thread-safe</span>
+        
+    <span class="comment">// Writes data to the socket with no timeout or tag</span>
+        [asyncSocket writeData:data withTimeout:TIMEOUT_NONE tag:0];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a41fec2797e9b6312845355967eb9fe5a"></a><!-- doxytag: member="WebSocket::start" ref="a41fec2797e9b6312845355967eb9fe5a" args="()" -->
+<a class="anchor" id="a9feb267d36d79b93ee87b06d1606a742"></a><!-- doxytag: member="WebSocket::sendResponseBody" ref="a9feb267d36d79b93ee87b06d1606a742" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) sendResponseBody </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Send a response body </p>
+
+</div>
+</div>
+<a class="anchor" id="a6c20fedd2ade5a26a1a5c57f8efada55"></a><!-- doxytag: member="WebSocket::sendResponseHeaders" ref="a6c20fedd2ade5a26a1a5c57f8efada55" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) sendResponseHeaders </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Send the response headers </p>
+
+</div>
+</div>
+<a class="anchor" id="a60de64d75454385b23995437f1d72669"></a><!-- doxytag: member="WebSocket::start" ref="a60de64d75454385b23995437f1d72669" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -278,9 +493,44 @@ Properties</h2></td></tr>
 <p>These methods are automatically called by the <a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a>. You may invoke the stop method yourself to close the <a class="el" href="interface_web_socket.html">WebSocket</a> manually. Starting point for the <a class="el" href="interface_web_socket.html">WebSocket</a> after it has been fully initialized (including subclasses). This method is called by the <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> it is spawned from.</p>
 <p>Starting point for the <a class="el" href="interface_web_socket.html">WebSocket</a> after it has been fully initialized (including subclasses). This method is called by the <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> it is spawned from. </p>
 
+<p>Definition at line <a class="el" href="#L246">246</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// This method is not exactly designed to be overriden.</span>
+        <span class="comment">// Subclasses are encouraged to override the didOpen method instead.</span>
+        
+    <span class="comment">// Submits a block for asynchronous execution on the websocketQueue</span>
+        dispatch_async(<a class="code" href="interface_web_socket.html#a282b47fb695a214321ea0b32548634de">websocketQueue</a>, ^{
+        
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+        <span class="comment">// If the websocket is started</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_web_socket.html#a29daf6e72cb0f08f1dfde44167fd2850">isStarted</a>) <span class="keywordflow">return</span>;
+        
+        <span class="comment">// Sets web socket flag to started</span>
+                <a class="code" href="interface_web_socket.html#a29daf6e72cb0f08f1dfde44167fd2850">isStarted</a> = YES;
+                
+        <span class="comment">// if the request is version 76 compliant</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_web_socket.html#a6dc1c1938cbb3b607869193d952addaa">isVersion76</a>)
+                {
+            <span class="comment">// Read the request body</span>
+                        [<span class="keyword">self</span> readRequestBody];
+                }
+                <span class="keywordflow">else</span> <span class="comment">// if the request is not version 76 compliant</span>
+                {
+            <span class="comment">// Set response headers</span>
+                        [<span class="keyword">self</span> sendResponseHeaders];
+            
+            <span class="comment">// if web socket has been opened</span>
+                        [<span class="keyword">self</span> didOpen];
+                }
+                
+                [pool release];
+        }); <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a7f3e5655c5742e8d06b5bd86e5e7f860"></a><!-- doxytag: member="WebSocket::stop" ref="a7f3e5655c5742e8d06b5bd86e5e7f860" args="()" -->
+<a class="anchor" id="a8c528baf37154d347366083f0f816846"></a><!-- doxytag: member="WebSocket::stop" ref="a8c528baf37154d347366083f0f816846" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -295,10 +545,123 @@ Properties</h2></td></tr>
 <div class="memdoc">
 <p>This method is called by the <a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a> if it is asked to stop. The server, in turn, invokes stop on each <a class="el" href="interface_web_socket.html">WebSocket</a> instance. </p>
 
+<p>Definition at line <a class="el" href="#L285">285</a> of file <a class="el" href="">WebSocket.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// This method is not exactly designed to be overriden.</span>
+        <span class="comment">// Subclasses are encouraged to override the didClose method instead.</span>
+        
+    <span class="comment">// Submits a block for asynchronous execution on the websocketQueue</span>
+        dispatch_async(<a class="code" href="interface_web_socket.html#a282b47fb695a214321ea0b32548634de">websocketQueue</a>, ^{
+        
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+                [asyncSocket disconnect];
+                
+                [pool release];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a934c3ad23263b95b672789c6eaec3270"></a><!-- doxytag: member="WebSocket::asyncSocket" ref="a934c3ad23263b95b672789c6eaec3270" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>*) <a class="el" href="interface_web_socket.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the socket (i.e. file handle) </p>
+
+<p>Definition at line <a class="el" href="#L25">25</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abbaf57b67958ea9e9c9bc8a5a88cc9ee"></a><!-- doxytag: member="WebSocket::isOpen" ref="abbaf57b67958ea9e9c9bc8a5a88cc9ee" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_web_socket.html#abbaf57b67958ea9e9c9bc8a5a88cc9ee">isOpen</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>if web socket is open </p>
+
+<p>Definition at line <a class="el" href="#L40">40</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29daf6e72cb0f08f1dfde44167fd2850"></a><!-- doxytag: member="WebSocket::isStarted" ref="a29daf6e72cb0f08f1dfde44167fd2850" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_web_socket.html#a29daf6e72cb0f08f1dfde44167fd2850">isStarted</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>if web socket is started </p>
+
+<p>Definition at line <a class="el" href="#L35">35</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6dc1c1938cbb3b607869193d952addaa"></a><!-- doxytag: member="WebSocket::isVersion76" ref="a6dc1c1938cbb3b607869193d952addaa" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_web_socket.html#a6dc1c1938cbb3b607869193d952addaa">isVersion76</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>if version76 </p>
+
+<p>Definition at line <a class="el" href="#L45">45</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a237ae179626a75354a174bc779ddd076"></a><!-- doxytag: member="WebSocket::request" ref="a237ae179626a75354a174bc779ddd076" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a>*) <a class="el" href="interface_web_socket.html#a237ae179626a75354a174bc779ddd076">request</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the web socket request </p>
+
+<p>Definition at line <a class="el" href="#L20">20</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac09dba8aa168ea0ea2797060e554412e"></a><!-- doxytag: member="WebSocket::term" ref="ac09dba8aa168ea0ea2797060e554412e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="class_n_s_data.html">NSData</a>*) <a class="el" href="interface_web_socket.html#ac09dba8aa168ea0ea2797060e554412e">term</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L30">30</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="ad7f17eac2a979c7bf016a69249114453"></a><!-- doxytag: member="WebSocket::delegate" ref="ad7f17eac2a979c7bf016a69249114453" args="" -->
+<a class="anchor" id="a8d9332fcd23523b1e2520b8765577423"></a><!-- doxytag: member="WebSocket::delegate" ref="a8d9332fcd23523b1e2520b8765577423" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -312,9 +675,11 @@ Properties</h2></td></tr>
 <p>In most cases it will be easier to subclass <a class="el" href="interface_web_socket.html">WebSocket</a>, but some circumstances may lead one to prefer standard delegate callbacks instead.</p>
 <p>Get the websocket delegate returns id </p>
 
+<p>Definition at line <a class="el" href="#L68">68</a> of file <a class="el" href="">WebSocket.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a7e0201b68239df2545bcf240032b213b"></a><!-- doxytag: member="WebSocket::websocketQueue" ref="a7e0201b68239df2545bcf240032b213b" args="" -->
+<a class="anchor" id="a282b47fb695a214321ea0b32548634de"></a><!-- doxytag: member="WebSocket::websocketQueue" ref="a282b47fb695a214321ea0b32548634de" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -324,20 +689,23 @@ Properties</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>websocket queue</p>
 <p>The <a class="el" href="interface_web_socket.html">WebSocket</a> class is thread-safe, generally via it's GCD queue. All public API methods are thread-safe, and the subclass API methods are thread-safe as they are all invoked on the same GCD queue. </p>
+
+<p>Definition at line <a class="el" href="#L15">15</a> of file <a class="el" href="">WebSocket.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_web_socket_8h_source.html">WebSocket.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/WebSocket.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">WebSocket.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">WebSocket.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_web_socket.html">WebSocket</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:12 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -347,7 +715,7 @@ Properties</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

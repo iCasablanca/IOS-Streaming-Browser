@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="DDAbstractLogger" --><!-- doxytag: inherits="DDLogger-p" -->
-<p><code>#import &lt;<a class="el" href="_d_d_log_8h_source.html">DDLog.h</a>&gt;</code></p>
+<p><code>#import &lt;<a class="el" href="">DDLog.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DDAbstractLogger:</div>
 <div class="dyncontent">
@@ -103,17 +103,14 @@ Collaboration diagram for DDAbstractLogger:</div>
 <map name="_d_d_abstract_logger_coll__map" id="_d_d_abstract_logger_coll__map">
 <area shape="rect" id="node2" href="protocol_d_d_logger-p.html" title="\&lt;DDLogger\&gt;" alt="" coords="27,6,136,34"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_d_d_abstract_logger-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a> &gt;)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_abstract_logger.html#a4839d52332a328cf00e91225798727c3">logFormatter</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_abstract_logger.html#a66adcff49e28995ce45a470ec41623e1">setLogFormatter:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a> &gt;)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_abstract_logger.html#ac6b6196832dd8e3def9cfe811cfdcb69">logFormatter</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_abstract_logger.html#ad11733af30fbf0d83c34b9739d22d074">setLogFormatter:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5272dacaffde3c3ec20255b71ef64707"></a><!-- doxytag: member="DDAbstractLogger::formatter" ref="a5272dacaffde3c3ec20255b71ef64707" args="" -->
-id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>formatter</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="protocol_d_d_logger-p.html">DDLogger</a> protocol specifies that an optional formatter can be added to a logger. Most (but not all) loggers will want to support formatters.</p>
@@ -125,8 +122,10 @@ id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a>
 </ul>
 <p>To simplify things, an abstract logger is provided that implements the getter and setter.</p>
 <p>Logger implementations may simply extend this class, and they can ACCESS THE FORMATTER VARIABLE DIRECTLY from within their logMessage method! </p>
+
+<p>Definition at line <a class="el" href="#L657">657</a> of file <a class="el" href="">DDLog.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4839d52332a328cf00e91225798727c3"></a><!-- doxytag: member="DDAbstractLogger::logFormatter" ref="a4839d52332a328cf00e91225798727c3" args="()" -->
+<a class="anchor" id="ac6b6196832dd8e3def9cfe811cfdcb69"></a><!-- doxytag: member="DDAbstractLogger::logFormatter" ref="ac6b6196832dd8e3def9cfe811cfdcb69" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -141,11 +140,115 @@ id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a>
 <div class="memdoc">
 <p>Gets the logFormatter returns id &lt;DDLogFormatter&gt; </p>
 
-<p>Reimplemented from <a class="el" href="protocol_d_d_logger-p.html#a23281a33ff57cddf0bc7e58652b8217e">&lt;DDLogger&gt;</a>.</p>
+<p>Reimplemented from <a class="el" href="protocol_d_d_logger-p.html#a6d1c5ca10fbfc17cf3cd5f166779fede">&lt;DDLogger&gt;</a>.</p>
 
+<p>Definition at line <a class="el" href="#L1400">1400</a> of file <a class="el" href="">DDLog.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// This method must be thread safe and intuitive.</span>
+        <span class="comment">// Therefore if somebody executes the following code:</span>
+        <span class="comment">// </span>
+        <span class="comment">// [logger setLogFormatter:myFormatter];</span>
+        <span class="comment">// formatter = [logger logFormatter];</span>
+        <span class="comment">// </span>
+        <span class="comment">// They would expect formatter to equal myFormatter.</span>
+        <span class="comment">// This functionality must be ensured by the getter and setter method.</span>
+        <span class="comment">// </span>
+        <span class="comment">// The thread safety must not come at a cost to the performance of the logMessage method.</span>
+        <span class="comment">// This method is likely called sporadically, while the logMessage method is called repeatedly.</span>
+        <span class="comment">// This means, the implementation of this method:</span>
+        <span class="comment">// - Must NOT require the logMessage method to acquire a lock.</span>
+        <span class="comment">// - Must NOT require the logMessage method to access an atomic property (also a lock of sorts).</span>
+        <span class="comment">// </span>
+        <span class="comment">// Thread safety is ensured by executing access to the formatter variable on the logging thread/queue.</span>
+        <span class="comment">// This is the same thread/queue that the logMessage method operates on.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Note: The last time I benchmarked the performance of direct access vs atomic property access,</span>
+        <span class="comment">// direct access was over twice as fast on the desktop and over 6 times as fast on the iPhone.</span>
+        
+        <span class="keywordflow">if</span> (<a class="code" href="_d_d_log_8h.html#ac629d2fa2afa72c8fb1f0ea40889b944">IS_GCD_AVAILABLE</a>)
+        {
+<span class="preprocessor">        #if GCD_MAYBE_AVAILABLE</span>
+<span class="preprocessor"></span>                
+                <span class="comment">// loggerQueue  : Our own private internal queue that the logMessage method runs on.</span>
+                <span class="comment">//                Operations are added to this queue from the global loggingQueue.</span>
+                <span class="comment">//</span>
+                <span class="comment">// loggingQueue : The queue that all log messages go through before they arrive in our loggerQueue.</span>
+                <span class="comment">// </span>
+                <span class="comment">// It is important to note that, while the loggerQueue is used to create thread-safety for our formatter,</span>
+                <span class="comment">// changes to the formatter variable are queued on the loggingQueue.</span>
+                <span class="comment">// </span>
+                <span class="comment">// Since this will obviously confuse the hell out of me later, here is a better description.</span>
+                <span class="comment">// Imagine the following code:</span>
+                <span class="comment">// </span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 1&quot;);</span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 2&quot;);</span>
+                <span class="comment">// [logger setFormatter:myFormatter];</span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 3&quot;);</span>
+                <span class="comment">// </span>
+                <span class="comment">// Our intuitive requirement means that the new formatter will only apply to the 3rd log message.</span>
+                <span class="comment">// But notice what happens if we have asynchronous logging enabled for verbose mode.</span>
+                <span class="comment">// </span>
+                <span class="comment">// Log msg 1 starts executing asynchronously on the loggingQueue.</span>
+                <span class="comment">// The loggingQueue executes the log statement on each logger concurrently.</span>
+                <span class="comment">// That means it executes log msg 1 on our loggerQueue.</span>
+                <span class="comment">// While log msg 1 is executing, log msg 2 gets added to the loggingQueue.</span>
+                <span class="comment">// Then the user requests that we change our formatter.</span>
+                <span class="comment">// So at this exact moment, our queues look like this:</span>
+                <span class="comment">// </span>
+                <span class="comment">// loggerQueue  : executing log msg 1, nil</span>
+                <span class="comment">// loggingQueue : executing log msg 1, log msg 2, nil</span>
+                <span class="comment">// </span>
+                <span class="comment">// So direct access to the formatter is only available if requested from the loggerQueue.</span>
+                <span class="comment">// In all other circumstances we need to go through the loggingQueue to get the proper value.</span>
+                
+                <span class="keywordflow">if</span> (dispatch_get_current_queue() == loggerQueue)
+                {
+                        <span class="keywordflow">return</span> <a class="code" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a>;
+                }
+                
+                __block id &lt;DDLogFormatter&gt; result;
+                
+                dispatch_block_t block = ^{
+                        result = [formatter retain];
+                };
+                dispatch_sync([<a class="code" href="interface_d_d_log.html">DDLog</a> loggingQueue], block);
+                
+                <span class="keywordflow">return</span> [result autorelease];
+                
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+        <span class="keywordflow">else</span>
+        {
+<span class="preprocessor">        #if GCD_MAYBE_UNAVAILABLE</span>
+<span class="preprocessor"></span>                
+                NSThread *loggingThread = [<a class="code" href="interface_d_d_log.html">DDLog</a> <a class="code" href="interface_d_d_log.html#a0db1fa8d38dc4a508f1178f9ece91347">loggingThread</a>];
+                
+                <span class="keywordflow">if</span> ([NSThread currentThread] == loggingThread)
+                {
+                        <span class="keywordflow">return</span> <a class="code" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a>;
+                }
+                
+                NSMutableArray *resultHolder = [[NSMutableArray alloc] init];
+                
+                [<span class="keyword">self</span> performSelector:@selector(lt_getLogFormatter:)
+                             onThread:loggingThread
+                           withObject:resultHolder
+                        waitUntilDone:YES];
+                
+                OSMemoryBarrier();
+                
+                id &lt;DDLogFormatter&gt; result = [[resultHolder objectAtIndex:0] retain];
+                [resultHolder release];
+                
+                <span class="keywordflow">return</span> [result autorelease];
+                
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a66adcff49e28995ce45a470ec41623e1"></a><!-- doxytag: member="DDAbstractLogger::setLogFormatter:" ref="a66adcff49e28995ce45a470ec41623e1" args="(id&lt; DDLogFormatter &gt; formatter)" -->
+<a class="anchor" id="ad11733af30fbf0d83c34b9739d22d074"></a><!-- doxytag: member="DDAbstractLogger::setLogFormatter:" ref="ad11733af30fbf0d83c34b9739d22d074" args="(id&lt; DDLogFormatter &gt; formatter)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -161,20 +264,139 @@ id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a>
 <div class="memdoc">
 <p>Set the logFormatter param id &lt;DDLogFormatter&gt; </p>
 
-<p>Reimplemented from <a class="el" href="protocol_d_d_logger-p.html">&lt;DDLogger&gt;</a>.</p>
+<p>Reimplemented from <a class="el" href="protocol_d_d_logger-p.html#ad11733af30fbf0d83c34b9739d22d074">&lt;DDLogger&gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="#L1509">1509</a> of file <a class="el" href="">DDLog.m</a>.</p>
+<div class="fragment"><pre class="fragment">                       :(id &lt;DDLogFormatter&gt;)<a class="code" href="interface_d_d_abstract_logger.html#ac6b6196832dd8e3def9cfe811cfdcb69">logFormatter</a>
+{
+        <span class="comment">// This method must be thread safe and intuitive.</span>
+        <span class="comment">// Therefore if somebody executes the following code:</span>
+        <span class="comment">// </span>
+        <span class="comment">// [logger setLogFormatter:myFormatter];</span>
+        <span class="comment">// formatter = [logger logFormatter];</span>
+        <span class="comment">// </span>
+        <span class="comment">// They would expect formatter to equal myFormatter.</span>
+        <span class="comment">// This functionality must be ensured by the getter and setter method.</span>
+        <span class="comment">// </span>
+        <span class="comment">// The thread safety must not come at a cost to the performance of the logMessage method.</span>
+        <span class="comment">// This method is likely called sporadically, while the logMessage method is called repeatedly.</span>
+        <span class="comment">// This means, the implementation of this method:</span>
+        <span class="comment">// - Must NOT require the logMessage method to acquire a lock.</span>
+        <span class="comment">// - Must NOT require the logMessage method to access an atomic property (also a lock of sorts).</span>
+        <span class="comment">// </span>
+        <span class="comment">// Thread safety is ensured by executing access to the formatter variable on the logging thread/queue.</span>
+        <span class="comment">// This is the same thread/queue that the logMessage method operates on.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Note: The last time I benchmarked the performance of direct access vs atomic property access,</span>
+        <span class="comment">// direct access was over twice as fast on the desktop and over 6 times as fast on the iPhone.</span>
+        
+        <span class="keywordflow">if</span> (<a class="code" href="_d_d_log_8h.html#ac629d2fa2afa72c8fb1f0ea40889b944">IS_GCD_AVAILABLE</a>)
+        {
+<span class="preprocessor">        #if GCD_MAYBE_AVAILABLE</span>
+<span class="preprocessor"></span>                
+                <span class="comment">// loggerQueue  : Our own private internal queue that the logMessage method runs on.</span>
+                <span class="comment">//                Operations are added to this queue from the global loggingQueue.</span>
+                <span class="comment">//</span>
+                <span class="comment">// loggingQueue : The queue that all log messages go through before they arrive in our loggerQueue.</span>
+                <span class="comment">// </span>
+                <span class="comment">// It is important to note that, while the loggerQueue is used to create thread-safety for our formatter,</span>
+                <span class="comment">// changes to the formatter variable are queued on the loggingQueue.</span>
+                <span class="comment">// </span>
+                <span class="comment">// Since this will obviously confuse the hell out of me later, here is a better description.</span>
+                <span class="comment">// Imagine the following code:</span>
+                <span class="comment">// </span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 1&quot;);</span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 2&quot;);</span>
+                <span class="comment">// [logger setFormatter:myFormatter];</span>
+                <span class="comment">// DDLogVerbose(@&quot;log msg 3&quot;);</span>
+                <span class="comment">// </span>
+                <span class="comment">// Our intuitive requirement means that the new formatter will only apply to the 3rd log message.</span>
+                <span class="comment">// But notice what happens if we have asynchronous logging enabled for verbose mode.</span>
+                <span class="comment">// </span>
+                <span class="comment">// Log msg 1 starts executing asynchronously on the loggingQueue.</span>
+                <span class="comment">// The loggingQueue executes the log statement on each logger concurrently.</span>
+                <span class="comment">// That means it executes log msg 1 on our loggerQueue.</span>
+                <span class="comment">// While log msg 1 is executing, log msg 2 gets added to the loggingQueue.</span>
+                <span class="comment">// Then the user requests that we change our formatter.</span>
+                <span class="comment">// So at this exact moment, our queues look like this:</span>
+                <span class="comment">// </span>
+                <span class="comment">// loggerQueue  : executing log msg 1, nil</span>
+                <span class="comment">// loggingQueue : executing log msg 1, log msg 2, nil</span>
+                <span class="comment">// </span>
+                <span class="comment">// So direct access to the formatter is only available if requested from the loggerQueue.</span>
+                <span class="comment">// In all other circumstances we need to go through the loggingQueue to get the proper value.</span>
+                
+                dispatch_block_t block = ^{
+                        <span class="keywordflow">if</span> (<a class="code" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a> != <a class="code" href="interface_d_d_abstract_logger.html#ac6b6196832dd8e3def9cfe811cfdcb69">logFormatter</a>)
+                        {
+                                [formatter release];
+                                <a class="code" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a> = [logFormatter retain];
+                        }
+                }; <span class="comment">// END OF BLOCK</span>
+                
+                <span class="keywordflow">if</span> (dispatch_get_current_queue() == loggerQueue)
+        {    
+                        block();
+        
+        }<span class="keywordflow">else</span>{
+                
+                        dispatch_async([<a class="code" href="interface_d_d_log.html">DDLog</a> loggingQueue], block);
+        }
+        
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+        <span class="keywordflow">else</span>
+        {
+<span class="preprocessor">        #if GCD_MAYBE_UNAVAILABLE</span>
+<span class="preprocessor"></span>                
+                NSThread *loggingThread = [<a class="code" href="interface_d_d_log.html">DDLog</a> <a class="code" href="interface_d_d_log.html#a0db1fa8d38dc4a508f1178f9ece91347">loggingThread</a>];
+                
+                <span class="keywordflow">if</span> ([NSThread currentThread] == loggingThread)
+                {
+                        [<span class="keyword">self</span> lt_setLogFormatter:logFormatter];
+                }
+                <span class="keywordflow">else</span>
+                {
+            <span class="comment">// Set the log formatter on the logging threate with a specific format and don&#39;t wait for it to finish (asychronous)</span>
+                        [<span class="keyword">self</span> performSelector:@selector(lt_setLogFormatter:)
+                                     onThread:loggingThread
+                                   withObject:logFormatter
+                                waitUntilDone:NO];
+                }
+                
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+}
+</pre></div>
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a8233ba04af606520ca0a178345c2e141"></a><!-- doxytag: member="DDAbstractLogger::formatter" ref="a8233ba04af606520ca0a178345c2e141" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id&lt;<a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a>&gt;) <a class="el" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Follows the <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a> protocol </p>
+
+<p>Definition at line <a class="el" href="#L663">663</a> of file <a class="el" href="">DDLog.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_d_d_log_8h_source.html">DDLog.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDLog.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDLog.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDLog.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_d_d_abstract_logger.html">DDAbstractLogger</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -184,7 +406,7 @@ id&lt; <a class="el" href="protocol_d_d_log_formatter-p.html">DDLogFormatter</a>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

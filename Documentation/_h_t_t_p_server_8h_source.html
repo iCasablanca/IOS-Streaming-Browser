@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPServer.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a href="_h_t_t_p_server_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 <span class="keyword">@class</span> <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>;
 <a name="l00004"></a>00004 <span class="keyword">@class</span> <a class="code" href="interface_web_socket.html">WebSocket</a>;
@@ -96,103 +97,310 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">  #if MAC_OS_X_VERSION_MIN_REQUIRED &gt;= 1060 // Mac OS X 10.6</span>
 <a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">    #define IMPLEMENTED_PROTOCOLS &lt;NSNetServiceDelegate&gt;</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">  #else</span>
-<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor">    #define IMPLEMENTED_PROTOCOLS </span>
+<a name="l00016"></a><a class="code" href="_h_t_t_p_server_8h.html#ab54b054c87f608d75eea5c65dbfc32e4">00016</a> <span class="preprocessor"></span><span class="preprocessor">    #define IMPLEMENTED_PROTOCOLS </span>
 <a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">  #endif</span>
 <a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00019"></a>00019 <span class="preprocessor"></span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a><a class="code" href="interface_h_t_t_p_server.html">00021</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> : NSObject IMPLEMENTED_PROTOCOLS
-<a name="l00022"></a>00022 {
-<a name="l00024"></a>00024         <span class="comment">// Underlying asynchronous TCP/IP socket</span>
-<a name="l00026"></a>00026 <span class="comment"></span>
-<a name="l00027"></a>00027     <span class="comment">// Dispatch queues are lightweight objects to which blocks may be</span>
-<a name="l00028"></a>00028     <span class="comment">// submitted.  The system manages a pool of threads which process </span>
-<a name="l00029"></a>00029     <span class="comment">// dispatch queues and invoke blocks submitted to them.</span>
-<a name="l00030"></a>00030         dispatch_queue_t serverQueue;
-<a name="l00031"></a>00031         dispatch_queue_t connectionQueue;
-<a name="l00032"></a>00032         <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *asyncSocket;  <span class="comment">// for reading and writing data</span>
-<a name="l00033"></a>00033         
-<a name="l00035"></a>00035         <span class="comment">// HTTP server configuration</span>
-<a name="l00037"></a><a class="code" href="interface_h_t_t_p_server.html#aaab61a2ce871a1a1bd1bc662b9cdded9">00037</a> <span class="comment"></span>        NSString *<a class="code" href="interface_h_t_t_p_server.html#aaab61a2ce871a1a1bd1bc662b9cdded9">documentRoot</a>; <span class="comment">// the document root</span>
-<a name="l00038"></a><a class="code" href="interface_h_t_t_p_server.html#a39ae9724a5117885d76aae20b346ec41">00038</a>         Class <a class="code" href="interface_h_t_t_p_server.html#a39ae9724a5117885d76aae20b346ec41">connectionClass</a>; <span class="comment">// default is HTTP connection</span>
-<a name="l00039"></a><a class="code" href="interface_h_t_t_p_server.html#a7d6bee361a44383d4af62ac43903aa0f">00039</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a7d6bee361a44383d4af62ac43903aa0f">interface</a>; <span class="comment">// the interface the server should listen on, &quot;en1&quot;, &quot;lo0&quot;, etc</span>
-<a name="l00040"></a><a class="code" href="interface_h_t_t_p_server.html#adff6720023181115793dbf3b29eae202">00040</a>         UInt16 <a class="code" href="interface_h_t_t_p_server.html#adff6720023181115793dbf3b29eae202">port</a>; <span class="comment">// the listening port</span>
-<a name="l00041"></a>00041 
-<a name="l00043"></a>00043         <span class="comment">// NSNetService and related variables</span>
-<a name="l00045"></a>00045 <span class="comment"></span>        NSNetService *netService; <span class="comment">// represents a network service</span>
-<a name="l00046"></a><a class="code" href="interface_h_t_t_p_server.html#a2bf61f5902417f97006de60e8f93cc50">00046</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a2bf61f5902417f97006de60e8f93cc50">domain</a>; <span class="comment">// the domain the service should be published on, the default is &#39;local&#39;</span>
-<a name="l00047"></a><a class="code" href="interface_h_t_t_p_server.html#aedc156259b8def3a2d49e6f5f7135d49">00047</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#aedc156259b8def3a2d49e6f5f7135d49">type</a>; <span class="comment">// tcp or udp</span>
-<a name="l00048"></a><a class="code" href="interface_h_t_t_p_server.html#a1b954a370ed30882399a103f0458364b">00048</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a1b954a370ed30882399a103f0458364b">name</a>; <span class="comment">// default is the computers name that the server is running on</span>
-<a name="l00049"></a><a class="code" href="interface_h_t_t_p_server.html#a1e4e79bb402a958e3fe14aa7cb668713">00049</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a1e4e79bb402a958e3fe14aa7cb668713">publishedName</a>; <span class="comment">// the published server name</span>
-<a name="l00050"></a>00050         NSDictionary *txtRecordDictionary;
-<a name="l00051"></a>00051         
-<a name="l00053"></a>00053         <span class="comment">// Connection management</span>
-<a name="l00055"></a>00055 <span class="comment"></span>        NSMutableArray *connections; <span class="comment">// the connections to the server</span>
-<a name="l00056"></a>00056         NSMutableArray *webSockets; <span class="comment">// the web socket connections</span>
-<a name="l00057"></a>00057         NSLock *connectionsLock; <span class="comment">// locks the http connection</span>
-<a name="l00058"></a>00058         NSLock *webSocketsLock; <span class="comment">// locks the websocket</span>
-<a name="l00059"></a>00059         
-<a name="l00060"></a>00060     <span class="comment">// Whether the server is running or not</span>
-<a name="l00061"></a><a class="code" href="interface_h_t_t_p_server.html#a11293740dfbf164cd470444df1b04d28">00061</a>         BOOL <a class="code" href="interface_h_t_t_p_server.html#a11293740dfbf164cd470444df1b04d28">isRunning</a>;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00075"></a>00075 - (NSString *)documentRoot;
-<a name="l00076"></a>00076 
-<a name="l00080"></a>00080 - (void)setDocumentRoot:(NSString *)value;
-<a name="l00081"></a>00081 
-<a name="l00091"></a>00091 - (Class)connectionClass;
-<a name="l00092"></a>00092 
-<a name="l00096"></a>00096 - (void)setConnectionClass:(Class)value;
-<a name="l00097"></a>00097 
-<a name="l00106"></a>00106 - (NSString *)interface;
-<a name="l00107"></a>00107 
-<a name="l00111"></a>00111 - (void)setInterface:(NSString *)value;
-<a name="l00112"></a>00112 
-<a name="l00128"></a>00128 - (UInt16)port;
-<a name="l00129"></a>00129 
-<a name="l00133"></a>00133 - (UInt16)listeningPort;
-<a name="l00134"></a>00134 
-<a name="l00138"></a>00138 - (void)setPort:(UInt16)value;
-<a name="l00139"></a>00139 
-<a name="l00149"></a>00149 - (NSString *)domain;
-<a name="l00150"></a>00150 
-<a name="l00154"></a>00154 - (void)setDomain:(NSString *)value;
-<a name="l00155"></a>00155 
-<a name="l00173"></a>00173 - (NSString *)name;
-<a name="l00174"></a>00174 
-<a name="l00178"></a>00178 - (NSString *)publishedName;
-<a name="l00179"></a>00179 
-<a name="l00183"></a>00183 - (void)setName:(NSString *)value;
-<a name="l00184"></a>00184 
-<a name="l00195"></a>00195 - (NSString *)type;
-<a name="l00196"></a>00196 
-<a name="l00200"></a>00200 - (void)setType:(NSString *)value;
-<a name="l00201"></a>00201 
-<a name="l00206"></a>00206 - (void)republishBonjour;
-<a name="l00207"></a>00207 
-<a name="l00211"></a>00211 - (NSDictionary *)TXTRecordDictionary;
-<a name="l00212"></a>00212 
-<a name="l00216"></a>00216 - (void)setTXTRecordDictionary:(NSDictionary *)dict;
-<a name="l00217"></a>00217 
-<a name="l00221"></a>00221 - (BOOL)start:(NSError **)errPtr;
-<a name="l00222"></a>00222 
-<a name="l00226"></a>00226 - (BOOL)stop;
-<a name="l00227"></a>00227 
-<a name="l00231"></a>00231 - (BOOL)isRunning;
-<a name="l00232"></a>00232 
-<a name="l00236"></a>00236 - (void)addWebSocket:(<a class="code" href="interface_web_socket.html">WebSocket</a> *)ws;
-<a name="l00237"></a>00237 
-<a name="l00241"></a>00241 - (NSUInteger)numberOfHTTPConnections;
-<a name="l00242"></a>00242 
-<a name="l00246"></a>00246 - (NSUInteger)numberOfWebSocketConnections;
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248 <span class="keyword">@end</span>
+<a name="l00021"></a><a class="code" href="interface_h_t_t_p_server.html">00021</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> : NSObject <a class="code" href="_h_t_t_p_server_8h.html#ab54b054c87f608d75eea5c65dbfc32e4">IMPLEMENTED_PROTOCOLS</a>
+<a name="l00022"></a>00022 {<span class="comment"></span>
+<a name="l00023"></a>00023 <span class="comment">    /////////////////////////////////////////////</span>
+<a name="l00024"></a>00024 <span class="comment"></span>        <span class="comment">// Underlying asynchronous TCP/IP socket</span><span class="comment"></span>
+<a name="l00025"></a>00025 <span class="comment">    ////////////////////////////////////////////</span>
+<a name="l00026"></a>00026 <span class="comment"></span><span class="comment"></span>
+<a name="l00027"></a>00027 <span class="comment">    /**</span>
+<a name="l00028"></a>00028 <span class="comment">     Dispatch queues are lightweight objects to which blocks may be submitted.  The system manages a pool of threads which process  dispatch queues and invoke blocks submitted to them.</span>
+<a name="l00029"></a>00029 <span class="comment">    **/</span>
+<a name="l00030"></a><a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">00030</a>         dispatch_queue_t <a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>;
+<a name="l00031"></a>00031     <span class="comment"></span>
+<a name="l00032"></a>00032 <span class="comment">    /**</span>
+<a name="l00033"></a>00033 <span class="comment">     Dispatch queues are lightweight objects to which blocks may be submitted.  The system manages a pool of threads which process  dispatch queues and invoke blocks submitted to them.</span>
+<a name="l00034"></a>00034 <span class="comment">     **/</span>    
+<a name="l00035"></a><a class="code" href="interface_h_t_t_p_server.html#afc9e298da8fec2755e7bb531a8d28c6c">00035</a>         dispatch_queue_t <a class="code" href="interface_h_t_t_p_server.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a>;
+<a name="l00036"></a>00036 <span class="comment"></span>
+<a name="l00037"></a>00037 <span class="comment">        /**</span>
+<a name="l00038"></a>00038 <span class="comment">      for reading and writing data</span>
+<a name="l00039"></a>00039 <span class="comment">    **/</span>
+<a name="l00040"></a><a class="code" href="interface_h_t_t_p_server.html#a934c3ad23263b95b672789c6eaec3270">00040</a>     <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *<a class="code" href="interface_h_t_t_p_server.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a>;  
+<a name="l00041"></a>00041         <span class="comment"></span>
+<a name="l00042"></a>00042 <span class="comment">    ///////////////////////////////////////////</span>
+<a name="l00043"></a>00043 <span class="comment"></span>        <span class="comment">// HTTP server configuration</span><span class="comment"></span>
+<a name="l00044"></a>00044 <span class="comment">    ///////////////////////////////////////////</span>
+<a name="l00045"></a>00045 <span class="comment"></span>
+<a name="l00046"></a>00046         <span class="comment"></span>
+<a name="l00047"></a>00047 <span class="comment">    /**</span>
+<a name="l00048"></a>00048 <span class="comment">      the document root</span>
+<a name="l00049"></a>00049 <span class="comment">    **/</span>
+<a name="l00050"></a><a class="code" href="interface_h_t_t_p_server.html#af47c339441ab6415df437e629718d154">00050</a>     NSString *<a class="code" href="interface_h_t_t_p_server.html#af47c339441ab6415df437e629718d154">documentRoot</a>; 
+<a name="l00051"></a>00051     <span class="comment"></span>
+<a name="l00052"></a>00052 <span class="comment">    /**</span>
+<a name="l00053"></a>00053 <span class="comment">      default is HTTP connection</span>
+<a name="l00054"></a>00054 <span class="comment">    **/</span>
+<a name="l00055"></a><a class="code" href="interface_h_t_t_p_server.html#aa627c6baeeed6a6b695dad378f4dd03c">00055</a>         Class <a class="code" href="interface_h_t_t_p_server.html#aa627c6baeeed6a6b695dad378f4dd03c">connectionClass</a>; 
+<a name="l00056"></a>00056     <span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">    /**</span>
+<a name="l00058"></a>00058 <span class="comment">      the interface the server should listen on, &quot;en1&quot;, &quot;lo0&quot;, etc</span>
+<a name="l00059"></a>00059 <span class="comment">    **/</span>
+<a name="l00060"></a><a class="code" href="interface_h_t_t_p_server.html#ac536e64ff3c5d56cd7dbdb2829f733f9">00060</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#ac536e64ff3c5d56cd7dbdb2829f733f9">interface</a>; 
+<a name="l00061"></a>00061     <span class="comment"></span>
+<a name="l00062"></a>00062 <span class="comment">    /**</span>
+<a name="l00063"></a>00063 <span class="comment">      the listening port</span>
+<a name="l00064"></a>00064 <span class="comment">    **/</span>
+<a name="l00065"></a><a class="code" href="interface_h_t_t_p_server.html#a96ebf7a8d647c5659f83c9f949dfea88">00065</a>         UInt16 <a class="code" href="interface_h_t_t_p_server.html#a96ebf7a8d647c5659f83c9f949dfea88">port</a>; 
+<a name="l00066"></a>00066 <span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">    /////////////////////////////////////////// </span>
+<a name="l00068"></a>00068 <span class="comment"></span>        <span class="comment">// NSNetService and related variables</span><span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">    ///////////////////////////////////////////  </span>
+<a name="l00070"></a>00070 <span class="comment"></span>    <span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">    /**</span>
+<a name="l00072"></a>00072 <span class="comment">      represents a network service</span>
+<a name="l00073"></a>00073 <span class="comment">    **/</span>
+<a name="l00074"></a><a class="code" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">00074</a>         NSNetService *<a class="code" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">netService</a>; 
+<a name="l00075"></a>00075     <span class="comment"></span>
+<a name="l00076"></a>00076 <span class="comment">    /**</span>
+<a name="l00077"></a>00077 <span class="comment">      the domain the service should be published on, the default is &#39;local&#39;</span>
+<a name="l00078"></a>00078 <span class="comment">    **/</span>
+<a name="l00079"></a><a class="code" href="interface_h_t_t_p_server.html#aaada51b3d35354d6d660fb9faa556eea">00079</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#aaada51b3d35354d6d660fb9faa556eea">domain</a>; 
+<a name="l00080"></a>00080     <span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">    /**</span>
+<a name="l00082"></a>00082 <span class="comment">      tcp or udp</span>
+<a name="l00083"></a>00083 <span class="comment">    **/</span>
+<a name="l00084"></a><a class="code" href="interface_h_t_t_p_server.html#a40ff878797d6b2d341b6d0861c4a6c91">00084</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a40ff878797d6b2d341b6d0861c4a6c91">type</a>; 
+<a name="l00085"></a>00085     <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">    /**</span>
+<a name="l00087"></a>00087 <span class="comment">      default is the computers name that the server is running on</span>
+<a name="l00088"></a>00088 <span class="comment">    **/</span>
+<a name="l00089"></a><a class="code" href="interface_h_t_t_p_server.html#afc8ccc6676addc3b49a494b2bf969c68">00089</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#afc8ccc6676addc3b49a494b2bf969c68">name</a>; 
+<a name="l00090"></a>00090     <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">    /**</span>
+<a name="l00092"></a>00092 <span class="comment">      the published server name</span>
+<a name="l00093"></a>00093 <span class="comment">    **/</span>
+<a name="l00094"></a><a class="code" href="interface_h_t_t_p_server.html#a218b05fe5e23f840b8a3ea455369b279">00094</a>         NSString *<a class="code" href="interface_h_t_t_p_server.html#a218b05fe5e23f840b8a3ea455369b279">publishedName</a>; 
+<a name="l00095"></a>00095         <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">    /**</span>
+<a name="l00097"></a>00097 <span class="comment">     </span>
+<a name="l00098"></a>00098 <span class="comment">    **/</span>
+<a name="l00099"></a><a class="code" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">00099</a>     NSDictionary *<a class="code" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">txtRecordDictionary</a>;
+<a name="l00100"></a>00100         <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">    ///////////////////////////////////////////    </span>
+<a name="l00102"></a>00102 <span class="comment"></span>        <span class="comment">// Connection management</span><span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">    ///////////////////////////////////////////</span>
+<a name="l00104"></a>00104 <span class="comment"></span>    <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">    /**</span>
+<a name="l00106"></a>00106 <span class="comment">      the connections to the server</span>
+<a name="l00107"></a>00107 <span class="comment">    **/</span>
+<a name="l00108"></a><a class="code" href="interface_h_t_t_p_server.html#ab614350bf23f5280a2b4bb8df11e893b">00108</a>         NSMutableArray *<a class="code" href="interface_h_t_t_p_server.html#ab614350bf23f5280a2b4bb8df11e893b">connections</a>; 
+<a name="l00109"></a>00109 <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">    /**</span>
+<a name="l00111"></a>00111 <span class="comment">      the web socket connections</span>
+<a name="l00112"></a>00112 <span class="comment">    **/</span>
+<a name="l00113"></a><a class="code" href="interface_h_t_t_p_server.html#a9005d19304465514be6d8b77ce918b5d">00113</a>         NSMutableArray *<a class="code" href="interface_h_t_t_p_server.html#a9005d19304465514be6d8b77ce918b5d">webSockets</a>; 
+<a name="l00114"></a>00114     <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">    /**</span>
+<a name="l00116"></a>00116 <span class="comment">      locks the http connection</span>
+<a name="l00117"></a>00117 <span class="comment">    **/</span>
+<a name="l00118"></a><a class="code" href="interface_h_t_t_p_server.html#a05f99272f41228891fb145c2471ed860">00118</a>         NSLock *<a class="code" href="interface_h_t_t_p_server.html#a05f99272f41228891fb145c2471ed860">connectionsLock</a>; 
+<a name="l00119"></a>00119     <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">    /**</span>
+<a name="l00121"></a>00121 <span class="comment">      locks the websocket</span>
+<a name="l00122"></a>00122 <span class="comment">    **/</span>
+<a name="l00123"></a><a class="code" href="interface_h_t_t_p_server.html#a3e8550d631e3c9249a70b5149debc04f">00123</a>         NSLock *<a class="code" href="interface_h_t_t_p_server.html#a3e8550d631e3c9249a70b5149debc04f">webSocketsLock</a>; 
+<a name="l00124"></a>00124         
+<a name="l00125"></a>00125     <span class="comment">// Whether the server is running or not</span>
+<a name="l00126"></a><a class="code" href="interface_h_t_t_p_server.html#a0a6b799e02b5541c496221d31353257e">00126</a>         BOOL <a class="code" href="interface_h_t_t_p_server.html#a0a6b799e02b5541c496221d31353257e">isRunning</a>;
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 <span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment">/**</span>
+<a name="l00130"></a>00130 <span class="comment"> * Specifies the document root to serve files from.</span>
+<a name="l00131"></a>00131 <span class="comment"> * For example, if you set this to &quot;/Users/&lt;your_username&gt;/Sites&quot;,</span>
+<a name="l00132"></a>00132 <span class="comment"> * then it will serve files out of the local Sites directory (including subdirectories).</span>
+<a name="l00133"></a>00133 <span class="comment"> * </span>
+<a name="l00134"></a>00134 <span class="comment"> * The default value is nil.</span>
+<a name="l00135"></a>00135 <span class="comment"> * The default server configuration will not serve any files until this is set.</span>
+<a name="l00136"></a>00136 <span class="comment"> * </span>
+<a name="l00137"></a>00137 <span class="comment"> * If you change the documentRoot while the server is running,</span>
+<a name="l00138"></a>00138 <span class="comment"> * the change will affect future incoming http connections.</span>
+<a name="l00139"></a>00139 <span class="comment">**/</span>
+<a name="l00140"></a>00140 - (NSString *)documentRoot;
+<a name="l00141"></a>00141 <span class="comment"></span>
+<a name="l00142"></a>00142 <span class="comment">/**</span>
+<a name="l00143"></a>00143 <span class="comment">    Sets the document root</span>
+<a name="l00144"></a>00144 <span class="comment">**/</span>
+<a name="l00145"></a>00145 - (void)setDocumentRoot:(NSString *)value;
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">/**</span>
+<a name="l00148"></a>00148 <span class="comment"> * The connection class is the class used to handle incoming HTTP connections.</span>
+<a name="l00149"></a>00149 <span class="comment"> * </span>
+<a name="l00150"></a>00150 <span class="comment"> * The default value is [HTTPConnection class].</span>
+<a name="l00151"></a>00151 <span class="comment"> * You can override HTTPConnection, and then set this to [MyHTTPConnection class].</span>
+<a name="l00152"></a>00152 <span class="comment"> * </span>
+<a name="l00153"></a>00153 <span class="comment"> * If you change the connectionClass while the server is running,</span>
+<a name="l00154"></a>00154 <span class="comment"> * the change will affect future incoming http connections.</span>
+<a name="l00155"></a>00155 <span class="comment">**/</span>
+<a name="l00156"></a>00156 - (Class)connectionClass;
+<a name="l00157"></a>00157 <span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">/**</span>
+<a name="l00159"></a>00159 <span class="comment">    Sets the connection class</span>
+<a name="l00160"></a>00160 <span class="comment">**/</span>
+<a name="l00161"></a>00161 - (void)setConnectionClass:(Class)value;
+<a name="l00162"></a>00162 <span class="comment"></span>
+<a name="l00163"></a>00163 <span class="comment">/**</span>
+<a name="l00164"></a>00164 <span class="comment"> * Set what interface you&#39;d like the server to listen on.</span>
+<a name="l00165"></a>00165 <span class="comment"> * By default this is nil, which causes the server to listen on all available interfaces like en1, wifi etc.</span>
+<a name="l00166"></a>00166 <span class="comment"> * </span>
+<a name="l00167"></a>00167 <span class="comment"> * The interface may be specified by name (e.g. &quot;en1&quot; or &quot;lo0&quot;) or by IP address (e.g. &quot;192.168.4.34&quot;).</span>
+<a name="l00168"></a>00168 <span class="comment"> * You may also use the special strings &quot;localhost&quot; or &quot;loopback&quot; to specify that</span>
+<a name="l00169"></a>00169 <span class="comment"> * the socket only accept connections from the local machine.</span>
+<a name="l00170"></a>00170 <span class="comment">**/</span>
+<a name="l00171"></a>00171 - (NSString *)interface;
+<a name="l00172"></a>00172 <span class="comment"></span>
+<a name="l00173"></a>00173 <span class="comment">/**</span>
+<a name="l00174"></a>00174 <span class="comment">    Sets the interface</span>
+<a name="l00175"></a>00175 <span class="comment">**/</span>
+<a name="l00176"></a>00176 - (void)setInterface:(NSString *)value;
+<a name="l00177"></a>00177 <span class="comment"></span>
+<a name="l00178"></a>00178 <span class="comment">/**</span>
+<a name="l00179"></a>00179 <span class="comment"> * The port number to run the HTTP server on.</span>
+<a name="l00180"></a>00180 <span class="comment"> * </span>
+<a name="l00181"></a>00181 <span class="comment"> * The default port number is zero, meaning the server will automatically use any available port.</span>
+<a name="l00182"></a>00182 <span class="comment"> * This is the recommended port value, as it avoids possible port conflicts with other applications.</span>
+<a name="l00183"></a>00183 <span class="comment"> * Technologies such as Bonjour can be used to allow other applications to automatically discover the port number.</span>
+<a name="l00184"></a>00184 <span class="comment"> * </span>
+<a name="l00185"></a>00185 <span class="comment"> * Note: As is common on most OS&#39;s, you need root privledges to bind to port numbers below 1024.</span>
+<a name="l00186"></a>00186 <span class="comment"> * </span>
+<a name="l00187"></a>00187 <span class="comment"> * You can change the port property while the server is running, but it won&#39;t affect the running server.</span>
+<a name="l00188"></a>00188 <span class="comment"> * To actually change the port the server is listening for connections on you&#39;ll need to restart the server.</span>
+<a name="l00189"></a>00189 <span class="comment"> * </span>
+<a name="l00190"></a>00190 <span class="comment"> * The listeningPort method will always return the port number the running server is listening for connections on.</span>
+<a name="l00191"></a>00191 <span class="comment"> * If the server is not running this method returns 0.</span>
+<a name="l00192"></a>00192 <span class="comment">**/</span>
+<a name="l00193"></a>00193 - (UInt16)port;
+<a name="l00194"></a>00194 <span class="comment"></span>
+<a name="l00195"></a>00195 <span class="comment">/**</span>
+<a name="l00196"></a>00196 <span class="comment">    Gets the listening port</span>
+<a name="l00197"></a>00197 <span class="comment">**/</span>
+<a name="l00198"></a>00198 - (UInt16)listeningPort;
+<a name="l00199"></a>00199 <span class="comment"></span>
+<a name="l00200"></a>00200 <span class="comment">/**</span>
+<a name="l00201"></a>00201 <span class="comment">    Sets the listening port</span>
+<a name="l00202"></a>00202 <span class="comment">**/</span>
+<a name="l00203"></a>00203 - (void)setPort:(UInt16)value;
+<a name="l00204"></a>00204 <span class="comment"></span>
+<a name="l00205"></a>00205 <span class="comment">/**</span>
+<a name="l00206"></a>00206 <span class="comment"> * Bonjour domain for publishing the service.</span>
+<a name="l00207"></a>00207 <span class="comment"> * The default value is &quot;local.&quot;.</span>
+<a name="l00208"></a>00208 <span class="comment"> * </span>
+<a name="l00209"></a>00209 <span class="comment"> * Note: Bonjour publishing requires you set a type.</span>
+<a name="l00210"></a>00210 <span class="comment"> * </span>
+<a name="l00211"></a>00211 <span class="comment"> * If you change the domain property after the bonjour service has already been published (server already started),</span>
+<a name="l00212"></a>00212 <span class="comment"> * you&#39;ll need to invoke the republishBonjour method to update the broadcasted bonjour service.</span>
+<a name="l00213"></a>00213 <span class="comment">**/</span>
+<a name="l00214"></a>00214 - (NSString *)domain;
+<a name="l00215"></a>00215 <span class="comment"></span>
+<a name="l00216"></a>00216 <span class="comment">/**</span>
+<a name="l00217"></a>00217 <span class="comment">    Sets the domain</span>
+<a name="l00218"></a>00218 <span class="comment">**/</span>
+<a name="l00219"></a>00219 - (void)setDomain:(NSString *)value;
+<a name="l00220"></a>00220 <span class="comment"></span>
+<a name="l00221"></a>00221 <span class="comment">/**</span>
+<a name="l00222"></a>00222 <span class="comment"> * Bonjour name for publishing the service.</span>
+<a name="l00223"></a>00223 <span class="comment"> * The default value is &quot;&quot;.</span>
+<a name="l00224"></a>00224 <span class="comment"> * </span>
+<a name="l00225"></a>00225 <span class="comment"> * If using an empty string (&quot;&quot;) for the service name when registering,</span>
+<a name="l00226"></a>00226 <span class="comment"> * the system will automatically use the &quot;Computer Name&quot;.</span>
+<a name="l00227"></a>00227 <span class="comment"> * Using an empty string will also handle name conflicts</span>
+<a name="l00228"></a>00228 <span class="comment"> * by automatically appending a digit to the end of the name.</span>
+<a name="l00229"></a>00229 <span class="comment"> * </span>
+<a name="l00230"></a>00230 <span class="comment"> * Note: Bonjour publishing requires you set a type.</span>
+<a name="l00231"></a>00231 <span class="comment"> * </span>
+<a name="l00232"></a>00232 <span class="comment"> * If you change the name after the bonjour service has already been published (server already started),</span>
+<a name="l00233"></a>00233 <span class="comment"> * you&#39;ll need to invoke the republishBonjour method to update the broadcasted bonjour service.</span>
+<a name="l00234"></a>00234 <span class="comment"> * </span>
+<a name="l00235"></a>00235 <span class="comment"> * The publishedName method will always return the actual name that was published via the bonjour service.</span>
+<a name="l00236"></a>00236 <span class="comment"> * If the service is not running this method returns nil.</span>
+<a name="l00237"></a>00237 <span class="comment">**/</span>
+<a name="l00238"></a>00238 - (NSString *)name;
+<a name="l00239"></a>00239 <span class="comment"></span>
+<a name="l00240"></a>00240 <span class="comment">/**</span>
+<a name="l00241"></a>00241 <span class="comment">    Gets the published name of the server</span>
+<a name="l00242"></a>00242 <span class="comment">**/</span>
+<a name="l00243"></a>00243 - (NSString *)publishedName;
+<a name="l00244"></a>00244 <span class="comment"></span>
+<a name="l00245"></a>00245 <span class="comment">/**</span>
+<a name="l00246"></a>00246 <span class="comment">    Sets the published name of the server</span>
+<a name="l00247"></a>00247 <span class="comment">**/</span>
+<a name="l00248"></a>00248 - (void)setName:(NSString *)value;
+<a name="l00249"></a>00249 <span class="comment"></span>
+<a name="l00250"></a>00250 <span class="comment">/**</span>
+<a name="l00251"></a>00251 <span class="comment"> * Bonjour type for publishing the service.</span>
+<a name="l00252"></a>00252 <span class="comment"> * The default value is nil.</span>
+<a name="l00253"></a>00253 <span class="comment"> * The service will not be published via bonjour unless the type is set.</span>
+<a name="l00254"></a>00254 <span class="comment"> * </span>
+<a name="l00255"></a>00255 <span class="comment"> * If you wish to publish the service as a traditional HTTP server, you should set the type to be &quot;_http._tcp.&quot;.</span>
+<a name="l00256"></a>00256 <span class="comment"> * </span>
+<a name="l00257"></a>00257 <span class="comment"> * If you change the type after the bonjour service has already been published (server already started),</span>
+<a name="l00258"></a>00258 <span class="comment"> * you&#39;ll need to invoke the republishBonjour method to update the broadcasted bonjour service.</span>
+<a name="l00259"></a>00259 <span class="comment">**/</span>
+<a name="l00260"></a>00260 - (NSString *)type;
+<a name="l00261"></a>00261 <span class="comment"></span>
+<a name="l00262"></a>00262 <span class="comment">/**</span>
+<a name="l00263"></a>00263 <span class="comment">    Set the type of service to be published via Bonjour param NSString</span>
+<a name="l00264"></a>00264 <span class="comment">**/</span>
+<a name="l00265"></a>00265 - (void)setType:(NSString *)value;
+<a name="l00266"></a>00266 <span class="comment"></span>
+<a name="l00267"></a>00267 <span class="comment">/**</span>
+<a name="l00268"></a>00268 <span class="comment"> * Republishes the service via bonjour if the server is running.</span>
+<a name="l00269"></a>00269 <span class="comment"> * If the service was not previously published, this method will publish it (if the server is running).</span>
+<a name="l00270"></a>00270 <span class="comment">**/</span>
+<a name="l00271"></a>00271 - (void)republishBonjour;
+<a name="l00272"></a>00272 <span class="comment"></span>
+<a name="l00273"></a>00273 <span class="comment">/**</span>
+<a name="l00274"></a>00274 <span class="comment"> *  Gets the TXT record dictionary</span>
+<a name="l00275"></a>00275 <span class="comment">**/</span>
+<a name="l00276"></a>00276 - (NSDictionary *)TXTRecordDictionary;
+<a name="l00277"></a>00277 <span class="comment"></span>
+<a name="l00278"></a>00278 <span class="comment">/**</span>
+<a name="l00279"></a>00279 <span class="comment">    Sets the TXT record dictionary</span>
+<a name="l00280"></a>00280 <span class="comment">**/</span>
+<a name="l00281"></a>00281 - (void)setTXTRecordDictionary:(NSDictionary *)dict;
+<a name="l00282"></a>00282 <span class="comment"></span>
+<a name="l00283"></a>00283 <span class="comment">/**</span>
+<a name="l00284"></a>00284 <span class="comment">    Starts the server</span>
+<a name="l00285"></a>00285 <span class="comment">**/</span>
+<a name="l00286"></a>00286 - (BOOL)start:(NSError **)errPtr;
+<a name="l00287"></a>00287 <span class="comment"></span>
+<a name="l00288"></a>00288 <span class="comment">/**</span>
+<a name="l00289"></a>00289 <span class="comment">    Stops the server</span>
+<a name="l00290"></a>00290 <span class="comment">**/</span>
+<a name="l00291"></a>00291 - (BOOL)stop;
+<a name="l00292"></a>00292 <span class="comment"></span>
+<a name="l00293"></a>00293 <span class="comment">/**</span>
+<a name="l00294"></a>00294 <span class="comment">    Whether the server is running</span>
+<a name="l00295"></a>00295 <span class="comment">**/</span>
+<a name="l00296"></a>00296 - (BOOL)isRunning;
+<a name="l00297"></a>00297 <span class="comment"></span>
+<a name="l00298"></a>00298 <span class="comment">/**</span>
+<a name="l00299"></a>00299 <span class="comment">    Adds a web socket</span>
+<a name="l00300"></a>00300 <span class="comment">**/</span>
+<a name="l00301"></a>00301 - (void)addWebSocket:(<a class="code" href="interface_web_socket.html">WebSocket</a> *)ws;
+<a name="l00302"></a>00302 <span class="comment"></span>
+<a name="l00303"></a>00303 <span class="comment">/**</span>
+<a name="l00304"></a>00304 <span class="comment">    Gets the number of HTTP connections</span>
+<a name="l00305"></a>00305 <span class="comment">**/</span>
+<a name="l00306"></a>00306 - (NSUInteger)numberOfHTTPConnections;
+<a name="l00307"></a>00307 <span class="comment"></span>
+<a name="l00308"></a>00308 <span class="comment">/**</span>
+<a name="l00309"></a>00309 <span class="comment">    Gets the number of web socket connections</span>
+<a name="l00310"></a>00310 <span class="comment">**/</span>
+<a name="l00311"></a>00311 - (NSUInteger)numberOfWebSocketConnections;
+<a name="l00312"></a>00312 
+<a name="l00313"></a>00313 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>HTTPServer.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_h_t_t_p_server_8h.html">HTTPServer.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:48 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -202,7 +410,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

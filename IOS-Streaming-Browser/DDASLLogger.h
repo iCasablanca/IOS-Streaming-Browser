@@ -28,6 +28,9 @@
 
 @interface DDASLLogger : DDAbstractLogger <DDLogger>
 {
+    /**
+     
+    **/
 	aslclient client;
 }
 

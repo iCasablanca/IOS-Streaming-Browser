@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,13 +87,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="localhostAddresses" -->
-<p><code>#import &lt;<a class="el" href="localhost_addresses_8h_source.html">localhostAddresses.h</a>&gt;</code></p>
-
-<p><a href="classlocalhost_addresses-members.html">List of all members.</a></p>
+<p><code>#import &lt;<a class="el" href="">localhostAddresses.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interfacelocalhost_addresses.html#ab88dd4aa9a30d378555b6b30c9c54e54">list</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interfacelocalhost_addresses.html#aa594fce724d61d0087fb9ca98b9d6ec2">list</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Software License Agreement (BSD License)</p>
@@ -102,8 +100,10 @@ Static Public Member Functions</h2></td></tr>
 <p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p>
 <p>Neither the name of Deusty nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission of Deusty, LLC.</p>
 <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
+
+<p>Definition at line <a class="el" href="#L25">25</a> of file <a class="el" href="">localhostAddresses.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ab88dd4aa9a30d378555b6b30c9c54e54"></a><!-- doxytag: member="localhostAddresses::list" ref="ab88dd4aa9a30d378555b6b30c9c54e54" args="()" -->
+<a class="anchor" id="aa594fce724d61d0087fb9ca98b9d6ec2"></a><!-- doxytag: member="localhostAddresses::list" ref="aa594fce724d61d0087fb9ca98b9d6ec2" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -118,18 +118,85 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Class method </p>
 
+<p>Definition at line <a class="el" href="#L35">35</a> of file <a class="el" href="">localhostAddresses.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">// An autorelease pool stores objects that are sent a release </span>
+    <span class="comment">// message when the pool itself is drained.</span>
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
+    
+        NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    <span class="comment">// Creates an ifaddrs structure</span>
+        <span class="keyword">struct </span>ifaddrs* addrs;
+    
+    <span class="comment">//function creates a linked list of structures describing the</span>
+    <span class="comment">// network interfaces of the local system, and stores the address </span>
+    <span class="comment">// of the first item of the list in *ifap.</span>
+        BOOL success = (getifaddrs(&amp;addrs) == 0);
+    
+    <span class="comment">// If successful in getting the addresses</span>
+        <span class="keywordflow">if</span> (success) 
+        {
+        <span class="comment">// Create a constant read only local attribute</span>
+                <span class="keyword">const</span> <span class="keyword">struct </span>ifaddrs* cursor = addrs;
+        
+        <span class="comment">// Loop through the struct while not NULL </span>
+                <span class="keywordflow">while</span> (cursor != NULL) 
+                {
+            <span class="comment">// Creates a local attribute</span>
+                        NSMutableString* ip;
+            
+            <span class="comment">// AF_INET is the address family for an internet socket</span>
+                        <span class="keywordflow">if</span> (cursor-&gt;ifa_addr-&gt;sa_family == AF_INET) 
+                        {
+                <span class="comment">// Create a constant read only local attribute</span>
+                                <span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in* dlAddr = (<span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in*)cursor-&gt;ifa_addr;
+                
+                <span class="comment">// Create a constant read only local attribute</span>
+                                <span class="keyword">const</span> uint8_t* base = (<span class="keyword">const</span> uint8_t*)&amp;dlAddr-&gt;sin_addr;
+                
+                <span class="comment">// Initializes and allocates memory for the new ip</span>
+                                ip = [[NSMutableString new] autorelease];
+                
+                <span class="comment">// Loops through the address and adds a period</span>
+                                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; i++) 
+                                {
+                                        <span class="keywordflow">if</span> (i != 0) 
+                    {
+                                                [ip appendFormat:@&quot;.&quot;];
+                    }
+                    
+                                        [ip appendFormat:@&quot;%d&quot;, base[i]];
+                                }
+                
+                
+                                [result setObject:(NSString*)ip forKey:[NSString stringWithFormat:@&quot;%s&quot;, cursor-&gt;ifa_name]];
+                        }
+                        cursor = cursor-&gt;ifa_next;
+                }
+        <span class="comment">// frees the address</span>
+                freeifaddrs(addrs);
+        }
+    
+    <span class="comment">// Post a notification to the default notification center that the local host address has been resolved</span>
+        [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;LocalhostAdressesResolved&quot; object:result];
+
+        [pool release];
+}
+</pre></div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="localhost_addresses_8h_source.html">localhostAddresses.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/localhostAddresses.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">localhostAddresses.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">localhostAddresses.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interfacelocalhost_addresses.html">localhostAddresses</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:12 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -139,7 +206,7 @@ Static Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

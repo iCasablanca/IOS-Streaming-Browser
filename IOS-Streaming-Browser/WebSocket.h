@@ -8,16 +8,41 @@
 
 @interface WebSocket : NSObject
 {
-	dispatch_queue_t websocketQueue; // websocket queue
+    
+    /**
+      websocket queue
+    **/
+	dispatch_queue_t websocketQueue; 
 	
-	HTTPMessage *request;  // the web socket request
-	GCDAsyncSocket *asyncSocket; // the socket (i.e. file handle)
+    /**
+       the web socket request
+    **/
+	HTTPMessage *request; 
+
+    /**
+      the socket (i.e. file handle)
+    **/
+	GCDAsyncSocket *asyncSocket; 
 	
+    /**
+     
+    **/
 	NSData *term;
 	
-	BOOL isStarted;  // if web socket is started
-	BOOL isOpen;  // if web socket is open
-	BOOL isVersion76; // if version76
+    /**
+      if web socket is started
+    **/
+	BOOL isStarted;  
+    
+    /**
+      if web socket is open
+    **/
+	BOOL isOpen;  
+    
+    /**
+      if version76
+    **/
+	BOOL isVersion76; 
 }
 
 /**

@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -88,81 +88,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HTTPServer Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPServer" --><div class="dynheader">
+<!-- doxytag: class="HTTPServer" -->
+<p><code>#import &lt;<a class="el" href="">HTTPServer.h</a>&gt;</code></p>
+<div class="dynheader">
 Collaboration diagram for HTTPServer:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_h_t_t_p_server__coll__graph.png" border="0" usemap="#_h_t_t_p_server_coll__map" alt="Collaboration graph"/></div>
 <map name="_h_t_t_p_server_coll__map" id="_h_t_t_p_server_coll__map">
 <area shape="rect" id="node2" href="interface_g_c_d_async_socket.html" title="GCDAsyncSocket" alt="" coords="173,195,314,223"/><area shape="rect" id="node4" href="interface_g_c_d_async_write_packet.html" title="GCDAsyncWritePacket" alt="" coords="154,101,333,129"/><area shape="rect" id="node6" href="class_n_s_data.html" title="NSData" alt="" coords="207,6,279,34"/><area shape="rect" id="node9" href="interface_g_c_d_async_read_packet.html" title="GCDAsyncReadPacket" alt="" coords="357,101,533,129"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_h_t_t_p_server-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a7d2c9409e837ecc5397a199cf54b1e72">documentRoot</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ae9f78ce928e9f96747a0f1e1437c3767">setDocumentRoot:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(Class)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a1bbde4170e3a00727094697c568ce1e8">connectionClass</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ae08365b7a38ab76730c6376aa69a7a22">setConnectionClass:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a07539a3744f9314c494e569c1af4033c">interface</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aa8bb212b1a27a3512561af73482e81c9">setInterface:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(UInt16)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ad68c98e73fbb295be43b32d00e9f7fb7">port</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(UInt16)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a46a64fc25e5d73e96ecd8b23f1be6987">listeningPort</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a884960ff416549cdef5b6b83de463935">setPort:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ae9e206ea4c39988db1ea5ef4504e07a7">domain</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a72d2d52afc48730acbe781a704820f72">setDomain:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#afaf1f083f64c4802d72cec1b59207013">name</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ab60f3207292b068ab51e3645741c080c">publishedName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a9ad2fa27e44d889ab0ffc3c8b0f6f93a">setName:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a660bc9275e82aafeba8a8d55ceeffe59">type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a07b321199f1e55cc5ace93cae5a863aa">setType:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a98f52f7eca63bc946779dac097b2bdfb">republishBonjour</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ae7f1dc441e370c88f60eaa2d8a2e17b7">TXTRecordDictionary</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ad0e4e607a397ff4264496ea1b9f03c61">setTXTRecordDictionary:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aeb44f8dcf341864b1e68ea3e4cd65ed5">start:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a4380a9661111543ebed9c812b945a8d4">stop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aeb59058ddf07ea9a2a03d53bb6ffeb39">isRunning</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a442201bcef5717b7b373d7f6f2974232">addWebSocket:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a4eae84e563517843fc5e1d1381c388ae">numberOfHTTPConnections</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a7d77e7e45e076747e3a05e079b5df22a">numberOfWebSocketConnections</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a5bac7934deffbebb3e20b04f50b48fdb">unpublishBonjour</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a05ac801d8d3c3382c2bf36e29160bdda">publishBonjour</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ab7eeab7e55d46c53204e8a91c93f103d">documentRoot</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a14a571696ca1429149807b7da7e2f148">setDocumentRoot:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(Class)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aff396e6469fa235948e74f717653e452">connectionClass</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a390c24d67f2880fe8c22a114cb54d1df">setConnectionClass:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a6f8cbe916980a05ae7765a20472c4abb">interface</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aabd074644a23ad96d7aca35445ae6a67">setInterface:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(UInt16)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a2fd77074fa10730c7245481a305dd12b">port</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(UInt16)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#adde7260921a5ed14bcd6d9a18c1e0327">listeningPort</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a376c84f770439e2ed5d056fb5660f7e8">setPort:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ab10de556ec200120630bf5d053d1060b">domain</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#af001abf819acb12f2037c01df98de482">setDomain:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ac6691947ac2050dd45d083b4b998dada">name</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ab40c1e3fde0254e93d48b073adb92c0c">publishedName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a8f6542e1de8cfa223edbccbc98cefa72">setName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a1caf99cfa7869091592fa05b9dd76097">type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a4c09513dcf251ab70cb3db8d50a4c4c3">setType:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#adf64f6ef77023114a62331cc7bfed4ef">republishBonjour</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ae99c773d57453a9ec104a4ebaf4d3cb4">TXTRecordDictionary</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#aa9f5fc3366f06506ad70ab9944999996">setTXTRecordDictionary:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#abf7d63d99c1251d667fce6c447bf074f">start:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a7bee99ce2238a838f9909c87b1b7ae36">stop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a75a9dc051cdb31277520ec2585ab38d3">isRunning</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a5f9a1b4c997d68e558d2c7ef1203c723">addWebSocket:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#ade745b5ea1b9cea3fe8e12df1075e4ba">numberOfHTTPConnections</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSUInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#acbb65ea7782c3fd2379eea0691f446b6">numberOfWebSocketConnections</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#a7b00c5cf5f61447f95599d8609967593">unpublishBonjour</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_server.html#af743a210236eb92b645afffc610433c2">publishBonjour</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_h_t_t_p_server.html#a9e0227f7444a5dab8d3a4a169e4681b4">startBonjourThreadIfNeeded</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_h_t_t_p_server.html#aaa0d37f669595586f5ddfe93ec30ec32">performBonjourBlock:waitUntilDone:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_h_t_t_p_server.html#ac294ab5e2e64a3213bf5e648418baa73">startBonjourThreadIfNeeded</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_h_t_t_p_server.html#ac7c8cb93d13e29f78e2cfa2e7fa5f2be">performBonjourBlock:waitUntilDone:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8136fed50a3e878465ea48fc792cc2da"></a><!-- doxytag: member="HTTPServer::serverQueue" ref="a8136fed50a3e878465ea48fc792cc2da" args="" -->
-dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><b>serverQueue</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8da1dda143f73785410afd3418be71ec"></a><!-- doxytag: member="HTTPServer::connectionQueue" ref="a8da1dda143f73785410afd3418be71ec" args="" -->
-dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><b>connectionQueue</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada5711b8342e727193ba89aa9699f3d3"></a><!-- doxytag: member="HTTPServer::asyncSocket" ref="ada5711b8342e727193ba89aa9699f3d3" args="" -->
-<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>asyncSocket</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#aaab61a2ce871a1a1bd1bc662b9cdded9">documentRoot</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a39ae9724a5117885d76aae20b346ec41">connectionClass</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a7d6bee361a44383d4af62ac43903aa0f">interface</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">UInt16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#adff6720023181115793dbf3b29eae202">port</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a22520c637391cb8dc5694033e4d5f6"></a><!-- doxytag: member="HTTPServer::netService" ref="a4a22520c637391cb8dc5694033e4d5f6" args="" -->
-NSNetService *&#160;</td><td class="memItemRight" valign="bottom"><b>netService</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a2bf61f5902417f97006de60e8f93cc50">domain</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#aedc156259b8def3a2d49e6f5f7135d49">type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a1b954a370ed30882399a103f0458364b">name</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a1e4e79bb402a958e3fe14aa7cb668713">publishedName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cd864649b90b33ff4eedb0091d0522e"></a><!-- doxytag: member="HTTPServer::txtRecordDictionary" ref="a7cd864649b90b33ff4eedb0091d0522e" args="" -->
-NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><b>txtRecordDictionary</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace396d6cad46f0236147784c73fe362d"></a><!-- doxytag: member="HTTPServer::connections" ref="ace396d6cad46f0236147784c73fe362d" args="" -->
-NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>connections</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebe257fc6c01f6e1fceadd7d24390301"></a><!-- doxytag: member="HTTPServer::webSockets" ref="aebe257fc6c01f6e1fceadd7d24390301" args="" -->
-NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>webSockets</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a304445cde05c07d28a19bdf18cff13ea"></a><!-- doxytag: member="HTTPServer::connectionsLock" ref="a304445cde05c07d28a19bdf18cff13ea" args="" -->
-NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>connectionsLock</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f38d9cfee62b167b1fb154faa5b3308"></a><!-- doxytag: member="HTTPServer::webSocketsLock" ref="a1f38d9cfee62b167b1fb154faa5b3308" args="" -->
-NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a11293740dfbf164cd470444df1b04d28">isRunning</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#af47c339441ab6415df437e629718d154">documentRoot</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#aa627c6baeeed6a6b695dad378f4dd03c">connectionClass</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#ac536e64ff3c5d56cd7dbdb2829f733f9">interface</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UInt16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a96ebf7a8d647c5659f83c9f949dfea88">port</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSNetService *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">netService</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#aaada51b3d35354d6d660fb9faa556eea">domain</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a40ff878797d6b2d341b6d0861c4a6c91">type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#afc8ccc6676addc3b49a494b2bf969c68">name</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a218b05fe5e23f840b8a3ea455369b279">publishedName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">txtRecordDictionary</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#ab614350bf23f5280a2b4bb8df11e893b">connections</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a9005d19304465514be6d8b77ce918b5d">webSockets</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSLock *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a05f99272f41228891fb145c2471ed860">connectionsLock</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSLock *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a3e8550d631e3c9249a70b5149debc04f">webSocketsLock</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_server.html#a0a6b799e02b5541c496221d31353257e">isRunning</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a442201bcef5717b7b373d7f6f2974232"></a><!-- doxytag: member="HTTPServer::addWebSocket:" ref="a442201bcef5717b7b373d7f6f2974232" args="(WebSocket *ws)" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L21">21</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a5f9a1b4c997d68e558d2c7ef1203c723"></a><!-- doxytag: member="HTTPServer::addWebSocket:" ref="a5f9a1b4c997d68e558d2c7ef1203c723" args="(WebSocket *ws)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -179,14 +173,27 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Adds a web socket</p>
 <p>Adds a web sockets array </p>
 
+<p>Definition at line <a class="el" href="#L693">693</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                    :(<a class="code" href="interface_web_socket.html">WebSocket</a> *)ws
+{
+    <span class="comment">// Locks the web socker</span>
+        [webSocketsLock lock];
+    
+    <span class="comment">// Adds a web socket</span>
+        [webSockets addObject:ws];
+    
+    <span class="comment">// Unlocks the web socket</span>
+        [webSocketsLock unlock];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a1bbde4170e3a00727094697c568ce1e8"></a><!-- doxytag: member="HTTPServer::connectionClass" ref="a1bbde4170e3a00727094697c568ce1e8" args="()" -->
+<a class="anchor" id="aff396e6469fa235948e74f717653e452"></a><!-- doxytag: member="HTTPServer::connectionClass" ref="aff396e6469fa235948e74f717653e452" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (Class) <a class="el" href="interface_h_t_t_p_server.html#a39ae9724a5117885d76aae20b346ec41">connectionClass</a> </td>
+          <td class="memname">- (Class) <a class="el" href="interface_h_t_t_p_server.html#aa627c6baeeed6a6b695dad378f4dd03c">connectionClass</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -200,12 +207,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a7d2c9409e837ecc5397a199cf54b1e72"></a><!-- doxytag: member="HTTPServer::documentRoot" ref="a7d2c9409e837ecc5397a199cf54b1e72" args="()" -->
+<a class="anchor" id="ab7eeab7e55d46c53204e8a91c93f103d"></a><!-- doxytag: member="HTTPServer::documentRoot" ref="ab7eeab7e55d46c53204e8a91c93f103d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aaab61a2ce871a1a1bd1bc662b9cdded9">documentRoot</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#af47c339441ab6415df437e629718d154">documentRoot</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -219,12 +226,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="ae9e206ea4c39988db1ea5ef4504e07a7"></a><!-- doxytag: member="HTTPServer::domain" ref="ae9e206ea4c39988db1ea5ef4504e07a7" args="()" -->
+<a class="anchor" id="ab10de556ec200120630bf5d053d1060b"></a><!-- doxytag: member="HTTPServer::domain" ref="ab10de556ec200120630bf5d053d1060b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a2bf61f5902417f97006de60e8f93cc50">domain</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aaada51b3d35354d6d660fb9faa556eea">domain</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -238,12 +245,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a07539a3744f9314c494e569c1af4033c"></a><!-- doxytag: member="HTTPServer::interface" ref="a07539a3744f9314c494e569c1af4033c" args="()" -->
+<a class="anchor" id="a6f8cbe916980a05ae7765a20472c4abb"></a><!-- doxytag: member="HTTPServer::interface" ref="a6f8cbe916980a05ae7765a20472c4abb" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a7d6bee361a44383d4af62ac43903aa0f">interface</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#ac536e64ff3c5d56cd7dbdb2829f733f9">interface</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -256,12 +263,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="aeb59058ddf07ea9a2a03d53bb6ffeb39"></a><!-- doxytag: member="HTTPServer::isRunning" ref="aeb59058ddf07ea9a2a03d53bb6ffeb39" args="()" -->
+<a class="anchor" id="a75a9dc051cdb31277520ec2585ab38d3"></a><!-- doxytag: member="HTTPServer::isRunning" ref="a75a9dc051cdb31277520ec2585ab38d3" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_server.html#a11293740dfbf164cd470444df1b04d28">isRunning</a> </td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_server.html#a0a6b799e02b5541c496221d31353257e">isRunning</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -273,7 +280,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a46a64fc25e5d73e96ecd8b23f1be6987"></a><!-- doxytag: member="HTTPServer::listeningPort" ref="a46a64fc25e5d73e96ecd8b23f1be6987" args="()" -->
+<a class="anchor" id="adde7260921a5ed14bcd6d9a18c1e0327"></a><!-- doxytag: member="HTTPServer::listeningPort" ref="adde7260921a5ed14bcd6d9a18c1e0327" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -287,16 +294,40 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 </div>
 <div class="memdoc">
 <p>Gets the listening port</p>
-<p>Get the servers port returns UInt16 </p>
+<p>Get the servers listening port by dispatching q block on the serverQueue returns UInt16 </p>
 
+<p>Definition at line <a class="el" href="#L306">306</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">// Creates a local attribute</span>
+        __block UInt16 result;
+        
+    <span class="comment">// Submits a block for synchronous execution on the serverQueue</span>
+        dispatch_sync(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_server.html#a75a9dc051cdb31277520ec2585ab38d3">isRunning</a>)  <span class="comment">// check if server is running</span>
+        {
+            <span class="comment">// Get the sockets local port</span>
+                        result = [asyncSocket localPort];
+            
+                }<span class="keywordflow">else</span>{ <span class="comment">// if server is not running</span>
+            
+            
+                        result = 0;
+        }
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="afaf1f083f64c4802d72cec1b59207013"></a><!-- doxytag: member="HTTPServer::name" ref="afaf1f083f64c4802d72cec1b59207013" args="()" -->
+<a class="anchor" id="ac6691947ac2050dd45d083b4b998dada"></a><!-- doxytag: member="HTTPServer::name" ref="ac6691947ac2050dd45d083b4b998dada" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a1b954a370ed30882399a103f0458364b">name</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#afc8ccc6676addc3b49a494b2bf969c68">name</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -312,7 +343,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a4eae84e563517843fc5e1d1381c388ae"></a><!-- doxytag: member="HTTPServer::numberOfHTTPConnections" ref="a4eae84e563517843fc5e1d1381c388ae" args="()" -->
+<a class="anchor" id="ade745b5ea1b9cea3fe8e12df1075e4ba"></a><!-- doxytag: member="HTTPServer::numberOfHTTPConnections" ref="ade745b5ea1b9cea3fe8e12df1075e4ba" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -328,9 +359,26 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Gets the number of HTTP connections</p>
 <p>Returns the number of http client connections that are currently connected to the server. returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L713">713</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    
+        NSUInteger result = 0;
+        
+    <span class="comment">// Locks the connection</span>
+        [connectionsLock lock];
+    
+    <span class="comment">// Gets the count of connections to the this server</span>
+        result = [connections count];
+    
+    <span class="comment">// Unlocks the connection</span>
+        [connectionsLock unlock];
+        
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a7d77e7e45e076747e3a05e079b5df22a"></a><!-- doxytag: member="HTTPServer::numberOfWebSocketConnections" ref="a7d77e7e45e076747e3a05e079b5df22a" args="()" -->
+<a class="anchor" id="acbb65ea7782c3fd2379eea0691f446b6"></a><!-- doxytag: member="HTTPServer::numberOfWebSocketConnections" ref="acbb65ea7782c3fd2379eea0691f446b6" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -346,9 +394,25 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Gets the number of web socket connections</p>
 <p>Returns the number of websocket client connections that are currently connected to the server. returns NSUInteger </p>
 
+<p>Definition at line <a class="el" href="#L734">734</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        NSUInteger result = 0;
+        
+    <span class="comment">// Locks the web socket</span>
+        [webSocketsLock lock];
+    
+    <span class="comment">// Gets the count of web socket connections</span>
+        result = [webSockets count];
+    
+    <span class="comment">// Unlocks the web socket</span>
+        [webSocketsLock unlock];
+        
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aaa0d37f669595586f5ddfe93ec30ec32"></a><!-- doxytag: member="HTTPServer::performBonjourBlock:waitUntilDone:" ref="aaa0d37f669595586f5ddfe93ec30ec32" args="(dispatch_block_t block,[waitUntilDone] BOOL waitUntilDone)" -->
+<a class="anchor" id="ac7c8cb93d13e29f78e2cfa2e7fa5f2be"></a><!-- doxytag: member="HTTPServer::performBonjourBlock:waitUntilDone:" ref="ac7c8cb93d13e29f78e2cfa2e7fa5f2be" args="(dispatch_block_t block,[waitUntilDone] BOOL waitUntilDone)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -376,12 +440,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="ad68c98e73fbb295be43b32d00e9f7fb7"></a><!-- doxytag: member="HTTPServer::port" ref="ad68c98e73fbb295be43b32d00e9f7fb7" args="()" -->
+<a class="anchor" id="a2fd77074fa10730c7245481a305dd12b"></a><!-- doxytag: member="HTTPServer::port" ref="a2fd77074fa10730c7245481a305dd12b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt16) <a class="el" href="interface_h_t_t_p_server.html#adff6720023181115793dbf3b29eae202">port</a> </td>
+          <td class="memname">- (UInt16) <a class="el" href="interface_h_t_t_p_server.html#a96ebf7a8d647c5659f83c9f949dfea88">port</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -397,7 +461,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a05ac801d8d3c3382c2bf36e29160bdda"></a><!-- doxytag: member="HTTPServer::publishBonjour" ref="a05ac801d8d3c3382c2bf36e29160bdda" args="()" -->
+<a class="anchor" id="af743a210236eb92b645afffc610433c2"></a><!-- doxytag: member="HTTPServer::publishBonjour" ref="af743a210236eb92b645afffc610433c2" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -414,12 +478,12 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="ab60f3207292b068ab51e3645741c080c"></a><!-- doxytag: member="HTTPServer::publishedName" ref="ab60f3207292b068ab51e3645741c080c" args="()" -->
+<a class="anchor" id="ab40c1e3fde0254e93d48b073adb92c0c"></a><!-- doxytag: member="HTTPServer::publishedName" ref="ab40c1e3fde0254e93d48b073adb92c0c" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a1e4e79bb402a958e3fe14aa7cb668713">publishedName</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a218b05fe5e23f840b8a3ea455369b279">publishedName</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -431,7 +495,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a98f52f7eca63bc946779dac097b2bdfb"></a><!-- doxytag: member="HTTPServer::republishBonjour" ref="a98f52f7eca63bc946779dac097b2bdfb" args="()" -->
+<a class="anchor" id="adf64f6ef77023114a62331cc7bfed4ef"></a><!-- doxytag: member="HTTPServer::republishBonjour" ref="adf64f6ef77023114a62331cc7bfed4ef" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -446,9 +510,20 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <div class="memdoc">
 <p>Republishes the service via bonjour if the server is running. If the service was not previously published, this method will publish it (if the server is running). </p>
 
+<p>Definition at line <a class="el" href="#L898">898</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+                
+        
+                [<span class="keyword">self</span> unpublishBonjour]; 
+                [<span class="keyword">self</span> publishBonjour];
+        }); <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ae08365b7a38ab76730c6376aa69a7a22"></a><!-- doxytag: member="HTTPServer::setConnectionClass:" ref="ae08365b7a38ab76730c6376aa69a7a22" args="(Class value)" -->
+<a class="anchor" id="a390c24d67f2880fe8c22a114cb54d1df"></a><!-- doxytag: member="HTTPServer::setConnectionClass:" ref="a390c24d67f2880fe8c22a114cb54d1df" args="(Class value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -465,9 +540,20 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the connection class</p>
 <p>Sets the connection class on the serverQueue param Class </p>
 
+<p>Definition at line <a class="el" href="#L233">233</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                          :(Class)value
+{
+        <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                <a class="code" href="interface_h_t_t_p_server.html#aff396e6469fa235948e74f717653e452">connectionClass</a> = value;
+        
+        }); <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ae9f78ce928e9f96747a0f1e1437c3767"></a><!-- doxytag: member="HTTPServer::setDocumentRoot:" ref="ae9f78ce928e9f96747a0f1e1437c3767" args="(NSString *value)" -->
+<a class="anchor" id="a14a571696ca1429149807b7da7e2f148"></a><!-- doxytag: member="HTTPServer::setDocumentRoot:" ref="a14a571696ca1429149807b7da7e2f148" args="(NSString *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -484,9 +570,36 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the document root</p>
 <p>Set the documents root param NSString </p>
 
+<p>Definition at line <a class="el" href="#L181">181</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                       :(NSString *)value
+{
+        
+        <span class="comment">// Document root used to be of type NSURL.</span>
+        <span class="comment">// Add type checking for early warning to developers upgrading from older versions.</span>
+        <span class="keywordflow">if</span> (value &amp;&amp; ![value isKindOfClass:[NSString <span class="keyword">class</span>]])
+        {
+                <span class="keywordflow">return</span>;
+        }
+    
+        <span class="comment">// Creates a local attributes and makes a copy of the document root</span>
+        NSString *valueCopy = [value copy];
+        
+    
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue.  This block sets the servers document root</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                [documentRoot release];
+        
+                <a class="code" href="interface_h_t_t_p_server.html#ab7eeab7e55d46c53204e8a91c93f103d">documentRoot</a> = [valueCopy retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a72d2d52afc48730acbe781a704820f72"></a><!-- doxytag: member="HTTPServer::setDomain:" ref="a72d2d52afc48730acbe781a704820f72" args="(NSString *value)" -->
+<a class="anchor" id="af001abf819acb12f2037c01df98de482"></a><!-- doxytag: member="HTTPServer::setDomain:" ref="af001abf819acb12f2037c01df98de482" args="(NSString *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -503,9 +616,26 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the domain</p>
 <p>Set the domain on which to broadcast this service param NSString </p>
 
+<p>Definition at line <a class="el" href="#L369">369</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                 :(NSString *)value
+{
+        <span class="comment">// Copies the value into a local attribute</span>
+        NSString *valueCopy = [value copy];
+        
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+
+                [domain release];
+                <a class="code" href="interface_h_t_t_p_server.html#ab10de556ec200120630bf5d053d1060b">domain</a> = [valueCopy retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aa8bb212b1a27a3512561af73482e81c9"></a><!-- doxytag: member="HTTPServer::setInterface:" ref="aa8bb212b1a27a3512561af73482e81c9" args="(NSString *value)" -->
+<a class="anchor" id="aabd074644a23ad96d7aca35445ae6a67"></a><!-- doxytag: member="HTTPServer::setInterface:" ref="aabd074644a23ad96d7aca35445ae6a67" args="(NSString *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -522,9 +652,26 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the interface</p>
 <p>Set the server interface param NSString </p>
 
+<p>Definition at line <a class="el" href="#L266">266</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                    :(NSString *)value
+{
+    <span class="comment">// copies the value into a local attribute</span>
+        NSString *valueCopy = [value copy];
+        
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                [interface release];
+                <a class="code" href="interface_h_t_t_p_server.html#a6f8cbe916980a05ae7765a20472c4abb">interface</a> = [valueCopy retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a9ad2fa27e44d889ab0ffc3c8b0f6f93a"></a><!-- doxytag: member="HTTPServer::setName:" ref="a9ad2fa27e44d889ab0ffc3c8b0f6f93a" args="(NSString *value)" -->
+<a class="anchor" id="a8f6542e1de8cfa223edbccbc98cefa72"></a><!-- doxytag: member="HTTPServer::setName:" ref="a8f6542e1de8cfa223edbccbc98cefa72" args="(NSString *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -541,9 +688,26 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the published name of the server</p>
 <p>Sets the published name of the server param NSString </p>
 
+<p>Definition at line <a class="el" href="#L447">447</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">               :(NSString *)value
+{
+    <span class="comment">// Copies the value into a local attribute</span>
+        NSString *valueCopy = [value copy];
+        
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                [name release];
+                <a class="code" href="interface_h_t_t_p_server.html#ac6691947ac2050dd45d083b4b998dada">name</a> = [valueCopy retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a884960ff416549cdef5b6b83de463935"></a><!-- doxytag: member="HTTPServer::setPort:" ref="a884960ff416549cdef5b6b83de463935" args="(UInt16 value)" -->
+<a class="anchor" id="a376c84f770439e2ed5d056fb5660f7e8"></a><!-- doxytag: member="HTTPServer::setPort:" ref="a376c84f770439e2ed5d056fb5660f7e8" args="(UInt16 value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -560,9 +724,20 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the listening port</p>
 <p>Set the servers port param UInt16 </p>
 
+<p>Definition at line <a class="el" href="#L334">334</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">               :(UInt16)value
+{
+        <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                <a class="code" href="interface_h_t_t_p_server.html#a2fd77074fa10730c7245481a305dd12b">port</a> = value;
+        
+        }); <span class="comment">//END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ad0e4e607a397ff4264496ea1b9f03c61"></a><!-- doxytag: member="HTTPServer::setTXTRecordDictionary:" ref="ad0e4e607a397ff4264496ea1b9f03c61" args="(NSDictionary *dict)" -->
+<a class="anchor" id="aa9f5fc3366f06506ad70ab9944999996"></a><!-- doxytag: member="HTTPServer::setTXTRecordDictionary:" ref="aa9f5fc3366f06506ad70ab9944999996" args="(NSDictionary *dict)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -579,9 +754,51 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Sets the TXT record dictionary</p>
 <p>Sets the TXT record dictionary param NSDictionary </p>
 
+<p>Definition at line <a class="el" href="#L527">527</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">                              :(NSDictionary *)value
+{
+        <span class="comment">// Copies the value into a local attribute</span>
+        NSDictionary *valueCopy = [value copy];
+        
+    
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                [txtRecordDictionary release];
+                <a class="code" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">txtRecordDictionary</a> = [valueCopy retain];
+                
+                <span class="comment">// Update the txtRecord of the netService if it has already been published</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">netService</a>)
+                {
+            <span class="comment">// Create a local attribute for the netService</span>
+                        NSNetService *theNetService = <a class="code" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">netService</a>;
+                        <a class="code" href="class_n_s_data.html">NSData</a> *txtRecordData = nil;
+            
+            <span class="comment">// If there is a textRecordDictionary</span>
+                        <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">txtRecordDictionary</a>)
+            {
+                <span class="comment">// Gets the data from the dictionary</span>
+                                txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
+                        }
+            
+            <span class="comment">// The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.</span>
+                        dispatch_block_t bonjourBlock = ^{
+                
+                                [theNetService setTXTRecordData:txtRecordData];
+                
+                        }; <span class="comment">// END OF BLOCK</span>
+                        
+            <span class="comment">// Perform the bonjourBlock and don&#39;t wait for it to execute</span>
+                        [[<span class="keyword">self</span> class] performBonjourBlock:bonjourBlock waitUntilDone:NO];
+                }
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a07b321199f1e55cc5ace93cae5a863aa"></a><!-- doxytag: member="HTTPServer::setType:" ref="a07b321199f1e55cc5ace93cae5a863aa" args="(NSString *value)" -->
+<a class="anchor" id="a4c09513dcf251ab70cb3db8d50a4c4c3"></a><!-- doxytag: member="HTTPServer::setType:" ref="a4c09513dcf251ab70cb3db8d50a4c4c3" args="(NSString *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -595,12 +812,28 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
       </table>
 </div>
 <div class="memdoc">
-<p>Sets the type</p>
 <p>Set the type of service to be published via Bonjour param NSString </p>
 
+<p>Definition at line <a class="el" href="#L487">487</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">               :(NSString *)value
+{
+    <span class="comment">// Copies the value into a local attribute</span>
+        NSString *valueCopy = [value copy];
+        
+    <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                [type release];
+                <a class="code" href="interface_h_t_t_p_server.html#a1caf99cfa7869091592fa05b9dd76097">type</a> = [valueCopy retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        [valueCopy release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aeb44f8dcf341864b1e68ea3e4cd65ed5"></a><!-- doxytag: member="HTTPServer::start:" ref="aeb44f8dcf341864b1e68ea3e4cd65ed5" args="(NSError **errPtr)" -->
+<a class="anchor" id="abf7d63d99c1251d667fce6c447bf074f"></a><!-- doxytag: member="HTTPServer::start:" ref="abf7d63d99c1251d667fce6c447bf074f" args="(NSError **errPtr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -617,9 +850,53 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Starts the server</p>
 <p>Starts the server param NSError returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L578">578</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">             :(NSError **)errPtr
+{
+        <span class="comment">// Creates local attributes</span>
+        __block BOOL success = YES;
+        __block NSError *err = nil;
+        
+    <span class="comment">// Submits a block for synchronous execution on serverQueue</span>
+        dispatch_sync(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+        <span class="comment">// if the socket accepts on an interface and port</span>
+                success = [asyncSocket acceptOnInterface:interface port:port error:&amp;err];
+        
+        <span class="comment">// If the socket accepts on a specific interface and port</span>
+                <span class="keywordflow">if</span> (success)
+                {
+            <span class="comment">// flag that the server is running</span>
+                        <a class="code" href="interface_h_t_t_p_server.html#a75a9dc051cdb31277520ec2585ab38d3">isRunning</a> = YES;
+            
+            <span class="comment">// publish the server as a network service</span>
+                        [<span class="keyword">self</span> publishBonjour];
+                }
+                <span class="keywordflow">else</span> <span class="comment">// if server does not accept connections on a specific interface and port then thow and error</span>
+                {
+                        [err retain];
+                }
+                
+                [pool release];
+        });  <span class="comment">// END OF BLOCK</span>
+        
+    <span class="comment">// If there is an error pointer</span>
+        <span class="keywordflow">if</span> (errPtr)
+    {
+                *errPtr = [err autorelease];
+        }<span class="keywordflow">else</span>{ <span class="comment">// if there is not an error</span>
+                [err release];
+        }
+    
+    <span class="comment">// Return that the server is running</span>
+        <span class="keywordflow">return</span> success;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a9e0227f7444a5dab8d3a4a169e4681b4"></a><!-- doxytag: member="HTTPServer::startBonjourThreadIfNeeded" ref="a9e0227f7444a5dab8d3a4a169e4681b4" args="()" -->
+<a class="anchor" id="ac294ab5e2e64a3213bf5e648418baa73"></a><!-- doxytag: member="HTTPServer::startBonjourThreadIfNeeded" ref="ac294ab5e2e64a3213bf5e648418baa73" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -636,7 +913,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a4380a9661111543ebed9c812b945a8d4"></a><!-- doxytag: member="HTTPServer::stop" ref="a4380a9661111543ebed9c812b945a8d4" args="()" -->
+<a class="anchor" id="a7bee99ce2238a838f9909c87b1b7ae36"></a><!-- doxytag: member="HTTPServer::stop" ref="a7bee99ce2238a838f9909c87b1b7ae36" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -652,9 +929,54 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Stops the server</p>
 <p>Stops the server returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L626">626</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// Submits a block for synchronous execution on the serverQueue</span>
+        dispatch_sync(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+                <span class="comment">// First stop publishing the service via bonjour</span>
+                [<span class="keyword">self</span> unpublishBonjour];
+                
+                <span class="comment">// Stop listening / accepting incoming connections</span>
+                [asyncSocket disconnect];
+                <a class="code" href="interface_h_t_t_p_server.html#a75a9dc051cdb31277520ec2585ab38d3">isRunning</a> = NO;
+                
+                <span class="comment">// Now stop all HTTP connections the server owns</span>
+                [connectionsLock lock];
+        
+        <span class="comment">// Enumerates through the HTTP connections and stops them</span>
+                <span class="keywordflow">for</span> (<a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> *connection in <a class="code" href="interface_h_t_t_p_server.html#ab614350bf23f5280a2b4bb8df11e893b">connections</a>)
+                {
+            <span class="comment">// Stops the connection</span>
+                        [connection stop];
+                }
+        
+        <span class="comment">// Remove all the connections</span>
+                [connections removeAllObjects];
+                [connectionsLock unlock];
+                
+                <span class="comment">// Now stop all WebSocket connections the server owns</span>
+                [webSocketsLock lock];
+        
+        <span class="comment">// Enumerate through the web sockets</span>
+                <span class="keywordflow">for</span> (<a class="code" href="interface_web_socket.html">WebSocket</a> *webSocket in <a class="code" href="interface_h_t_t_p_server.html#a9005d19304465514be6d8b77ce918b5d">webSockets</a>)
+                {
+                        [webSocket stop];
+                }
+        <span class="comment">// remove all the web sockets</span>
+                [webSockets removeAllObjects];
+                [webSocketsLock unlock];
+                
+                [pool release];
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        <span class="keywordflow">return</span> YES;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ae7f1dc441e370c88f60eaa2d8a2e17b7"></a><!-- doxytag: member="HTTPServer::TXTRecordDictionary" ref="ae7f1dc441e370c88f60eaa2d8a2e17b7" args="()" -->
+<a class="anchor" id="ae99c773d57453a9ec104a4ebaf4d3cb4"></a><!-- doxytag: member="HTTPServer::TXTRecordDictionary" ref="ae99c773d57453a9ec104a4ebaf4d3cb4" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -670,14 +992,29 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 <p>Gets the TXT record dictionary</p>
 <p>Gets the TXTRecordDictionary The extra data to use for this service via Bonjour. returns NSDictionary </p>
 
+<p>Definition at line <a class="el" href="#L508">508</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="comment">// Creates a local attribute</span>
+        __block NSDictionary *result;
+        
+    <span class="comment">// Submits a block for synchronous execution on the serverQueue</span>
+        dispatch_sync(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
+        
+                result = [txtRecordDictionary retain];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+        
+        <span class="keywordflow">return</span> [result autorelease];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a660bc9275e82aafeba8a8d55ceeffe59"></a><!-- doxytag: member="HTTPServer::type" ref="a660bc9275e82aafeba8a8d55ceeffe59" args="()" -->
+<a class="anchor" id="a1caf99cfa7869091592fa05b9dd76097"></a><!-- doxytag: member="HTTPServer::type" ref="a1caf99cfa7869091592fa05b9dd76097" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aedc156259b8def3a2d49e6f5f7135d49">type</a> </td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a40ff878797d6b2d341b6d0861c4a6c91">type</a> </td>
           <td></td>
           <td class="paramname"></td>
           <td></td>
@@ -691,7 +1028,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<a class="anchor" id="a5bac7934deffbebb3e20b04f50b48fdb"></a><!-- doxytag: member="HTTPServer::unpublishBonjour" ref="a5bac7934deffbebb3e20b04f50b48fdb" args="()" -->
+<a class="anchor" id="a7b00c5cf5f61447f95599d8609967593"></a><!-- doxytag: member="HTTPServer::unpublishBonjour" ref="a7b00c5cf5f61447f95599d8609967593" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -708,143 +1045,312 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a39ae9724a5117885d76aae20b346ec41"></a><!-- doxytag: member="HTTPServer::connectionClass" ref="a39ae9724a5117885d76aae20b346ec41" args="" -->
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a934c3ad23263b95b672789c6eaec3270"></a><!-- doxytag: member="HTTPServer::asyncSocket" ref="a934c3ad23263b95b672789c6eaec3270" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (Class) <a class="el" href="interface_h_t_t_p_server.html#a39ae9724a5117885d76aae20b346ec41">connectionClass</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>*) <a class="el" href="interface_h_t_t_p_server.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>for reading and writing data </p>
+
+<p>Definition at line <a class="el" href="#L40">40</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa627c6baeeed6a6b695dad378f4dd03c"></a><!-- doxytag: member="HTTPServer::connectionClass" ref="aa627c6baeeed6a6b695dad378f4dd03c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (Class) <a class="el" href="interface_h_t_t_p_server.html#aa627c6baeeed6a6b695dad378f4dd03c">connectionClass</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>default is HTTP connection</p>
 <p>The connection class is the class that will be used to handle connections. That is, when a new connection is created, an instance of this class will be intialized. The default connection class is <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a>. If you use a different connection class, it is assumed that the class extends <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> returns Class </p>
 
+<p>Definition at line <a class="el" href="#L55">55</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="aaab61a2ce871a1a1bd1bc662b9cdded9"></a><!-- doxytag: member="HTTPServer::documentRoot" ref="aaab61a2ce871a1a1bd1bc662b9cdded9" args="" -->
+<a class="anchor" id="afc9e298da8fec2755e7bb531a8d28c6c"></a><!-- doxytag: member="HTTPServer::connectionQueue" ref="afc9e298da8fec2755e7bb531a8d28c6c" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aaab61a2ce871a1a1bd1bc662b9cdded9">documentRoot</a><code> [protected]</code></td>
+          <td class="memname">- (dispatch_queue_t) <a class="el" href="interface_h_t_t_p_server.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Dispatch queues are lightweight objects to which blocks may be submitted. The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them. </p>
+
+<p>Definition at line <a class="el" href="#L35">35</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab614350bf23f5280a2b4bb8df11e893b"></a><!-- doxytag: member="HTTPServer::connections" ref="ab614350bf23f5280a2b4bb8df11e893b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) <a class="el" href="interface_h_t_t_p_server.html#ab614350bf23f5280a2b4bb8df11e893b">connections</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the connections to the server </p>
+
+<p>Definition at line <a class="el" href="#L108">108</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a05f99272f41228891fb145c2471ed860"></a><!-- doxytag: member="HTTPServer::connectionsLock" ref="a05f99272f41228891fb145c2471ed860" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSLock*) <a class="el" href="interface_h_t_t_p_server.html#a05f99272f41228891fb145c2471ed860">connectionsLock</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>locks the http connection </p>
+
+<p>Definition at line <a class="el" href="#L118">118</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af47c339441ab6415df437e629718d154"></a><!-- doxytag: member="HTTPServer::documentRoot" ref="af47c339441ab6415df437e629718d154" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#af47c339441ab6415df437e629718d154">documentRoot</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the document root</p>
 <p>The document root is filesystem root for the webserver. Thus requests for /index.html will be referencing the index.html file within the document root directory. All file requests are relative to this document root. returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L50">50</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a2bf61f5902417f97006de60e8f93cc50"></a><!-- doxytag: member="HTTPServer::domain" ref="a2bf61f5902417f97006de60e8f93cc50" args="" -->
+<a class="anchor" id="aaada51b3d35354d6d660fb9faa556eea"></a><!-- doxytag: member="HTTPServer::domain" ref="aaada51b3d35354d6d660fb9faa556eea" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a2bf61f5902417f97006de60e8f93cc50">domain</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aaada51b3d35354d6d660fb9faa556eea">domain</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>the domain the service should be published on, the default is 'local'</p>
 <p>Gets the domain on which to broadcast this service via Bonjour. The default domain is "local". returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L79">79</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a7d6bee361a44383d4af62ac43903aa0f"></a><!-- doxytag: member="HTTPServer::interface" ref="a7d6bee361a44383d4af62ac43903aa0f" args="" -->
+<a class="anchor" id="ac536e64ff3c5d56cd7dbdb2829f733f9"></a><!-- doxytag: member="HTTPServer::interface" ref="ac536e64ff3c5d56cd7dbdb2829f733f9" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a7d6bee361a44383d4af62ac43903aa0f">interface</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#ac536e64ff3c5d56cd7dbdb2829f733f9">interface</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>the interface the server should listen on, "en1", "lo0", etc</p>
 <p>What interface to bind the listening socket to. returns NSString </p>
+
+<p>Definition at line <a class="el" href="#L60">60</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a11293740dfbf164cd470444df1b04d28"></a><!-- doxytag: member="HTTPServer::isRunning" ref="a11293740dfbf164cd470444df1b04d28" args="" -->
+<a class="anchor" id="a0a6b799e02b5541c496221d31353257e"></a><!-- doxytag: member="HTTPServer::isRunning" ref="a0a6b799e02b5541c496221d31353257e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_server.html#a11293740dfbf164cd470444df1b04d28">isRunning</a><code> [protected]</code></td>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_server.html#a0a6b799e02b5541c496221d31353257e">isRunning</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Whether the server is running returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L126">126</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a1b954a370ed30882399a103f0458364b"></a><!-- doxytag: member="HTTPServer::name" ref="a1b954a370ed30882399a103f0458364b" args="" -->
+<a class="anchor" id="afc8ccc6676addc3b49a494b2bf969c68"></a><!-- doxytag: member="HTTPServer::name" ref="afc8ccc6676addc3b49a494b2bf969c68" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a1b954a370ed30882399a103f0458364b">name</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#afc8ccc6676addc3b49a494b2bf969c68">name</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>default is the computers name that the server is running on</p>
 <p>Gets the name to use for this service via Bonjour. The default name is an empty string, which should result in the published name being the host name of the computer. returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L89">89</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="adff6720023181115793dbf3b29eae202"></a><!-- doxytag: member="HTTPServer::port" ref="adff6720023181115793dbf3b29eae202" args="" -->
+<a class="anchor" id="a36376bb50bc0e6bba06d8508dd3bc61b"></a><!-- doxytag: member="HTTPServer::netService" ref="a36376bb50bc0e6bba06d8508dd3bc61b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt16) <a class="el" href="interface_h_t_t_p_server.html#adff6720023181115793dbf3b29eae202">port</a><code> [protected]</code></td>
+          <td class="memname">- (NSNetService*) <a class="el" href="interface_h_t_t_p_server.html#a36376bb50bc0e6bba06d8508dd3bc61b">netService</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>represents a network service </p>
+
+<p>Definition at line <a class="el" href="#L74">74</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a96ebf7a8d647c5659f83c9f949dfea88"></a><!-- doxytag: member="HTTPServer::port" ref="a96ebf7a8d647c5659f83c9f949dfea88" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt16) <a class="el" href="interface_h_t_t_p_server.html#a96ebf7a8d647c5659f83c9f949dfea88">port</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the listening port</p>
 <p>The port to listen for connections on. By default this port is initially set to zero, which allows the kernel to pick an available port for us. After the HTTP server has started, the port being used may be obtained by this method. </p>
 
-</div>
-</div>
-<a class="anchor" id="a1e4e79bb402a958e3fe14aa7cb668713"></a><!-- doxytag: member="HTTPServer::publishedName" ref="a1e4e79bb402a958e3fe14aa7cb668713" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a1e4e79bb402a958e3fe14aa7cb668713">publishedName</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Gets the published name of the server returns NSString </p>
+<p>Definition at line <a class="el" href="#L65">65</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aedc156259b8def3a2d49e6f5f7135d49"></a><!-- doxytag: member="HTTPServer::type" ref="aedc156259b8def3a2d49e6f5f7135d49" args="" -->
+<a class="anchor" id="a218b05fe5e23f840b8a3ea455369b279"></a><!-- doxytag: member="HTTPServer::publishedName" ref="a218b05fe5e23f840b8a3ea455369b279" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#aedc156259b8def3a2d49e6f5f7135d49">type</a><code> [protected]</code></td>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a218b05fe5e23f840b8a3ea455369b279">publishedName</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>the published server name</p>
+<p>Gets the published name of the server returns NSString </p>
+
+<p>Definition at line <a class="el" href="#L94">94</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a5136636d1bbcf2988d6b98ecf7ff11"></a><!-- doxytag: member="HTTPServer::serverQueue" ref="a9a5136636d1bbcf2988d6b98ecf7ff11" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (dispatch_queue_t) <a class="el" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Dispatch queues are lightweight objects to which blocks may be submitted. The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them. </p>
+
+<p>Definition at line <a class="el" href="#L30">30</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e8340d6542b7358aef95c055fd8155b"></a><!-- doxytag: member="HTTPServer::txtRecordDictionary" ref="a0e8340d6542b7358aef95c055fd8155b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDictionary*) <a class="el" href="interface_h_t_t_p_server.html#a0e8340d6542b7358aef95c055fd8155b">txtRecordDictionary</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L99">99</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40ff878797d6b2d341b6d0861c4a6c91"></a><!-- doxytag: member="HTTPServer::type" ref="a40ff878797d6b2d341b6d0861c4a6c91" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) <a class="el" href="interface_h_t_t_p_server.html#a40ff878797d6b2d341b6d0861c4a6c91">type</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>tcp or udp</p>
 <p>Gets the type of service to publish via Bonjour. No type is set by default, and one must be set in order for the service to be published. returns NSString </p>
+
+<p>Definition at line <a class="el" href="#L84">84</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9005d19304465514be6d8b77ce918b5d"></a><!-- doxytag: member="HTTPServer::webSockets" ref="a9005d19304465514be6d8b77ce918b5d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) <a class="el" href="interface_h_t_t_p_server.html#a9005d19304465514be6d8b77ce918b5d">webSockets</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the web socket connections </p>
+
+<p>Definition at line <a class="el" href="#L113">113</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e8550d631e3c9249a70b5149debc04f"></a><!-- doxytag: member="HTTPServer::webSocketsLock" ref="a3e8550d631e3c9249a70b5149debc04f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSLock*) <a class="el" href="interface_h_t_t_p_server.html#a3e8550d631e3c9249a70b5149debc04f">webSocketsLock</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>locks the websocket </p>
+
+<p>Definition at line <a class="el" href="#L123">123</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_server_8h_source.html">HTTPServer.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPServer.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPServer.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPServer.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:12 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -854,7 +1360,7 @@ NSLock *&#160;</td><td class="memItemRight" valign="bottom"><b>webSocketsLock</b
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

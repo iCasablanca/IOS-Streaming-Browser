@@ -1,3 +1,11 @@
+
+
+#import <Foundation/NSValue.h>
+#import <Foundation/NSObjCRuntime.h>
+
+@class NSString;
+
+
 /**
  * DDRange is the functional equivalent of a 64 bit NSRange.
  * The HTTP Server is designed to support very large files.
@@ -6,48 +14,108 @@
  * By defining our own variant, we can support a range up to 16 exabytes.
  * 
  * All effort is given such that DDRange functions EXACTLY the same as NSRange.
-**/
+ **/
 
-#import <Foundation/NSValue.h>
-#import <Foundation/NSObjCRuntime.h>
 
-@class NSString;
-
+/** 
+ *
+ * \struct _DDRange
+ *
+ * \brief 
+ **/
 typedef struct _DDRange {
-    UInt64 location;
-    UInt64 length;
+    UInt64 location;  ///< location within the range of bytes
+    UInt64 length;   ///< length of the range of bytes
 } DDRange;
 
 typedef DDRange *DDRangePointer;
 
-
-// Makes a range with a location and length
+/**
+    Makes a range with a location and length
+    param UInt64
+    param UInt64
+    returns DDRange
+**/
 NS_INLINE DDRange DDMakeRange(UInt64 loc, UInt64 len) {
+    
+    // Localized attribute
     DDRange r;
+    
+    // Gets the range location passed into this method
     r.location = loc;
+    
+    // Gets the range length passed into this method
     r.length = len;
+    
+    // returns the range 
     return r;
 }
 
-// Returns the location and length
+/**
+    Returns the location and length
+    param DDRange
+    returns UInt64
+**/
 NS_INLINE UInt64 DDMaxRange(DDRange range) {
     return (range.location + range.length);
 }
 
-// Returns the location within a range
+/**
+    Returns the location within a range
+    param UInt64
+    param DDRange
+    returns BOOL
+**/
 NS_INLINE BOOL DDLocationInRange(UInt64 loc, DDRange range) {
     return (loc - range.location < range.length);
 }
 
+/**
+    Whether range1 and range2 are equal
+    param DDRange
+    param DDRange
+    returns BOOL
+**/
 NS_INLINE BOOL DDEqualRanges(DDRange range1, DDRange range2) {
     return ((range1.location == range2.location) && (range1.length == range2.length));
 }
 
+/**
+    Gets the union of two ranges
+    param DDRange
+    param DDRange
+    returns DDRange
+**/
 FOUNDATION_EXPORT DDRange DDUnionRange(DDRange range1, DDRange range2);
+
+/**
+    Gets the intersection of two ranges
+    param DDRange
+    param DDRange
+    returns DDRange
+**/
 FOUNDATION_EXPORT DDRange DDIntersectionRange(DDRange range1, DDRange range2);
+
+/**
+    Gets a string from a range
+    param DDRange
+    returns NSString
+**/
 FOUNDATION_EXPORT NSString *DDStringFromRange(DDRange range);
+
+/**
+    Gets a range from a string
+    param NSString
+    returns DDRange
+**/
 FOUNDATION_EXPORT DDRange DDRangeFromString(NSString *aString);
 
+/**
+    Compares two ranges
+    param DDRangePointer
+    param DDRangePointer
+    returns NSInteger
+**/
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
 @interface NSValue (NSValueDDRangeExtensions)

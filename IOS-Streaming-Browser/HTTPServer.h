@@ -24,38 +24,103 @@
 	// Underlying asynchronous TCP/IP socket
     ////////////////////////////////////////////
 
-    // Dispatch queues are lightweight objects to which blocks may be
-    // submitted.  The system manages a pool of threads which process 
-    // dispatch queues and invoke blocks submitted to them.
+    /**
+     Dispatch queues are lightweight objects to which blocks may be submitted.  The system manages a pool of threads which process  dispatch queues and invoke blocks submitted to them.
+    **/
 	dispatch_queue_t serverQueue;
+    
+    /**
+     Dispatch queues are lightweight objects to which blocks may be submitted.  The system manages a pool of threads which process  dispatch queues and invoke blocks submitted to them.
+     **/    
 	dispatch_queue_t connectionQueue;
-	GCDAsyncSocket *asyncSocket;  // for reading and writing data
+
+	/**
+      for reading and writing data
+    **/
+    GCDAsyncSocket *asyncSocket;  
 	
     ///////////////////////////////////////////
 	// HTTP server configuration
     ///////////////////////////////////////////
-	NSString *documentRoot; // the document root
-	Class connectionClass; // default is HTTP connection
-	NSString *interface; // the interface the server should listen on, "en1", "lo0", etc
-	UInt16 port; // the listening port
+
+	
+    /**
+      the document root
+    **/
+    NSString *documentRoot; 
+    
+    /**
+      default is HTTP connection
+    **/
+	Class connectionClass; 
+    
+    /**
+      the interface the server should listen on, "en1", "lo0", etc
+    **/
+	NSString *interface; 
+    
+    /**
+      the listening port
+    **/
+	UInt16 port; 
 
     ///////////////////////////////////////////	
 	// NSNetService and related variables
-    ///////////////////////////////////////////    
-	NSNetService *netService; // represents a network service
-	NSString *domain; // the domain the service should be published on, the default is 'local'
-	NSString *type; // tcp or udp
-	NSString *name; // default is the computers name that the server is running on
-	NSString *publishedName; // the published server name
-	NSDictionary *txtRecordDictionary;
+    ///////////////////////////////////////////  
+    
+    /**
+      represents a network service
+    **/
+	NSNetService *netService; 
+    
+    /**
+      the domain the service should be published on, the default is 'local'
+    **/
+	NSString *domain; 
+    
+    /**
+      tcp or udp
+    **/
+	NSString *type; 
+    
+    /**
+      default is the computers name that the server is running on
+    **/
+	NSString *name; 
+    
+    /**
+      the published server name
+    **/
+	NSString *publishedName; 
+	
+    /**
+     
+    **/
+    NSDictionary *txtRecordDictionary;
 	
     ///////////////////////////////////////////    
 	// Connection management
     ///////////////////////////////////////////
-	NSMutableArray *connections; // the connections to the server
-	NSMutableArray *webSockets; // the web socket connections
-	NSLock *connectionsLock; // locks the http connection
-	NSLock *webSocketsLock; // locks the websocket
+    
+    /**
+      the connections to the server
+    **/
+	NSMutableArray *connections; 
+
+    /**
+      the web socket connections
+    **/
+	NSMutableArray *webSockets; 
+    
+    /**
+      locks the http connection
+    **/
+	NSLock *connectionsLock; 
+    
+    /**
+      locks the websocket
+    **/
+	NSLock *webSocketsLock; 
 	
     // Whether the server is running or not
 	BOOL isRunning;
@@ -195,7 +260,7 @@
 - (NSString *)type;
 
 /**
-    Sets the type
+    Set the type of service to be published via Bonjour param NSString
 **/
 - (void)setType:(NSString *)value;
 

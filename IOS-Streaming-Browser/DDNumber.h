@@ -11,7 +11,8 @@
     param SInt64
     returns BOOL
 **/
-+ (BOOL)parseString:(NSString *)str intoSInt64:(SInt64 *)pNum;
++ (BOOL)parseString:(NSString *)str 
+         intoSInt64:(SInt64 *)pNum;
 
 /**
     class method
@@ -20,7 +21,8 @@
     param UInt64
     returns BOOL
 **/
-+ (BOOL)parseString:(NSString *)str intoUInt64:(UInt64 *)pNum;
++ (BOOL)parseString:(NSString *)str 
+         intoUInt64:(UInt64 *)pNum;
 
 /**
     class method
@@ -29,7 +31,8 @@
     param NSInteger
     returns BOOL
 **/
-+ (BOOL)parseString:(NSString *)str intoNSInteger:(NSInteger *)pNum;
++ (BOOL)parseString:(NSString *)str 
+      intoNSInteger:(NSInteger *)pNum;
 
 /**
     class method
@@ -38,6 +41,7 @@
     param NSUInteger
     returns BOOL
 **/
-+ (BOOL)parseString:(NSString *)str intoNSUInteger:(NSUInteger *)pNum;
++ (BOOL)parseString:(NSString *)str 
+     intoNSUInteger:(NSUInteger *)pNum;
 
 @end

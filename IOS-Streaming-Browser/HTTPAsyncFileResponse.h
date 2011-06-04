@@ -14,32 +14,84 @@
 // Implements HTTPResponse protocol
 @interface HTTPAsyncFileResponse : NSObject <HTTPResponse>
 {	
+    
+    /**
+     
+    **/
 	HTTPConnection *connection;
 	
-	NSString *filePath; // the file path
-	UInt64 fileLength;  // the file length
-	UInt64 fileOffset;  // File offset as pertains to data given to connection
-	UInt64 readOffset;  // File offset as pertains to data read from file (but maybe not returned to connection)
-	
-	BOOL aborted;  // whether the file response is aborted
-	
-	NSData *data;  // the data from the file
-	
-	int fileFD; // the file descriptior (i.e. file handle)
+    /**
+      the file path
+    **/
+	NSString *filePath; 
     
-    // The read buffer.  This is for holding the data read from a file, and waiting to be sent to the host
+    /**
+      the file length
+    **/
+	UInt64 fileLength;  
+    
+    /**
+      File offset as pertains to data given to connection
+    **/
+	UInt64 fileOffset;  
+    
+    /**
+      File offset as pertains to data read from file (but maybe not returned to connection)
+    **/
+	UInt64 readOffset;  
+	
+    /**
+      whether the file response is aborted
+    **/
+	BOOL aborted;  
+	
+    
+    /**
+      the data from the file
+    **/
+	NSData *data;  
+	
+    
+    /**
+      the file descriptior (i.e. file handle)
+    **/
+	int fileFD; 
+    
+    
+    /**
+        The read buffer.  This is for holding the data read from a file, and waiting to be sent to the host
+    **/
 	void *readBuffer; 
     
+    /**
+        Malloc'd size of readBuffer
+    **/
+	NSUInteger readBufferSize;     
     
-	NSUInteger readBufferSize;     // Malloced size of readBuffer
+    /**
+      Offset within readBuffer where the end of existing data is
+    **/
+	NSUInteger readBufferOffset;   
     
-	NSUInteger readBufferOffset;   // Offset within readBuffer where the end of existing data is
+    /**
+        The read request length.  
+    **/
+	NSUInteger readRequestLength; 
     
-	NSUInteger readRequestLength; // the read request length.  
+    /**
+        The read queue
+    **/
+	dispatch_queue_t readQueue;  
     
-	dispatch_queue_t readQueue;  // the read queue
-	dispatch_source_t readSource; // the read source
-	BOOL readSourceSuspended;  // whether read source is suspended
+    /**
+        The read source
+    **/
+	dispatch_source_t readSource; 
+    
+    /**
+        Whether read source is suspended
+    **/
+	BOOL readSourceSuspended;  
 }
 
 /**

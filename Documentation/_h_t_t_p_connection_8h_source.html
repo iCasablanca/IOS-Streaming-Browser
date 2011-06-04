@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPConnection.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a href="_h_t_t_p_connection_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 <span class="keyword">@class</span> <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>;
 <a name="l00004"></a>00004 <span class="keyword">@class</span> <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a>;
@@ -90,160 +91,392 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="keyword">@protocol </span><a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>;
 <a name="l00008"></a>00008 
 <a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="preprocessor">#define HTTPConnectionDidDieNotification  @&quot;HTTPConnectionDidDie&quot;</span>
-<a name="l00011"></a>00011 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#pragma mark -</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00015"></a>00015 
+<a name="l00010"></a><a class="code" href="_h_t_t_p_connection_8h.html#a56a91e5b7c52933cb884ef53f73ee827">00010</a> <span class="preprocessor">#define HTTPConnectionDidDieNotification  @&quot;HTTPConnectionDidDie&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00012"></a>00012 <span class="comment">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00013"></a>00013 <span class="comment"></span><span class="preprocessor">#pragma mark -</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="comment">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00015"></a>00015 <span class="comment"></span>
 <a name="l00016"></a><a class="code" href="interface_h_t_t_p_config.html">00016</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> : NSObject
 <a name="l00017"></a>00017 {
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019         <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *server; <span class="comment">// The HTTPServer which is handling the connection</span>
-<a name="l00020"></a>00020         NSString *documentRoot; <span class="comment">// The document root for the server</span>
-<a name="l00021"></a>00021         dispatch_queue_t queue;  <span class="comment">// The dispatch queue for requests</span>
-<a name="l00022"></a>00022 }
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 
-<a name="l00031"></a>00031 - (id)initWithServer:(<a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *)server documentRoot:(NSString *)documentRoot;
-<a name="l00032"></a>00032 
-<a name="l00041"></a>00041 - (id)initWithServer:(<a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *)server documentRoot:(NSString *)documentRoot queue:(dispatch_queue_t)q;
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="comment">// Sets the properties for the instance attributes/variables</span>
-<a name="l00045"></a>00045 @property (nonatomic, readonly) <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *server;
-<a name="l00046"></a>00046 @property (nonatomic, readonly) NSString *documentRoot;
-<a name="l00047"></a>00047 @property (nonatomic, readonly) dispatch_queue_t queue;
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 @end
-<a name="l00050"></a>00050 
-<a name="l00052"></a>00052 <span class="preprocessor">#pragma mark -</span>
-<a name="l00053"></a>00053 <span class="preprocessor"></span>
+<a name="l00018"></a>00018 <span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">    /**</span>
+<a name="l00020"></a>00020 <span class="comment">        The HTTPServer which is handling the connection</span>
+<a name="l00021"></a>00021 <span class="comment">    **/</span>
+<a name="l00022"></a><a class="code" href="interface_h_t_t_p_config.html#adb6085442e0028d3a9a5a92e6d87e0ec">00022</a>         <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *<a class="code" href="interface_h_t_t_p_config.html#adb6085442e0028d3a9a5a92e6d87e0ec">server</a>;
+<a name="l00023"></a>00023     <span class="comment"></span>
+<a name="l00024"></a>00024 <span class="comment">    /**</span>
+<a name="l00025"></a>00025 <span class="comment">        The document root for the server</span>
+<a name="l00026"></a>00026 <span class="comment">    **/</span>
+<a name="l00027"></a><a class="code" href="interface_h_t_t_p_config.html#af47c339441ab6415df437e629718d154">00027</a>         NSString *<a class="code" href="interface_h_t_t_p_config.html#af47c339441ab6415df437e629718d154">documentRoot</a>; 
+<a name="l00028"></a>00028     <span class="comment"></span>
+<a name="l00029"></a>00029 <span class="comment">    /**</span>
+<a name="l00030"></a>00030 <span class="comment">        The dispatch queue for requests</span>
+<a name="l00031"></a>00031 <span class="comment">    **/</span>
+<a name="l00032"></a><a class="code" href="interface_h_t_t_p_config.html#a839103337d1936e47f7884bf2cc4469c">00032</a>         dispatch_queue_t <a class="code" href="interface_h_t_t_p_config.html#a839103337d1936e47f7884bf2cc4469c">queue</a>;  
+<a name="l00033"></a>00033 }
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment"></span>
+<a name="l00036"></a>00036 <span class="comment">/**</span>
+<a name="l00037"></a>00037 <span class="comment">    Initializes the HTTPconnection with a server and document root</span>
+<a name="l00038"></a>00038 <span class="comment">    param HTTPServer</span>
+<a name="l00039"></a>00039 <span class="comment">    param NSString</span>
+<a name="l00040"></a>00040 <span class="comment">    returns id (self)</span>
+<a name="l00041"></a>00041 <span class="comment">**/</span>
+<a name="l00042"></a>00042 - (id)initWithServer:(<a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *)server documentRoot:(NSString *)documentRoot;
+<a name="l00043"></a>00043 <span class="comment"></span>
+<a name="l00044"></a>00044 <span class="comment">/**</span>
+<a name="l00045"></a>00045 <span class="comment">    Initializes the HTTPConnection with a server, document root, and </span>
+<a name="l00046"></a>00046 <span class="comment">    dispatch queue</span>
+<a name="l00047"></a>00047 <span class="comment">    param HTTPServer</span>
+<a name="l00048"></a>00048 <span class="comment">    param NSString</span>
+<a name="l00049"></a>00049 <span class="comment">    param dispatch_queue</span>
+<a name="l00050"></a>00050 <span class="comment">    returns id (self)</span>
+<a name="l00051"></a>00051 <span class="comment">**/</span>
+<a name="l00052"></a>00052 - (id)initWithServer:(<a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *)server documentRoot:(NSString *)documentRoot queue:(dispatch_queue_t)q;
+<a name="l00053"></a>00053 
 <a name="l00054"></a>00054 
-<a name="l00055"></a><a class="code" href="interface_h_t_t_p_connection.html">00055</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> : NSObject
-<a name="l00056"></a>00056 {
-<a name="l00057"></a>00057         dispatch_queue_t connectionQueue; <span class="comment">// queue with all the connections</span>
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059         <span class="comment">// Handles each request one at a time in order</span>
-<a name="l00060"></a>00060     <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *asyncSocket;  
-<a name="l00061"></a>00061     
-<a name="l00062"></a>00062     <span class="comment">// HTTP server configuration</span>
-<a name="l00063"></a>00063         <a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> *config;  
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065     <span class="comment">// Flag for whether the connection started</span>
-<a name="l00066"></a>00066         BOOL started;  
-<a name="l00067"></a>00067         
-<a name="l00068"></a>00068     
-<a name="l00069"></a>00069     <span class="comment">// The http request from the host </span>
-<a name="l00070"></a>00070         <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *request;  
-<a name="l00071"></a>00071     
-<a name="l00072"></a>00072         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> numHeaderLines;  <span class="comment">// number of header lines</span>
-<a name="l00073"></a>00073         
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075     <span class="comment">// Flag for whether sent response headers to the host</span>
-<a name="l00076"></a>00076         BOOL sentResponseHeaders;   
-<a name="l00077"></a>00077         
-<a name="l00078"></a>00078         NSString *nonce;  <span class="comment">// A nonce is a  server-specified string uniquely generated for each 401 response.</span>
-<a name="l00079"></a>00079     
-<a name="l00080"></a>00080     
-<a name="l00081"></a>00081         <span class="keywordtype">long</span> lastNC; <span class="comment">// the last nonce</span>
-<a name="l00082"></a>00082         
-<a name="l00083"></a>00083     <span class="comment">// The http response sent to the host</span>
-<a name="l00084"></a>00084         NSObject&lt;HTTPResponse&gt; *httpResponse; 
-<a name="l00085"></a>00085         
-<a name="l00086"></a>00086         NSMutableArray *ranges; <span class="comment">// Mutable array for the response ranges</span>
-<a name="l00087"></a>00087         NSMutableArray *ranges_headers; <span class="comment">// mutable array for the response range headers</span>
-<a name="l00088"></a>00088     
-<a name="l00089"></a>00089         NSString *ranges_boundry; <span class="comment">// the response ranges boundary</span>
-<a name="l00090"></a>00090     
-<a name="l00091"></a>00091         <span class="keywordtype">int</span> rangeIndex;
-<a name="l00092"></a>00092         
-<a name="l00093"></a>00093     <span class="comment">// The length of the http request from the host</span>
-<a name="l00094"></a>00094         UInt64 requestContentLength;
-<a name="l00095"></a>00095     
-<a name="l00096"></a>00096     <span class="comment">// The number of bytes received from teh host</span>
-<a name="l00097"></a>00097         UInt64 requestContentLengthReceived;
-<a name="l00098"></a>00098         
-<a name="l00099"></a>00099     <span class="comment">// HTTP response data sizes</span>
-<a name="l00100"></a>00100         NSMutableArray *responseDataSizes; 
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 
-<a name="l00110"></a>00110 - (id)initWithAsyncSocket:(<a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *)newSocket configuration:(<a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> *)aConfig;
-<a name="l00111"></a>00111 
-<a name="l00116"></a>00116 - (void)start;
-<a name="l00117"></a>00117 
-<a name="l00122"></a>00122 - (void)stop;
-<a name="l00123"></a>00123 
-<a name="l00127"></a>00127 - (void)startConnection;
-<a name="l00128"></a>00128 
-<a name="l00135"></a>00135 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path;
-<a name="l00136"></a>00136 
-<a name="l00147"></a>00147 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path;
-<a name="l00148"></a>00148 
-<a name="l00158"></a>00158 - (BOOL)isSecureServer;
-<a name="l00159"></a>00159 
-<a name="l00164"></a>00164 - (NSArray *)sslIdentityAndCertificates;
-<a name="l00165"></a>00165 
-<a name="l00172"></a>00172 - (BOOL)isPasswordProtected:(NSString *)path;
-<a name="l00173"></a>00173 
-<a name="l00181"></a>00181 - (BOOL)useDigestAccessAuthentication;
-<a name="l00182"></a>00182 
-<a name="l00188"></a>00188 - (NSString *)realm;
-<a name="l00189"></a>00189 
-<a name="l00195"></a>00195 - (NSString *)passwordForUser:(NSString *)username;
-<a name="l00196"></a>00196 
-<a name="l00207"></a>00207 - (NSDictionary *)parseParams:(NSString *)query;
-<a name="l00208"></a>00208 
-<a name="l00219"></a>00219 - (NSDictionary *)parseGetParams;
-<a name="l00220"></a>00220 
-<a name="l00224"></a>00224 - (NSString *)requestURI;
-<a name="l00225"></a>00225 
-<a name="l00230"></a>00230 - (NSArray *)directoryIndexFileNames;
-<a name="l00231"></a>00231 
-<a name="l00237"></a>00237 - (NSString *)filePathForURI:(NSString *)path;
-<a name="l00238"></a>00238 
-<a name="l00246"></a>00246 - (NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)httpResponseForMethod:(NSString *)method URI:(NSString *)path;
-<a name="l00247"></a>00247 
-<a name="l00252"></a>00252 - (<a class="code" href="interface_web_socket.html">WebSocket</a> *)webSocketForURI:(NSString *)path;
-<a name="l00253"></a>00253 
-<a name="l00258"></a>00258 - (void)prepareForBodyWithSize:(UInt64)contentLength;
-<a name="l00259"></a>00259 
-<a name="l00265"></a>00265 - (void)processDataChunk:(<a class="code" href="class_n_s_data.html">NSData</a> *)postDataChunk;
-<a name="l00266"></a>00266 
-<a name="l00271"></a>00271 - (void)handleVersionNotSupported:(NSString *)version;
-<a name="l00272"></a>00272 
-<a name="l00276"></a>00276 - (void)handleAuthenticationFailed;
-<a name="l00277"></a>00277 
-<a name="l00281"></a>00281 - (void)handleResourceNotFound;
-<a name="l00282"></a>00282 
-<a name="l00288"></a>00288 - (void)handleInvalidRequest:(<a class="code" href="class_n_s_data.html">NSData</a> *)data;
-<a name="l00289"></a>00289 
-<a name="l00293"></a>00293 - (void)handleUnknownMethod:(NSString *)method;
-<a name="l00294"></a>00294 
-<a name="l00301"></a>00301 - (<a class="code" href="class_n_s_data.html">NSData</a> *)preprocessResponse:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response;
-<a name="l00302"></a>00302 
-<a name="l00307"></a>00307 - (<a class="code" href="class_n_s_data.html">NSData</a> *)preprocessErrorResponse:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response;
-<a name="l00308"></a>00308 
-<a name="l00313"></a>00313 - (BOOL)shouldDie;
-<a name="l00314"></a>00314 
-<a name="l00318"></a>00318 - (void)die;
-<a name="l00319"></a>00319 
-<a name="l00320"></a>00320 <span class="keyword">@end</span>
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322 
-<a name="l00323"></a>00323 <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> (AsynchronousHTTPResponse)
-<a name="l00324"></a>00324 
-<a name="l00328"></a>00328 - (void)responseHasAvailableData:(NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)sender;
-<a name="l00329"></a>00329 
-<a name="l00333"></a>00333 - (void)responseDidAbort:(NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)sender;
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335 <span class="keyword">@end</span>
+<a name="l00055"></a>00055 <span class="comment">// Sets the properties for the instance attributes/variables</span>
+<a name="l00056"></a>00056 @property (nonatomic, readonly) <a class="code" href="interface_h_t_t_p_server.html">HTTPServer</a> *server;
+<a name="l00057"></a>00057 @property (nonatomic, readonly) NSString *documentRoot;
+<a name="l00058"></a>00058 @property (nonatomic, readonly) dispatch_queue_t queue;
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 @end
+<a name="l00061"></a>00061 <span class="comment"></span>
+<a name="l00062"></a>00062 <span class="comment">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00063"></a>00063 <span class="comment"></span><span class="preprocessor">#pragma mark -</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span><span class="comment">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a><a class="code" href="interface_h_t_t_p_connection.html">00066</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> : NSObject
+<a name="l00067"></a>00067 {
+<a name="l00068"></a>00068     <span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">    /**</span>
+<a name="l00070"></a>00070 <span class="comment">      queue with all the connections</span>
+<a name="l00071"></a>00071 <span class="comment">    **/</span>
+<a name="l00072"></a><a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">00072</a>         dispatch_queue_t <a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a>; 
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">    /**</span>
+<a name="l00075"></a>00075 <span class="comment">        Handles each request one at a time in order</span>
+<a name="l00076"></a>00076 <span class="comment">    **/</span>
+<a name="l00077"></a><a class="code" href="interface_h_t_t_p_connection.html#a934c3ad23263b95b672789c6eaec3270">00077</a>     <a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *<a class="code" href="interface_h_t_t_p_connection.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a>;  
+<a name="l00078"></a>00078     <span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">    /**</span>
+<a name="l00080"></a>00080 <span class="comment">     HTTP server configuration</span>
+<a name="l00081"></a>00081 <span class="comment">    **/</span>
+<a name="l00082"></a><a class="code" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">00082</a>         <a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> *<a class="code" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">config</a>;  
+<a name="l00083"></a>00083     <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">    /**</span>
+<a name="l00085"></a>00085 <span class="comment">        Flag for whether the connection started</span>
+<a name="l00086"></a>00086 <span class="comment">    **/</span>
+<a name="l00087"></a><a class="code" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">00087</a>         BOOL <a class="code" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">started</a>;  
+<a name="l00088"></a>00088         <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">    /**</span>
+<a name="l00090"></a>00090 <span class="comment">        The http request from the host </span>
+<a name="l00091"></a>00091 <span class="comment">    **/</span>
+<a name="l00092"></a><a class="code" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">00092</a>         <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *<a class="code" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a>;  
+<a name="l00093"></a>00093     <span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">    /**</span>
+<a name="l00095"></a>00095 <span class="comment">        number of header lines</span>
+<a name="l00096"></a>00096 <span class="comment">    **/</span>
+<a name="l00097"></a><a class="code" href="interface_h_t_t_p_connection.html#a6683a6a8dac2dc0678ae77d78b187a5f">00097</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="interface_h_t_t_p_connection.html#a6683a6a8dac2dc0678ae77d78b187a5f">numHeaderLines</a>;  
+<a name="l00098"></a>00098         <span class="comment"></span>
+<a name="l00099"></a>00099 <span class="comment">    /**</span>
+<a name="l00100"></a>00100 <span class="comment">        Flag for whether sent response headers to the host</span>
+<a name="l00101"></a>00101 <span class="comment">    **/</span>
+<a name="l00102"></a><a class="code" href="interface_h_t_t_p_connection.html#a9a2808e9990b93582a44989aeabc8427">00102</a>         BOOL <a class="code" href="interface_h_t_t_p_connection.html#a9a2808e9990b93582a44989aeabc8427">sentResponseHeaders</a>;   
+<a name="l00103"></a>00103         
+<a name="l00104"></a>00104     <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">    /**</span>
+<a name="l00106"></a>00106 <span class="comment">      A nonce is a  server-specified string uniquely generated for each 401 response.</span>
+<a name="l00107"></a>00107 <span class="comment">    **/</span>
+<a name="l00108"></a><a class="code" href="interface_h_t_t_p_connection.html#a943c3f0f837d4d8fe650d22e84742187">00108</a>         NSString *<a class="code" href="interface_h_t_t_p_connection.html#a943c3f0f837d4d8fe650d22e84742187">nonce</a>;  
+<a name="l00109"></a>00109     <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">    /**</span>
+<a name="l00111"></a>00111 <span class="comment">        The last nonce</span>
+<a name="l00112"></a>00112 <span class="comment">    **/</span>
+<a name="l00113"></a><a class="code" href="interface_h_t_t_p_connection.html#a820dc92c66ec354b406983c8845596f8">00113</a>         <span class="keywordtype">long</span> <a class="code" href="interface_h_t_t_p_connection.html#a820dc92c66ec354b406983c8845596f8">lastNC</a>; 
+<a name="l00114"></a>00114         <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">    /**</span>
+<a name="l00116"></a>00116 <span class="comment">        The http response sent to the host</span>
+<a name="l00117"></a>00117 <span class="comment">    **/</span>
+<a name="l00118"></a><a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">00118</a>         NSObject&lt;HTTPResponse&gt; *<a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a>; 
+<a name="l00119"></a>00119         <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">    /**</span>
+<a name="l00121"></a>00121 <span class="comment">      Mutable array for the response ranges</span>
+<a name="l00122"></a>00122 <span class="comment">    **/</span>
+<a name="l00123"></a><a class="code" href="interface_h_t_t_p_connection.html#a18003b13211f6c4c57ffa007620683be">00123</a>         NSMutableArray *<a class="code" href="interface_h_t_t_p_connection.html#a18003b13211f6c4c57ffa007620683be">ranges</a>; 
+<a name="l00124"></a>00124 <span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">    /**</span>
+<a name="l00126"></a>00126 <span class="comment">        Mutable array for the response range headers</span>
+<a name="l00127"></a>00127 <span class="comment">    **/</span>
+<a name="l00128"></a><a class="code" href="interface_h_t_t_p_connection.html#a00837835ec84d151f86b162a792c0aa0">00128</a>         NSMutableArray *<a class="code" href="interface_h_t_t_p_connection.html#a00837835ec84d151f86b162a792c0aa0">ranges_headers</a>; 
+<a name="l00129"></a>00129     
+<a name="l00130"></a>00130     <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">    /**</span>
+<a name="l00132"></a>00132 <span class="comment">        The response ranges boundary</span>
+<a name="l00133"></a>00133 <span class="comment">    **/</span>
+<a name="l00134"></a><a class="code" href="interface_h_t_t_p_connection.html#ac8e71da35056300f8c387d3ae939ff8f">00134</a>         NSString *<a class="code" href="interface_h_t_t_p_connection.html#ac8e71da35056300f8c387d3ae939ff8f">ranges_boundry</a>; 
+<a name="l00135"></a>00135     <span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">    /**</span>
+<a name="l00137"></a>00137 <span class="comment">     </span>
+<a name="l00138"></a>00138 <span class="comment">    **/</span>
+<a name="l00139"></a><a class="code" href="interface_h_t_t_p_connection.html#a0cd3875505a87ea9dedb639dcc5fb311">00139</a>         <span class="keywordtype">int</span> <a class="code" href="interface_h_t_t_p_connection.html#a0cd3875505a87ea9dedb639dcc5fb311">rangeIndex</a>;
+<a name="l00140"></a>00140         <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">    /**</span>
+<a name="l00142"></a>00142 <span class="comment">        The length of the http request from the host</span>
+<a name="l00143"></a>00143 <span class="comment">    **/</span>
+<a name="l00144"></a><a class="code" href="interface_h_t_t_p_connection.html#af8dc1a72a5303022acd41ba81ae10a5f">00144</a>     UInt64 <a class="code" href="interface_h_t_t_p_connection.html#af8dc1a72a5303022acd41ba81ae10a5f">requestContentLength</a>;
+<a name="l00145"></a>00145     <span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">    /**</span>
+<a name="l00147"></a>00147 <span class="comment">        The number of bytes received from teh host</span>
+<a name="l00148"></a>00148 <span class="comment">    **/</span>
+<a name="l00149"></a><a class="code" href="interface_h_t_t_p_connection.html#adab2e0927c4b0283c183f7f32053349c">00149</a>         UInt64 <a class="code" href="interface_h_t_t_p_connection.html#adab2e0927c4b0283c183f7f32053349c">requestContentLengthReceived</a>;
+<a name="l00150"></a>00150         <span class="comment"></span>
+<a name="l00151"></a>00151 <span class="comment">    /**</span>
+<a name="l00152"></a>00152 <span class="comment">        HTTP response data sizes</span>
+<a name="l00153"></a>00153 <span class="comment">    **/</span>
+<a name="l00154"></a><a class="code" href="interface_h_t_t_p_connection.html#ac4c2bd3aa854035a6a64072bcdcd9bb8">00154</a>         NSMutableArray *<a class="code" href="interface_h_t_t_p_connection.html#ac4c2bd3aa854035a6a64072bcdcd9bb8">responseDataSizes</a>; 
+<a name="l00155"></a>00155 }
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157 <span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">/**</span>
+<a name="l00159"></a>00159 <span class="comment">    Returns HTTPConnection</span>
+<a name="l00160"></a>00160 <span class="comment">    param GCDAsyncSocket</span>
+<a name="l00161"></a>00161 <span class="comment">    param HTTPConfig</span>
+<a name="l00162"></a>00162 <span class="comment">    returns id</span>
+<a name="l00163"></a>00163 <span class="comment">**/</span>
+<a name="l00164"></a>00164 - (id)initWithAsyncSocket:(<a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *)newSocket configuration:(<a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> *)aConfig;
+<a name="l00165"></a>00165 <span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">/**</span>
+<a name="l00167"></a>00167 <span class="comment"> * Starting point for the HTTP connection after it has been fully initialized (including subclasses).</span>
+<a name="l00168"></a>00168 <span class="comment"> * This method is called by the HTTP server.</span>
+<a name="l00169"></a>00169 <span class="comment"> **/</span>
+<a name="l00170"></a>00170 - (void)start;
+<a name="l00171"></a>00171 <span class="comment"></span>
+<a name="l00172"></a>00172 <span class="comment">/**</span>
+<a name="l00173"></a>00173 <span class="comment"> * This method is called by the HTTPServer if it is asked to stop.</span>
+<a name="l00174"></a>00174 <span class="comment"> * The server, in turn, invokes stop on each HTTPConnection instance.</span>
+<a name="l00175"></a>00175 <span class="comment"> **/</span>
+<a name="l00176"></a>00176 - (void)stop;
+<a name="l00177"></a>00177 <span class="comment"></span>
+<a name="l00178"></a>00178 <span class="comment">/**</span>
+<a name="l00179"></a>00179 <span class="comment"> * Starting point for the HTTP connection.</span>
+<a name="l00180"></a>00180 <span class="comment"> **/</span>
+<a name="l00181"></a>00181 - (void)startConnection;
+<a name="l00182"></a>00182 <span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">/**</span>
+<a name="l00184"></a>00184 <span class="comment">    Returns whether or not the server will accept messages of a given method at a particular URI.</span>
+<a name="l00185"></a>00185 <span class="comment">    param NSString</span>
+<a name="l00186"></a>00186 <span class="comment">    param NSString</span>
+<a name="l00187"></a>00187 <span class="comment">    returns BOOL</span>
+<a name="l00188"></a>00188 <span class="comment">**/</span>
+<a name="l00189"></a>00189 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path;
+<a name="l00190"></a>00190 <span class="comment"></span>
+<a name="l00191"></a>00191 <span class="comment">/**</span>
+<a name="l00192"></a>00192 <span class="comment">    Returns whether or not the server expects a body from the given method.</span>
+<a name="l00193"></a>00193 <span class="comment"> </span>
+<a name="l00194"></a>00194 <span class="comment">    In other words, should the server expect a content-length header and associated body from this method.</span>
+<a name="l00195"></a>00195 <span class="comment">    This would be true in the case of a POST, where the client is sending data, or for something like PUT where the client is supposed to be uploading a file.</span>
+<a name="l00196"></a>00196 <span class="comment"> </span>
+<a name="l00197"></a>00197 <span class="comment">    param NSString</span>
+<a name="l00198"></a>00198 <span class="comment">    param NSString</span>
+<a name="l00199"></a>00199 <span class="comment">    returns BOOL</span>
+<a name="l00200"></a>00200 <span class="comment">**/</span>
+<a name="l00201"></a>00201 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path;
+<a name="l00202"></a>00202 <span class="comment"></span>
+<a name="l00203"></a>00203 <span class="comment">/**</span>
+<a name="l00204"></a>00204 <span class="comment"> * Returns whether or not the server is configured to be a secure server.</span>
+<a name="l00205"></a>00205 <span class="comment"> * In other words, all connections to this server are immediately secured, thus only secure connections are allowed.</span>
+<a name="l00206"></a>00206 <span class="comment"> * This is the equivalent of having an https server, where it is assumed that all connections must be secure.</span>
+<a name="l00207"></a>00207 <span class="comment"> * If this is the case, then unsecure connections will not be allowed on this server, and a separate unsecure server</span>
+<a name="l00208"></a>00208 <span class="comment"> * would need to be run on a separate port in order to support unsecure connections.</span>
+<a name="l00209"></a>00209 <span class="comment"> * </span>
+<a name="l00210"></a>00210 <span class="comment"> * Note: In order to support secure connections, the sslIdentityAndCertificates method must be implemented.</span>
+<a name="l00211"></a>00211 <span class="comment"> **/</span>
+<a name="l00212"></a>00212 - (BOOL)isSecureServer;
+<a name="l00213"></a>00213 <span class="comment"></span>
+<a name="l00214"></a>00214 <span class="comment">/**</span>
+<a name="l00215"></a>00215 <span class="comment"> * This method is expected to returns an array appropriate for use in kCFStreamSSLCertificates SSL Settings.</span>
+<a name="l00216"></a>00216 <span class="comment"> * It should be an array of SecCertificateRefs except for the first element in the array, which is a SecIdentityRef.</span>
+<a name="l00217"></a>00217 <span class="comment"> **/</span>
+<a name="l00218"></a>00218 - (NSArray *)sslIdentityAndCertificates;
+<a name="l00219"></a>00219 <span class="comment"></span>
+<a name="l00220"></a>00220 <span class="comment">/**</span>
+<a name="l00221"></a>00221 <span class="comment">    Returns whether or not the requested resource is password protected.</span>
+<a name="l00222"></a>00222 <span class="comment">    In this generic implementation, nothing is password protected.</span>
+<a name="l00223"></a>00223 <span class="comment">    param NSString</span>
+<a name="l00224"></a>00224 <span class="comment">    returns BOOL</span>
+<a name="l00225"></a>00225 <span class="comment">**/</span>
+<a name="l00226"></a>00226 - (BOOL)isPasswordProtected:(NSString *)path;
+<a name="l00227"></a>00227 <span class="comment"></span>
+<a name="l00228"></a>00228 <span class="comment">/**</span>
+<a name="l00229"></a>00229 <span class="comment"> * Returns whether or not the authentication challenge should use digest access authentication.</span>
+<a name="l00230"></a>00230 <span class="comment"> * The alternative is basic authentication.</span>
+<a name="l00231"></a>00231 <span class="comment"> * </span>
+<a name="l00232"></a>00232 <span class="comment"> * If at all possible, digest access authentication should be used because it&#39;s more secure.</span>
+<a name="l00233"></a>00233 <span class="comment"> * Basic authentication sends passwords in the clear and should be avoided unless using SSL/TLS.</span>
+<a name="l00234"></a>00234 <span class="comment"> **/</span>
+<a name="l00235"></a>00235 - (BOOL)useDigestAccessAuthentication;
+<a name="l00236"></a>00236 <span class="comment"></span>
+<a name="l00237"></a>00237 <span class="comment">/**</span>
+<a name="l00238"></a>00238 <span class="comment">    Returns the authentication realm.</span>
+<a name="l00239"></a>00239 <span class="comment">    In this generic implmentation, a default realm is used for the entire server.</span>
+<a name="l00240"></a>00240 <span class="comment">    returns NSString</span>
+<a name="l00241"></a>00241 <span class="comment">**/</span>
+<a name="l00242"></a>00242 - (NSString *)realm;
+<a name="l00243"></a>00243 <span class="comment"></span>
+<a name="l00244"></a>00244 <span class="comment">/**</span>
+<a name="l00245"></a>00245 <span class="comment">    Returns the password for the given username.</span>
+<a name="l00246"></a>00246 <span class="comment">    param NSString</span>
+<a name="l00247"></a>00247 <span class="comment">    returns NSString</span>
+<a name="l00248"></a>00248 <span class="comment">**/</span>
+<a name="l00249"></a>00249 - (NSString *)passwordForUser:(NSString *)username;
+<a name="l00250"></a>00250 <span class="comment"></span>
+<a name="l00251"></a>00251 <span class="comment">/**</span>
+<a name="l00252"></a>00252 <span class="comment"> * Parses the given query string.</span>
+<a name="l00253"></a>00253 <span class="comment"> * </span>
+<a name="l00254"></a>00254 <span class="comment"> * For example, if the query is &quot;q=John%20Mayer%20Trio&amp;num=50&quot;</span>
+<a name="l00255"></a>00255 <span class="comment"> * then this method would return the following dictionary:</span>
+<a name="l00256"></a>00256 <span class="comment"> * { </span>
+<a name="l00257"></a>00257 <span class="comment"> *   q = &quot;John Mayer Trio&quot; </span>
+<a name="l00258"></a>00258 <span class="comment"> *   num = &quot;50&quot; </span>
+<a name="l00259"></a>00259 <span class="comment"> * }</span>
+<a name="l00260"></a>00260 <span class="comment"> **/</span>
+<a name="l00261"></a>00261 - (NSDictionary *)parseParams:(NSString *)query;
+<a name="l00262"></a>00262 <span class="comment"></span>
+<a name="l00263"></a>00263 <span class="comment">/** </span>
+<a name="l00264"></a>00264 <span class="comment"> * Parses the query variables in the request URI. </span>
+<a name="l00265"></a>00265 <span class="comment"> * </span>
+<a name="l00266"></a>00266 <span class="comment"> * For example, if the request URI was &quot;/search.html?q=John%20Mayer%20Trio&amp;num=50&quot; </span>
+<a name="l00267"></a>00267 <span class="comment"> * then this method would return the following dictionary: </span>
+<a name="l00268"></a>00268 <span class="comment"> * { </span>
+<a name="l00269"></a>00269 <span class="comment"> *   q = &quot;John Mayer Trio&quot; </span>
+<a name="l00270"></a>00270 <span class="comment"> *   num = &quot;50&quot; </span>
+<a name="l00271"></a>00271 <span class="comment"> * } </span>
+<a name="l00272"></a>00272 <span class="comment"> **/</span> 
+<a name="l00273"></a>00273 - (NSDictionary *)parseGetParams;
+<a name="l00274"></a>00274 <span class="comment"></span>
+<a name="l00275"></a>00275 <span class="comment">/**</span>
+<a name="l00276"></a>00276 <span class="comment">    Returns the URL as a string for the HTTPMessage</span>
+<a name="l00277"></a>00277 <span class="comment">**/</span>
+<a name="l00278"></a>00278 - (NSString *)requestURI;
+<a name="l00279"></a>00279 <span class="comment"></span>
+<a name="l00280"></a>00280 <span class="comment">/**</span>
+<a name="l00281"></a>00281 <span class="comment"> * Returns an array of possible index pages.</span>
+<a name="l00282"></a>00282 <span class="comment"> * For example: {&quot;index.html&quot;, &quot;index.htm&quot;}</span>
+<a name="l00283"></a>00283 <span class="comment"> **/</span>
+<a name="l00284"></a>00284 - (NSArray *)directoryIndexFileNames;
+<a name="l00285"></a>00285 <span class="comment"></span>
+<a name="l00286"></a>00286 <span class="comment">/**</span>
+<a name="l00287"></a>00287 <span class="comment">    Converts relative URI path into full file-system path.</span>
+<a name="l00288"></a>00288 <span class="comment">    param NSString</span>
+<a name="l00289"></a>00289 <span class="comment">    returns NSString</span>
+<a name="l00290"></a>00290 <span class="comment">**/</span>
+<a name="l00291"></a>00291 - (NSString *)filePathForURI:(NSString *)path;
+<a name="l00292"></a>00292 <span class="comment"></span>
+<a name="l00293"></a>00293 <span class="comment">/**</span>
+<a name="l00294"></a>00294 <span class="comment"> * This method is called to get a response for a request.</span>
+<a name="l00295"></a>00295 <span class="comment"> * You may return any object that adopts the HTTPResponse protocol.</span>
+<a name="l00296"></a>00296 <span class="comment"> * The HTTPServer comes with two such classes: HTTPFileResponse and HTTPDataResponse.</span>
+<a name="l00297"></a>00297 <span class="comment"> * HTTPFileResponse is a wrapper for an NSFileHandle object, and is the preferred way to send a file response.</span>
+<a name="l00298"></a>00298 <span class="comment"> * HTTPDataResponse is a wrapper for an NSData object, and may be used to send a custom response.</span>
+<a name="l00299"></a>00299 <span class="comment"> **/</span>
+<a name="l00300"></a>00300 - (NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)httpResponseForMethod:(NSString *)method URI:(NSString *)path;
+<a name="l00301"></a>00301 <span class="comment"></span>
+<a name="l00302"></a>00302 <span class="comment">/**</span>
+<a name="l00303"></a>00303 <span class="comment">    param NSString</span>
+<a name="l00304"></a>00304 <span class="comment">    returns WebSocket</span>
+<a name="l00305"></a>00305 <span class="comment">**/</span>
+<a name="l00306"></a>00306 - (<a class="code" href="interface_web_socket.html">WebSocket</a> *)webSocketForURI:(NSString *)path;
+<a name="l00307"></a>00307 <span class="comment"></span>
+<a name="l00308"></a>00308 <span class="comment">/**</span>
+<a name="l00309"></a>00309 <span class="comment">    This method is called after receiving all HTTP headers, but before reading any of the request body.</span>
+<a name="l00310"></a>00310 <span class="comment">    param UInt64</span>
+<a name="l00311"></a>00311 <span class="comment">**/</span>
+<a name="l00312"></a>00312 - (void)prepareForBodyWithSize:(UInt64)contentLength;
+<a name="l00313"></a>00313 <span class="comment"></span>
+<a name="l00314"></a>00314 <span class="comment">/**</span>
+<a name="l00315"></a>00315 <span class="comment">    This method is called to handle data read from a POST / PUT.</span>
+<a name="l00316"></a>00316 <span class="comment">    The given data is part of the request body.</span>
+<a name="l00317"></a>00317 <span class="comment">    param NSData</span>
+<a name="l00318"></a>00318 <span class="comment">**/</span>
+<a name="l00319"></a>00319 - (void)processDataChunk:(<a class="code" href="class_n_s_data.html">NSData</a> *)postDataChunk;
+<a name="l00320"></a>00320 <span class="comment"></span>
+<a name="l00321"></a>00321 <span class="comment">/**</span>
+<a name="l00322"></a>00322 <span class="comment">    Called if the HTML version is other than what is supported</span>
+<a name="l00323"></a>00323 <span class="comment">    param NSString</span>
+<a name="l00324"></a>00324 <span class="comment">**/</span>
+<a name="l00325"></a>00325 - (void)handleVersionNotSupported:(NSString *)version;
+<a name="l00326"></a>00326 <span class="comment"></span>
+<a name="l00327"></a>00327 <span class="comment">/**</span>
+<a name="l00328"></a>00328 <span class="comment">    Called if the authentication information was required and absent, or if authentication failed.</span>
+<a name="l00329"></a>00329 <span class="comment">**/</span>
+<a name="l00330"></a>00330 - (void)handleAuthenticationFailed;
+<a name="l00331"></a>00331 <span class="comment"></span>
+<a name="l00332"></a>00332 <span class="comment">/**</span>
+<a name="l00333"></a>00333 <span class="comment">    Called if we&#39;re unable to find the requested resource.</span>
+<a name="l00334"></a>00334 <span class="comment">**/</span>
+<a name="l00335"></a>00335 - (void)handleResourceNotFound;
+<a name="l00336"></a>00336 <span class="comment"></span>
+<a name="l00337"></a>00337 <span class="comment">/**</span>
+<a name="l00338"></a>00338 <span class="comment"> * Called if we receive some sort of malformed HTTP request.</span>
+<a name="l00339"></a>00339 <span class="comment"> * The data parameter is the invalid HTTP header line, including CRLF, as read from GCDAsyncSocket.</span>
+<a name="l00340"></a>00340 <span class="comment"> * The data parameter may also be nil if the request as a whole was invalid, such as a POST with no Content-Length.</span>
+<a name="l00341"></a>00341 <span class="comment"> **/</span>
+<a name="l00342"></a>00342 - (void)handleInvalidRequest:(<a class="code" href="class_n_s_data.html">NSData</a> *)data;
+<a name="l00343"></a>00343 <span class="comment"></span>
+<a name="l00344"></a>00344 <span class="comment">/**</span>
+<a name="l00345"></a>00345 <span class="comment"> * Called if we receive a HTTP request with a method other than GET or HEAD.</span>
+<a name="l00346"></a>00346 <span class="comment"> **/</span>
+<a name="l00347"></a>00347 - (void)handleUnknownMethod:(NSString *)method;
+<a name="l00348"></a>00348 <span class="comment"></span>
+<a name="l00349"></a>00349 <span class="comment">/**</span>
+<a name="l00350"></a>00350 <span class="comment">    This method is called immediately prior to sending the response headers.</span>
+<a name="l00351"></a>00351 <span class="comment">    This method adds standard header fields, and then converts the response to an NSData object.</span>
+<a name="l00352"></a>00352 <span class="comment">    param HTTPMessage</span>
+<a name="l00353"></a>00353 <span class="comment">    returns NSData</span>
+<a name="l00354"></a>00354 <span class="comment">**/</span>
+<a name="l00355"></a>00355 - (<a class="code" href="class_n_s_data.html">NSData</a> *)preprocessResponse:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response;
+<a name="l00356"></a>00356 <span class="comment"></span>
+<a name="l00357"></a>00357 <span class="comment">/**</span>
+<a name="l00358"></a>00358 <span class="comment"> * This method is called immediately prior to sending the response headers (for an error).</span>
+<a name="l00359"></a>00359 <span class="comment"> * This method adds standard header fields, and then converts the response to an NSData object.</span>
+<a name="l00360"></a>00360 <span class="comment"> **/</span>
+<a name="l00361"></a>00361 - (<a class="code" href="class_n_s_data.html">NSData</a> *)preprocessErrorResponse:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response;
+<a name="l00362"></a>00362 <span class="comment"></span>
+<a name="l00363"></a>00363 <span class="comment">/**</span>
+<a name="l00364"></a>00364 <span class="comment">    Returns whether the HTTPConnection should die</span>
+<a name="l00365"></a>00365 <span class="comment">    returns BOOL</span>
+<a name="l00366"></a>00366 <span class="comment">**/</span>
+<a name="l00367"></a>00367 - (BOOL)shouldDie;
+<a name="l00368"></a>00368 <span class="comment"></span>
+<a name="l00369"></a>00369 <span class="comment">/**</span>
+<a name="l00370"></a>00370 <span class="comment">    Closes the connection</span>
+<a name="l00371"></a>00371 <span class="comment">**/</span>
+<a name="l00372"></a>00372 - (void)die;
+<a name="l00373"></a>00373 
+<a name="l00374"></a>00374 <span class="keyword">@end</span>
+<a name="l00375"></a>00375 
+<a name="l00376"></a>00376 
+<a name="l00377"></a>00377 <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_connection.html">HTTPConnection</a> (AsynchronousHTTPResponse)
+<a name="l00378"></a>00378 <span class="comment"></span>
+<a name="l00379"></a>00379 <span class="comment">/**</span>
+<a name="l00380"></a>00380 <span class="comment">    param NSObject with HTTPResponse protocol</span>
+<a name="l00381"></a>00381 <span class="comment">**/</span>
+<a name="l00382"></a>00382 - (void)responseHasAvailableData:(NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)sender;
+<a name="l00383"></a>00383 <span class="comment"></span>
+<a name="l00384"></a>00384 <span class="comment">/**</span>
+<a name="l00385"></a>00385 <span class="comment">    param NSObject with HTTPResponse protocl</span>
+<a name="l00386"></a>00386 <span class="comment">**/</span>
+<a name="l00387"></a>00387 - (void)responseDidAbort:(NSObject&lt;<a class="code" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt; *)sender;
+<a name="l00388"></a>00388 
+<a name="l00389"></a>00389 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>HTTPConnection.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_h_t_t_p_connection_8h.html">HTTPConnection.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:48 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -253,7 +486,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

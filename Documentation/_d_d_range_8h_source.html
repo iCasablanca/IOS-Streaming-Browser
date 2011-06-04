@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,64 +82,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDRange.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a href="_d_d_range_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/**</span>
+<a name="l00002"></a>00002 <span class="comment"> * DDRange is the functional equivalent of a 64 bit NSRange.</span>
+<a name="l00003"></a>00003 <span class="comment"> * The HTTP Server is designed to support very large files.</span>
+<a name="l00004"></a>00004 <span class="comment"> * On 32 bit architectures (ppc, i386) NSRange uses unsigned 32 bit integers.</span>
+<a name="l00005"></a>00005 <span class="comment"> * This only supports a range of up to 4 gigabytes.</span>
+<a name="l00006"></a>00006 <span class="comment"> * By defining our own variant, we can support a range up to 16 exabytes.</span>
+<a name="l00007"></a>00007 <span class="comment"> * </span>
+<a name="l00008"></a>00008 <span class="comment"> * All effort is given such that DDRange functions EXACTLY the same as NSRange.</span>
+<a name="l00009"></a>00009 <span class="comment">**/</span>
+<a name="l00010"></a>00010 
 <a name="l00011"></a>00011 <span class="preprocessor">#import &lt;Foundation/NSValue.h&gt;</span>
 <a name="l00012"></a>00012 <span class="preprocessor">#import &lt;Foundation/NSObjCRuntime.h&gt;</span>
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 <span class="keyword">@class</span> NSString;
-<a name="l00015"></a>00015 
-<a name="l00016"></a><a class="code" href="struct___d_d_range.html">00016</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___d_d_range.html">_DDRange</a> {
-<a name="l00017"></a>00017     UInt64 location;
-<a name="l00018"></a>00018     UInt64 length;
-<a name="l00019"></a>00019 } <a class="code" href="struct___d_d_range.html">DDRange</a>;
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="keyword">typedef</span> <a class="code" href="struct___d_d_range.html">DDRange</a> *<a class="code" href="struct___d_d_range.html">DDRangePointer</a>;
-<a name="l00022"></a>00022 
+<a name="l00015"></a>00015 <span class="comment"></span>
+<a name="l00016"></a>00016 <span class="comment">/**</span>
+<a name="l00017"></a>00017 <span class="comment"> </span>
+<a name="l00018"></a>00018 <span class="comment">**/</span>
+<a name="l00019"></a><a class="code" href="struct___d_d_range.html">00019</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___d_d_range.html">_DDRange</a> {
+<a name="l00020"></a><a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">00020</a>     UInt64 <a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a>;
+<a name="l00021"></a><a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">00021</a>     UInt64 <a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a>;
+<a name="l00022"></a>00022 } <a class="code" href="_d_d_range_8h.html#a2ddf101cd0c97d32b8e1020672f0f657">DDRange</a>;
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="comment">// Makes a range with a location and length</span>
-<a name="l00025"></a>00025 NS_INLINE <a class="code" href="struct___d_d_range.html">DDRange</a> DDMakeRange(UInt64 loc, UInt64 len) {
-<a name="l00026"></a>00026     <a class="code" href="struct___d_d_range.html">DDRange</a> r;
-<a name="l00027"></a>00027     r.location = loc;
-<a name="l00028"></a>00028     r.length = len;
-<a name="l00029"></a>00029     <span class="keywordflow">return</span> r;
-<a name="l00030"></a>00030 }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="comment">// Returns the location and length</span>
-<a name="l00033"></a>00033 NS_INLINE UInt64 DDMaxRange(<a class="code" href="struct___d_d_range.html">DDRange</a> range) {
-<a name="l00034"></a>00034     <span class="keywordflow">return</span> (range.location + range.length);
-<a name="l00035"></a>00035 }
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="comment">// Returns the location within a range</span>
-<a name="l00038"></a>00038 NS_INLINE BOOL DDLocationInRange(UInt64 loc, <a class="code" href="struct___d_d_range.html">DDRange</a> range) {
-<a name="l00039"></a>00039     <span class="keywordflow">return</span> (loc - range.location &lt; range.length);
-<a name="l00040"></a>00040 }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 NS_INLINE BOOL DDEqualRanges(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2) {
-<a name="l00043"></a>00043     <span class="keywordflow">return</span> ((range1.location == range2.location) &amp;&amp; (range1.length == range2.length));
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> DDUnionRange(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2);
-<a name="l00047"></a>00047 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> DDIntersectionRange(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2);
-<a name="l00048"></a>00048 FOUNDATION_EXPORT NSString *DDStringFromRange(<a class="code" href="struct___d_d_range.html">DDRange</a> range);
-<a name="l00049"></a>00049 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> DDRangeFromString(NSString *aString);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 NSInteger DDRangeCompare(<a class="code" href="struct___d_d_range.html">DDRangePointer</a> pDDRange1, <a class="code" href="struct___d_d_range.html">DDRangePointer</a> pDDRange2);
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="keyword">@interface </span><a class="code" href="class_n_s_value.html">NSValue</a> (NSValueDDRangeExtensions)
-<a name="l00054"></a>00054 
-<a name="l00060"></a>00060 + (<a class="code" href="class_n_s_value.html">NSValue</a> *)valueWithDDRange:(<a class="code" href="struct___d_d_range.html">DDRange</a>)range;
-<a name="l00061"></a>00061 
-<a name="l00065"></a>00065 - (<a class="code" href="struct___d_d_range.html">DDRange</a>)ddrangeValue;
-<a name="l00066"></a>00066 
-<a name="l00071"></a>00071 - (NSInteger)ddrangeCompare:(<a class="code" href="class_n_s_value.html">NSValue</a> *)ddrangeValue;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="keyword">@end</span>
+<a name="l00024"></a><a class="code" href="_d_d_range_8h.html#a5824bb432410445116cc51574813052e">00024</a> <span class="keyword">typedef</span> <a class="code" href="struct___d_d_range.html">DDRange</a> *<a class="code" href="_d_d_range_8h.html#a5824bb432410445116cc51574813052e">DDRangePointer</a>;
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="comment">// Makes a range with a location and length</span>
+<a name="l00028"></a><a class="code" href="_d_d_range_8h.html#a9d4be5fa89a841493bc09a30bba6f972">00028</a> NS_INLINE <a class="code" href="struct___d_d_range.html">DDRange</a> <a class="code" href="_d_d_range_8h.html#a9d4be5fa89a841493bc09a30bba6f972">DDMakeRange</a>(UInt64 loc, UInt64 len) {
+<a name="l00029"></a>00029     <a class="code" href="struct___d_d_range.html">DDRange</a> r;
+<a name="l00030"></a>00030     r.<a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a> = loc;
+<a name="l00031"></a>00031     r.<a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a> = len;
+<a name="l00032"></a>00032     <span class="keywordflow">return</span> r;
+<a name="l00033"></a>00033 }
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment">// Returns the location and length</span>
+<a name="l00036"></a><a class="code" href="_d_d_range_8h.html#af3db0745a61727d6ca8a579370acf79f">00036</a> NS_INLINE UInt64 <a class="code" href="_d_d_range_8h.html#af3db0745a61727d6ca8a579370acf79f">DDMaxRange</a>(<a class="code" href="struct___d_d_range.html">DDRange</a> range) {
+<a name="l00037"></a>00037     <span class="keywordflow">return</span> (range.<a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a> + range.<a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a>);
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="comment">// Returns the location within a range</span>
+<a name="l00041"></a><a class="code" href="_d_d_range_8h.html#a75abe5b04bb17ec9310fd230e4cdc9fe">00041</a> NS_INLINE BOOL <a class="code" href="_d_d_range_8h.html#a75abe5b04bb17ec9310fd230e4cdc9fe">DDLocationInRange</a>(UInt64 loc, <a class="code" href="struct___d_d_range.html">DDRange</a> range) {
+<a name="l00042"></a>00042     <span class="keywordflow">return</span> (loc - range.<a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a> &lt; range.<a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a>);
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="_d_d_range_8h.html#ac18ef81b3351aa474e0b8045006c0dbe">00045</a> NS_INLINE BOOL <a class="code" href="_d_d_range_8h.html#ac18ef81b3351aa474e0b8045006c0dbe">DDEqualRanges</a>(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2) {
+<a name="l00046"></a>00046     <span class="keywordflow">return</span> ((range1.<a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a> == range2.<a class="code" href="struct___d_d_range.html#a2c0019d0916b03cda516965875d08d56">location</a>) &amp;&amp; (range1.<a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a> == range2.<a class="code" href="struct___d_d_range.html#a74b0c28c5fdf2af5c2d155a9ab320976">length</a>));
+<a name="l00047"></a>00047 }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> <a class="code" href="_d_d_range_8h.html#a396895d3f2e2ab396f64f52d3c362557">DDUnionRange</a>(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2);
+<a name="l00050"></a>00050 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> <a class="code" href="_d_d_range_8h.html#a5d5f3be3be00f1f5c977a9b0e2bcbe67">DDIntersectionRange</a>(<a class="code" href="struct___d_d_range.html">DDRange</a> range1, <a class="code" href="struct___d_d_range.html">DDRange</a> range2);
+<a name="l00051"></a>00051 FOUNDATION_EXPORT NSString *<a class="code" href="_d_d_range_8h.html#adb363cf91668575199cfaa661f60e190">DDStringFromRange</a>(<a class="code" href="struct___d_d_range.html">DDRange</a> range);
+<a name="l00052"></a>00052 FOUNDATION_EXPORT <a class="code" href="struct___d_d_range.html">DDRange</a> <a class="code" href="_d_d_range_8h.html#a4568937d30acc3dd2284dab392bb40ef">DDRangeFromString</a>(NSString *aString);
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 NSInteger <a class="code" href="_d_d_range_8h.html#a1f11adbc40a3739df076b41d74fba122">DDRangeCompare</a>(<a class="code" href="struct___d_d_range.html">DDRangePointer</a> pDDRange1, <a class="code" href="struct___d_d_range.html">DDRangePointer</a> pDDRange2);
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="keyword">@interface </span><a class="code" href="class_n_s_value.html">NSValue</a> (NSValueDDRangeExtensions)
+<a name="l00057"></a>00057 <span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment">/**</span>
+<a name="l00059"></a>00059 <span class="comment">    Class method</span>
+<a name="l00060"></a>00060 <span class="comment">    param DDRange</span>
+<a name="l00061"></a>00061 <span class="comment">    returns NSValue</span>
+<a name="l00062"></a>00062 <span class="comment">**/</span>
+<a name="l00063"></a>00063 + (<a class="code" href="class_n_s_value.html">NSValue</a> *)valueWithDDRange:(<a class="code" href="struct___d_d_range.html">DDRange</a>)range;
+<a name="l00064"></a>00064 <span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">/**</span>
+<a name="l00066"></a>00066 <span class="comment">    returns DDRange</span>
+<a name="l00067"></a>00067 <span class="comment">**/</span>
+<a name="l00068"></a>00068 - (<a class="code" href="struct___d_d_range.html">DDRange</a>)ddrangeValue;
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">/**</span>
+<a name="l00071"></a>00071 <span class="comment">    param NSValue</span>
+<a name="l00072"></a>00072 <span class="comment">    returns NSInteger</span>
+<a name="l00073"></a>00073 <span class="comment">**/</span>
+<a name="l00074"></a>00074 - (NSInteger)ddrangeCompare:(<a class="code" href="class_n_s_value.html">NSValue</a> *)ddrangeValue;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>DDRange.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_d_d_range_8h.html">DDRange.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:47 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -148,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,91 +87,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HTTPConnection Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPConnection" --><div class="dynheader">
+<!-- doxytag: class="HTTPConnection" -->
+<p><code>#import &lt;<a class="el" href="">HTTPConnection.h</a>&gt;</code></p>
+<div class="dynheader">
 Collaboration diagram for HTTPConnection:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_h_t_t_p_connection__coll__graph.png" border="0" usemap="#_h_t_t_p_connection_coll__map" alt="Collaboration graph"/></div>
 <map name="_h_t_t_p_connection_coll__map" id="_h_t_t_p_connection_coll__map">
 <area shape="rect" id="node2" href="interface_g_c_d_async_socket.html" title="GCDAsyncSocket" alt="" coords="173,195,314,223"/><area shape="rect" id="node4" href="interface_g_c_d_async_write_packet.html" title="GCDAsyncWritePacket" alt="" coords="154,101,333,129"/><area shape="rect" id="node6" href="class_n_s_data.html" title="NSData" alt="" coords="207,6,279,34"/><area shape="rect" id="node9" href="interface_g_c_d_async_read_packet.html" title="GCDAsyncReadPacket" alt="" coords="357,101,533,129"/><area shape="rect" id="node12" href="interface_h_t_t_p_config.html" title="HTTPConfig" alt="" coords="338,195,445,223"/><area shape="rect" id="node14" href="interface_h_t_t_p_message.html" title="HTTPMessage" alt="" coords="469,195,589,223"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_h_t_t_p_connection-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a9549579ab0cecfde27fd1d96708d3397">initWithAsyncSocket:configuration:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7525e13f1c1dba5a66565fe1ee88e550">start</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ab5d0fa59372ec6a1704277d000ebf914">stop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#adef8eb033be078813d1d7be13e7c6476">startConnection</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ad2e7d4602fa86e4de2237c705b241360">supportsMethod:atPath:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a5f181d79d952579faee97a3d5fa623c5">expectsRequestBodyFromMethod:atPath:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a0759277609c489bd8cab71130073e9fe">isSecureServer</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a3b14cf020cc11eb71df405962b673c18">sslIdentityAndCertificates</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ae0a85c9b49b6ab6e8143472360c125d1">isPasswordProtected:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a8df5e0354a30c42bb1b6b2ef05916760">useDigestAccessAuthentication</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7c4408f93a8d06d10ad97ceb9610f52a">realm</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aba5b830a9da19cc5aabd4e8fdf5acd89">passwordForUser:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a9ea0f3debf4c03c200e528100598b30a">parseParams:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a6eb39ba045cfcfb68b875e3af5f3f1e0">parseGetParams</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa371e14932e520873dbb9adeba2a4486">requestURI</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ab6266858378d1f475276eab08d886dfb">directoryIndexFileNames</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#adc7b8c39306f0a5ad4a93639162602b5">filePathForURI:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSObject&lt; <a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a> &gt; *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#af07f633e7085a4af3429fc6aa68d928d">httpResponseForMethod:URI:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_web_socket.html">WebSocket</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a07c8426bca4c17ad866c5875b2c40a38">webSocketForURI:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a866eda2e2c18c4718d5956a37169e520">prepareForBodyWithSize:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a01b930478a44dc2248e0c0c79af966c5">processDataChunk:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#af9a242863f427ffffecc5693767329ca">handleVersionNotSupported:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a1e7f7d5b890ec7b262bc7b094a4a8c76">handleAuthenticationFailed</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ac3c4a9e2f156cbcf0429420869de8f9d">handleResourceNotFound</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a63560092b5af7c1a4e893f04ddca6682">handleInvalidRequest:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a80a304332f5d4a7e2a802b1048417658">handleUnknownMethod:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a8e6f56c396b5b96fd799b4cbe66522fd">preprocessResponse:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ac1812129f90a59c0f6445582f3be9752">preprocessErrorResponse:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a98d37e6c30cca9e33c252070e138cf07">shouldDie</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a66d308e306e217462ed3a24639d3740b">die</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a09d51a8228311937e8051dd817175f48">responseHasAvailableData:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a24383ee4832e621c3943b08c5d74badf">responseDidAbort:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a68cc78c8f8d3e2cb4d40aa87553c5383">startReadingRequest</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ad25c9e841f06cc3c1aa5c8529651f7e8">sendResponseHeadersAndBody</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a3870b5ad26b13a3c7de70e3f183f7505">initWithAsyncSocket:configuration:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a60de64d75454385b23995437f1d72669">start</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a8c528baf37154d347366083f0f816846">stop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ac3879a4ef9748dc4b182f861b83f7522">startConnection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa7214b42b866d379c0c4742215743af7">supportsMethod:atPath:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a2d78f93d8fe55a01d9b4161bbb012a33">expectsRequestBodyFromMethod:atPath:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7c9542e5aa9314d159c7e25b6fdbd501">isSecureServer</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa2961b01548c8e2b22bd4d6dff2c9e0b">sslIdentityAndCertificates</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa3ceb6ffbcf245b51100bb6425b97e79">isPasswordProtected:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a396b8073c6a71c42bb6732d3f0e167a4">useDigestAccessAuthentication</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a3629c94ae611c4ab16a4db3712c70900">realm</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a61ccdedd624c4cece116b3e9b9aaa93e">passwordForUser:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7fa3ed6675e4e3ea4d8efb259efb3190">parseParams:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa24fb536121c589e5b72a0c31d7f1a6f">parseGetParams</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa49a2c18a72ce1cc42bdd78916f85099">requestURI</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a72478d50eb9b0a985c51147fc1e0e5b7">directoryIndexFileNames</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a99983f912261be2a293098363b020e87">filePathForURI:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSObject&lt; <a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a> &gt; *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7a1a401bcdcb9b1e8f0b39b2a070c5e6">httpResponseForMethod:URI:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_web_socket.html">WebSocket</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#af8636c0be9bee1f59d884fe49adde8cb">webSocketForURI:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a1eb8fd1592cbb2dd659ae2657b0d6548">prepareForBodyWithSize:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a0e4af7d6d1574f5551cca6a30d6b4d0a">processDataChunk:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aa7b56714bab154acf77e0e801571337c">handleVersionNotSupported:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#af36cd5cd07b2f61125efbaa33aa37a70">handleAuthenticationFailed</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a89f82470d7f0c9e0987fbb3ef3ecbb6b">handleResourceNotFound</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a4ab7e36e35d962ee0af383e28181dfd5">handleInvalidRequest:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a7e601398b4dfba08824e212939bf25c3">handleUnknownMethod:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aec3c5b6f5cc34ba95b3be0be3cf9c313">preprocessResponse:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a13b11b783b5432fc97410abf83856c19">preprocessErrorResponse:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#abb231bf6ab49d9fea311def3cf79f194">shouldDie</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a0fa45971107f025221264388f202d463">die</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#a2c8ddd294c2e0710dd2b03058fa092fc">responseHasAvailableData:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ac77b95bc70a9d72dc93acc532ed0ae31">responseDidAbort:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#ae45c0f08274cee574e179dca0bac09ea">startReadingRequest</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_connection.html#aea0c41a3a566bde8b25fb513dfb7d2e2">sendResponseHeadersAndBody</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc933e54b115d4b15e0c88c182db4811"></a><!-- doxytag: member="HTTPConnection::connectionQueue" ref="adc933e54b115d4b15e0c88c182db4811" args="" -->
-dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><b>connectionQueue</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed6d1f2a80ab4f9cbefdd685cfb611a3"></a><!-- doxytag: member="HTTPConnection::asyncSocket" ref="aed6d1f2a80ab4f9cbefdd685cfb611a3" args="" -->
-<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>asyncSocket</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5172ee62e836517300d7791f32ec057"></a><!-- doxytag: member="HTTPConnection::config" ref="ae5172ee62e836517300d7791f32ec057" args="" -->
-<a class="el" href="interface_h_t_t_p_config.html">HTTPConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>config</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36242a3b6005eeb5219139a771a2cd7a"></a><!-- doxytag: member="HTTPConnection::started" ref="a36242a3b6005eeb5219139a771a2cd7a" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>started</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5babd4c1936c9b1c912e57de1795d902"></a><!-- doxytag: member="HTTPConnection::request" ref="a5babd4c1936c9b1c912e57de1795d902" args="" -->
-<a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>request</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70308b524066a9fbbf8e8136f3f816f5"></a><!-- doxytag: member="HTTPConnection::numHeaderLines" ref="a70308b524066a9fbbf8e8136f3f816f5" args="" -->
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>numHeaderLines</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8975b15160a4559583221b069e0a84e0"></a><!-- doxytag: member="HTTPConnection::sentResponseHeaders" ref="a8975b15160a4559583221b069e0a84e0" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>sentResponseHeaders</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab39c0f55de0e3318c7ad44200c5bf60a"></a><!-- doxytag: member="HTTPConnection::nonce" ref="ab39c0f55de0e3318c7ad44200c5bf60a" args="" -->
-NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>nonce</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1892256c59656926917ab8b295fe53a"></a><!-- doxytag: member="HTTPConnection::lastNC" ref="aa1892256c59656926917ab8b295fe53a" args="" -->
-long&#160;</td><td class="memItemRight" valign="bottom"><b>lastNC</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a753bd4a9338fe6337d8146fb3cbf5b45"></a><!-- doxytag: member="HTTPConnection::httpResponse" ref="a753bd4a9338fe6337d8146fb3cbf5b45" args="" -->
-NSObject&lt; <a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>httpResponse</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a453f148ea1bf6e88db82d5674340cb67"></a><!-- doxytag: member="HTTPConnection::ranges" ref="a453f148ea1bf6e88db82d5674340cb67" args="" -->
-NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>ranges</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81c4d5f350217b20120694431ef19162"></a><!-- doxytag: member="HTTPConnection::ranges_headers" ref="a81c4d5f350217b20120694431ef19162" args="" -->
-NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>ranges_headers</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69ab49c4ba340cd06f2f1ad2cb07e47a"></a><!-- doxytag: member="HTTPConnection::ranges_boundry" ref="a69ab49c4ba340cd06f2f1ad2cb07e47a" args="" -->
-NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>ranges_boundry</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38010d5505c770fc95fd8622755658bf"></a><!-- doxytag: member="HTTPConnection::rangeIndex" ref="a38010d5505c770fc95fd8622755658bf" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>rangeIndex</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab83e943e8d65701a9670b29d8a97a0d4"></a><!-- doxytag: member="HTTPConnection::requestContentLength" ref="ab83e943e8d65701a9670b29d8a97a0d4" args="" -->
-UInt64&#160;</td><td class="memItemRight" valign="bottom"><b>requestContentLength</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d8b88129ac6607ea6dd463042dbb7d2"></a><!-- doxytag: member="HTTPConnection::requestContentLengthReceived" ref="a9d8b88129ac6607ea6dd463042dbb7d2" args="" -->
-UInt64&#160;</td><td class="memItemRight" valign="bottom"><b>requestContentLengthReceived</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac27b70591b2b81e7aecf9017930f7b54"></a><!-- doxytag: member="HTTPConnection::responseDataSizes" ref="ac27b70591b2b81e7aecf9017930f7b54" args="" -->
-NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseDataSizes</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">dispatch_queue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_h_t_t_p_config.html">HTTPConfig</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">config</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">started</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a6683a6a8dac2dc0678ae77d78b187a5f">numHeaderLines</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a9a2808e9990b93582a44989aeabc8427">sentResponseHeaders</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a943c3f0f837d4d8fe650d22e84742187">nonce</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a820dc92c66ec354b406983c8845596f8">lastNC</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSObject&lt; <a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a18003b13211f6c4c57ffa007620683be">ranges</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a00837835ec84d151f86b162a792c0aa0">ranges_headers</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#ac8e71da35056300f8c387d3ae939ff8f">ranges_boundry</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#a0cd3875505a87ea9dedb639dcc5fb311">rangeIndex</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UInt64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#af8dc1a72a5303022acd41ba81ae10a5f">requestContentLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">UInt64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#adab2e0927c4b0283c183f7f32053349c">requestContentLengthReceived</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_connection.html#ac4c2bd3aa854035a6a64072bcdcd9bb8">responseDataSizes</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a66d308e306e217462ed3a24639d3740b"></a><!-- doxytag: member="HTTPConnection::die" ref="a66d308e306e217462ed3a24639d3740b" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L66">66</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a0fa45971107f025221264388f202d463"></a><!-- doxytag: member="HTTPConnection::die" ref="a0fa45971107f025221264388f202d463" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -186,9 +172,35 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Closes the connection </p>
 
+<p>Definition at line <a class="el" href="#L3195">3195</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;die&quot;</span>);
+    
+        <span class="comment">// Override me if you want to perform any custom actions when a connection is closed.</span>
+        <span class="comment">// Then call [super die] when you&#39;re done.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Important: There is a rare timing condition where this method might get invoked twice.</span>
+        <span class="comment">// If you override this method, you should be prepared for this situation.</span>
+        
+        <span class="comment">// Inform the http response that we&#39;re done</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a> respondsToSelector:<span class="keyword">@selector</span>(connectionDidClose)])
+        {
+        <span class="comment">//This method is called from the HTTPConnection class when the connection is closed, or when the connection is finished with the response.</span>
+                [httpResponse connectionDidClose];
+        }
+        
+        <span class="comment">// Release the http response so we don&#39;t call it&#39;s connectionDidClose method again in our dealloc method</span>
+        [httpResponse release];
+        <a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a> = nil;
+        
+        <span class="comment">// Post notification of dead connection</span>
+        <span class="comment">// This will allow our server to release us from its array of connections</span>
+        [[NSNotificationCenter defaultCenter] postNotificationName:HTTPConnectionDidDieNotification object:self];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ab6266858378d1f475276eab08d886dfb"></a><!-- doxytag: member="HTTPConnection::directoryIndexFileNames" ref="ab6266858378d1f475276eab08d886dfb" args="()" -->
+<a class="anchor" id="a72478d50eb9b0a985c51147fc1e0e5b7"></a><!-- doxytag: member="HTTPConnection::directoryIndexFileNames" ref="a72478d50eb9b0a985c51147fc1e0e5b7" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -204,9 +216,18 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns an array of possible index pages. For example: {"index.html", "index.htm"}</p>
 <p>Returns an array of possible index pages. For example: {"index.html", "index.htm"} returns NSArray </p>
 
+<p>Definition at line <a class="el" href="#L2080">2080</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;directoryIndexFileNames&quot;</span>);
+    
+        <span class="comment">// Override me to support other index pages.</span>
+        
+        <span class="keywordflow">return</span> [NSArray arrayWithObjects:@&quot;index.html&quot;, @&quot;index.htm&quot;, nil];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a5f181d79d952579faee97a3d5fa623c5"></a><!-- doxytag: member="HTTPConnection::expectsRequestBodyFromMethod:atPath:" ref="a5f181d79d952579faee97a3d5fa623c5" args="(NSString *method,[atPath] NSString *path)" -->
+<a class="anchor" id="a2d78f93d8fe55a01d9b4161bbb012a33"></a><!-- doxytag: member="HTTPConnection::expectsRequestBodyFromMethod:atPath:" ref="a2d78f93d8fe55a01d9b4161bbb012a33" args="(NSString *method,[atPath] NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -234,9 +255,38 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>In other words, should the server expect a content-length header and associated body from this method. This would be true in the case of a POST, where the client is sending data, or for something like PUT where the client is supposed to be uploading a file.</p>
 <p>param NSString param NSString returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L278">278</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                    :(NSString *)method atPath:(NSString *)path
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;expectsRequestBodyFromMethod: method: %@, path: %@&quot;</span>,method,path);
+        
+        <span class="comment">// Override me to add support for other methods that expect the client</span>
+        <span class="comment">// to send a body along with the request header.</span>
+        <span class="comment">// </span>
+        <span class="comment">// You should fall through with a call to [super expectsRequestBodyFromMethod:method atPath:path]</span>
+        <span class="comment">// </span>
+        <span class="comment">// See also: supportsMethod:atPath:</span>
+        
+    
+    <span class="comment">// We accept POST methods</span>
+        <span class="keywordflow">if</span> ([method isEqualToString:<span class="stringliteral">@&quot;POST&quot;</span>])
+    {
+                <span class="keywordflow">return</span> YES;
+        }
+    
+    <span class="comment">// We accept PUT methods</span>
+        <span class="keywordflow">if</span> ([method isEqualToString:<span class="stringliteral">@&quot;PUT&quot;</span>])
+    {
+                <span class="keywordflow">return</span> YES;
+        }
+    
+    <span class="comment">// We don&#39;t accept any other methods</span>
+        <span class="keywordflow">return</span> NO;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="adc7b8c39306f0a5ad4a93639162602b5"></a><!-- doxytag: member="HTTPConnection::filePathForURI:" ref="adc7b8c39306f0a5ad4a93639162602b5" args="(NSString *path)" -->
+<a class="anchor" id="a99983f912261be2a293098363b020e87"></a><!-- doxytag: member="HTTPConnection::filePathForURI:" ref="a99983f912261be2a293098363b020e87" args="(NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -252,9 +302,124 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Converts relative URI path into full file-system path. param NSString returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L2094">2094</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                            :(NSString *)path
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;filePathForURI: %@&quot;</span>,path);
+        <span class="comment">// Override me to perform custom path mapping.</span>
+        <span class="comment">// For example you may want to use a default file other than index.html, or perhaps support multiple types.</span>
+        
+        NSString *documentRoot = [config documentRoot];
+    
+        <span class="comment">// Part 0: Validate document root setting.</span>
+        <span class="comment">// </span>
+        <span class="comment">// If there is no configured documentRoot,</span>
+        <span class="comment">// then it makes no sense to try to return anything.</span>
+        
+        <span class="keywordflow">if</span> (documentRoot == nil)
+        {
+                <span class="keywordflow">return</span> nil;
+        }
+        
+        <span class="comment">// Part 1: Strip parameters from the url</span>
+        <span class="comment">// </span>
+        <span class="comment">// E.g.: /page.html?q=22&amp;var=abc -&gt; /page.html</span>
+<span class="comment"></span>        
+        NSURL *docRoot = [NSURL fileURLWithPath:documentRoot isDirectory:YES];
+    
+    <span class="comment">// If there is no document root set</span>
+        <span class="keywordflow">if</span> (docRoot == nil)
+        {
+                <span class="keywordflow">return</span> nil;
+        }
+        
+    <span class="comment">// There is a document root</span>
+    
+    <span class="comment">// Get the string representation of the URL for the document root</span>
+        NSString *relativePath = [[NSURL URLWithString:path relativeToURL:docRoot] relativePath];
+        
+        <span class="comment">// Part 2: Append relative path to document root (base path)</span>
+        <span class="comment">// </span>
+        <span class="comment">// E.g.: relativePath=&quot;/images/icon.png&quot;</span>
+        <span class="comment">//       documentRoot=&quot;/Users/robbie/Sites&quot;</span>
+        <span class="comment">//           fullPath=&quot;/Users/robbie/Sites/images/icon.png&quot;</span>
+        <span class="comment">// </span>
+        <span class="comment">// We also standardize the path.</span>
+        <span class="comment">// </span>
+        <span class="comment">// E.g.: &quot;Users/robbie/Sites/images/../index.html&quot; -&gt; &quot;/Users/robbie/Sites/index.html&quot;</span>
+<span class="comment"></span>    
+    
+    
+        NSString *fullPath = [[documentRoot stringByAppendingPathComponent:relativePath] stringByStandardizingPath];
+        
+    
+        <span class="keywordflow">if</span> ([relativePath isEqualToString:<span class="stringliteral">@&quot;/&quot;</span>])
+        {
+                fullPath = [fullPath stringByAppendingString:@&quot;/&quot;];
+        }
+        
+        <span class="comment">// Part 3: Prevent serving files outside the document root.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Sneaky requests may include &quot;..&quot; in the path.</span>
+        <span class="comment">// </span>
+        <span class="comment">// E.g.: relativePath=&quot;../Documents/TopSecret.doc&quot;</span>
+        <span class="comment">//       documentRoot=&quot;/Users/robbie/Sites&quot;</span>
+        <span class="comment">//           fullPath=&quot;/Users/robbie/Documents/TopSecret.doc&quot;</span>
+        <span class="comment">// </span>
+        <span class="comment">// E.g.: relativePath=&quot;../Sites_Secret/TopSecret.doc&quot;</span>
+        <span class="comment">//       documentRoot=&quot;/Users/robbie/Sites&quot;</span>
+        <span class="comment">//           fullPath=&quot;/Users/robbie/Sites_Secret/TopSecret&quot;</span>
+<span class="comment"></span>    
+    <span class="comment">// If the document root does NOT have a forward slash as a suffix</span>
+        <span class="keywordflow">if</span> (![documentRoot hasSuffix:<span class="stringliteral">@&quot;/&quot;</span>])
+        {
+                documentRoot = [documentRoot stringByAppendingString:@&quot;/&quot;];
+        }
+        
+    
+        <span class="keywordflow">if</span> (![fullPath hasPrefix:documentRoot])
+        {
+                <span class="keywordflow">return</span> nil;
+        }
+        
+        <span class="comment">// Part 4: Search for index page if path is pointing to a directory</span>
+<span class="comment"></span>        
+        BOOL isDir = NO;
+
+        <span class="comment">// if the file exists at the path and it is not a directory</span>
+        <span class="keywordflow">if</span> ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&amp;isDir] &amp;&amp; isDir)
+        {
+        
+        <span class="comment">// Get an array of possible index pages</span>
+                NSArray *indexFileNames = [<span class="keyword">self</span> directoryIndexFileNames];
+                
+        
+        
+        <span class="comment">// Loop through the array of possible index pages</span>
+                <span class="keywordflow">for</span> (NSString *indexFileName in indexFileNames)
+                {
+            <span class="comment">// Appends the file name to the full path</span>
+                        NSString *indexFilePath = [fullPath stringByAppendingPathComponent:indexFileName];
+                        
+            <span class="comment">// If the file exists at the path and is a directory</span>
+                        <span class="keywordflow">if</span> ([[NSFileManager defaultManager] fileExistsAtPath:indexFilePath isDirectory:&amp;isDir] &amp;&amp; !isDir)
+                        {
+                                <span class="keywordflow">return</span> indexFilePath;
+                        }
+                }
+                
+                <span class="comment">// No matching index files found in directory</span>
+                <span class="keywordflow">return</span> nil;
+        }
+        <span class="keywordflow">else</span> <span class="comment">// If file does not exist at the path</span>
+        {
+                <span class="keywordflow">return</span> fullPath;
+        }
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a1e7f7d5b890ec7b262bc7b094a4a8c76"></a><!-- doxytag: member="HTTPConnection::handleAuthenticationFailed" ref="a1e7f7d5b890ec7b262bc7b094a4a8c76" args="()" -->
+<a class="anchor" id="af36cd5cd07b2f61125efbaa33aa37a70"></a><!-- doxytag: member="HTTPConnection::handleAuthenticationFailed" ref="af36cd5cd07b2f61125efbaa33aa37a70" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -269,9 +434,50 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Called if the authentication information was required and absent, or if authentication failed. </p>
 
+<p>Definition at line <a class="el" href="#L2366">2366</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;handleAuthenticationFailed&quot;</span>);
+    
+        <span class="comment">// Override me for custom handling of authentication challenges</span>
+        <span class="comment">// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.</span>
+        <span class="comment">// You can also use preprocessErrorResponse: to add an optional HTML body.</span>
+        
+                
+        <span class="comment">// Status Code 401 - Unauthorized</span>
+        <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *response = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initResponseWithStatusCode:401 description:nil version:HTTPVersion1_1];
+    
+    <span class="comment">// Set the HTTPMessage &quot;Content-Length&quot; header field to a value of zero</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Content-Length&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;0&quot;];
+        
+    
+    <span class="comment">// Test if using digest authentication</span>
+        <span class="keywordflow">if</span> ([<span class="keyword">self</span> <a class="code" href="interface_h_t_t_p_connection.html#a396b8073c6a71c42bb6732d3f0e167a4">useDigestAccessAuthentication</a>])
+        {
+        <span class="comment">// Adds a digest authentication challenge to the http response</span>
+                [<span class="keyword">self</span> addDigestAuthChallenge:response];
+        }
+        <span class="keywordflow">else</span> <span class="comment">// if using basic authentication</span>
+        {
+        <span class="comment">// Adds a basic authentication challenge to the http response</span>
+                [<span class="keyword">self</span> addBasicAuthChallenge:response];
+        }
+        
+    <span class="comment">// This method is called immediately prior to sending the response headers (for an error).</span>
+    <span class="comment">// This method adds standard header fields, and then converts the response to an NSData object.</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *responseData = [<span class="keyword">self</span> preprocessErrorResponse:response];
+    
+    
+    
+    <span class="comment">// Writes the response to the socket.  Keeps the connection alive so that we can read more request from the host.  We only kill this connection if the user responsds incorrectly</span>
+        [asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
+        
+    
+        [response release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a63560092b5af7c1a4e893f04ddca6682"></a><!-- doxytag: member="HTTPConnection::handleInvalidRequest:" ref="a63560092b5af7c1a4e893f04ddca6682" args="(NSData *data)" -->
+<a class="anchor" id="a4ab7e36e35d962ee0af383e28181dfd5"></a><!-- doxytag: member="HTTPConnection::handleInvalidRequest:" ref="a4ab7e36e35d962ee0af383e28181dfd5" args="(NSData *data)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -287,9 +493,43 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Called if we receive some sort of malformed HTTP request. The data parameter is the invalid HTTP header line, including CRLF, as read from <a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>. The data parameter may also be nil if the request as a whole was invalid, such as a POST with no Content-Length. </p>
 
+<p>Definition at line <a class="el" href="#L2412">2412</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                            :(<a class="code" href="class_n_s_data.html">NSData</a> *)data
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;handleInvalidRequest&quot;</span>);
+        <span class="comment">// Override me for custom error handling of invalid HTTP requests</span>
+        <span class="comment">// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.</span>
+        <span class="comment">// You can also use preprocessErrorResponse: to add an optional HTML body.</span>
+        
+        <span class="comment">// Status Code 400 - Bad Request</span>
+<span class="comment"></span>    
+    <span class="comment">// Create the response with a status code of 400 for a bad request</span>
+        <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *response = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initResponseWithStatusCode:400 description:nil version:HTTPVersion1_1];
+    
+    <span class="comment">// Set the content length to zero</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Content-Length&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;0&quot;];
+    
+    <span class="comment">// Set the header field so the connection is closed</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Connection&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;close&quot;];
+        
+    <span class="comment">// This method is called immediately prior to sending the response headers (for an error).</span>
+    <span class="comment">// This method adds standard header fields, and then converts the response to an NSData object.</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *responseData = [<span class="keyword">self</span> preprocessErrorResponse:response];
+    
+    <span class="comment">// Write the data to the socket with a tag the all data has been completely written to the socket</span>
+        [asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_FINAL_RESPONSE];
+        
+        [response release];
+        
+        <span class="comment">// Note: We used the HTTP_FINAL_RESPONSE tag to disconnect after the response is sent.</span>
+        <span class="comment">// We do this because we couldn&#39;t parse the request,</span>
+        <span class="comment">// so we won&#39;t be able to recover and move on to another request afterwards.</span>
+        <span class="comment">// In other words, we wouldn&#39;t know where the first request ends and the second request begins.</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ac3c4a9e2f156cbcf0429420869de8f9d"></a><!-- doxytag: member="HTTPConnection::handleResourceNotFound" ref="ac3c4a9e2f156cbcf0429420869de8f9d" args="()" -->
+<a class="anchor" id="a89f82470d7f0c9e0987fbb3ef3ecbb6b"></a><!-- doxytag: member="HTTPConnection::handleResourceNotFound" ref="a89f82470d7f0c9e0987fbb3ef3ecbb6b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -304,9 +544,36 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Called if we're unable to find the requested resource. </p>
 
+<p>Definition at line <a class="el" href="#L2490">2490</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;handleResourceNotFound&quot;</span>);
+        <span class="comment">// Override me for custom error handling of 404 not found responses</span>
+        <span class="comment">// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.</span>
+        <span class="comment">// You can also use preprocessErrorResponse: to add an optional HTML body.</span>
+        
+        <span class="comment">// Status Code 404 - Not Found</span>
+<span class="comment"></span>    
+    <span class="comment">// Creates the response</span>
+        <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *response = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initResponseWithStatusCode:404 description:nil version:HTTPVersion1_1];
+    
+    <span class="comment">// Sets content length to close</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Content-Length&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;0&quot;];
+        
+    <span class="comment">// Note:  We are not setting the header field to close the connection.  The client just requested a resource which is not found so give them another chance to request the resource</span>
+    
+    
+    <span class="comment">// Preprocess the response</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *responseData = [<span class="keyword">self</span> preprocessErrorResponse:response];
+    
+    <span class="comment">// Write the response to the socket</span>
+        [asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
+        
+        [response release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a80a304332f5d4a7e2a802b1048417658"></a><!-- doxytag: member="HTTPConnection::handleUnknownMethod:" ref="a80a304332f5d4a7e2a802b1048417658" args="(NSString *method)" -->
+<a class="anchor" id="a7e601398b4dfba08824e212939bf25c3"></a><!-- doxytag: member="HTTPConnection::handleUnknownMethod:" ref="a7e601398b4dfba08824e212939bf25c3" args="(NSString *method)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -323,9 +590,44 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Called if we receive a HTTP request with a method other than GET or HEAD.</p>
 <p>Called if we receive a HTTP request with a method other than GET or HEAD. param NSString </p>
 
+<p>Definition at line <a class="el" href="#L2451">2451</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                           :(NSString *)method
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;handleUnknownMethod&quot;</span>);
+        <span class="comment">// Override me for custom error handling of 405 method not allowed responses.</span>
+        <span class="comment">// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.</span>
+        <span class="comment">// You can also use preprocessErrorResponse: to add an optional HTML body.</span>
+        <span class="comment">// </span>
+        <span class="comment">// See also: supportsMethod:atPath:</span>
+        
+        <span class="comment">// Status code 405 - Method Not Allowed</span>
+<span class="comment"></span>    
+    <span class="comment">// Creates the response</span>
+        <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *response = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initResponseWithStatusCode:405 description:nil version:HTTPVersion1_1];
+    
+    <span class="comment">// Sets the content length to zero</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Content-Length&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;0&quot;];
+    
+    <span class="comment">// Sets the connection to be closed</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Connection&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;close&quot;];
+        
+    
+    <span class="comment">// Preprocess teh response</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *responseData = [<span class="keyword">self</span> preprocessErrorResponse:response];
+    
+    <span class="comment">// Write the data to the socket with the tag that all data has been completely written to the socket.  It also terminates the connection because this is the final response</span>
+        [asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_FINAL_RESPONSE];
+    
+        [response release];
+        
+        <span class="comment">// Note: We used the HTTP_FINAL_RESPONSE tag to disconnect after the response is sent.</span>
+        <span class="comment">// We do this because the method may include an http body.</span>
+        <span class="comment">// Since we can&#39;t be sure, we should close the connection.</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="af9a242863f427ffffecc5693767329ca"></a><!-- doxytag: member="HTTPConnection::handleVersionNotSupported:" ref="af9a242863f427ffffecc5693767329ca" args="(NSString *version)" -->
+<a class="anchor" id="aa7b56714bab154acf77e0e801571337c"></a><!-- doxytag: member="HTTPConnection::handleVersionNotSupported:" ref="aa7b56714bab154acf77e0e801571337c" args="(NSString *version)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -342,9 +644,33 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Called if the HTML version is other than what is supported param NSString</p>
 <p>Called if the HTML version is other than what is supported </p>
 
+<p>Definition at line <a class="el" href="#L2340">2340</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                 :(NSString *)version
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;handleVersionNotSupported: %@&quot;</span>,version);
+    
+        <span class="comment">// Override me for custom error handling of unsupported http version responses</span>
+        <span class="comment">// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.</span>
+        <span class="comment">// You can also use preprocessErrorResponse: to add an optional HTML body.</span>
+        
+        <span class="comment">// Create a response and initialize with because the HTTP version is not supported</span>
+        <a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *response = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initResponseWithStatusCode:505 description:nil version:HTTPVersion1_1];
+    
+    <span class="comment">// Set the content length to zero</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Content-Length&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;0&quot;];
+    
+    <span class="comment">// The response which will be sent to the host</span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *responseData = [<span class="keyword">self</span> preprocessErrorResponse:response];
+    
+    <span class="comment">// Write the reponse to the socket by creating a writePacket and sending the packet to the socket queue </span>
+        [asyncSocket writeData:responseData withTimeout:TIMEOUT_WRITE_ERROR tag:HTTP_RESPONSE];
+        
+        [response release];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="af07f633e7085a4af3429fc6aa68d928d"></a><!-- doxytag: member="HTTPConnection::httpResponseForMethod:URI:" ref="af07f633e7085a4af3429fc6aa68d928d" args="(NSString *method,[URI] NSString *path)" -->
+<a class="anchor" id="a7a1a401bcdcb9b1e8f0b39b2a070c5e6"></a><!-- doxytag: member="HTTPConnection::httpResponseForMethod:URI:" ref="a7a1a401bcdcb9b1e8f0b39b2a070c5e6" args="(NSString *method,[URI] NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -370,9 +696,68 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>This method is called to get a response for a request. You may return any object that adopts the <a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a> protocol. The <a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a> comes with two such classes: <a class="el" href="interface_h_t_t_p_file_response.html">HTTPFileResponse</a> and <a class="el" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a>. <a class="el" href="interface_h_t_t_p_file_response.html">HTTPFileResponse</a> is a wrapper for an NSFileHandle object, and is the preferred way to send a file response. <a class="el" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a> is a wrapper for an <a class="el" href="class_n_s_data.html">NSData</a> object, and may be used to send a custom response. </p>
 
+<p>Definition at line <a class="el" href="#L2223">2223</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                                 :(NSString *)method URI:(NSString *)path
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;httpResponseForMethod: %@ %@&quot;</span>,method,path);
+        <span class="comment">// Override me to provide custom responses.</span>
+        
+        NSString *filePath = [<span class="keyword">self</span> filePathForURI:path];
+        
+        BOOL isDir = NO;
+        
+    <span class="comment">// If the file exists at a path and  is not a directory</span>
+        <span class="keywordflow">if</span> (filePath &amp;&amp; [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&amp;isDir] &amp;&amp; !isDir)
+        {
+        
+                <span class="keywordflow">return</span> [[[<a class="code" href="interface_h_t_t_p_file_response.html">HTTPFileResponse</a> alloc] initWithFilePath:filePath forConnection:self] autorelease];
+        
+                <span class="comment">// Use me instead for asynchronous file IO.</span>
+                <span class="comment">// Generally better for larger files.</span>
+                
+        <span class="comment">//      return [[[HTTPAsyncFileResponse alloc] initWithFilePath:filePath forConnection:self] autorelease];</span>
+        
+        }<span class="keywordflow">else</span>  <span class="comment">// If file path is a directory</span>
+    {
+        <span class="keywordflow">if</span> ([path isEqualToString:<span class="stringliteral">@&quot;/&quot;</span>]) {
+            <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;path is a slash&quot;</span>);
+            <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;config documentRoot is: %@&quot;</span>,[<a class="code" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">config</a> documentRoot]);
+        }<span class="keywordflow">else</span>{
+            <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;path is not just a slash&quot;</span>);
+        }
+        
+        <span class="comment">// Create a mutable string to hold the data being sent to the host</span>
+        NSMutableString *outdata = [NSMutableString new];
+        
+        [outdata appendString:@&quot;&lt;html&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;head&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;script language=\&quot;JavaScript\&quot;&gt;&lt;!--\n&quot;];
+        [outdata appendString:@&quot;function refreshIt() {\n&quot;];
+        [outdata appendString:@&quot;if (!document.images) return;\n&quot;];
+        [outdata appendString:@&quot;document.images[&#39;myImage&#39;].src = &#39;1.png?&#39; + Math.random();\n&quot;];
+        [outdata appendString:@&quot;setTimeout(&#39;refreshIt()&#39;,1000);\n&quot;];
+        [outdata appendString:@&quot;}\n&quot;];
+        [outdata appendString:@&quot;//--&gt;&lt;/script&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;/head&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;body onLoad=\&quot; setTimeout(&#39;refreshIt()&#39;,1000)\&quot;&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;img src=\&quot;1.png\&quot; name=\&quot;myImage\&quot;&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;/body&gt;\n&quot;];
+        [outdata appendString:@&quot;&lt;/html&gt;\n&quot;];
+
+        <span class="comment">// Encodes the mutable string </span>
+        <a class="code" href="class_n_s_data.html">NSData</a> *browseData = [outdata dataUsingEncoding:NSUTF8StringEncoding];
+        
+        <span class="comment">// Creates a data response</span>
+        <span class="keywordflow">return</span> [[[<a class="code" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a> alloc] initWithData:browseData] autorelease];
+ 
+    }
+        
+        <span class="keywordflow">return</span> nil;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a9549579ab0cecfde27fd1d96708d3397"></a><!-- doxytag: member="HTTPConnection::initWithAsyncSocket:configuration:" ref="a9549579ab0cecfde27fd1d96708d3397" args="(GCDAsyncSocket *newSocket,[configuration] HTTPConfig *aConfig)" -->
+<a class="anchor" id="a3870b5ad26b13a3c7de70e3f183f7505"></a><!-- doxytag: member="HTTPConnection::initWithAsyncSocket:configuration:" ref="a3870b5ad26b13a3c7de70e3f183f7505" args="(GCDAsyncSocket *newSocket,[configuration] HTTPConfig *aConfig)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -399,9 +784,57 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> param <a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> param <a class="el" href="interface_h_t_t_p_config.html">HTTPConfig</a> returns id</p>
 <p>Sole Constructor. Associates this new HTTP connection with the given AsyncSocket. This HTTP connection object will become the socket's delegate and take over responsibility for the socket. param <a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> param <a class="el" href="interface_h_t_t_p_config.html">HTTPConfig</a> returns self </p>
 
+<p>Definition at line <a class="el" href="#L142">142</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                         :(<a class="code" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a> *)newSocket configuration:(<a class="code" href="interface_h_t_t_p_config.html">HTTPConfig</a> *)aConfig
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;initWithAsyncSocket&quot;</span>);
+    
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init]))
+        {
+                <span class="comment">// if there is a dispatch queue for requests</span>
+                <span class="keywordflow">if</span> (aConfig.<a class="code" href="interface_h_t_t_p_config.html#a839103337d1936e47f7884bf2cc4469c">queue</a>)
+                {
+            <span class="comment">// Get the HTTPConfig dispatch queue</span>
+                        <a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a> = aConfig.<a class="code" href="interface_h_t_t_p_config.html#a839103337d1936e47f7884bf2cc4469c">queue</a>;
+            
+            <span class="comment">// Increments the reference count on the connection queue</span>
+                        dispatch_retain(<a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a>);
+                }
+                <span class="keywordflow">else</span>  <span class="comment">// if there is not a dispatch queue for requests then create one</span>
+                {
+            <span class="comment">// Create the HTTPConnection queue</span>
+                        <a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a> = dispatch_queue_create(<span class="stringliteral">&quot;HTTPConnection&quot;</span>, NULL);
+                }
+                
+                <span class="comment">// Take over ownership of the socket</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a> = [newSocket retain];
+        
+        <span class="comment">// Set the connection queue as the asyncSocket&#39;s delegate</span>
+                [asyncSocket setDelegate:self delegateQueue:connectionQueue];
+                
+                <span class="comment">// Store configuration</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">config</a> = [aConfig retain];
+                
+                <span class="comment">// Initialize lastNC (last nonce count).</span>
+                <span class="comment">// Used with digest access authentication.</span>
+                <span class="comment">// These must increment for each request from the client.</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a820dc92c66ec354b406983c8845596f8">lastNC</a> = 0;
+                
+                <span class="comment">// Create a new HTTP message</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a> = [[<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> alloc] initEmptyRequest];
+                
+        <span class="comment">// Sets the number of header lines to zero</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a6683a6a8dac2dc0678ae77d78b187a5f">numHeaderLines</a> = 0;
+                
+        <span class="comment">// Creates a mutable array for the HTTPResponse sizes</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#ac4c2bd3aa854035a6a64072bcdcd9bb8">responseDataSizes</a> = [[NSMutableArray alloc] initWithCapacity:5];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ae0a85c9b49b6ab6e8143472360c125d1"></a><!-- doxytag: member="HTTPConnection::isPasswordProtected:" ref="ae0a85c9b49b6ab6e8143472360c125d1" args="(NSString *path)" -->
+<a class="anchor" id="aa3ceb6ffbcf245b51100bb6425b97e79"></a><!-- doxytag: member="HTTPConnection::isPasswordProtected:" ref="aa3ceb6ffbcf245b51100bb6425b97e79" args="(NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -417,9 +850,19 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Returns whether or not the requested resource is password protected. In this generic implementation, nothing is password protected. param NSString returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L349">349</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                           :(NSString *)path
+{
+        
+        <span class="comment">// Override me to provide password protection...</span>
+        <span class="comment">// You can configure it for the entire server, or based on the current request</span>
+        
+        <span class="keywordflow">return</span> NO;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a0759277609c489bd8cab71130073e9fe"></a><!-- doxytag: member="HTTPConnection::isSecureServer" ref="a0759277609c489bd8cab71130073e9fe" args="()" -->
+<a class="anchor" id="a7c9542e5aa9314d159c7e25b6fdbd501"></a><!-- doxytag: member="HTTPConnection::isSecureServer" ref="a7c9542e5aa9314d159c7e25b6fdbd501" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -435,9 +878,17 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns whether or not the server is configured to be a secure server. In other words, all connections to this server are immediately secured, thus only secure connections are allowed. This is the equivalent of having an https server, where it is assumed that all connections must be secure. If this is the case, then unsecure connections will not be allowed on this server, and a separate unsecure server would need to be run on a separate port in order to support unsecure connections.</p>
 <p>Note: In order to support secure connections, the sslIdentityAndCertificates method must be implemented. </p>
 
+<p>Definition at line <a class="el" href="#L319">319</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to create an https server...</span>
+        
+        <span class="keywordflow">return</span> NO;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a6eb39ba045cfcfb68b875e3af5f3f1e0"></a><!-- doxytag: member="HTTPConnection::parseGetParams" ref="a6eb39ba045cfcfb68b875e3af5f3f1e0" args="()" -->
+<a class="anchor" id="aa24fb536121c589e5b72a0c31d7f1a6f"></a><!-- doxytag: member="HTTPConnection::parseGetParams" ref="aa24fb536121c589e5b72a0c31d7f1a6f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -453,9 +904,42 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Parses the query variables in the request URI.</p>
 <p>For example, if the request URI was "/search.html?q=John%20Mayer%20Trio&amp;num=50" then this method would return the following dictionary: { q = "John Mayer Trio" num = "50" } </p>
 
+<p>Definition at line <a class="el" href="#L886">886</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;parseGetParams&quot;</span>);
+    
+    <span class="comment">// If the request header is not complete</span>
+        <span class="keywordflow">if</span>(![<a class="code" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a> isHeaderComplete]) 
+    {
+        <span class="keywordflow">return</span> nil;
+        }
+    
+    <span class="comment">// A disctionary for holding the keys and values from the parameters</span>
+        NSDictionary *result = nil;
+        
+    <span class="comment">// Gets the request url</span>
+        NSURL *url = [request url];
+    
+    <span class="comment">// If there is a url</span>
+        <span class="keywordflow">if</span>(url)
+        {
+        <span class="comment">// Gets the query for the url</span>
+                NSString *query = [url query];
+        
+        <span class="comment">// If there is a query string</span>
+                <span class="keywordflow">if</span> (query)
+                {
+            <span class="comment">// Parses the given query string</span>
+                        result = [<span class="keyword">self</span> parseParams:query];
+                }
+        }
+        
+        <span class="keywordflow">return</span> result; 
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a9ea0f3debf4c03c200e528100598b30a"></a><!-- doxytag: member="HTTPConnection::parseParams:" ref="a9ea0f3debf4c03c200e528100598b30a" args="(NSString *query)" -->
+<a class="anchor" id="a7fa3ed6675e4e3ea4d8efb259efb3190"></a><!-- doxytag: member="HTTPConnection::parseParams:" ref="a7fa3ed6675e4e3ea4d8efb259efb3190" args="(NSString *query)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -472,9 +956,89 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Parses the given query string.</p>
 <p>For example, if the query is "q=John%20Mayer%20Trio&amp;num=50" then this method would return the following dictionary: { q = "John Mayer Trio" num = "50" } </p>
 
+<p>Definition at line <a class="el" href="#L797">797</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                             :(NSString *)query
+{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;parseParams: %@&quot;</span>,query);
+    
+    <span class="comment">// Separates the compones which are separated by the &#39;&amp;&#39; symbol</span>
+        NSArray *components = [query componentsSeparatedByString:@&quot;&amp;&quot;];
+
+    <span class="comment">// Creates a mutable dictionary for the parameters key- value pairs</span>
+        NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:[components count]];
+        
+    
+        NSUInteger i;
+    
+    <span class="comment">// Loop through each of the components in the array</span>
+        <span class="keywordflow">for</span> (i = 0; i &lt; [components count]; i++)
+        { 
+                NSString *component = [components objectAtIndex:i];
+        
+        <span class="comment">// If the component has length</span>
+                <span class="keywordflow">if</span> ([component length] &gt; 0)
+                {
+            <span class="comment">// Gets the range (location and length) of the equal sign</span>
+                        NSRange range = [component rangeOfString:@&quot;=&quot;];
+            
+            <span class="comment">// If there is an equal sign in the range</span>
+                        <span class="keywordflow">if</span> (range.location != NSNotFound)
+                        { 
+                <span class="comment">// returns substring up to but not including index </span>
+                                NSString *escapedKey = [component substringToIndex:(range.location + 0)]; 
+                
+                <span class="comment">// returns substring up to but not including index (start counting at 0)</span>
+                                NSString *escapedValue = [component substringFromIndex:(range.location + 1)];
+                                
+                <span class="comment">// If there is an escape key in the parameters</span>
+                                if ([escapedKey length] &gt; 0)
+                                {
+                                        CFStringRef k;  <span class="comment">// The key</span>
+                    CFStringRef v;  <span class="comment">// The value</span>
+                                        
+                    <span class="comment">// The key</span>
+                                        k = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedKey, CFSTR(<span class="stringliteral">&quot;&quot;</span>));
+                    
+                    <span class="comment">// The value</span>
+                                        v = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedValue, CFSTR(<span class="stringliteral">&quot;&quot;</span>));
+                                        
+                                        NSString *key;
+                    NSString *value;
+                                        
+                    <span class="comment">// Makes the key eligible for collection.</span>
+                                        key   = [NSMakeCollectable(k) autorelease];
+                    
+                    <span class="comment">// Makes the value eligible for collection.</span>
+                                        value = [NSMakeCollectable(v) autorelease];
+        
+                    
+                    <span class="comment">// If there is a key</span>
+                                        <span class="keywordflow">if</span> (key)
+                                        {
+                        <span class="comment">// If there is a value</span>
+                                                <span class="keywordflow">if</span> (value)
+                        {
+                            <span class="comment">// Adds the value and key to the dictionary</span>
+                                                        [result setObject:value forKey:key]; 
+                            
+                                                }<span class="keywordflow">else</span>{
+                            
+                            <span class="comment">// Adds the key to the dictionary with a null value</span>
+                                                        [result setObject:[NSNull null] forKey:key];
+                            
+                        }
+                                        }
+                                }
+                        }
+                }
+        }
+        
+        <span class="keywordflow">return</span> result;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aba5b830a9da19cc5aabd4e8fdf5acd89"></a><!-- doxytag: member="HTTPConnection::passwordForUser:" ref="aba5b830a9da19cc5aabd4e8fdf5acd89" args="(NSString *username)" -->
+<a class="anchor" id="a61ccdedd624c4cece116b3e9b9aaa93e"></a><!-- doxytag: member="HTTPConnection::passwordForUser:" ref="a61ccdedd624c4cece116b3e9b9aaa93e" args="(NSString *username)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -490,9 +1054,23 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Returns the password for the given username. param NSString returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L394">394</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                             :(NSString *)username
+{
+        
+        <span class="comment">// Override me to provide proper password authentication</span>
+        <span class="comment">// You can configure a password for the entire server, or custom passwords for users and/or resources</span>
+        
+        <span class="comment">// Security Note:</span>
+        <span class="comment">// A nil password means no access at all. (Such as for user doesn&#39;t exist)</span>
+        <span class="comment">// An empty string password is allowed, and will be treated as any other password. (To support anonymous access)</span>
+        
+        <span class="keywordflow">return</span> nil;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a866eda2e2c18c4718d5956a37169e520"></a><!-- doxytag: member="HTTPConnection::prepareForBodyWithSize:" ref="a866eda2e2c18c4718d5956a37169e520" args="(UInt64 contentLength)" -->
+<a class="anchor" id="a1eb8fd1592cbb2dd659ae2657b0d6548"></a><!-- doxytag: member="HTTPConnection::prepareForBodyWithSize:" ref="a1eb8fd1592cbb2dd659ae2657b0d6548" args="(UInt64 contentLength)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -509,9 +1087,15 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>This method is called after receiving all HTTP headers, but before reading any of the request body. param UInt64</p>
 <p>This method is called after receiving all HTTP headers, but before reading any of the request body. </p>
 
+<p>Definition at line <a class="el" href="#L2312">2312</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                              :(UInt64)contentLength
+{
+        <span class="comment">// Override me to allocate buffers, file handles, etc.</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ac1812129f90a59c0f6445582f3be9752"></a><!-- doxytag: member="HTTPConnection::preprocessErrorResponse:" ref="ac1812129f90a59c0f6445582f3be9752" args="(HTTPMessage *response)" -->
+<a class="anchor" id="a13b11b783b5432fc97410abf83856c19"></a><!-- doxytag: member="HTTPConnection::preprocessErrorResponse:" ref="a13b11b783b5432fc97410abf83856c19" args="(HTTPMessage *response)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -527,9 +1111,69 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>This method is called immediately prior to sending the response headers (for an error). This method adds standard header fields, and then converts the response to an <a class="el" href="class_n_s_data.html">NSData</a> object. </p>
 
+<p>Definition at line <a class="el" href="#L2619">2619</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                   :(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response;
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;preprocessErrorResponse&quot;</span>);
+        <span class="comment">// Override me to customize the error response headers</span>
+        <span class="comment">// You&#39;ll likely want to add your own custom headers, and then return [super preprocessErrorResponse:response]</span>
+        <span class="comment">// </span>
+        <span class="comment">// Notes:</span>
+        <span class="comment">// You can use [response statusCode] to get the type of error.</span>
+        <span class="comment">// You can use [response setBody:data] to add an optional HTML body.</span>
+        <span class="comment">// If you add a body, don&#39;t forget to update the Content-Length.</span>
+        <span class="comment">// </span>
+        <span class="comment">// if ([response statusCode] == 404)</span>
+        <span class="comment">// {</span>
+        <span class="comment">//     NSString *msg = @&quot;&lt;html&gt;&lt;body&gt;Error 404 - Not Found&lt;/body&gt;&lt;/html&gt;&quot;;</span>
+        <span class="comment">//     NSData *msgData = [msg dataUsingEncoding:NSUTF8StringEncoding];</span>
+        <span class="comment">//     </span>
+        <span class="comment">//     [response setBody:msgData];</span>
+        <span class="comment">//     </span>
+        <span class="comment">//     NSString *contentLengthStr = [NSString stringWithFormat:@&quot;%lu&quot;, (unsigned long)[msgData length]];</span>
+        <span class="comment">//     [response setHeaderField:@&quot;Content-Length&quot; value:contentLengthStr];</span>
+        <span class="comment">// }</span>
+        
+        <span class="comment">// Add standard headers</span>
+    
+    <span class="comment">// Gets the current date as a string</span>
+        NSString *now = [<span class="keyword">self</span> dateAsString:[NSDate date]];
+    
+    <span class="comment">// Set the  response header date value</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Date&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:now];
+        
+        <span class="comment">// Add server capability headers</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Accept-Ranges&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;bytes&quot;];
+        
+        <span class="comment">// Add optional response headers</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a> respondsToSelector:<span class="keyword">@selector</span>(httpHeaders)])
+        {
+        
+        <span class="comment">// Dictionary for the response headers</span>
+                NSDictionary *responseHeaders = [httpResponse httpHeaders];
+                
+        <span class="comment">// Gets an enumerator object for enumerating the response headers dictionary</span>
+                NSEnumerator *keyEnumerator = [responseHeaders keyEnumerator];
+
+                NSString *key;
+                
+        <span class="comment">// Loops through each key in the header</span>
+                <span class="keywordflow">while</span>((key = [keyEnumerator nextObject]))
+                {
+            <span class="comment">// Gets the value for a specific key</span>
+                        NSString *value = [responseHeaders objectForKey:key];
+                        
+            <span class="comment">// Sets the response header field</span>
+                        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:key <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:value];
+                }
+        }
+        
+        <span class="keywordflow">return</span> [response <a class="code" href="interface_h_t_t_p_message.html#a501c79534bd14cb7f1c1f1e093bd56d6">messageData</a>];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a8e6f56c396b5b96fd799b4cbe66522fd"></a><!-- doxytag: member="HTTPConnection::preprocessResponse:" ref="a8e6f56c396b5b96fd799b4cbe66522fd" args="(HTTPMessage *response)" -->
+<a class="anchor" id="aec3c5b6f5cc34ba95b3be0be3cf9c313"></a><!-- doxytag: member="HTTPConnection::preprocessResponse:" ref="aec3c5b6f5cc34ba95b3be0be3cf9c313" args="(HTTPMessage *response)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -546,9 +1190,53 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>This method is called immediately prior to sending the response headers. This method adds standard header fields, and then converts the response to an <a class="el" href="class_n_s_data.html">NSData</a> object. param <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns <a class="el" href="class_n_s_data.html">NSData</a></p>
 <p>This method is called immediately prior to sending the response headers. This method adds standard header fields, and then converts the response to an <a class="el" href="class_n_s_data.html">NSData</a> object. </p>
 
+<p>Definition at line <a class="el" href="#L2572">2572</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                              :(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)response
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;preprocessResponse&quot;</span>);
+    
+        <span class="comment">// Override me to customize the response headers</span>
+        <span class="comment">// You&#39;ll likely want to add your own custom headers, and then return [super preprocessResponse:response]</span>
+        
+        <span class="comment">// Add standard headers</span>
+        NSString *now = [<span class="keyword">self</span> dateAsString:[NSDate date]];
+    
+    <span class="comment">// Sets the date field in the response header</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Date&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:now];
+        
+        <span class="comment">// Add server capability headers</span>
+        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:@&quot;Accept-Ranges&quot; <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:@&quot;bytes&quot;];
+        
+        <span class="comment">// Add optional response headers</span>
+        <span class="keywordflow">if</span> ([<a class="code" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a> respondsToSelector:<span class="keyword">@selector</span>(httpHeaders)])
+        {
+        <span class="comment">// Creates a dictionary for the response headers</span>
+                NSDictionary *responseHeaders = [httpResponse httpHeaders];
+                
+        <span class="comment">// Enumerates the responseHeaders dictionary</span>
+        <span class="comment">// Gets an enumerator object that lets you access each key in the dictionary.</span>
+                NSEnumerator *keyEnumerator = [responseHeaders keyEnumerator];
+
+        
+                NSString *key;
+                
+        <span class="comment">// enumerate through the keys in the response header</span>
+                <span class="keywordflow">while</span> ((key = [keyEnumerator nextObject]))
+                {
+            <span class="comment">// Gets the value for a certain key in the response headers</span>
+                        NSString *value = [responseHeaders objectForKey:key];
+                        
+            <span class="comment">// Sets the response header field</span>
+                        [response <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">setHeaderField</a>:key <a class="code" href="interface_h_t_t_p_message.html#a3d84e693bf72e3228f6136302a87c32f">value</a>:value];
+                }
+        }
+        
+        <span class="keywordflow">return</span> [response <a class="code" href="interface_h_t_t_p_message.html#a501c79534bd14cb7f1c1f1e093bd56d6">messageData</a>];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a01b930478a44dc2248e0c0c79af966c5"></a><!-- doxytag: member="HTTPConnection::processDataChunk:" ref="a01b930478a44dc2248e0c0c79af966c5" args="(NSData *postDataChunk)" -->
+<a class="anchor" id="a0e4af7d6d1574f5551cca6a30d6b4d0a"></a><!-- doxytag: member="HTTPConnection::processDataChunk:" ref="a0e4af7d6d1574f5551cca6a30d6b4d0a" args="(NSData *postDataChunk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -565,9 +1253,22 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>This method is called to handle data read from a POST / PUT. The given data is part of the request body. param <a class="el" href="class_n_s_data.html">NSData</a></p>
 <p>This method is called to handle data read from a POST / PUT. The given data is part of the request body. </p>
 
+<p>Definition at line <a class="el" href="#L2321">2321</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                        :(<a class="code" href="class_n_s_data.html">NSData</a> *)postDataChunk
+{
+        <span class="comment">// Override me to do something useful with a POST / PUT.</span>
+        <span class="comment">// If the post is small, such as a simple form, you may want to simply append the data to the request.</span>
+        <span class="comment">// If the post is big, such as a file upload, you may want to store the file to disk.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Remember: In order to support LARGE POST uploads, the data is read in chunks.</span>
+        <span class="comment">// This prevents a 50 MB upload from being stored in RAM.</span>
+        <span class="comment">// The size of the chunks are limited by the POST_CHUNKSIZE definition.</span>
+        <span class="comment">// Therefore, this method may be called multiple times for the same POST request.</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a7c4408f93a8d06d10ad97ceb9610f52a"></a><!-- doxytag: member="HTTPConnection::realm" ref="a7c4408f93a8d06d10ad97ceb9610f52a" args="()" -->
+<a class="anchor" id="a3629c94ae611c4ab16a4db3712c70900"></a><!-- doxytag: member="HTTPConnection::realm" ref="a3629c94ae611c4ab16a4db3712c70900" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -582,9 +1283,18 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Returns the authentication realm. In this generic implmentation, a default realm is used for the entire server. returns NSString </p>
 
+<p>Definition at line <a class="el" href="#L380">380</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to provide a custom realm...</span>
+        <span class="comment">// You can configure it for the entire server, or based on the current request</span>
+        
+        <span class="keywordflow">return</span> <span class="stringliteral">@&quot;defaultRealm@host.com&quot;</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aa371e14932e520873dbb9adeba2a4486"></a><!-- doxytag: member="HTTPConnection::requestURI" ref="aa371e14932e520873dbb9adeba2a4486" args="()" -->
+<a class="anchor" id="aa49a2c18a72ce1cc42bdd78916f85099"></a><!-- doxytag: member="HTTPConnection::requestURI" ref="aa49a2c18a72ce1cc42bdd78916f85099" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -600,9 +1310,23 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns the URL as a string for the <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a></p>
 <p>Gets the URL as a string for the request <a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a> returns NSSTring </p>
 
+<p>Definition at line <a class="el" href="#L1171">1171</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;requestURI&quot;</span>);
+    
+    <span class="comment">// If the request HTTPMessage is nil</span>
+        <span class="keywordflow">if</span>(<a class="code" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a> == nil) 
+    {
+        <span class="keywordflow">return</span> nil;
+        }
+    
+    <span class="comment">// Returns the request message url as a readable string</span>
+        <span class="keywordflow">return</span> [[request url] relativeString];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a24383ee4832e621c3943b08c5d74badf"></a><!-- doxytag: member="HTTPConnection::responseDidAbort:" ref="a24383ee4832e621c3943b08c5d74badf" args="(NSObject&lt; HTTPResponse &gt; *sender)" -->
+<a class="anchor" id="ac77b95bc70a9d72dc93acc532ed0ae31"></a><!-- doxytag: member="HTTPConnection::responseDidAbort:" ref="ac77b95bc70a9d72dc93acc532ed0ae31" args="(NSObject&lt; HTTPResponse &gt; *sender)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -620,7 +1344,7 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 
 </div>
 </div>
-<a class="anchor" id="a09d51a8228311937e8051dd817175f48"></a><!-- doxytag: member="HTTPConnection::responseHasAvailableData:" ref="a09d51a8228311937e8051dd817175f48" args="(NSObject&lt; HTTPResponse &gt; *sender)" -->
+<a class="anchor" id="a2c8ddd294c2e0710dd2b03058fa092fc"></a><!-- doxytag: member="HTTPConnection::responseHasAvailableData:" ref="a2c8ddd294c2e0710dd2b03058fa092fc" args="(NSObject&lt; HTTPResponse &gt; *sender)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -638,7 +1362,7 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 
 </div>
 </div>
-<a class="anchor" id="ad25c9e841f06cc3c1aa5c8529651f7e8"></a><!-- doxytag: member="HTTPConnection::sendResponseHeadersAndBody" ref="ad25c9e841f06cc3c1aa5c8529651f7e8" args="()" -->
+<a class="anchor" id="aea0c41a3a566bde8b25fb513dfb7d2e2"></a><!-- doxytag: member="HTTPConnection::sendResponseHeadersAndBody" ref="aea0c41a3a566bde8b25fb513dfb7d2e2" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -655,7 +1379,7 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 
 </div>
 </div>
-<a class="anchor" id="a98d37e6c30cca9e33c252070e138cf07"></a><!-- doxytag: member="HTTPConnection::shouldDie" ref="a98d37e6c30cca9e33c252070e138cf07" args="()" -->
+<a class="anchor" id="abb231bf6ab49d9fea311def3cf79f194"></a><!-- doxytag: member="HTTPConnection::shouldDie" ref="abb231bf6ab49d9fea311def3cf79f194" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -671,9 +1395,60 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns whether the <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> should die returns BOOL</p>
 <p>This method is called after each response has been fully sent. Since a single connection may handle multiple request/responses, this method may be called multiple times. That is, it will be called after completion of each response. </p>
 
+<p>Definition at line <a class="el" href="#L3141">3141</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;shouldDie&quot;</span>);
+        <span class="comment">// Override me if you want to perform any custom actions after a response has been fully sent.</span>
+        <span class="comment">// You may also force close the connection by returning YES.</span>
+        <span class="comment">// </span>
+        <span class="comment">// If you override this method, you should take care to fall through with [super shouldDie]</span>
+        <span class="comment">// instead of returning NO.</span>
+        
+        
+        BOOL <a class="code" href="interface_h_t_t_p_connection.html#abb231bf6ab49d9fea311def3cf79f194">shouldDie</a> = NO; <span class="comment">// flag for whether the connection should die</span>
+        
+    <span class="comment">// Get the http request version</span>
+        NSString *version = [request version];
+    
+    <span class="comment">// If the http request version is using 1.1</span>
+        <span class="keywordflow">if</span> ([version isEqualToString:<a class="code" href="_h_t_t_p_message_8h.html#a6fd6e3a5493a1775cafcd9490a3c990e">HTTPVersion1_1</a>])
+        {
+                <span class="comment">// HTTP version 1.1</span>
+                <span class="comment">// Connection should only be closed if request included &quot;Connection: close&quot; header</span>
+                
+                NSString *connection = [request headerField:@&quot;Connection&quot;];
+                
+        <span class="comment">// Close the connection</span>
+                shouldDie = (connection &amp;&amp; ([connection caseInsensitiveCompare:@&quot;close&quot;] == NSOrderedSame));
+        }
+    <span class="comment">// If HTTP version 1.0</span>
+        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ([version isEqualToString:<a class="code" href="_h_t_t_p_message_8h.html#a80bee3680242b868c7b4209ae283d8c8">HTTPVersion1_0</a>])
+        {
+                <span class="comment">// HTTP version 1.0</span>
+                <span class="comment">// Connection should be closed unless request included &quot;Connection: Keep-Alive&quot; header</span>
+                
+                NSString *connection = [request headerField:@&quot;Connection&quot;];
+                
+        <span class="comment">// If there is not a connection</span>
+                <span class="keywordflow">if</span> (connection == nil)
+        {
+            <span class="comment">// Flag the connection to die</span>
+                        shouldDie = YES;
+            
+                }<span class="keywordflow">else</span>{ <span class="comment">// If there is a connection</span>
+            
+            <span class="comment">// Keep the connection alive</span>
+                        shouldDie = [connection caseInsensitiveCompare:@&quot;Keep-Alive&quot;] != NSOrderedSame;
+        }
+        }
+        
+    <span class="comment">// if not HTTP version 1.0 or 1.1</span>
+        <span class="keywordflow">return</span> <a class="code" href="interface_h_t_t_p_connection.html#abb231bf6ab49d9fea311def3cf79f194">shouldDie</a>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a3b14cf020cc11eb71df405962b673c18"></a><!-- doxytag: member="HTTPConnection::sslIdentityAndCertificates" ref="a3b14cf020cc11eb71df405962b673c18" args="()" -->
+<a class="anchor" id="aa2961b01548c8e2b22bd4d6dff2c9e0b"></a><!-- doxytag: member="HTTPConnection::sslIdentityAndCertificates" ref="aa2961b01548c8e2b22bd4d6dff2c9e0b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -688,9 +1463,17 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>This method is expected to returns an array appropriate for use in kCFStreamSSLCertificates SSL Settings. It should be an array of SecCertificateRefs except for the first element in the array, which is a SecIdentityRef. </p>
 
+<p>Definition at line <a class="el" href="#L331">331</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to provide the proper required SSL identity.</span>
+        
+        <span class="keywordflow">return</span> nil;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a7525e13f1c1dba5a66565fe1ee88e550"></a><!-- doxytag: member="HTTPConnection::start" ref="a7525e13f1c1dba5a66565fe1ee88e550" args="()" -->
+<a class="anchor" id="a60de64d75454385b23995437f1d72669"></a><!-- doxytag: member="HTTPConnection::start" ref="a60de64d75454385b23995437f1d72669" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -705,9 +1488,34 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Starting point for the HTTP connection after it has been fully initialized (including subclasses). This method is called by the HTTP server. </p>
 
+<p>Definition at line <a class="el" href="#L676">676</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;start&quot;</span>);
+    
+    <span class="comment">//  Submits a block for asynchronous execution on the connectionQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a>, ^{
+        
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+        <span class="comment">// Check if the connection is already started</span>
+                <span class="keywordflow">if</span> (<a class="code" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">started</a>)
+        {
+            <span class="keywordflow">return</span>;
+        }
+        
+        <span class="comment">// If not started the set the flag that the connection is started and start the connection</span>
+                <a class="code" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">started</a> = YES;
+                
+        <span class="comment">// Starts the connection</span>
+                [<span class="keyword">self</span> startConnection];
+                
+                [pool release];
+        });  <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="adef8eb033be078813d1d7be13e7c6476"></a><!-- doxytag: member="HTTPConnection::startConnection" ref="adef8eb033be078813d1d7be13e7c6476" args="()" -->
+<a class="anchor" id="ac3879a4ef9748dc4b182f861b83f7522"></a><!-- doxytag: member="HTTPConnection::startConnection" ref="ac3879a4ef9748dc4b182f861b83f7522" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -722,9 +1530,56 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>Starting point for the HTTP connection. </p>
 
+<p>Definition at line <a class="el" href="#L726">726</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;startConnection&quot;</span>);
+    
+        <span class="comment">// Override me to do any custom work before the connection starts.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Be sure to invoke [super startConnection] when you&#39;re done.</span>
+        
+        
+        <span class="keywordflow">if</span> ([<span class="keyword">self</span> <a class="code" href="interface_h_t_t_p_connection.html#a7c9542e5aa9314d159c7e25b6fdbd501">isSecureServer</a>])
+        {
+                <span class="comment">// We are configured to be an HTTPS server.</span>
+                <span class="comment">// That is, we secure via SSL/TLS the connection prior to any communication.</span>
+                
+                NSArray *certificates = [<span class="keyword">self</span> sslIdentityAndCertificates];
+                
+        <span class="comment">// if there are certificates in the array</span>
+                <span class="keywordflow">if</span> ([certificates count] &gt; 0)
+                {
+                        <span class="comment">// All connections are assumed to be secure. Only secure connections are allowed on this server.</span>
+            <span class="comment">// The objects for the dictionary are:</span>
+            <span class="comment">//      is server</span>
+            <span class="comment">//      certificates</span>
+            <span class="comment">//      authentication level</span>
+                        NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithCapacity:3];
+                        
+                        <span class="comment">// Configure this connection as the server</span>
+                        [settings setObject:[<a class="code" href="class_n_s_number.html">NSNumber</a> numberWithBool:YES]
+                                                 forKey:(NSString *)kCFStreamSSLIsServer];
+                        
+            <span class="comment">// Set the SSL certificate</span>
+                        [settings setObject:certificates
+                                                 forKey:(NSString *)kCFStreamSSLCertificates];
+                        
+                        <span class="comment">// Configure this connection to use the highest possible SSL level</span>
+                        [settings setObject:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL
+                                                 forKey:(NSString *)kCFStreamSSLLevel];
+                        
+            <span class="comment">// Start transport layer security with specific settings</span>
+                        [asyncSocket startTLS:settings];
+                }
+        }
+        
+    <span class="comment">// Starts reading an HTTP request</span>
+        [<span class="keyword">self</span> startReadingRequest];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a68cc78c8f8d3e2cb4d40aa87553c5383"></a><!-- doxytag: member="HTTPConnection::startReadingRequest" ref="a68cc78c8f8d3e2cb4d40aa87553c5383" args="()" -->
+<a class="anchor" id="ae45c0f08274cee574e179dca0bac09ea"></a><!-- doxytag: member="HTTPConnection::startReadingRequest" ref="ae45c0f08274cee574e179dca0bac09ea" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -741,7 +1596,7 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 
 </div>
 </div>
-<a class="anchor" id="ab5d0fa59372ec6a1704277d000ebf914"></a><!-- doxytag: member="HTTPConnection::stop" ref="ab5d0fa59372ec6a1704277d000ebf914" args="()" -->
+<a class="anchor" id="a8c528baf37154d347366083f0f816846"></a><!-- doxytag: member="HTTPConnection::stop" ref="a8c528baf37154d347366083f0f816846" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -756,9 +1611,27 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <div class="memdoc">
 <p>This method is called by the <a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a> if it is asked to stop. The server, in turn, invokes stop on each <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> instance. </p>
 
+<p>Definition at line <a class="el" href="#L705">705</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+    <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;stop&quot;</span>);
+    
+    <span class="comment">// Submits a block for asynchronous execution on the connectionQueue</span>
+        dispatch_async(<a class="code" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a>, ^{
+        
+                NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                
+                <span class="comment">// Disconnect the socket.</span>
+                <span class="comment">// The socketDidDisconnect delegate method will handle everything else.</span>
+                [asyncSocket disconnect];
+                
+                [pool release];
+        
+        }); <span class="comment">// END OF BLOCK</span>
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ad2e7d4602fa86e4de2237c705b241360"></a><!-- doxytag: member="HTTPConnection::supportsMethod:atPath:" ref="ad2e7d4602fa86e4de2237c705b241360" args="(NSString *method,[atPath] NSString *path)" -->
+<a class="anchor" id="aa7214b42b866d379c0c4742215743af7"></a><!-- doxytag: member="HTTPConnection::supportsMethod:atPath:" ref="aa7214b42b866d379c0c4742215743af7" args="(NSString *method,[atPath] NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -785,9 +1658,45 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns whether or not the server will accept messages of a given method at a particular URI. param NSString param NSString returns BOOL</p>
 <p>Returns whether or not the server will accept messages of a given method at a particular URI. param NSString param NSString return BOOL </p>
 
+<p>Definition at line <a class="el" href="#L234">234</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                      :(NSString *)method 
+                atPath:(NSString *)path
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;supportsMethod: method: %@, path: %@&quot;</span>,method,path);
+    
+        <span class="comment">// Override me to support methods such as POST.</span>
+        <span class="comment">// </span>
+        <span class="comment">// Things you may want to consider:</span>
+        <span class="comment">// - Does the given path represent a resource that is designed to accept this method?</span>
+        <span class="comment">// - If accepting an upload, is the size of the data being uploaded too big?</span>
+        <span class="comment">//   To do this you can check the requestContentLength variable.</span>
+        <span class="comment">// </span>
+        <span class="comment">// For more information, you can always access the HTTPMessage request variable.</span>
+        <span class="comment">// </span>
+        <span class="comment">// You should fall through with a call to [super supportsMethod:method atPath:path]</span>
+        <span class="comment">// </span>
+        <span class="comment">// See also: expectsRequestBodyFromMethod:atPath:</span>
+        
+    
+    <span class="comment">// We with accept GET methods</span>
+        <span class="keywordflow">if</span> ([method isEqualToString:<span class="stringliteral">@&quot;GET&quot;</span>])
+    {
+                <span class="keywordflow">return</span> YES;
+        }
+    
+    <span class="comment">// We will accept HEAD methods</span>
+        <span class="keywordflow">if</span> ([method isEqualToString:<span class="stringliteral">@&quot;HEAD&quot;</span>])
+    {
+                <span class="keywordflow">return</span> YES;
+        }
+        
+    <span class="comment">// We will not accept any other methods</span>
+        <span class="keywordflow">return</span> NO;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a8df5e0354a30c42bb1b6b2ef05916760"></a><!-- doxytag: member="HTTPConnection::useDigestAccessAuthentication" ref="a8df5e0354a30c42bb1b6b2ef05916760" args="()" -->
+<a class="anchor" id="a396b8073c6a71c42bb6732d3f0e167a4"></a><!-- doxytag: member="HTTPConnection::useDigestAccessAuthentication" ref="a396b8073c6a71c42bb6732d3f0e167a4" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -805,9 +1714,18 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>Returns whether or not the authentication challenge should use digest access authentication. The alternative is basic authentication.</p>
 <p>If at all possible, digest access authentication should be used because it's more secure. Basic authentication sends passwords in the clear and should be avoided unless using SSL/TLS. returns BOOL </p>
 
+<p>Definition at line <a class="el" href="#L366">366</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        
+        <span class="comment">// Override me to customize the authentication scheme</span>
+        <span class="comment">// Make sure you understand the security risks of using the weaker basic authentication</span>
+        
+        <span class="keywordflow">return</span> NO;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a07c8426bca4c17ad866c5875b2c40a38"></a><!-- doxytag: member="HTTPConnection::webSocketForURI:" ref="a07c8426bca4c17ad866c5875b2c40a38" args="(NSString *path)" -->
+<a class="anchor" id="af8636c0be9bee1f59d884fe49adde8cb"></a><!-- doxytag: member="HTTPConnection::webSocketForURI:" ref="af8636c0be9bee1f59d884fe49adde8cb" args="(NSString *path)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -824,18 +1742,310 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
 <p>param NSString returns <a class="el" href="interface_web_socket.html">WebSocket</a></p>
 <p>Gets the webSocket for a specific URI return <a class="el" href="interface_web_socket.html">WebSocket</a> </p>
 
+<p>Definition at line <a class="el" href="#L2286">2286</a> of file <a class="el" href="">HTTPConnection.m</a>.</p>
+<div class="fragment"><pre class="fragment">                              :(NSString *)path
+{
+        <a class="code" href="_d_d_log_8h.html#a329681e1ee7a5d0c2dd5e49d1f96c198">DDLogError</a>(<span class="stringliteral">@&quot;webSocketForURI: %@&quot;</span>,path);
+        <span class="comment">// Override me to provide custom WebSocket responses.</span>
+        <span class="comment">// To do so, simply override the base WebSocket implementation, and add your custom functionality.</span>
+        <span class="comment">// Then return an instance of your custom WebSocket here.</span>
+        <span class="comment">// </span>
+        <span class="comment">// For example:</span>
+        <span class="comment">// </span>
+        <span class="comment">// if ([path isEqualToString:@&quot;/myAwesomeWebSocketStream&quot;])</span>
+        <span class="comment">// {</span>
+        <span class="comment">//     return [[[MyWebSocket alloc] initWithRequest:request socket:asyncSocket] autorelease];</span>
+        <span class="comment">// }</span>
+        <span class="comment">// </span>
+        <span class="comment">// return [super webSocketForURI:path];</span>
+        
+        <span class="keywordflow">return</span> nil;
+}
+</pre></div>
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a934c3ad23263b95b672789c6eaec3270"></a><!-- doxytag: member="HTTPConnection::asyncSocket" ref="a934c3ad23263b95b672789c6eaec3270" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_g_c_d_async_socket.html">GCDAsyncSocket</a>*) <a class="el" href="interface_h_t_t_p_connection.html#a934c3ad23263b95b672789c6eaec3270">asyncSocket</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Handles each request one at a time in order </p>
+
+<p>Definition at line <a class="el" href="#L77">77</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29e389709c495ff5287fd0a64801d3ee"></a><!-- doxytag: member="HTTPConnection::config" ref="a29e389709c495ff5287fd0a64801d3ee" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_h_t_t_p_config.html">HTTPConfig</a>*) <a class="el" href="interface_h_t_t_p_connection.html#a29e389709c495ff5287fd0a64801d3ee">config</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>HTTP server configuration </p>
+
+<p>Definition at line <a class="el" href="#L82">82</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc9e298da8fec2755e7bb531a8d28c6c"></a><!-- doxytag: member="HTTPConnection::connectionQueue" ref="afc9e298da8fec2755e7bb531a8d28c6c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (dispatch_queue_t) <a class="el" href="interface_h_t_t_p_connection.html#afc9e298da8fec2755e7bb531a8d28c6c">connectionQueue</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>queue with all the connections </p>
+
+<p>Definition at line <a class="el" href="#L72">72</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad25524d05f229618841d6271907baa1c"></a><!-- doxytag: member="HTTPConnection::httpResponse" ref="ad25524d05f229618841d6271907baa1c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSObject&lt;<a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>&gt;*) <a class="el" href="interface_h_t_t_p_connection.html#ad25524d05f229618841d6271907baa1c">httpResponse</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The http response sent to the host </p>
+
+<p>Definition at line <a class="el" href="#L118">118</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a820dc92c66ec354b406983c8845596f8"></a><!-- doxytag: member="HTTPConnection::lastNC" ref="a820dc92c66ec354b406983c8845596f8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (long) <a class="el" href="interface_h_t_t_p_connection.html#a820dc92c66ec354b406983c8845596f8">lastNC</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The last nonce </p>
+
+<p>Definition at line <a class="el" href="#L113">113</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a943c3f0f837d4d8fe650d22e84742187"></a><!-- doxytag: member="HTTPConnection::nonce" ref="a943c3f0f837d4d8fe650d22e84742187" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString*) <a class="el" href="interface_h_t_t_p_connection.html#a943c3f0f837d4d8fe650d22e84742187">nonce</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A nonce is a server-specified string uniquely generated for each 401 response. </p>
+
+<p>Definition at line <a class="el" href="#L108">108</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6683a6a8dac2dc0678ae77d78b187a5f"></a><!-- doxytag: member="HTTPConnection::numHeaderLines" ref="a6683a6a8dac2dc0678ae77d78b187a5f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (unsigned int) <a class="el" href="interface_h_t_t_p_connection.html#a6683a6a8dac2dc0678ae77d78b187a5f">numHeaderLines</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>number of header lines </p>
+
+<p>Definition at line <a class="el" href="#L97">97</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0cd3875505a87ea9dedb639dcc5fb311"></a><!-- doxytag: member="HTTPConnection::rangeIndex" ref="a0cd3875505a87ea9dedb639dcc5fb311" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (int) <a class="el" href="interface_h_t_t_p_connection.html#a0cd3875505a87ea9dedb639dcc5fb311">rangeIndex</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L139">139</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18003b13211f6c4c57ffa007620683be"></a><!-- doxytag: member="HTTPConnection::ranges" ref="a18003b13211f6c4c57ffa007620683be" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) <a class="el" href="interface_h_t_t_p_connection.html#a18003b13211f6c4c57ffa007620683be">ranges</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Mutable array for the response ranges </p>
+
+<p>Definition at line <a class="el" href="#L123">123</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8e71da35056300f8c387d3ae939ff8f"></a><!-- doxytag: member="HTTPConnection::ranges_boundry" ref="ac8e71da35056300f8c387d3ae939ff8f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString*) <a class="el" href="interface_h_t_t_p_connection.html#ac8e71da35056300f8c387d3ae939ff8f">ranges_boundry</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The response ranges boundary </p>
+
+<p>Definition at line <a class="el" href="#L134">134</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a00837835ec84d151f86b162a792c0aa0"></a><!-- doxytag: member="HTTPConnection::ranges_headers" ref="a00837835ec84d151f86b162a792c0aa0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) <a class="el" href="interface_h_t_t_p_connection.html#a00837835ec84d151f86b162a792c0aa0">ranges_headers</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Mutable array for the response range headers </p>
+
+<p>Definition at line <a class="el" href="#L128">128</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a237ae179626a75354a174bc779ddd076"></a><!-- doxytag: member="HTTPConnection::request" ref="a237ae179626a75354a174bc779ddd076" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_h_t_t_p_message.html">HTTPMessage</a>*) <a class="el" href="interface_h_t_t_p_connection.html#a237ae179626a75354a174bc779ddd076">request</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The http request from the host </p>
+
+<p>Definition at line <a class="el" href="#L92">92</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af8dc1a72a5303022acd41ba81ae10a5f"></a><!-- doxytag: member="HTTPConnection::requestContentLength" ref="af8dc1a72a5303022acd41ba81ae10a5f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_connection.html#af8dc1a72a5303022acd41ba81ae10a5f">requestContentLength</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The length of the http request from the host </p>
+
+<p>Definition at line <a class="el" href="#L144">144</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adab2e0927c4b0283c183f7f32053349c"></a><!-- doxytag: member="HTTPConnection::requestContentLengthReceived" ref="adab2e0927c4b0283c183f7f32053349c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_connection.html#adab2e0927c4b0283c183f7f32053349c">requestContentLengthReceived</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The number of bytes received from the host </p>
+
+<p>Definition at line <a class="el" href="#L149">149</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac4c2bd3aa854035a6a64072bcdcd9bb8"></a><!-- doxytag: member="HTTPConnection::responseDataSizes" ref="ac4c2bd3aa854035a6a64072bcdcd9bb8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableArray*) <a class="el" href="interface_h_t_t_p_connection.html#ac4c2bd3aa854035a6a64072bcdcd9bb8">responseDataSizes</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>HTTP response data sizes </p>
+
+<p>Definition at line <a class="el" href="#L154">154</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a2808e9990b93582a44989aeabc8427"></a><!-- doxytag: member="HTTPConnection::sentResponseHeaders" ref="a9a2808e9990b93582a44989aeabc8427" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_connection.html#a9a2808e9990b93582a44989aeabc8427">sentResponseHeaders</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Flag for whether sent response headers to the host </p>
+
+<p>Definition at line <a class="el" href="#L102">102</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a91aea6eb0173ab866d3c5aa468324dc9"></a><!-- doxytag: member="HTTPConnection::started" ref="a91aea6eb0173ab866d3c5aa468324dc9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) <a class="el" href="interface_h_t_t_p_connection.html#a91aea6eb0173ab866d3c5aa468324dc9">started</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Flag for whether the connection started </p>
+
+<p>Definition at line <a class="el" href="#L87">87</a> of file <a class="el" href="">HTTPConnection.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_connection_8h_source.html">HTTPConnection.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPConnection.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPConnection.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPConnection.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -845,7 +2055,7 @@ NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>responseD
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

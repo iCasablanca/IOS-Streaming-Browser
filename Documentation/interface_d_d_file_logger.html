@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -88,7 +88,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>DDFileLogger Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="DDFileLogger" --><!-- doxytag: inherits="DDAbstractLogger,DDLogger-p" --><div class="dynheader">
+<!-- doxytag: class="DDFileLogger" --><!-- doxytag: inherits="DDAbstractLogger,DDLogger-p" -->
+<p><code>#import &lt;<a class="el" href="">DDFileLogger.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for DDFileLogger:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_d_d_file_logger__inherit__graph.png" border="0" usemap="#_d_d_file_logger_inherit__map" alt="Inheritance graph"/></div>
@@ -102,39 +104,35 @@ Collaboration diagram for DDFileLogger:</div>
 <map name="_d_d_file_logger_coll__map" id="_d_d_file_logger_coll__map">
 <area shape="rect" id="node2" href="interface_d_d_abstract_logger.html" title="DDAbstractLogger" alt="" coords="61,86,213,114"/><area shape="rect" id="node4" href="protocol_d_d_logger-p.html" title="\&lt;DDLogger\&gt;" alt="" coords="5,6,115,34"/><area shape="rect" id="node7" href="interface_d_d_log_file_info.html" title="DDLogFileInfo" alt="" coords="237,86,357,114"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_d_d_file_logger-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a50f0c519d884f3c22369e05899db3aa1">init</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a465de50ce0a9cf84d19e319501746aaa">initWithLogFileManager:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0bb4fbddf347c6e5ce250957e68378e"></a><!-- doxytag: member="DDFileLogger::rollLogFile" ref="ab0bb4fbddf347c6e5ce250957e68378e" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>rollLogFile</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a2ab7a6ae980f3eea28d47a464900e4f6">lt_getMaximumFileSize:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#ab9101e0ccff67793bca285c195185afb">lt_setMaximumFileSize:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#aecf4a41b8923a153876b3dabad5a209a">lt_getRollingFrequency:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#ac1977a409010a4e07089ad95528e3e50">lt_setRollingFrequency:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5024cc2d885ad3d514759ba07c496fc"></a><!-- doxytag: member="DDFileLogger::rollLogFileNow" ref="af5024cc2d885ad3d514759ba07c496fc" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>rollLogFileNow</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#acab67c42d9f945ff2b76de8cf218f7ef">maybeRollLogFileDueToAge:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93ec0b32604d7cec398b74ba86db52c6"></a><!-- doxytag: member="DDFileLogger::maybeRollLogFileDueToSize" ref="a93ec0b32604d7cec398b74ba86db52c6" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>maybeRollLogFileDueToSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a4213bb26f5207ee3f402fe463badc691">init</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a0e74fdce69abddae843b6c023b392575">initWithLogFileManager:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a723909d9f13cddb41afe9c9ef0d08432">rollLogFile</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a7cd598744d0ee49ec189bfd83e1e71c7">lt_getMaximumFileSize:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a6dfa3c8997e3a5bf147e3deda5546c83">lt_setMaximumFileSize:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a05d810f158a9d1ce6280a8d2b2432128">lt_getRollingFrequency:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a3009e722623381c4d9f476a645f2d267">lt_setRollingFrequency:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#ae6cc8502994e7dcdefb1708ded2c233c">rollLogFileNow</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a734c1dca6c193484e6c6f19f3ab0a62c">maybeRollLogFileDueToAge:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_file_logger.html#a44386d87ea1dc9843f8121fd3c70b597">maybeRollLogFileDueToSize</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#a4f1dbb78b6cbb4e7c648ba9a85257eea">currentLogFileInfo</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSFileHandle *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#aecffd746544975896a9bfa95369f2092">currentLogFileHandle</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a842b1f7816b2b2a68960f1ac07e1db8c"></a><!-- doxytag: member="DDFileLogger::rollingTimer" ref="a842b1f7816b2b2a68960f1ac07e1db8c" args="" -->
-NSTimer *&#160;</td><td class="memItemRight" valign="bottom"><b>rollingTimer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#aa28290af02f070f75776b49b6ba873c2">currentLogFileInfo</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSFileHandle *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#abfa59132ddb5ee8d363bfd8aae7af36f">currentLogFileHandle</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#ab1289c09f958823a168e888fe3d66231">rollingTimer</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#a55f0ca92857d2a8ba54cba300a97b882">maximumFileSize</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#a67cba816078da08aad69f0728b6ea3f9">rollingFrequency</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a116ff56b414a26210f057cb0014b0820"></a><!-- doxytag: member="DDFileLogger::logFileManager" ref="a116ff56b414a26210f057cb0014b0820" args="" -->
-id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>logFileManager</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#aecc411c265de4a4eea787aac5f32f015">maximumFileSize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#a8181cec13cc04c57fa36a9687ff89ac6">rollingFrequency</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_file_logger.html#a4dd1c6c4e2f8ae6eb2967e400d5896a2">logFileManager</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a50f0c519d884f3c22369e05899db3aa1"></a><!-- doxytag: member="DDFileLogger::init" ref="a50f0c519d884f3c22369e05899db3aa1" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L171">171</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a4213bb26f5207ee3f402fe463badc691"></a><!-- doxytag: member="DDFileLogger::init" ref="a4213bb26f5207ee3f402fe463badc691" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -149,9 +147,16 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 <div class="memdoc">
 <p>Initialize the <a class="el" href="interface_d_d_file_logger.html">DDFileLogger</a> </p>
 
+<p>Definition at line <a class="el" href="#L540">540</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <a class="code" href="interface_d_d_log_file_manager_default.html">DDLogFileManagerDefault</a> *defaultLogFileManager = [[[<a class="code" href="interface_d_d_log_file_manager_default.html">DDLogFileManagerDefault</a> alloc] init] autorelease];
+        
+        <span class="keywordflow">return</span> [<span class="keyword">self</span> initWithLogFileManager:defaultLogFileManager];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a465de50ce0a9cf84d19e319501746aaa"></a><!-- doxytag: member="DDFileLogger::initWithLogFileManager:" ref="a465de50ce0a9cf84d19e319501746aaa" args="(id&lt; DDLogFileManager &gt; logFileManager)" -->
+<a class="anchor" id="a0e74fdce69abddae843b6c023b392575"></a><!-- doxytag: member="DDFileLogger::initWithLogFileManager:" ref="a0e74fdce69abddae843b6c023b392575" args="(id&lt; DDLogFileManager &gt; logFileManager)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -167,9 +172,24 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 <div class="memdoc">
 <p>Initialize the <a class="el" href="interface_d_d_file_logger.html">DDFileLogger</a> with a file manager </p>
 
+<p>Definition at line <a class="el" href="#L550">550</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                            :(id &lt;DDLogFileManager&gt;)aLogFileManager
+{
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super <a class="code" href="interface_d_d_file_logger.html#a4213bb26f5207ee3f402fe463badc691">init</a>]))
+        {
+                <a class="code" href="interface_d_d_file_logger.html#aecc411c265de4a4eea787aac5f32f015">maximumFileSize</a> = <a class="code" href="_d_d_file_logger_8h.html#a177da590583b0dda1e66c4d9adcb6323">DEFAULT_LOG_MAX_FILE_SIZE</a>;
+                <a class="code" href="interface_d_d_file_logger.html#a8181cec13cc04c57fa36a9687ff89ac6">rollingFrequency</a> = <a class="code" href="_d_d_file_logger_8h.html#a4bc4eef57ad1d80f8c27de5990dbb34a">DEFAULT_LOG_ROLLING_FREQUENCY</a>;
+                
+                <a class="code" href="interface_d_d_file_logger.html#a4dd1c6c4e2f8ae6eb2967e400d5896a2">logFileManager</a> = [aLogFileManager retain];
+                
+                <a class="code" href="interface_d_d_abstract_logger.html#a8233ba04af606520ca0a178345c2e141">formatter</a> = [[<a class="code" href="interface_d_d_log_file_formatter_default.html">DDLogFileFormatterDefault</a> alloc] init];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a2ab7a6ae980f3eea28d47a464900e4f6"></a><!-- doxytag: member="DDFileLogger::lt_getMaximumFileSize:" ref="a2ab7a6ae980f3eea28d47a464900e4f6" args="(NSMutableArray *resultHolder)" -->
+<a class="anchor" id="a7cd598744d0ee49ec189bfd83e1e71c7"></a><!-- doxytag: member="DDFileLogger::lt_getMaximumFileSize:" ref="a7cd598744d0ee49ec189bfd83e1e71c7" args="(NSMutableArray *resultHolder)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -187,7 +207,7 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 
 </div>
 </div>
-<a class="anchor" id="aecf4a41b8923a153876b3dabad5a209a"></a><!-- doxytag: member="DDFileLogger::lt_getRollingFrequency:" ref="aecf4a41b8923a153876b3dabad5a209a" args="(NSMutableArray *resultHolder)" -->
+<a class="anchor" id="a05d810f158a9d1ce6280a8d2b2432128"></a><!-- doxytag: member="DDFileLogger::lt_getRollingFrequency:" ref="a05d810f158a9d1ce6280a8d2b2432128" args="(NSMutableArray *resultHolder)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -205,7 +225,7 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 
 </div>
 </div>
-<a class="anchor" id="ab9101e0ccff67793bca285c195185afb"></a><!-- doxytag: member="DDFileLogger::lt_setMaximumFileSize:" ref="ab9101e0ccff67793bca285c195185afb" args="(NSNumber *maximumFileSizeWrapper)" -->
+<a class="anchor" id="a6dfa3c8997e3a5bf147e3deda5546c83"></a><!-- doxytag: member="DDFileLogger::lt_setMaximumFileSize:" ref="a6dfa3c8997e3a5bf147e3deda5546c83" args="(NSNumber *maximumFileSizeWrapper)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -223,7 +243,7 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 
 </div>
 </div>
-<a class="anchor" id="ac1977a409010a4e07089ad95528e3e50"></a><!-- doxytag: member="DDFileLogger::lt_setRollingFrequency:" ref="ac1977a409010a4e07089ad95528e3e50" args="(NSNumber *rollingFrequencyWrapper)" -->
+<a class="anchor" id="a3009e722623381c4d9f476a645f2d267"></a><!-- doxytag: member="DDFileLogger::lt_setRollingFrequency:" ref="a3009e722623381c4d9f476a645f2d267" args="(NSNumber *rollingFrequencyWrapper)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -241,7 +261,7 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 
 </div>
 </div>
-<a class="anchor" id="acab67c42d9f945ff2b76de8cf218f7ef"></a><!-- doxytag: member="DDFileLogger::maybeRollLogFileDueToAge:" ref="acab67c42d9f945ff2b76de8cf218f7ef" args="(NSTimer *aTimer)" -->
+<a class="anchor" id="a734c1dca6c193484e6c6f19f3ab0a62c"></a><!-- doxytag: member="DDFileLogger::maybeRollLogFileDueToAge:" ref="a734c1dca6c193484e6c6f19f3ab0a62c" args="(NSTimer *aTimer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -259,27 +279,110 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aecffd746544975896a9bfa95369f2092"></a><!-- doxytag: member="DDFileLogger::currentLogFileHandle" ref="aecffd746544975896a9bfa95369f2092" args="" -->
+<a class="anchor" id="a44386d87ea1dc9843f8121fd3c70b597"></a><!-- doxytag: member="DDFileLogger::maybeRollLogFileDueToSize" ref="a44386d87ea1dc9843f8121fd3c70b597" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSFileHandle *) <a class="el" href="interface_d_d_file_logger.html#aecffd746544975896a9bfa95369f2092">currentLogFileHandle</a><code> [protected]</code></td>
+          <td class="memname">- (void) maybeRollLogFileDueToSize </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>returns NSFileHandle </p>
 
 </div>
 </div>
-<a class="anchor" id="a4f1dbb78b6cbb4e7c648ba9a85257eea"></a><!-- doxytag: member="DDFileLogger::currentLogFileInfo" ref="a4f1dbb78b6cbb4e7c648ba9a85257eea" args="" -->
+<a class="anchor" id="a723909d9f13cddb41afe9c9ef0d08432"></a><!-- doxytag: member="DDFileLogger::rollLogFile" ref="a723909d9f13cddb41afe9c9ef0d08432" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (<a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *) <a class="el" href="interface_d_d_file_logger.html#a4f1dbb78b6cbb4e7c648ba9a85257eea">currentLogFileInfo</a><code> [protected]</code></td>
+          <td class="memname">- (void) rollLogFile </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>You can optionally force the current log file to be rolled with this method. </p>
+
+<p>Definition at line <a class="el" href="#L916">916</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">// This method is public.</span>
+        <span class="comment">// We need to execute the rolling on our logging thread/queue.</span>
+        
+        <span class="keywordflow">if</span> (<a class="code" href="_d_d_log_8h.html#ac629d2fa2afa72c8fb1f0ea40889b944">IS_GCD_AVAILABLE</a>)
+        {
+<span class="preprocessor">        #if GCD_MAYBE_AVAILABLE</span>
+<span class="preprocessor"></span>                
+                dispatch_block_t block = ^{
+                        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                        [<span class="keyword">self</span> rollLogFileNow];
+                        [pool release];
+                };
+                dispatch_async([<a class="code" href="interface_d_d_log.html">DDLog</a> loggingQueue], block);
+                
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+        <span class="keywordflow">else</span>
+        {
+<span class="preprocessor">        #if GCD_MAYBE_UNAVAILABLE</span>
+<span class="preprocessor"></span>                
+                [<span class="keyword">self</span> performSelector:@selector(rollLogFileNow)
+                             onThread:[<a class="code" href="interface_d_d_log.html">DDLog</a> <a class="code" href="interface_d_d_log.html#a0db1fa8d38dc4a508f1178f9ece91347">loggingThread</a>]
+                           withObject:nil
+                        waitUntilDone:NO];
+                
+<span class="preprocessor">        #endif</span>
+<span class="preprocessor"></span>        }
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ae6cc8502994e7dcdefb1708ded2c233c"></a><!-- doxytag: member="DDFileLogger::rollLogFileNow" ref="ae6cc8502994e7dcdefb1708ded2c233c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) rollLogFileNow </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="abfa59132ddb5ee8d363bfd8aae7af36f"></a><!-- doxytag: member="DDFileLogger::currentLogFileHandle" ref="abfa59132ddb5ee8d363bfd8aae7af36f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSFileHandle *) <a class="el" href="interface_d_d_file_logger.html#abfa59132ddb5ee8d363bfd8aae7af36f">currentLogFileHandle</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The NSFileHandle class is an object-oriented wrapper for a file descriptor</p>
+<p>returns NSFileHandle </p>
+
+<p>Definition at line <a class="el" href="#L187">187</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa28290af02f070f75776b49b6ba873c2"></a><!-- doxytag: member="DDFileLogger::currentLogFileInfo" ref="aa28290af02f070f75776b49b6ba873c2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (<a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *) <a class="el" href="interface_d_d_file_logger.html#aa28290af02f070f75776b49b6ba873c2">currentLogFileInfo</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -287,10 +390,42 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 <p>Returns the log file that should be used. If there is an existing log file that is suitable, within the constraints of maximumFileSize and rollingFrequency, then it is returned.</p>
 <p>Otherwise a new file is created and returned. </p>
 
+<p>Definition at line <a class="el" href="#L182">182</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab1289c09f958823a168e888fe3d66231"></a><!-- doxytag: member="DDFileLogger::rollingTimer" ref="ab1289c09f958823a168e888fe3d66231" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSTimer*) <a class="el" href="interface_d_d_file_logger.html#ab1289c09f958823a168e888fe3d66231">rollingTimer</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L192">192</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a55f0ca92857d2a8ba54cba300a97b882"></a><!-- doxytag: member="DDFileLogger::maximumFileSize" ref="a55f0ca92857d2a8ba54cba300a97b882" args="" -->
+<a class="anchor" id="a4dd1c6c4e2f8ae6eb2967e400d5896a2"></a><!-- doxytag: member="DDFileLogger::logFileManager" ref="a4dd1c6c4e2f8ae6eb2967e400d5896a2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManager</a> &gt;) logFileManager<code> [read, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L177">177</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecc411c265de4a4eea787aac5f32f015"></a><!-- doxytag: member="DDFileLogger::maximumFileSize" ref="aecc411c265de4a4eea787aac5f32f015" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -300,11 +435,14 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
       </table>
 </div>
 <div class="memdoc">
+<p>The maximum file size has to be between 0 and 9,223,372,036,854,775,807</p>
 <p>Gets the maximum file size. This value can be between 0 and 9,223,372,036,854,775,807 returns unsigned long long. </p>
+
+<p>Definition at line <a class="el" href="#L197">197</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a67cba816078da08aad69f0728b6ea3f9"></a><!-- doxytag: member="DDFileLogger::rollingFrequency" ref="a67cba816078da08aad69f0728b6ea3f9" args="" -->
+<a class="anchor" id="a8181cec13cc04c57fa36a9687ff89ac6"></a><!-- doxytag: member="DDFileLogger::rollingFrequency" ref="a8181cec13cc04c57fa36a9687ff89ac6" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -316,18 +454,20 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
 <div class="memdoc">
 <p>returns NSTimeInterval </p>
 
+<p>Definition at line <a class="el" href="#L202">202</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_d_d_file_logger_8h_source.html">DDFileLogger.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDFileLogger.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDFileLogger.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDFileLogger.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_d_d_file_logger.html">DDFileLogger</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -337,7 +477,7 @@ id&lt; <a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManage
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

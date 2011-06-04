@@ -51,7 +51,7 @@
         // create an asynchronous socket and initialize with the HTTPServer as the delegate, and the serverQueue as the delegate queue
 		asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:serverQueue];
 		
-		// Use default connection class of HTTPConnection
+		// Use default connection class of HTTPConnection.  
 		connectionQueue = dispatch_queue_create("HTTPConnection", NULL);
 
 		// Set the connectionClass to self (i.e. HTTPServer)
@@ -300,7 +300,7 @@
 }
 
 /**
-    Get the servers port
+    Get the servers listening port by dispatching q block on the serverQueue
     returns UInt16
 **/
 - (UInt16)listeningPort

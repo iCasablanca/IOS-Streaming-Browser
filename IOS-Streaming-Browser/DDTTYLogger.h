@@ -32,15 +32,36 @@
 **/
 @interface DDTTYLogger : DDAbstractLogger <DDLogger>
 {
+    /**
+     
+    **/
 	BOOL isaTTY;
 	
+    
+    /**
+     
+    **/
 	NSDateFormatter *dateFormatter;
 	
-	char *app; // Not null terminated
-	char *pid; // Not null terminated
+    /**
+      Not null terminated
+    **/
+	char *app; 
+    
+    /**
+      Not null terminated
+    **/
+	char *pid; 
 	
+    /**
+     
+    **/
 	size_t appLen;
-	size_t pidLen; // process id length
+    
+    /**
+      process id length
+    **/
+	size_t pidLen; 
 }
 
 /**

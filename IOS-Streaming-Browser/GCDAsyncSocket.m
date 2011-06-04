@@ -106,38 +106,46 @@ NSString *const GCDAsyncSocketSSLCipherSuites = @"GCDAsyncSocketSSLCipherSuites"
 NSString *const GCDAsyncSocketSSLDiffieHellmanParameters = @"GCDAsyncSocketSSLDiffieHellmanParameters";
 #endif
 
-
-// Enumerator for socket flags
+/** 
+ *
+ * \enum GCDAsyncSocketFlags
+ *
+ * \brief Enumerator for socket flags 
+**/ 
 enum GCDAsyncSocketFlags
 {
-	kSocketStarted                 = 1 <<  0,  // If set, socket has been started (accepting/connecting)
-	kConnected                     = 1 <<  1,  // If set, the socket is connected
-	kForbidReadsWrites             = 1 <<  2,  // If set, no new reads or writes are allowed
-	kReadsPaused                   = 1 <<  3,  // If set, reads are paused due to possible timeout
-	kWritesPaused                  = 1 <<  4,  // If set, writes are paused due to possible timeout
-	kDisconnectAfterReads          = 1 <<  5,  // If set, disconnect after no more reads are queued
-	kDisconnectAfterWrites         = 1 <<  6,  // If set, disconnect after no more writes are queued
-	kSocketCanAcceptBytes          = 1 <<  7,  // If set, we know socket can accept bytes. If unset, it's unknown.
-	kReadSourceSuspended           = 1 <<  8,  // If set, the read source is suspended
-	kWriteSourceSuspended          = 1 <<  9,  // If set, the write source is suspended
-	kQueuedTLS                     = 1 << 10,  // If set, we've queued an upgrade to TLS
-	kStartingReadTLS               = 1 << 11,  // If set, we're waiting for TLS negotiation to complete
-	kStartingWriteTLS              = 1 << 12,  // If set, we're waiting for TLS negotiation to complete
-	kSocketSecure                  = 1 << 13,  // If set, socket is using secure communication via SSL/TLS
+	kSocketStarted                 = 1 <<  0,  ///< If set, socket has been started (accepting/connecting)
+	kConnected                     = 1 <<  1,  ///< If set, the socket is connected
+	kForbidReadsWrites             = 1 <<  2,  ///< If set, no new reads or writes are allowed
+	kReadsPaused                   = 1 <<  3,  ///< If set, reads are paused due to possible timeout
+	kWritesPaused                  = 1 <<  4,  ///< If set, writes are paused due to possible timeout
+	kDisconnectAfterReads          = 1 <<  5,  ///< If set, disconnect after no more reads are queued
+	kDisconnectAfterWrites         = 1 <<  6,  ///< If set, disconnect after no more writes are queued
+	kSocketCanAcceptBytes          = 1 <<  7,  ///< If set, we know socket can accept bytes. If unset, it's unknown.
+	kReadSourceSuspended           = 1 <<  8,  ///< If set, the read source is suspended
+	kWriteSourceSuspended          = 1 <<  9,  ///< If set, the write source is suspended
+	kQueuedTLS                     = 1 << 10,  ///< If set, we've queued an upgrade to TLS
+	kStartingReadTLS               = 1 << 11,  ///< If set, we're waiting for TLS negotiation to complete
+	kStartingWriteTLS              = 1 << 12,  ///< If set, we're waiting for TLS negotiation to complete
+	kSocketSecure                  = 1 << 13,  ///< If set, socket is using secure communication via SSL/TLS
 #if TARGET_OS_IPHONE
-	kAddedHandshakeListener        = 1 << 14,  // If set, rw streams have been added to handshake listener thread
-	kSecureSocketHasBytesAvailable = 1 << 15,  // If set, CFReadStream has notified us of bytes available
+	kAddedHandshakeListener        = 1 << 14,  ///< If set, rw streams have been added to handshake listener thread
+	kSecureSocketHasBytesAvailable = 1 << 15,  ///< If set, CFReadStream has notified us of bytes available
 #endif
 };
 
-
-// Enumerator for socket configuration
+/** 
+ *
+ * \enum GCDAsyncSocketConfig
+ *
+ * \brief Enumerator for socket configuration 
+**/ 
 enum GCDAsyncSocketConfig
 {
-	kIPv4Disabled              = 1 << 0,  // If set, IPv4 is disabled
-	kIPv6Disabled              = 1 << 1,  // If set, IPv6 is disabled
-	kPreferIPv6                = 1 << 2,  // If set, IPv6 is preferred over IPv4
-	kAllowHalfDuplexConnection = 1 << 3,  // If set, the socket will stay open even if the read stream closes
+	kIPv4Disabled              = 1 << 0,  ///< If set, IPv4 is disabled
+	kIPv6Disabled              = 1 << 1,  ///< If set, IPv6 is disabled
+	kPreferIPv6                = 1 << 2,  ///< If set, IPv6 is preferred over IPv4
+	kAllowHalfDuplexConnection = 1 << 3,  ///< If set, the socket will stay open even if the read stream closes
 };
 
 #if TARGET_OS_IPHONE
@@ -588,18 +596,57 @@ enum GCDAsyncSocketConfig
 @interface GCDAsyncReadPacket : NSObject
 {
   @public
-	NSMutableData *buffer; // read buffer
-	NSUInteger startOffset; // start offset for read buffer
     
-	NSUInteger bytesDone; // number of bytes that have been read so far for the read operation
+    /**
+     read buffer
+    **/
+	NSMutableData *buffer; 
     
-	NSUInteger maxLength; // maximum length
-	NSTimeInterval timeout; // the timeout value for reading from a host
-	NSUInteger readLength; // read length
-	NSData *term;   // terminator
-	BOOL bufferOwner;  // whether there is a buffer owner
-	NSUInteger originalBufferLength; // original buffer length
-	long tag; // An application-defined integer or pointer that will be sent as an argument to the -socket:didReadData:withTag: message sent to the delegate.
+    /**
+      start offset for read buffer
+    **/
+	NSUInteger startOffset; 
+    
+    /**
+      number of bytes that have been read so far for the read operation
+    **/
+	NSUInteger bytesDone; 
+    
+    /**
+      maximum length
+    **/
+	NSUInteger maxLength; 
+    
+    /**
+      the timeout value for reading from a host
+    **/
+	NSTimeInterval timeout; 
+    
+    /**
+      read length
+    **/
+	NSUInteger readLength; 
+    
+    
+    /**
+      terminator
+    **/
+	NSData *term;   
+
+    /**
+      whether there is a buffer owner
+    **/
+	BOOL bufferOwner;  
+
+    /**
+        original buffer length
+    **/
+	NSUInteger originalBufferLength; 
+
+    /**
+      An application-defined integer or pointer that will be sent as an argument to the -socket:didReadData:withTag: message sent to the delegate.
+    **/
+	long tag; 
 }
 
 /**
@@ -1269,10 +1316,25 @@ enum GCDAsyncSocketConfig
 @interface GCDAsyncWritePacket : NSObject
 {
   @public
-	NSData *buffer; // write buffer
-	NSUInteger bytesDone; // number of bytes that have been written so far for the write operation
+    /**
+      write buffer
+    **/
+	NSData *buffer; 
+    
+    /**
+        number of bytes that have been written so far for the write operation
+    **/
+	NSUInteger bytesDone; 
+
+    /**
+     
+    **/
 	long tag;
-	NSTimeInterval timeout; // the timeout value for writing to a host
+    
+    /**
+        The timeout value for writing to a host
+    **/
+	NSTimeInterval timeout; 
 }
 
 /**
@@ -1337,7 +1399,11 @@ enum GCDAsyncSocketConfig
 @interface GCDAsyncSpecialPacket : NSObject
 {
   @public
-	NSDictionary *tlsSettings; // Transport Layer Security settings
+    
+    /**
+      Transport Layer Security settings
+    **/
+	NSDictionary *tlsSettings; 
 }
 
 /**

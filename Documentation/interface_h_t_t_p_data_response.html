@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,7 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>HTTPDataResponse Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPDataResponse" --><!-- doxytag: inherits="HTTPResponse-p" --><div class="dynheader">
+<!-- doxytag: class="HTTPDataResponse" --><!-- doxytag: inherits="HTTPResponse-p" -->
+<p><code>#import &lt;<a class="el" href="">HTTPDataResponse.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for HTTPDataResponse:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_h_t_t_p_data_response__inherit__graph.png" border="0" usemap="#_h_t_t_p_data_response_inherit__map" alt="Inheritance graph"/></div>
@@ -101,20 +103,20 @@ Collaboration diagram for HTTPDataResponse:</div>
 <map name="_h_t_t_p_data_response_coll__map" id="_h_t_t_p_data_response_coll__map">
 <area shape="rect" id="node2" href="protocol_h_t_t_p_response-p.html" title="\&lt;HTTPResponse\&gt;" alt="" coords="5,6,152,34"/><area shape="rect" id="node4" href="class_n_s_data.html" title="NSData" alt="" coords="176,6,248,34"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="class_h_t_t_p_data_response-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_data_response.html#a4158f4995f94b0834fbaa010d35d0445">initWithData:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_h_t_t_p_data_response.html#a42ee83b8c11bd68e673b38d2a96ca170">initWithData:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_data_response.html#ac7d0ca00f9a44f0ceb8c9b42ddaf1c31">offset</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accc6936ec791c0bcb95c97ccd24fa392"></a><!-- doxytag: member="HTTPDataResponse::data" ref="accc6936ec791c0bcb95c97ccd24fa392" args="" -->
-<a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_data_response.html#a7c85c342ca85af51f9245eb0d9b9b46b">offset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_n_s_data.html">NSData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_h_t_t_p_data_response.html#a3d47178b517e0136e2dc8e73eeb91905">data</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4158f4995f94b0834fbaa010d35d0445"></a><!-- doxytag: member="HTTPDataResponse::initWithData:" ref="a4158f4995f94b0834fbaa010d35d0445" args="(NSData *data)" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L5">5</a> of file <a class="el" href="">HTTPDataResponse.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a42ee83b8c11bd68e673b38d2a96ca170"></a><!-- doxytag: member="HTTPDataResponse::initWithData:" ref="a42ee83b8c11bd68e673b38d2a96ca170" args="(NSData *data)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -131,33 +133,64 @@ Protected Attributes</h2></td></tr>
 <p>Initializes the <a class="el" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a> with data param NSDAta returns id</p>
 <p>Initializes the <a class="el" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a> with data param <a class="el" href="class_n_s_data.html">NSData</a> returns id </p>
 
+<p>Definition at line <a class="el" href="#L13">13</a> of file <a class="el" href="">HTTPDataResponse.m</a>.</p>
+<div class="fragment"><pre class="fragment">                  :(<a class="code" href="class_n_s_data.html">NSData</a> *)dataParam
+{
+    
+        <span class="keywordflow">if</span>((<span class="keyword">self</span> = [super init]))
+        {
+                
+                <a class="code" href="protocol_h_t_t_p_response-p.html#accae801ae3d31712b8a7a5d94445082d">offset</a> = 0;  <span class="comment">// Set offset to data as zero</span>
+                <a class="code" href="interface_h_t_t_p_data_response.html#a3d47178b517e0136e2dc8e73eeb91905">data</a> = [dataParam retain];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ac7d0ca00f9a44f0ceb8c9b42ddaf1c31"></a><!-- doxytag: member="HTTPDataResponse::offset" ref="ac7d0ca00f9a44f0ceb8c9b42ddaf1c31" args="" -->
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a3d47178b517e0136e2dc8e73eeb91905"></a><!-- doxytag: member="HTTPDataResponse::data" ref="a3d47178b517e0136e2dc8e73eeb91905" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_data_response.html#ac7d0ca00f9a44f0ceb8c9b42ddaf1c31">offset</a><code> [protected]</code></td>
+          <td class="memname">- (<a class="el" href="class_n_s_data.html">NSData</a>*) <a class="el" href="interface_h_t_t_p_data_response.html#a3d47178b517e0136e2dc8e73eeb91905">data</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the data </p>
+
+<p>Definition at line <a class="el" href="#L17">17</a> of file <a class="el" href="">HTTPDataResponse.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c85c342ca85af51f9245eb0d9b9b46b"></a><!-- doxytag: member="HTTPDataResponse::offset" ref="a7c85c342ca85af51f9245eb0d9b9b46b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (UInt64) <a class="el" href="interface_h_t_t_p_data_response.html#a7c85c342ca85af51f9245eb0d9b9b46b">offset</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Returns the offset to the data returns UInt64 </p>
 
+<p>Definition at line <a class="el" href="#L12">12</a> of file <a class="el" href="">HTTPDataResponse.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_data_response_8h_source.html">HTTPDataResponse.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDataResponse.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPDataResponse.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPDataResponse.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_data_response.html">HTTPDataResponse</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -167,7 +200,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

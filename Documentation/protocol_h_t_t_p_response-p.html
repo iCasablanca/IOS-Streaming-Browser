@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -86,31 +86,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>&lt;HTTPResponse&gt; Protocol Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="HTTPResponse-p" --><div class="dynheader">
+<!-- doxytag: class="HTTPResponse-p" -->
+<p><code>#import &lt;<a class="el" href="">HTTPResponse.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for &lt;HTTPResponse&gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="protocol_h_t_t_p_response-p__inherit__graph.png" border="0" usemap="#_3_h_t_t_p_response_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="_3_h_t_t_p_response_4_inherit__map" id="_3_h_t_t_p_response_4_inherit__map">
 <area shape="rect" id="node3" href="interface_h_t_t_p_async_file_response.html" title="HTTPAsyncFileResponse" alt="" coords="13,83,208,111"/><area shape="rect" id="node7" href="interface_h_t_t_p_data_response.html" title="HTTPDataResponse" alt="" coords="232,83,392,111"/><area shape="rect" id="node9" href="interface_h_t_t_p_file_response.html" title="HTTPFileResponse" alt="" coords="416,83,568,111"/><area shape="rect" id="node11" href="interface_h_t_t_p_redirect_response.html" title="HTTPRedirectResponse" alt="" coords="592,83,779,111"/><area shape="rect" id="node5" href="interface_h_t_t_p_dynamic_file_response.html" title="HTTPDynamicFileResponse" alt="" coords="5,161,216,189"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="protocol_h_t_t_p_response-p-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(UInt64)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#aacdbc5120827924b4f1469f4bff53f9c">contentLength</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(UInt64)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a585064d867b140748aaf65d641918f01">offset</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a9c5f6df1ae933700f46582a8336d64f5">setOffset:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#ab52d2271ae276cd860ade494e97e8cf0">readDataOfLength:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#af8b6308b25628945ec281047ccd82064">isDone</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a05e395b13493e5e133d7e5a4d522bc9a">delayResponeHeaders</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a8122f2b82e63da8448cab733f577bb95">status</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a048652fbb7b54be6684db3c0d5aa1aa8">httpHeaders</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a64b5c7b82f36a6a1fe14525049e4f134">isChunked</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a86d5d37713d7bfb04492615abc95ff2f">connectionDidClose</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(UInt64)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a7f89a98ab7ee578eef0be5be0e9561e8">contentLength</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(UInt64)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#accae801ae3d31712b8a7a5d94445082d">offset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a1667313a9eedf07ddfb6e3685bac6afe">setOffset:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="class_n_s_data.html">NSData</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#aa1e9ab7fd983f600585b52dc83dabaae">readDataOfLength:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a4bad4e72cc4b3baf95446e62c900dc19">isDone</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#ac56d3a2594eac55c62c4da37a024ce0d">delayResponeHeaders</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSInteger)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#acd951d9571a99be313258048dfa9917b">status</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSDictionary *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a8ff77af23b5126dbcd826e645a1e1eec">httpHeaders</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#a9b700c36eae5b95a7b92b7a6ec5c7b35">isChunked</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_h_t_t_p_response-p.html#aecbd2300b4477d81f8443205d6e0e21d">connectionDidClose</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a86d5d37713d7bfb04492615abc95ff2f"></a><!-- doxytag: member="HTTPResponse&#45;p::connectionDidClose" ref="a86d5d37713d7bfb04492615abc95ff2f" args="()" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L4">4</a> of file <a class="el" href="">HTTPResponse.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aecbd2300b4477d81f8443205d6e0e21d"></a><!-- doxytag: member="HTTPResponse&#45;p::connectionDidClose" ref="aecbd2300b4477d81f8443205d6e0e21d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -127,7 +130,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aacdbc5120827924b4f1469f4bff53f9c"></a><!-- doxytag: member="HTTPResponse&#45;p::contentLength" ref="aacdbc5120827924b4f1469f4bff53f9c" args="()" -->
+<a class="anchor" id="a7f89a98ab7ee578eef0be5be0e9561e8"></a><!-- doxytag: member="HTTPResponse&#45;p::contentLength" ref="a7f89a98ab7ee578eef0be5be0e9561e8" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -144,7 +147,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a05e395b13493e5e133d7e5a4d522bc9a"></a><!-- doxytag: member="HTTPResponse&#45;p::delayResponeHeaders" ref="a05e395b13493e5e133d7e5a4d522bc9a" args="()" -->
+<a class="anchor" id="ac56d3a2594eac55c62c4da37a024ce0d"></a><!-- doxytag: member="HTTPResponse&#45;p::delayResponeHeaders" ref="ac56d3a2594eac55c62c4da37a024ce0d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -165,7 +168,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a048652fbb7b54be6684db3c0d5aa1aa8"></a><!-- doxytag: member="HTTPResponse&#45;p::httpHeaders" ref="a048652fbb7b54be6684db3c0d5aa1aa8" args="()" -->
+<a class="anchor" id="a8ff77af23b5126dbcd826e645a1e1eec"></a><!-- doxytag: member="HTTPResponse&#45;p::httpHeaders" ref="a8ff77af23b5126dbcd826e645a1e1eec" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -182,7 +185,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a64b5c7b82f36a6a1fe14525049e4f134"></a><!-- doxytag: member="HTTPResponse&#45;p::isChunked" ref="a64b5c7b82f36a6a1fe14525049e4f134" args="()" -->
+<a class="anchor" id="a9b700c36eae5b95a7b92b7a6ec5c7b35"></a><!-- doxytag: member="HTTPResponse&#45;p::isChunked" ref="a9b700c36eae5b95a7b92b7a6ec5c7b35" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -200,7 +203,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af8b6308b25628945ec281047ccd82064"></a><!-- doxytag: member="HTTPResponse&#45;p::isDone" ref="af8b6308b25628945ec281047ccd82064" args="()" -->
+<a class="anchor" id="a4bad4e72cc4b3baf95446e62c900dc19"></a><!-- doxytag: member="HTTPResponse&#45;p::isDone" ref="a4bad4e72cc4b3baf95446e62c900dc19" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -217,7 +220,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a585064d867b140748aaf65d641918f01"></a><!-- doxytag: member="HTTPResponse&#45;p::offset" ref="a585064d867b140748aaf65d641918f01" args="()" -->
+<a class="anchor" id="accae801ae3d31712b8a7a5d94445082d"></a><!-- doxytag: member="HTTPResponse&#45;p::offset" ref="accae801ae3d31712b8a7a5d94445082d" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -234,7 +237,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab52d2271ae276cd860ade494e97e8cf0"></a><!-- doxytag: member="HTTPResponse&#45;p::readDataOfLength:" ref="ab52d2271ae276cd860ade494e97e8cf0" args="(NSUInteger length)" -->
+<a class="anchor" id="aa1e9ab7fd983f600585b52dc83dabaae"></a><!-- doxytag: member="HTTPResponse&#45;p::readDataOfLength:" ref="aa1e9ab7fd983f600585b52dc83dabaae" args="(NSUInteger length)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -253,7 +256,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9c5f6df1ae933700f46582a8336d64f5"></a><!-- doxytag: member="HTTPResponse&#45;p::setOffset:" ref="a9c5f6df1ae933700f46582a8336d64f5" args="(UInt64 offset)" -->
+<a class="anchor" id="a1667313a9eedf07ddfb6e3685bac6afe"></a><!-- doxytag: member="HTTPResponse&#45;p::setOffset:" ref="a1667313a9eedf07ddfb6e3685bac6afe" args="(UInt64 offset)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -271,7 +274,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8122f2b82e63da8448cab733f577bb95"></a><!-- doxytag: member="HTTPResponse&#45;p::status" ref="a8122f2b82e63da8448cab733f577bb95" args="()" -->
+<a class="anchor" id="acd951d9571a99be313258048dfa9917b"></a><!-- doxytag: member="HTTPResponse&#45;p::status" ref="acd951d9571a99be313258048dfa9917b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -289,14 +292,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this protocol was generated from the following file:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_h_t_t_p_response_8h_source.html">HTTPResponse.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">HTTPResponse.h</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="protocol_h_t_t_p_response-p.html">HTTPResponse</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -306,7 +309,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

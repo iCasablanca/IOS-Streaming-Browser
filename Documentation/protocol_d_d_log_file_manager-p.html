@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -87,52 +87,233 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>&lt;DDLogFileManager&gt; Protocol Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="DDLogFileManager-p" --><div class="dynheader">
+<!-- doxytag: class="DDLogFileManager-p" -->
+<p><code>#import &lt;<a class="el" href="">DDFileLogger.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for &lt;DDLogFileManager&gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="protocol_d_d_log_file_manager-p__inherit__graph.png" border="0" usemap="#_3_d_d_log_file_manager_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="_3_d_d_log_file_manager_4_inherit__map" id="_3_d_d_log_file_manager_4_inherit__map">
 <area shape="rect" id="node3" href="interface_d_d_log_file_manager_default.html" title="DDLogFileManagerDefault" alt="" coords="5,83,208,111"/></map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-
-<p><a href="protocol_d_d_log_file_manager-p-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d5de02082978f3e21f95641c1d04dfc"></a><!-- doxytag: member="DDLogFileManager&#45;p::logsDirectory" ref="a1d5de02082978f3e21f95641c1d04dfc" args="()" -->
-(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <b>logsDirectory</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63ecb0df541333c8b2ac4bdeae831213"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFilePaths" ref="a63ecb0df541333c8b2ac4bdeae831213" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>unsortedLogFilePaths</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ab5171a1c93b77f95a5c62f14e3bb81"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFileNames" ref="a0ab5171a1c93b77f95a5c62f14e3bb81" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>unsortedLogFileNames</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30671150308cc41efc842cfb6d676c3f"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFileInfos" ref="a30671150308cc41efc842cfb6d676c3f" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>unsortedLogFileInfos</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c306b5749dcb2560197b82252fa602e"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFilePaths" ref="a5c306b5749dcb2560197b82252fa602e" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>sortedLogFilePaths</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbea9ad69a93c9f90d52a3e827071b02"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFileNames" ref="acbea9ad69a93c9f90d52a3e827071b02" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>sortedLogFileNames</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa546aa0de2f32598659b0263cad191ce"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFileInfos" ref="aa546aa0de2f32598659b0263cad191ce" args="()" -->
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <b>sortedLogFileInfos</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4764396987eee9020fc42502e9a469e9"></a><!-- doxytag: member="DDLogFileManager&#45;p::createNewLogFile" ref="a4764396987eee9020fc42502e9a469e9" args="()" -->
-(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <b>createNewLogFile</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11052c4bfb0aeb3ebf5a7eb68ba5a5f0"></a><!-- doxytag: member="DDLogFileManager&#45;p::didArchiveLogFile:" ref="a11052c4bfb0aeb3ebf5a7eb68ba5a5f0" args="(NSString *logFilePath)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>didArchiveLogFile:</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab436eeac96a13dc2896a44a1cb2cffb1"></a><!-- doxytag: member="DDLogFileManager&#45;p::didRollAndArchiveLogFile:" ref="ab436eeac96a13dc2896a44a1cb2cffb1" args="(NSString *logFilePath)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>didRollAndArchiveLogFile:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#adcdca4fb8d0d2dd211ddad5db63c3bba">logsDirectory</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a392761e5cabb8e766589c05052bf83f2">unsortedLogFilePaths</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a0bf85d909b03a31acef6b71a69507f2b">unsortedLogFileNames</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#abf4ca6a6a694d26f6c71b5a83853184c">unsortedLogFileInfos</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a9465b28fa290631abf75ec76f027e5ce">sortedLogFilePaths</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a776f1c567e6ce5b9f5a7492506ed857e">sortedLogFileNames</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a41475767c05308c8fe8e15c47e7805ef">sortedLogFileInfos</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#acbe9c93365ad2987f776b82f0f63470d">createNewLogFile</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#aa9d9aab56065d4614c8d05324b575c18">didArchiveLogFile:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_d_d_log_file_manager-p.html#a8fd538d6b7e8efdb2d61f1ebd25c11b9">didRollAndArchiveLogFile:</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb282ecd7fa74b5c3ee03bbb7a710dc1"></a><!-- doxytag: member="DDLogFileManager&#45;p::maximumNumberOfLogFiles" ref="acb282ecd7fa74b5c3ee03bbb7a710dc1" args="" -->
-NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>maximumNumberOfLogFiles</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_d_d_log_file_manager-p.html#a4d3c451ca2fe122d57ecc8c8eb82e67e">maximumNumberOfLogFiles</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L46">46</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="acbe9c93365ad2987f776b82f0f63470d"></a><!-- doxytag: member="DDLogFileManager&#45;p::createNewLogFile" ref="acbe9c93365ad2987f776b82f0f63470d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) createNewLogFile </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns NSString </p>
+
+</div>
+</div>
+<a class="anchor" id="aa9d9aab56065d4614c8d05324b575c18"></a><!-- doxytag: member="DDLogFileManager&#45;p::didArchiveLogFile:" ref="aa9d9aab56065d4614c8d05324b575c18" args="(NSString *logFilePath)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) didArchiveLogFile: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>logFilePath</em></td>
+          <td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString </p>
+
+</div>
+</div>
+<a class="anchor" id="a8fd538d6b7e8efdb2d61f1ebd25c11b9"></a><!-- doxytag: member="DDLogFileManager&#45;p::didRollAndArchiveLogFile:" ref="a8fd538d6b7e8efdb2d61f1ebd25c11b9" args="(NSString *logFilePath)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) didRollAndArchiveLogFile: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>logFilePath</em></td>
+          <td><code> [optional]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString </p>
+
+</div>
+</div>
+<a class="anchor" id="adcdca4fb8d0d2dd211ddad5db63c3bba"></a><!-- doxytag: member="DDLogFileManager&#45;p::logsDirectory" ref="adcdca4fb8d0d2dd211ddad5db63c3bba" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) logsDirectory </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a41475767c05308c8fe8e15c47e7805ef"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFileInfos" ref="a41475767c05308c8fe8e15c47e7805ef" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) sortedLogFileInfos </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns NSArray </p>
+
+</div>
+</div>
+<a class="anchor" id="a776f1c567e6ce5b9f5a7492506ed857e"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFileNames" ref="a776f1c567e6ce5b9f5a7492506ed857e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) sortedLogFileNames </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns NSArray </p>
+
+</div>
+</div>
+<a class="anchor" id="a9465b28fa290631abf75ec76f027e5ce"></a><!-- doxytag: member="DDLogFileManager&#45;p::sortedLogFilePaths" ref="a9465b28fa290631abf75ec76f027e5ce" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) sortedLogFilePaths </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns NSArray </p>
+
+</div>
+</div>
+<a class="anchor" id="abf4ca6a6a694d26f6c71b5a83853184c"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFileInfos" ref="abf4ca6a6a694d26f6c71b5a83853184c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) unsortedLogFileInfos </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>returns NSArray </p>
+
+</div>
+</div>
+<a class="anchor" id="a0bf85d909b03a31acef6b71a69507f2b"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFileNames" ref="a0bf85d909b03a31acef6b71a69507f2b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) unsortedLogFileNames </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets unsorted array with the log file names returns NSArray </p>
+
+</div>
+</div>
+<a class="anchor" id="a392761e5cabb8e766589c05052bf83f2"></a><!-- doxytag: member="DDLogFileManager&#45;p::unsortedLogFilePaths" ref="a392761e5cabb8e766589c05052bf83f2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSArray *) unsortedLogFilePaths </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Property Documentation</h2>
+<a class="anchor" id="a4d3c451ca2fe122d57ecc8c8eb82e67e"></a><!-- doxytag: member="DDLogFileManager&#45;p::maximumNumberOfLogFiles" ref="a4d3c451ca2fe122d57ecc8c8eb82e67e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSUInteger) maximumNumberOfLogFiles<code> [read, write, required, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="interface_d_d_log_file_manager_default.html#a4d3c451ca2fe122d57ecc8c8eb82e67e">DDLogFileManagerDefault</a>.</p>
+
+<p>Definition at line <a class="el" href="#L51">51</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this protocol was generated from the following file:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_d_d_file_logger_8h_source.html">DDFileLogger.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDFileLogger.h</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="protocol_d_d_log_file_manager-p.html">DDLogFileManager</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -142,7 +323,7 @@ NSUInteger&#160;</td><td class="memItemRight" valign="bottom"><b>maximumNumberOf
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

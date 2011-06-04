@@ -5,8 +5,15 @@
 @interface HTTPDataResponse : NSObject <HTTPResponse>
 {
 
+    /**
+     
+    **/
 	NSUInteger offset;
-	NSData *data;  // the data
+    
+    /**
+      the data
+    **/
+	NSData *data;  
 }
 
 /**

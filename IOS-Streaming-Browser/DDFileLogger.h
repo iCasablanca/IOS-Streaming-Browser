@@ -63,34 +63,36 @@
 - (NSArray *)unsortedLogFilePaths;
 
 /**
- 
+    Gets unsorted array with the log file names
+    returns NSArray
 **/
 - (NSArray *)unsortedLogFileNames;
 
 /**
- 
+    
+    returns NSArray
 **/
 - (NSArray *)unsortedLogFileInfos;
 
 /**
- 
+    returns NSArray
 **/
 - (NSArray *)sortedLogFilePaths;
 
 /**
- 
+    returns NSArray
 **/
 - (NSArray *)sortedLogFileNames;
 
 /**
- 
+    returns NSArray
 **/
 - (NSArray *)sortedLogFileInfos;
 
 // Private methods (only to be used by DDFileLogger)
 
 /**
- 
+    returns NSString
 **/
 - (NSString *)createNewLogFile;
 
@@ -101,12 +103,12 @@
 //////////////////////////////////////
 
 /**
- 
+    param NSString
 **/
 - (void)didArchiveLogFile:(NSString *)logFilePath;
 
 /**
- 
+    param NSString
 **/
 - (void)didRollAndArchiveLogFile:(NSString *)logFilePath;
 
@@ -129,6 +131,9 @@
 
 @interface DDLogFileManagerDefault : NSObject <DDLogFileManager>
 {
+    /**
+        The maximum number of log files
+    **/
 	NSUInteger maximumNumberOfLogFiles;
 }
 
@@ -149,6 +154,9 @@
 
 @interface DDLogFileFormatterDefault : NSObject <DDLogFormatter>
 {
+    /**
+     
+    **/
 	NSDateFormatter *dateFormatter;
 }
 
@@ -160,19 +168,34 @@
 
 @interface DDFileLogger : DDAbstractLogger <DDLogger>
 {
+    /**
+     
+    **/
 	id <DDLogFileManager> logFileManager;
 	
+    /**
+     
+    **/
 	DDLogFileInfo *currentLogFileInfo;
     
-    // The NSFileHandle class is an object-oriented wrapper for a file descriptor
+    /**
+        The NSFileHandle class is an object-oriented wrapper for a file descriptor
+    **/
 	NSFileHandle *currentLogFileHandle;
 	
+    /**
+     
+    **/
 	NSTimer *rollingTimer;
 	
-    
-    // The maximum file size has to be between 0 and 9,223,372,036,854,775,807
+    /**
+        The maximum file size has to be between 0 and 9,223,372,036,854,775,807
+    **/
 	unsigned long long maximumFileSize;
     
+    /**
+     
+    **/
 	NSTimeInterval rollingFrequency;
 }
 
@@ -221,8 +244,9 @@
 @property (nonatomic, readonly) id <DDLogFileManager> logFileManager;
 
 
-// You can optionally force the current log file to be rolled with this method.
-
+/**
+    You can optionally force the current log file to be rolled with this method.
+**/
 - (void)rollLogFile;
 
 // Inherited from DDAbstractLogger
@@ -251,12 +275,29 @@
 
 @interface DDLogFileInfo : NSObject
 {
+    /**
+        The file path of the log file
+    **/
 	NSString *filePath;
+    
+    /**
+        The log file name
+    **/
 	NSString *fileName;
 	
+    /**
+     
+    **/
 	NSDictionary *fileAttributes;
 	
+    /**
+        The creation date
+    **/
 	NSDate *creationDate;
+    
+    /**
+        The modification date
+    **/
 	NSDate *modificationDate;
 	
     
@@ -281,12 +322,16 @@
 
 /**
     Class method
+    param NSString
+    returns id
 **/
 + (id)logFileWithPath:(NSString *)filePath;
 
 
 /**
     Initialize the DDLogFileInfo with a file path
+    param NSString
+    returns id
 **/
 - (id)initWithFilePath:(NSString *)filePath;
 
@@ -296,7 +341,7 @@
 - (void)reset;
 
 /**
- 
+    param NSString
 **/
 - (void)renameFile:(NSString *)newFileName;
 
@@ -323,17 +368,18 @@
 
 
 /**
- 
+    param NSString
+    returns BOOL
 **/
 - (BOOL)hasExtensionAttributeWithName:(NSString *)attrName;
 
 /**
- 
+    param NSString
 **/
 - (void)addExtensionAttributeWithName:(NSString *)attrName;
 
 /**
- 
+    param NSString
 **/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName;
 
@@ -343,29 +389,32 @@
 // such as on Macs and on iPhone devices.
 
 /**
- 
+    param NSString
+    returns BOOL
 **/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName;
 
 /**
- 
+    param NSString
 **/
 - (void)addExtendedAttributeWithName:(NSString *)attrName;
 
 /**
- 
+    param NSString
 **/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName;
 
 #endif
 
 /**
- 
+    param DDLogFileInfo
+    returns NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another;
 
 /**
- 
+    param DDLogFileInfo
+    returns NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another;
 

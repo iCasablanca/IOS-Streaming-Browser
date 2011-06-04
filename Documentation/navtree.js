@@ -1,7 +1,8 @@
 var NAVTREE =
 [
   [ "IOS Streaming Browser", "index.html", [
-    [ "Class List", "annotated.html", [
+    [ "IOS Steaming Browser Index Page", "index.html", null ],
+    [ "Data Structures", "annotated.html", [
       [ "_DDRange", "struct___d_d_range.html", null ],
       [ "DDAbstractLogger", "interface_d_d_abstract_logger.html", null ],
       [ "DDASLLogger", "interface_d_d_a_s_l_logger.html", null ],
@@ -41,7 +42,7 @@ var NAVTREE =
       [ "WebSocket", "interface_web_socket.html", null ],
       [ "<WebSocketDelegate>", "protocol_web_socket_delegate-p.html", null ]
     ] ],
-    [ "Class Index", "classes.html", null ],
+    [ "Data Structure Index", "classes.html", null ],
     [ "Class Hierarchy", "hierarchy.html", [
       [ "_DDRange", "struct___d_d_range.html", null ],
       [ "DDLog", "interface_d_d_log.html", null ],
@@ -91,31 +92,54 @@ var NAVTREE =
       [ "WebSocket", "interface_web_socket.html", null ],
       [ "<WebSocketDelegate>", "protocol_web_socket_delegate-p.html", null ]
     ] ],
-    [ "Class Members", "functions.html", null ],
+    [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDASLLogger.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDData.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDFileLogger.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDLog.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDNumber.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDRange.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDTTYLogger.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/GCDAsyncSocket.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAsyncFileResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAuthenticationRequest.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPConnection.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDataResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDynamicFileResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPFileResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPMessage.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPRedirectResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPResponse.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPServer.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserAppDelegate.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserViewController.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/localhostAddresses.h", null, null ],
-      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/WebSocket.h", null, null ]
-    ] ]
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDASLLogger.h", "_d_d_a_s_l_logger_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDASLLogger.m", "_d_d_a_s_l_logger_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDData.h", "_d_d_data_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDData.m", "_d_d_data_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDFileLogger.h", "_d_d_file_logger_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDFileLogger.m", "_d_d_file_logger_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDLog.h", "_d_d_log_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDLog.m", "_d_d_log_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDNumber.h", "_d_d_number_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDNumber.m", "_d_d_number_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDRange.h", "_d_d_range_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDRange.m", "_d_d_range_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDTTYLogger.h", "_d_d_t_t_y_logger_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDTTYLogger.m", "_d_d_t_t_y_logger_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/GCDAsyncSocket.h", "_g_c_d_async_socket_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/GCDAsyncSocket.m", "_g_c_d_async_socket_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAsyncFileResponse.h", "_h_t_t_p_async_file_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAsyncFileResponse.m", "_h_t_t_p_async_file_response_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAuthenticationRequest.h", "_h_t_t_p_authentication_request_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAuthenticationRequest.m", "_h_t_t_p_authentication_request_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPConnection.h", "_h_t_t_p_connection_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPConnection.m", "_h_t_t_p_connection_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDataResponse.h", "_h_t_t_p_data_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDataResponse.m", "_h_t_t_p_data_response_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDynamicFileResponse.h", "_h_t_t_p_dynamic_file_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPDynamicFileResponse.m", "_h_t_t_p_dynamic_file_response_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPFileResponse.h", "_h_t_t_p_file_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPFileResponse.m", "_h_t_t_p_file_response_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPMessage.h", "_h_t_t_p_message_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPMessage.m", "_h_t_t_p_message_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPRedirectResponse.h", "_h_t_t_p_redirect_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPRedirectResponse.m", "_h_t_t_p_redirect_response_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPResponse.h", "_h_t_t_p_response_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPServer.h", "_h_t_t_p_server_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPServer.m", "_h_t_t_p_server_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserAppDelegate.h", "_i_o_s___streaming___browser_app_delegate_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserAppDelegate.m", "_i_o_s___streaming___browser_app_delegate_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserViewController.h", "_i_o_s___streaming___browser_view_controller_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/IOS_Streaming_BrowserViewController.m", "_i_o_s___streaming___browser_view_controller_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/localhostAddresses.h", "localhost_addresses_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/localhostAddresses.m", "localhost_addresses_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/main.m", "main_8m.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/WebSocket.h", "_web_socket_8h.html", null ],
+      [ "/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/WebSocket.m", "_web_socket_8m.html", null ]
+    ] ],
+    [ "Globals", "globals.html", null ]
   ] ]
 ];
 

@@ -138,6 +138,7 @@
 	{
 		NSLogInfo(@"DDFileLogManagerDefault: Responding to configuration change: maximumNumberOfLogFiles");
 		
+        // Flag for whether grand central dispatch is available
 		if (IS_GCD_AVAILABLE)
 		{
 		#if GCD_MAYBE_AVAILABLE
@@ -1244,7 +1245,8 @@
 }
 
 /**
- 
+    The log file creation date
+    returns NSDate
 **/
 - (NSDate *)creationDate
 {
@@ -1306,7 +1308,8 @@
 }
 
 /**
- 
+    Gets the age of the log file
+    returns NSTimeInterval
 **/
 - (NSTimeInterval)age
 {
@@ -1318,7 +1321,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- 
+    Whether the log file is archived
+    returns BOOL
 **/
 - (BOOL)isArchived
 {
@@ -1339,7 +1343,8 @@
 }
 
 /**
- 
+    Set the file for archiving
+    param BOOL
 **/
 - (void)setIsArchived:(BOOL)flag
 {
@@ -1388,7 +1393,8 @@
 }
 
 /**
- 
+    Rename the log file
+    param NSString
 **/
 - (void)renameFile:(NSString *)newFileName
 {
@@ -1453,6 +1459,7 @@
 	NSUInteger max = (count >= 2) ? count-1 : count;
 	
 	NSUInteger i;
+    
 	for (i = 1; i < max; i++)
 	{
 		NSString *attr = [components objectAtIndex:i];
@@ -1468,7 +1475,7 @@
 
 
 /**
- 
+    param NSString
 **/
 - (void)addExtensionAttributeWithName:(NSString *)attrName
 {
@@ -1531,7 +1538,7 @@
 
 
 /**
- 
+    param NSString
 **/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName
 {
@@ -1583,6 +1590,7 @@
 #else
 
 /**
+    param NSString
     returns boolean
 **/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName
@@ -1597,7 +1605,7 @@
 }
 
 /**
- 
+    param NSString
 **/
 - (void)addExtendedAttributeWithName:(NSString *)attrName
 {
@@ -1614,7 +1622,7 @@
 }
 
 /**
- 
+    param NSString
 **/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName
 {
@@ -1637,6 +1645,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+    param id
     returns boolean
 **/
 - (BOOL)isEqual:(id)object
@@ -1653,6 +1662,7 @@
 
 
 /**
+    param DDLogFileInfo
     returns NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another
@@ -1672,6 +1682,7 @@
 }
 
 /**
+    param DDLogFileInfo
     returns NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another

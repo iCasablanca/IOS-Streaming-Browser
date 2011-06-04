@@ -15,8 +15,14 @@
 @interface IOS_Streaming_BrowserAppDelegate : NSObject <UIApplicationDelegate> {
     
 
-    
+    /**
+     
+    **/
 	UIWindow *window;
+    
+    /**
+     
+    **/
 	IOS_Streaming_BrowserViewController *viewController;
 
 

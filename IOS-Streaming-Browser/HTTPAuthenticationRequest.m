@@ -4,7 +4,19 @@
 
 
 @interface HTTPAuthenticationRequest (PrivateAPI)
+
+/**
+    param NSString
+    param NSString
+    returns NSString
+**/
 - (NSString *)quotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
+
+/**
+    param NSString
+    param NSString
+    returns NSString
+**/
 - (NSString *)nonquotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
 @end
 
@@ -322,12 +334,15 @@
 		// However, if the nonquoted param is at the end of the string, there would be no comma
 		// This is only possible if there are no spaces anywhere
 		NSRange endRange2 = [header rangeOfString:@" " options:0 range:postStartRange];
+        
+        // If the endRange2 location is NOT NSNotFound
 		if(endRange2.location != NSNotFound)
 		{
 			return nil;
 		}
-		else
+		else // if the endRange2 location is not found
 		{
+            
 			return [header substringWithRange:postStartRange];
 		}
 	}

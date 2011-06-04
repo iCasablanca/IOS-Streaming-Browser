@@ -4,6 +4,8 @@
 
 @implementation NSData (DDData)
 
+
+
 static char encodingTable[64] = {
 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f',
@@ -12,7 +14,7 @@ static char encodingTable[64] = {
 
 
 /**
- 
+    returns NSData
 **/
 - (NSData *)md5Digest
 {
@@ -31,6 +33,7 @@ static char encodingTable[64] = {
 
 /**
    SHA-1 (Secure Hash Algorithm) is a cryptographic hash function with a 160 bit output.
+    returns NSData
 **/
 - (NSData *)sha1Digest
 {

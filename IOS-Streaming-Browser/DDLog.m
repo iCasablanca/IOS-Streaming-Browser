@@ -1,3 +1,4 @@
+
 #import "DDLog.h"
 
 #import <pthread.h>
@@ -43,9 +44,17 @@
 #define LOG_MAX_QUEUE_SIZE 1000 // Should not exceed INT32_MAX
 
 #if GCD_MAYBE_AVAILABLE
+
+
+/** 
+ *
+ * \struct LoggerNode
+ *
+ * \brief 
+ **/ 
 struct LoggerNode {
 	id <DDLogger> logger;
-	dispatch_queue_t loggerQueue;  // dispatch queue
+	dispatch_queue_t loggerQueue;  ///< dispatch queue
     struct LoggerNode * next;
 };
 typedef struct LoggerNode LoggerNode;
@@ -56,21 +65,24 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
+    param id <DDLogger>
 **/
 + (void)lt_addLogger:(id <DDLogger>)logger;
 
 /**
- Class method
+    Class method
+    param id <DDLogger>
 **/
 + (void)lt_removeLogger:(id <DDLogger>)logger;
 
 /**
- Class method
+    Class method
 **/
 + (void)lt_removeAllLoggers;
 
 /**
- Class method
+    Class method
+    param DDLogMessage
 **/
 + (void)lt_log:(DDLogMessage *)logMessage;
 

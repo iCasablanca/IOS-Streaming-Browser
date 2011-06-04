@@ -15,13 +15,17 @@
 
 @interface HTTPMessage : NSObject
 {
-	CFHTTPMessageRef message; // message can be request or response
+    /**
+        message can be request or response
+    **/
+	CFHTTPMessageRef message; 
 }
 
 
 /**
-    returns self as an empty HTTP message
- **/
+    Initialize an empty HTTP message
+    returns id
+**/
 - (id)initEmptyRequest;
 
 /**
@@ -30,7 +34,7 @@
     param NSURL
     param NSString
     returns id - self (HTTPMessage)
- **/
+**/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version;
 
 /**
@@ -50,32 +54,32 @@
 
 /**
     Returns whether the header is complete
- **/
+**/
 - (BOOL)isHeaderComplete;
 
 /**
     Gets the version
- **/
+**/
 - (NSString *)version;
 
 /**
     Gets the method
- **/
+**/
 - (NSString *)method;
 
 /**
     Gets the url
- **/
+**/
 - (NSURL *)url;
 
 /**
     Gets the status code
- **/
+**/
 - (NSInteger)statusCode;
 
 /**
     Gets all the header fields wrapped in an NSDictionary object
- **/
+**/
 - (NSDictionary *)allHeaderFields;
 
 /**

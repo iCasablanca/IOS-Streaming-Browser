@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,10 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 </div>
@@ -89,43 +89,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="DDLogFileInfo" -->
-<p><a href="class_d_d_log_file_info-members.html">List of all members.</a></p>
+<p><code>#import &lt;<a class="el" href="">DDFileLogger.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a666e85ad296bffbdc7664218cbd5cc39">initWithFilePath:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad79ccc84e66ee6c8c0c4e9257100aa9c"></a><!-- doxytag: member="DDLogFileInfo::reset" ref="ad79ccc84e66ee6c8c0c4e9257100aa9c" args="()" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>reset</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1a4adde6bb938bad3f106b475874cc5"></a><!-- doxytag: member="DDLogFileInfo::renameFile:" ref="af1a4adde6bb938bad3f106b475874cc5" args="(NSString *newFileName)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>renameFile:</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a42cdbf5862a180e583eb8aec911a3cc3">hasExtendedAttributeWithName:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d08e4eb256d725bf09386429e66f0e4"></a><!-- doxytag: member="DDLogFileInfo::addExtendedAttributeWithName:" ref="a7d08e4eb256d725bf09386429e66f0e4" args="(NSString *attrName)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>addExtendedAttributeWithName:</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a24e724c304a7cbef313719246bfed0"></a><!-- doxytag: member="DDLogFileInfo::removeExtendedAttributeWithName:" ref="a6a24e724c304a7cbef313719246bfed0" args="(NSString *attrName)" -->
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>removeExtendedAttributeWithName:</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSComparisonResult)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#ac5cc1dd100bd1d6e441a4f0d29337b7b">reverseCompareByCreationDate:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSComparisonResult)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#aaf303c6da71fd94050e3d37918d3863c">reverseCompareByModificationDate:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a3e5c5e0821cf4ec8746bf0d774277471">initWithFilePath:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#ad20897c5c8bd47f5d4005989bead0e55">reset</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a8214901ab3a48ad9240f374d841572ff">renameFile:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a17e5b146e078cee7c8cc60dd0ca19cd5">hasExtendedAttributeWithName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a30f9567b040c9eecbb3ee99780a8e92f">addExtendedAttributeWithName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#ad526a80620f8576b9674da0780c9112f">removeExtendedAttributeWithName:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSComparisonResult)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#ab0e17c5db74ffbad2759c0b5579877d8">reverseCompareByCreationDate:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(NSComparisonResult)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_d_d_log_file_info.html#a58079ff922c8ef6d43510a8c1d7690be">reverseCompareByModificationDate:</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_d_d_log_file_info.html#aff0e31bcc40a4ce6c76572a06c0fe36b">logFileWithPath:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_d_d_log_file_info.html#a2be9d2f7fc841e56d14ab83d0a42b6e3">logFileWithPath:</a></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2eac33d777bcaf8ce84eb56c6260c07e"></a><!-- doxytag: member="DDLogFileInfo::filePath" ref="a2eac33d777bcaf8ce84eb56c6260c07e" args="" -->
-NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>filePath</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#a0477a32511d71b0117f8a2a61295a555">fileName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade04f79d49d9c9cdee83d418b413b3f4"></a><!-- doxytag: member="DDLogFileInfo::fileAttributes" ref="ade04f79d49d9c9cdee83d418b413b3f4" args="" -->
-NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><b>fileAttributes</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5174798812e67485161ac1c14ff45889"></a><!-- doxytag: member="DDLogFileInfo::creationDate" ref="a5174798812e67485161ac1c14ff45889" args="" -->
-NSDate *&#160;</td><td class="memItemRight" valign="bottom"><b>creationDate</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#a2e22c1315c04069c65ad59a083e6e8c8">modificationDate</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#afb6644d12ab6c19ae5fa621a2d47dba4">fileSize</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1a0d9eef7ba877f9fed50ec123d307f"></a><!-- doxytag: member="DDLogFileInfo::age" ref="ad1a0d9eef7ba877f9fed50ec123d307f" args="" -->
-NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><b>age</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1eaeab42cc10fe4a0069189b009278a"></a><!-- doxytag: member="DDLogFileInfo::isArchived" ref="ae1eaeab42cc10fe4a0069189b009278a" args="" -->
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#ada3ba9b9ae0539691afcea1dc3c7d782">fileName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#ac48a300503bbe13c252d6245efe3f2b3">fileAttributes</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#a589a53ebaf00fa7e8a2e0e7b78a81b99">creationDate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSDate *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#ab39348d238e2d380b7bcb0cdf78e6ed4">modificationDate</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#af638b2af82ccbc9c63965efb659a59a2">fileSize</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NSTimeInterval&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#a8d17e7a45f609a18f84836f99ef98d7e">age</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_d_d_log_file_info.html#a42ccd2a50785bf86183ca3ea023efd06">isArchived</a></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a42cdbf5862a180e583eb8aec911a3cc3"></a><!-- doxytag: member="DDLogFileInfo::hasExtendedAttributeWithName:" ref="a42cdbf5862a180e583eb8aec911a3cc3" args="(NSString *attrName)" -->
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="#L279">279</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a30f9567b040c9eecbb3ee99780a8e92f"></a><!-- doxytag: member="DDLogFileInfo::addExtendedAttributeWithName:" ref="a30f9567b040c9eecbb3ee99780a8e92f" args="(NSString *attrName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) addExtendedAttributeWithName: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>attrName</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString </p>
+
+<p>Definition at line <a class="el" href="#L1610">1610</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                    :(NSString *)attrName
+{
+    <span class="comment">// Create a constant read only local attribute</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *path = [filePath UTF8String];
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *name = [attrName UTF8String];
+        
+        <span class="keywordtype">int</span> result = setxattr(path, name, NULL, 0, 0, 0);
+        
+        <span class="keywordflow">if</span> (result &lt; 0)
+        {
+                <a class="code" href="_d_d_file_logger_8m.html#a7ff182aa6ac42a8e39c5e6b7611a5165">NSLogError</a>(<span class="stringliteral">@&quot;DDLogFileInfo: setxattr(%@, %@): error = %i&quot;</span>, attrName, <span class="keyword">self</span>.<a class="code" href="interface_d_d_log_file_info.html#ada3ba9b9ae0539691afcea1dc3c7d782">fileName</a>, result);
+        }
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a17e5b146e078cee7c8cc60dd0ca19cd5"></a><!-- doxytag: member="DDLogFileInfo::hasExtendedAttributeWithName:" ref="a17e5b146e078cee7c8cc60dd0ca19cd5" args="(NSString *attrName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -139,11 +166,24 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
-<p>returns boolean </p>
+<p>param NSString returns BOOL</p>
+<p>param NSString returns boolean </p>
 
+<p>Definition at line <a class="el" href="#L1596">1596</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                    :(NSString *)attrName
+{
+    <span class="comment">// Create a constant read only local attribute</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *path = [filePath UTF8String];
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *name = [attrName UTF8String];
+        
+        ssize_t result = getxattr(path, name, NULL, 0, 0, 0);
+        
+        <span class="keywordflow">return</span> (result &gt;= 0);
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="a666e85ad296bffbdc7664218cbd5cc39"></a><!-- doxytag: member="DDLogFileInfo::initWithFilePath:" ref="a666e85ad296bffbdc7664218cbd5cc39" args="(NSString *filePath)" -->
+<a class="anchor" id="a3e5c5e0821cf4ec8746bf0d774277471"></a><!-- doxytag: member="DDLogFileInfo::initWithFilePath:" ref="a3e5c5e0821cf4ec8746bf0d774277471" args="(NSString *filePath)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -157,12 +197,22 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
-<p>Initialize the <a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> with a file path</p>
+<p>Initialize the <a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> with a file path param NSString returns id</p>
 <p>Initialize with a file path </p>
 
+<p>Definition at line <a class="el" href="#L1180">1180</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                      :(NSString *)aFilePath
+{
+        <span class="keywordflow">if</span> ((<span class="keyword">self</span> = [super init]))
+        {
+                <a class="code" href="interface_d_d_log_file_info.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a> = [aFilePath copy];
+        }
+        <span class="keywordflow">return</span> <span class="keyword">self</span>;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aff0e31bcc40a4ce6c76572a06c0fe36b"></a><!-- doxytag: member="DDLogFileInfo::logFileWithPath:" ref="aff0e31bcc40a4ce6c76572a06c0fe36b" args="(NSString *filePath)" -->
+<a class="anchor" id="a2be9d2f7fc841e56d14ab83d0a42b6e3"></a><!-- doxytag: member="DDLogFileInfo::logFileWithPath:" ref="a2be9d2f7fc841e56d14ab83d0a42b6e3" args="(NSString *filePath)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -176,11 +226,128 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
+<p>Class method param NSString returns id</p>
 <p>Class method </p>
 
+<p>Definition at line <a class="el" href="#L1172">1172</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                     :(NSString *)aFilePath
+{
+        <span class="keywordflow">return</span> [[[<a class="code" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> alloc] initWithFilePath:aFilePath] autorelease];
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="ac5cc1dd100bd1d6e441a4f0d29337b7b"></a><!-- doxytag: member="DDLogFileInfo::reverseCompareByCreationDate:" ref="ac5cc1dd100bd1d6e441a4f0d29337b7b" args="(DDLogFileInfo *another)" -->
+<a class="anchor" id="ad526a80620f8576b9674da0780c9112f"></a><!-- doxytag: member="DDLogFileInfo::removeExtendedAttributeWithName:" ref="ad526a80620f8576b9674da0780c9112f" args="(NSString *attrName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) removeExtendedAttributeWithName: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>attrName</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString </p>
+
+<p>Definition at line <a class="el" href="#L1627">1627</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                       :(NSString *)attrName
+{
+    <span class="comment">// Create a constant read only local attribute</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *path = [filePath UTF8String];
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *name = [attrName UTF8String];
+        
+        <span class="keywordtype">int</span> result = removexattr(path, name, 0);
+        
+        <span class="keywordflow">if</span> (result &lt; 0 &amp;&amp; errno != ENOATTR)
+        {
+                <a class="code" href="_d_d_file_logger_8m.html#a7ff182aa6ac42a8e39c5e6b7611a5165">NSLogError</a>(<span class="stringliteral">@&quot;DDLogFileInfo: removexattr(%@, %@): error = %i&quot;</span>, attrName, <span class="keyword">self</span>.<a class="code" href="interface_d_d_log_file_info.html#ada3ba9b9ae0539691afcea1dc3c7d782">fileName</a>, result);
+        }
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a8214901ab3a48ad9240f374d841572ff"></a><!-- doxytag: member="DDLogFileInfo::renameFile:" ref="a8214901ab3a48ad9240f374d841572ff" args="(NSString *newFileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) renameFile: </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&#160;</td>
+          <td class="paramname"><em>newFileName</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>param NSString</p>
+<p>Rename the log file param NSString </p>
+
+<p>Definition at line <a class="el" href="#L1399">1399</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                  :(NSString *)newFileName
+{
+        <span class="comment">// This method is only used on the iPhone simulator, where normal extended attributes are broken.</span>
+        <span class="comment">// See full explanation in the header file.</span>
+        
+        <span class="keywordflow">if</span> (![newFileName isEqualToString:[<span class="keyword">self</span> <a class="code" href="interface_d_d_log_file_info.html#ada3ba9b9ae0539691afcea1dc3c7d782">fileName</a>]])
+        {
+                NSString *fileDir = [filePath stringByDeletingLastPathComponent];
+                
+                NSString *newFilePath = [fileDir stringByAppendingPathComponent:newFileName];
+                
+                <a class="code" href="_d_d_file_logger_8m.html#a5fef155eafaad5a84f9a62c379156f14">NSLogVerbose</a>(<span class="stringliteral">@&quot;DDLogFileInfo: Renaming file: &#39;%@&#39; -&gt; &#39;%@&#39;&quot;</span>, <span class="keyword">self</span>.fileName, newFileName);
+                
+                NSError *error = nil;
+                <span class="keywordflow">if</span> (![[NSFileManager defaultManager] moveItemAtPath:<a class="code" href="interface_d_d_log_file_info.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a> toPath:newFilePath error:&amp;error])
+                {
+                        <a class="code" href="_d_d_file_logger_8m.html#a7ff182aa6ac42a8e39c5e6b7611a5165">NSLogError</a>(<span class="stringliteral">@&quot;DDLogFileInfo: Error renaming file (%@): %@&quot;</span>, <span class="keyword">self</span>.fileName, error);
+                }
+                
+                [filePath release];
+                <a class="code" href="interface_d_d_log_file_info.html#af591a8da749e5b4d35fc4aa7fb69f4b7">filePath</a> = [newFilePath retain];
+                
+                [<span class="keyword">self</span> reset];
+        }
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ad20897c5c8bd47f5d4005989bead0e55"></a><!-- doxytag: member="DDLogFileInfo::reset" ref="ad20897c5c8bd47f5d4005989bead0e55" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) reset </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L1380">1380</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">{
+        [fileName release];
+        <a class="code" href="interface_d_d_log_file_info.html#ada3ba9b9ae0539691afcea1dc3c7d782">fileName</a> = nil;
+        
+        [fileAttributes release];
+        <a class="code" href="interface_d_d_log_file_info.html#ac48a300503bbe13c252d6245efe3f2b3">fileAttributes</a> = nil;
+        
+        [creationDate release];
+        <a class="code" href="interface_d_d_log_file_info.html#a589a53ebaf00fa7e8a2e0e7b78a81b99">creationDate</a> = nil;
+        
+        [modificationDate release];
+        <a class="code" href="interface_d_d_log_file_info.html#ab39348d238e2d380b7bcb0cdf78e6ed4">modificationDate</a> = nil;
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ab0e17c5db74ffbad2759c0b5579877d8"></a><!-- doxytag: member="DDLogFileInfo::reverseCompareByCreationDate:" ref="ab0e17c5db74ffbad2759c0b5579877d8" args="(DDLogFileInfo *another)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -194,11 +361,28 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
-<p>returns NSComparisonResult </p>
+<p>param <a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> returns NSComparisonResult </p>
 
+<p>Definition at line <a class="el" href="#L1668">1668</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                                  :(<a class="code" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *)another
+{
+        NSDate *us = [<span class="keyword">self</span> creationDate];
+        NSDate *them = [another <a class="code" href="interface_d_d_log_file_info.html#a589a53ebaf00fa7e8a2e0e7b78a81b99">creationDate</a>];
+        
+        NSComparisonResult result = [us compare:them];
+        
+        <span class="keywordflow">if</span> (result == NSOrderedAscending)
+                <span class="keywordflow">return</span> NSOrderedDescending;
+        
+        <span class="keywordflow">if</span> (result == NSOrderedDescending)
+                <span class="keywordflow">return</span> NSOrderedAscending;
+        
+        <span class="keywordflow">return</span> NSOrderedSame;
+}
+</pre></div>
 </div>
 </div>
-<a class="anchor" id="aaf303c6da71fd94050e3d37918d3863c"></a><!-- doxytag: member="DDLogFileInfo::reverseCompareByModificationDate:" ref="aaf303c6da71fd94050e3d37918d3863c" args="(DDLogFileInfo *another)" -->
+<a class="anchor" id="a58079ff922c8ef6d43510a8c1d7690be"></a><!-- doxytag: member="DDLogFileInfo::reverseCompareByModificationDate:" ref="a58079ff922c8ef6d43510a8c1d7690be" args="(DDLogFileInfo *another)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -212,12 +396,77 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
-<p>returns NSComparisonResult </p>
+<p>param <a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> returns NSComparisonResult </p>
 
+<p>Definition at line <a class="el" href="#L1688">1688</a> of file <a class="el" href="">DDFileLogger.m</a>.</p>
+<div class="fragment"><pre class="fragment">                                                      :(<a class="code" href="interface_d_d_log_file_info.html">DDLogFileInfo</a> *)another
+{
+        NSDate *us = [<span class="keyword">self</span> modificationDate];
+        NSDate *them = [another <a class="code" href="interface_d_d_log_file_info.html#ab39348d238e2d380b7bcb0cdf78e6ed4">modificationDate</a>];
+        
+        NSComparisonResult result = [us compare:them];
+        
+        <span class="keywordflow">if</span> (result == NSOrderedAscending)
+                <span class="keywordflow">return</span> NSOrderedDescending;
+        
+        <span class="keywordflow">if</span> (result == NSOrderedDescending)
+                <span class="keywordflow">return</span> NSOrderedAscending;
+        
+        <span class="keywordflow">return</span> NSOrderedSame;
+}
+</pre></div>
 </div>
 </div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a0477a32511d71b0117f8a2a61295a555"></a><!-- doxytag: member="DDLogFileInfo::fileName" ref="a0477a32511d71b0117f8a2a61295a555" args="" -->
+<a class="anchor" id="a8d17e7a45f609a18f84836f99ef98d7e"></a><!-- doxytag: member="DDLogFileInfo::age" ref="a8d17e7a45f609a18f84836f99ef98d7e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSTimeInterval) age<code> [read, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the age of the log file returns NSTimeInterval </p>
+
+<p>Definition at line <a class="el" href="#L321">321</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a589a53ebaf00fa7e8a2e0e7b78a81b99"></a><!-- doxytag: member="DDLogFileInfo::creationDate" ref="a589a53ebaf00fa7e8a2e0e7b78a81b99" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDate *) creationDate<code> [read, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The creation date</p>
+<p>The log file creation date returns NSDate </p>
+
+<p>Definition at line <a class="el" href="#L299">299</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac48a300503bbe13c252d6245efe3f2b3"></a><!-- doxytag: member="DDLogFileInfo::fileAttributes" ref="ac48a300503bbe13c252d6245efe3f2b3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSDictionary *) fileAttributes<code> [read, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="#L294">294</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ada3ba9b9ae0539691afcea1dc3c7d782"></a><!-- doxytag: member="DDLogFileInfo::fileName" ref="ada3ba9b9ae0539691afcea1dc3c7d782" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -227,11 +476,30 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
+<p>The log file name</p>
 <p>returns NSString </p>
+
+<p>Definition at line <a class="el" href="#L289">289</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afb6644d12ab6c19ae5fa621a2d47dba4"></a><!-- doxytag: member="DDLogFileInfo::fileSize" ref="afb6644d12ab6c19ae5fa621a2d47dba4" args="" -->
+<a class="anchor" id="af591a8da749e5b4d35fc4aa7fb69f4b7"></a><!-- doxytag: member="DDLogFileInfo::filePath" ref="af591a8da749e5b4d35fc4aa7fb69f4b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) filePath<code> [read, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The file path of the log file </p>
+
+<p>Definition at line <a class="el" href="#L284">284</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af638b2af82ccbc9c63965efb659a59a2"></a><!-- doxytag: member="DDLogFileInfo::fileSize" ref="af638b2af82ccbc9c63965efb659a59a2" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -243,9 +511,27 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
 <div class="memdoc">
 <p>Gets the file size returns value between 0 and 9,223,372,036,854,775,807 </p>
 
+<p>Definition at line <a class="el" href="#L308">308</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a2e22c1315c04069c65ad59a083e6e8c8"></a><!-- doxytag: member="DDLogFileInfo::modificationDate" ref="a2e22c1315c04069c65ad59a083e6e8c8" args="" -->
+<a class="anchor" id="a42ccd2a50785bf86183ca3ea023efd06"></a><!-- doxytag: member="DDLogFileInfo::isArchived" ref="a42ccd2a50785bf86183ca3ea023efd06" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) isArchived<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Whether the log file is archived returns BOOL </p>
+
+<p>Definition at line <a class="el" href="#L323">323</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab39348d238e2d380b7bcb0cdf78e6ed4"></a><!-- doxytag: member="DDLogFileInfo::modificationDate" ref="ab39348d238e2d380b7bcb0cdf78e6ed4" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -255,20 +541,23 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
       </table>
 </div>
 <div class="memdoc">
+<p>The modification date</p>
 <p>returns NSDate </p>
+
+<p>Definition at line <a class="el" href="#L304">304</a> of file <a class="el" href="">DDFileLogger.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="_d_d_file_logger_8h_source.html">DDFileLogger.h</a></li>
-<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/DDFileLogger.m</li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDFileLogger.h</a></li>
+<li>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/<a class="el" href="">DDFileLogger.m</a></li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_d_d_log_file_info.html">DDLogFileInfo</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:03 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Fri Jun 3 2011 21:51:11 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -278,7 +567,7 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isArchived</b></td></
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

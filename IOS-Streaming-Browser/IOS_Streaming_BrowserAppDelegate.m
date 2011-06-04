@@ -14,8 +14,9 @@
 #import "DDFileLogger.h"
 
 
-
-// Log levels: off, error, warn, info, verbose
+/** 
+    Log levels: off, error, warn, info, verbose
+**/
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
@@ -29,6 +30,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 /**
     Whether the application did finith launching
+    param UIApplication
+    param NSDictionary
+    returns BOOL
 **/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

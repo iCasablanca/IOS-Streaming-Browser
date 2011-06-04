@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>/Users/willrubel/IOS-Streaming-Browser/IOS-Streaming-Browser/HTTPAuthenticationRequest.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+<a href="_h_t_t_p_authentication_request_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 <span class="preprocessor">#if TARGET_OS_IPHONE</span>
 <a name="l00004"></a>00004 <span class="preprocessor"></span>  <span class="comment">// Note: You may need to add the CFNetwork Framework to your project</span>
@@ -92,86 +93,153 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 
 <a name="l00011"></a><a class="code" href="interface_h_t_t_p_authentication_request.html">00011</a> <span class="keyword">@interface </span><a class="code" href="interface_h_t_t_p_authentication_request.html">HTTPAuthenticationRequest</a> : NSObject
-<a name="l00012"></a>00012 {
-<a name="l00013"></a>00013     <span class="comment">// Whether basic authentication</span>
-<a name="l00014"></a>00014     <span class="comment">// basic access authentication is a method designed</span>
-<a name="l00015"></a>00015     <span class="comment">// to allow a web browser, or other client program, to</span>
-<a name="l00016"></a>00016     <span class="comment">// provide credentials – in the form of a user name and</span>
-<a name="l00017"></a>00017     <span class="comment">// password – when making a request</span>
-<a name="l00018"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a4e56aaa0a9b58c1753f14d7211851608">00018</a>         BOOL <a class="code" href="interface_h_t_t_p_authentication_request.html#a4e56aaa0a9b58c1753f14d7211851608">isBasic</a>;
-<a name="l00019"></a>00019     
-<a name="l00020"></a>00020     <span class="comment">// Digest access authentication is one of the agreed </span>
-<a name="l00021"></a>00021     <span class="comment">// methods a web server can use to negotiate credentials </span>
-<a name="l00022"></a>00022     <span class="comment">// with a web user&#39;s browser. It uses encryption to send </span>
-<a name="l00023"></a>00023     <span class="comment">// the password over the network which is safer than the </span>
-<a name="l00024"></a>00024     <span class="comment">// Basic access authentication that sends plaintext.</span>
-<a name="l00025"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#aae2faa229099ee37aa31a7122a77bcce">00025</a>         BOOL <a class="code" href="interface_h_t_t_p_authentication_request.html#aae2faa229099ee37aa31a7122a77bcce">isDigest</a>;
-<a name="l00026"></a>00026         
-<a name="l00027"></a>00027     
-<a name="l00028"></a>00028     <span class="comment">// base64 encoding of basic authentication credentials    </span>
-<a name="l00029"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a69ef68e1c04c1cce343727f6e8774324">00029</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a69ef68e1c04c1cce343727f6e8774324">base64Credentials</a>; <span class="comment">// basic or digest</span>
-<a name="l00030"></a>00030         
-<a name="l00031"></a>00031     <span class="comment">// The user&#39;s name in the specified realm.</span>
-<a name="l00032"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#acc69f11ec7d9f8d4ca02c7e5081cca9d">00032</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#acc69f11ec7d9f8d4ca02c7e5081cca9d">username</a>;
-<a name="l00033"></a>00033     
-<a name="l00034"></a>00034     <span class="comment">// A string to be displayed to users so they know which username and    password to use. This string should contain at least the name of    the host performing the authentication and might additionally    indicate the collection of users who might have access. An example might be &quot;registered_users@gotham.news.com&quot;.</span>
-<a name="l00035"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a779176a1d8dad80edb7579b9f60e7705">00035</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a779176a1d8dad80edb7579b9f60e7705">realm</a>;
-<a name="l00036"></a>00036     
-<a name="l00037"></a>00037     <span class="comment">// A server-specified data string which should be uniquely generated each time a 401 response is made. It is recommended that this    string be base64 or hexadecimal data. Specifically, since the    string is passed in the header lines as a quoted string, the    double-quote character is not allowed.</span>
-<a name="l00038"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a07afa074b1449add4742e3e4650f0e02">00038</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a07afa074b1449add4742e3e4650f0e02">nonce</a>;
-<a name="l00039"></a>00039     
-<a name="l00040"></a>00040     <span class="comment">// The URI from Request-URI of the Request-Line; duplicated here    because proxies are allowed to change the Request-Line in transit.</span>
-<a name="l00041"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#abc7ac74710cedecb42f242e1c04b4331">00041</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#abc7ac74710cedecb42f242e1c04b4331">uri</a>;
-<a name="l00042"></a>00042     
-<a name="l00043"></a>00043     <span class="comment">// This directive is optional, but is made so only for backward    compatibility with RFC 2069 [6]; it SHOULD be used by all    implementations compliant with this version of the Digest scheme.    If present, it is a quoted string of one or more tokens indicating the &quot;quality of protection&quot; values supported by the server.  The value &quot;auth&quot; indicates authentication; the value &quot;auth-int&quot;indicates authentication with integrity protection;</span>
-<a name="l00044"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a292deef6eb7484e232d401c57d135d75">00044</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a292deef6eb7484e232d401c57d135d75">qop</a>;
-<a name="l00045"></a>00045     
-<a name="l00046"></a>00046     <span class="comment">//  This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request.  For example, in the first request sent in response to a given nonce value, the client sends &quot;nc=00000001&quot;.  The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. </span>
-<a name="l00047"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a13c1752f970f907dde0cd0884027dea1">00047</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a13c1752f970f907dde0cd0884027dea1">nc</a>;
-<a name="l00048"></a>00048     
-<a name="l00049"></a>00049     <span class="comment">// This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, to provide mutual authentication, and to provide some message integrity protection.</span>
-<a name="l00050"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#ac7bc119f7dfd510923a8b29d39703fc9">00050</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#ac7bc119f7dfd510923a8b29d39703fc9">cnonce</a>;
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     <span class="comment">// A string of 32 hex digits computed as defined below, which proves that the user knows a password</span>
-<a name="l00053"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a34c84f400690c5b1c558556c99fd443f">00053</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a34c84f400690c5b1c558556c99fd443f">response</a>;
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00061"></a>00061 - (id)initWithRequest:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)request;
-<a name="l00062"></a>00062 
-<a name="l00067"></a>00067 - (BOOL)isBasic;
-<a name="l00068"></a>00068 
-<a name="l00073"></a>00073 - (BOOL)isDigest;
-<a name="l00074"></a>00074 
-<a name="l00076"></a>00076 <span class="comment">// Basic Authentication</span>
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00082"></a>00082 - (NSString *)base64Credentials;
-<a name="l00083"></a>00083 
-<a name="l00085"></a>00085 <span class="comment">// Digest</span>
-<a name="l00087"></a>00087 <span class="comment"></span>
-<a name="l00091"></a>00091 - (NSString *)username;
-<a name="l00092"></a>00092 
-<a name="l00097"></a>00097 - (NSString *)realm;
-<a name="l00098"></a>00098 
-<a name="l00102"></a>00102 - (NSString *)nonce;
-<a name="l00103"></a>00103 
-<a name="l00115"></a>00115 - (NSString *)uri;
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117 
-<a name="l00121"></a>00121 - (NSString *)qop;
-<a name="l00122"></a>00122 
-<a name="l00126"></a>00126 - (NSString *)nc;
-<a name="l00127"></a>00127 
-<a name="l00131"></a>00131 - (NSString *)cnonce;
-<a name="l00132"></a>00132 
-<a name="l00136"></a>00136 - (NSString *)response;
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="keyword">@end</span>
+<a name="l00012"></a>00012 {<span class="comment"></span>
+<a name="l00013"></a>00013 <span class="comment">    /**</span>
+<a name="l00014"></a>00014 <span class="comment">        Whether basic authentication basic access authentication is a method designed to allow a web browser, or other client program, to provide credentials – in the form of a user name and password – when making a request</span>
+<a name="l00015"></a>00015 <span class="comment">    **/</span>
+<a name="l00016"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#aa08fdc8ab1a2ebdd3f3a8e4dfd669313">00016</a>         BOOL <a class="code" href="interface_h_t_t_p_authentication_request.html#aa08fdc8ab1a2ebdd3f3a8e4dfd669313">isBasic</a>;
+<a name="l00017"></a>00017     <span class="comment"></span>
+<a name="l00018"></a>00018 <span class="comment">    /**</span>
+<a name="l00019"></a>00019 <span class="comment">        Digest access authentication is one of the agreed methods a web server can use to negotiate credentials with a web user&#39;s browser. It uses encryption to send the password over the network which is safer than the  Basic access authentication that sends plaintext.</span>
+<a name="l00020"></a>00020 <span class="comment">    **/</span>
+<a name="l00021"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a88b068c656f62dbf7f5ec1a93c7a8cbd">00021</a>         BOOL <a class="code" href="interface_h_t_t_p_authentication_request.html#a88b068c656f62dbf7f5ec1a93c7a8cbd">isDigest</a>;
+<a name="l00022"></a>00022         <span class="comment"></span>
+<a name="l00023"></a>00023 <span class="comment">    /**</span>
+<a name="l00024"></a>00024 <span class="comment">        base64 encoding of basic authentication credentials    </span>
+<a name="l00025"></a>00025 <span class="comment">    **/</span>
+<a name="l00026"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a38b42f89af6ce047e17a0471720dd2b8">00026</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a38b42f89af6ce047e17a0471720dd2b8">base64Credentials</a>; <span class="comment">// basic or digest</span>
+<a name="l00027"></a>00027         <span class="comment"></span>
+<a name="l00028"></a>00028 <span class="comment">    /**</span>
+<a name="l00029"></a>00029 <span class="comment">        The user&#39;s name in the specified realm.</span>
+<a name="l00030"></a>00030 <span class="comment">    **/</span>
+<a name="l00031"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#adf18fc78791979a8bcee4008569e8e36">00031</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#adf18fc78791979a8bcee4008569e8e36">username</a>;
+<a name="l00032"></a>00032     <span class="comment"></span>
+<a name="l00033"></a>00033 <span class="comment">    /**</span>
+<a name="l00034"></a>00034 <span class="comment">        A string to be displayed to users so they know which username and    password to use. This string should contain at least the name of    the host performing the authentication and might additionally    indicate the collection of users who might have access. An example might be &quot;registered_users@gotham.news.com&quot;.</span>
+<a name="l00035"></a>00035 <span class="comment">    **/</span>
+<a name="l00036"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a0bb3cb6e166f60c16541e67b5dfdd07b">00036</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a0bb3cb6e166f60c16541e67b5dfdd07b">realm</a>;
+<a name="l00037"></a>00037     
+<a name="l00038"></a>00038     <span class="comment"></span>
+<a name="l00039"></a>00039 <span class="comment">    /**</span>
+<a name="l00040"></a>00040 <span class="comment">        A server-specified data string which should be uniquely generated each time a 401 response is made. It is recommended that this    string be base64 or hexadecimal data. Specifically, since the    string is passed in the header lines as a quoted string, the    double-quote character is not allowed.</span>
+<a name="l00041"></a>00041 <span class="comment">    **/</span>
+<a name="l00042"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a8730f7546ae54e4719670cb1ec8511dc">00042</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a8730f7546ae54e4719670cb1ec8511dc">nonce</a>;
+<a name="l00043"></a>00043     <span class="comment"></span>
+<a name="l00044"></a>00044 <span class="comment">    /**</span>
+<a name="l00045"></a>00045 <span class="comment">        The URI from Request-URI of the Request-Line; duplicated here    because proxies are allowed to change the Request-Line in transit.</span>
+<a name="l00046"></a>00046 <span class="comment">    **/</span>
+<a name="l00047"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a3e35c5498f4f5fdc1a2fc21682f7db2f">00047</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a3e35c5498f4f5fdc1a2fc21682f7db2f">uri</a>;
+<a name="l00048"></a>00048     <span class="comment"></span>
+<a name="l00049"></a>00049 <span class="comment">    /**</span>
+<a name="l00050"></a>00050 <span class="comment">        This directive is optional, but is made so only for backward    compatibility with RFC 2069 [6]; it SHOULD be used by all    implementations compliant with this version of the Digest scheme.    If present, it is a quoted string of one or more tokens indicating the &quot;quality of protection&quot; values supported by the server.  The value &quot;auth&quot; indicates authentication; the value &quot;auth-int&quot;indicates authentication with integrity protection;</span>
+<a name="l00051"></a>00051 <span class="comment">    **/</span>
+<a name="l00052"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a451aac56c21aa4d9ee28d8fe0b608e2f">00052</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a451aac56c21aa4d9ee28d8fe0b608e2f">qop</a>;
+<a name="l00053"></a>00053     <span class="comment"></span>
+<a name="l00054"></a>00054 <span class="comment">    /**</span>
+<a name="l00055"></a>00055 <span class="comment">        This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request.  For example, in the first request sent in response to a given nonce value, the client sends &quot;nc=00000001&quot;.  The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. </span>
+<a name="l00056"></a>00056 <span class="comment">    **/</span>
+<a name="l00057"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a64b7ab2b759f281c8ab79f3f0d3138a8">00057</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a64b7ab2b759f281c8ab79f3f0d3138a8">nc</a>;
+<a name="l00058"></a>00058     <span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment">    /**</span>
+<a name="l00060"></a>00060 <span class="comment">        This MUST be specified if a qop directive is sent (see above), and MUST NOT be specified if the server did not send a qop directive in the WWW-Authenticate header field.  The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, to provide mutual authentication, and to provide some message integrity protection.</span>
+<a name="l00061"></a>00061 <span class="comment">    **/</span>
+<a name="l00062"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a9c708d3b903b1e8bcf7556190a1f5350">00062</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a9c708d3b903b1e8bcf7556190a1f5350">cnonce</a>;
+<a name="l00063"></a>00063     <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">    /**</span>
+<a name="l00065"></a>00065 <span class="comment">        A string of 32 hex digits computed as defined below, which proves that the user knows a password</span>
+<a name="l00066"></a>00066 <span class="comment">    **/</span>
+<a name="l00067"></a><a class="code" href="interface_h_t_t_p_authentication_request.html#a778cbeca13f4023879bad800f6345fd8">00067</a>         NSString *<a class="code" href="interface_h_t_t_p_authentication_request.html#a778cbeca13f4023879bad800f6345fd8">response</a>;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">/**</span>
+<a name="l00071"></a>00071 <span class="comment">    Initializes the HTTPAuthenticationRequest with an HTTPMessage</span>
+<a name="l00072"></a>00072 <span class="comment">    param HTTPMessage</span>
+<a name="l00073"></a>00073 <span class="comment">    returns id</span>
+<a name="l00074"></a>00074 <span class="comment">**/</span>
+<a name="l00075"></a>00075 - (id)initWithRequest:(<a class="code" href="interface_h_t_t_p_message.html">HTTPMessage</a> *)request;
+<a name="l00076"></a>00076 <span class="comment"></span>
+<a name="l00077"></a>00077 <span class="comment">/**</span>
+<a name="l00078"></a>00078 <span class="comment">    Getter method for accessing whether basic authentication</span>
+<a name="l00079"></a>00079 <span class="comment">    returns BOOL</span>
+<a name="l00080"></a>00080 <span class="comment">**/</span>
+<a name="l00081"></a>00081 - (BOOL)isBasic;
+<a name="l00082"></a>00082 <span class="comment"></span>
+<a name="l00083"></a>00083 <span class="comment">/**</span>
+<a name="l00084"></a>00084 <span class="comment">    Getter method for accessing whether digest authentication</span>
+<a name="l00085"></a>00085 <span class="comment">    returns BOOL</span>
+<a name="l00086"></a>00086 <span class="comment">**/</span>
+<a name="l00087"></a>00087 - (BOOL)isDigest;
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">///////////////////////</span>
+<a name="l00090"></a>00090 <span class="comment"></span><span class="comment">// Basic Authentication</span><span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">///////////////////////</span>
+<a name="l00092"></a>00092 <span class="comment"></span><span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">/**</span>
+<a name="l00094"></a>00094 <span class="comment">    returns NSString</span>
+<a name="l00095"></a>00095 <span class="comment">**/</span>
+<a name="l00096"></a>00096 - (NSString *)base64Credentials;
+<a name="l00097"></a>00097 <span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">///////////////////////////////</span>
+<a name="l00099"></a>00099 <span class="comment"></span><span class="comment">// Digest</span><span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment">//////////////////////////////</span>
+<a name="l00101"></a>00101 <span class="comment"></span><span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">/**</span>
+<a name="l00103"></a>00103 <span class="comment"> The user&#39;s name in the specified realm, encoded according to the value of the &quot;charset&quot; directive. This directive is required and MUST be present exactly once; otherwise, authentication fails.</span>
+<a name="l00104"></a>00104 <span class="comment">**/</span>
+<a name="l00105"></a>00105 - (NSString *)username;
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">/**</span>
+<a name="l00108"></a>00108 <span class="comment"> The realm containing the user&#39;s account. This directive is required if the server provided any realms in the &quot;digest-challenge&quot;, in which case it may appear exactly once and its value SHOULD be one of those realms. If the directive is missing, &quot;realm-value&quot; will set to the empty string when computing A1 (see below for details).</span>
+<a name="l00109"></a>00109 <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">**/</span>
+<a name="l00111"></a>00111 - (NSString *)realm;
+<a name="l00112"></a>00112 <span class="comment"></span>
+<a name="l00113"></a>00113 <span class="comment">/**</span>
+<a name="l00114"></a>00114 <span class="comment"> The server-specified data string received in the preceding digest-challenge. This directive is required and MUST be present exactly once; otherwise, authentication fails.</span>
+<a name="l00115"></a>00115 <span class="comment">**/</span>
+<a name="l00116"></a>00116 - (NSString *)nonce;
+<a name="l00117"></a>00117 <span class="comment"></span>
+<a name="l00118"></a>00118 <span class="comment">/**</span>
+<a name="l00119"></a>00119 <span class="comment"> Indicates the principal name of the service with which the client wishes to connect, formed from the serv-type, host, and serv-name. For example, the FTP service on &quot;ftp.example.com&quot; would have a &quot;digest-uri&quot; value of &quot;ftp/ftp.example.com&quot;; the SMTP server from the example above would have a &quot;digest-uri&quot; value of &quot;smtp/mail3.example.com/example.com&quot;.</span>
+<a name="l00120"></a>00120 <span class="comment"> </span>
+<a name="l00121"></a>00121 <span class="comment"> Servers SHOULD check that the supplied value is correct. This will detect accidental connection to the incorrect server. It is also so that clients will be trained to provide values that will work with implementations that use a shared back-end authentication service that can provide server authentication.</span>
+<a name="l00122"></a>00122 <span class="comment"> </span>
+<a name="l00123"></a>00123 <span class="comment"> The serv-type component should match the service being offered. The host component should match one of the host names of the host on which the service is running, or it&#39;s IP address. Servers SHOULD NOT normally support the IP address form, because server authentication by IP address is not very useful; they should only do so if the DNS is unavailable or unreliable. The serv-name component should match one of the service&#39;s configured service names.</span>
+<a name="l00124"></a>00124 <span class="comment"> </span>
+<a name="l00125"></a>00125 <span class="comment"> This directive may appear at most once; if multiple instances are present, the client should abort the authentication exchange.</span>
+<a name="l00126"></a>00126 <span class="comment"> </span>
+<a name="l00127"></a>00127 <span class="comment"> Note: In the HTTP use of Digest authentication, the digest-uri is the URI (usually a URL) of the resource requested -- hence the name of the directive.</span>
+<a name="l00128"></a>00128 <span class="comment">**/</span>
+<a name="l00129"></a>00129 - (NSString *)uri;
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 <span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">/**</span>
+<a name="l00133"></a>00133 <span class="comment"> Indicates what &quot;quality of protection&quot; the client accepted. If present, it may appear exactly once and its value MUST be one of the alternatives in qop-options. If not present, it defaults to &quot;auth&quot;. These values affect the computation of the response. Note that this is a single token, not a quoted list of alternatives.</span>
+<a name="l00134"></a>00134 <span class="comment">**/</span>
+<a name="l00135"></a>00135 - (NSString *)qop;
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">/**</span>
+<a name="l00138"></a>00138 <span class="comment"> The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request. For example, in the first request sent in response to a given nonce value, the client sends &quot;nc=00000001&quot;. The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. See the description below of the construction of the response value. This directive may appear at most once; if multiple instances are present, the client should abort the authentication exchange.</span>
+<a name="l00139"></a>00139 <span class="comment">**/</span>
+<a name="l00140"></a>00140 - (NSString *)nc;
+<a name="l00141"></a>00141 <span class="comment"></span>
+<a name="l00142"></a>00142 <span class="comment">/**</span>
+<a name="l00143"></a>00143 <span class="comment"> A client-specified data string which MUST be different each time a digest-response is sent as part of initial authentication. The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, and to provide mutual authentication. The security of the implementation depends on a good choice. It is RECOMMENDED that it contain at least 64 bits of entropy. This directive is required and MUST be present exactly once; otherwise, authentication fails.</span>
+<a name="l00144"></a>00144 <span class="comment">**/</span>
+<a name="l00145"></a>00145 - (NSString *)cnonce;
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">/**</span>
+<a name="l00148"></a>00148 <span class="comment"> A string of 32 hex digits computed as defined below, which proves that the user knows a password. This directive is required and MUST be present exactly once; otherwise, authentication fails.</span>
+<a name="l00149"></a>00149 <span class="comment">**/</span>
+<a name="l00150"></a>00150 - (NSString *)response;
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>HTTPAuthenticationRequest.h</b>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 14:25:02 for IOS Streaming Browser by&#160;
+      <li class="navelem"><a class="el" href="_h_t_t_p_authentication_request_8h.html">HTTPAuthenticationRequest.h</a>      </li>
+      <li class="footer">Generated on Fri Jun 3 2011 18:39:48 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
@@ -181,7 +249,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
