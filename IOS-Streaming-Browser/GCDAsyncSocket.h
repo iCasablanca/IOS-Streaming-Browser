@@ -82,6 +82,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     **/
     int socket6FD;  
 
+    /**
+        Index of the connection
+    **/
 	int connectIndex; 
     
     /**
@@ -101,48 +104,48 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	dispatch_queue_t socketQueue;  
 	
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
     **/
 	dispatch_source_t accept4Source; 
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t accept6Source;
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t connectTimer;
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t readSource;
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t writeSource;
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t readTimer;
     
     /**
-     Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t writeTimer;
 	
     
     /**
-      The read queue
+        The read queue
     **/
 	NSMutableArray *readQueue;  
     
     /**
-        the write queue
+        The write queue
     **/
 	NSMutableArray *writeQueue;  
 	
@@ -153,13 +156,13 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	GCDAsyncReadPacket *currentRead; 
     
     /**
-      the write packet
+        The write packet
     **/
 	GCDAsyncWritePacket *currentWrite; 
 	
     /**
-    // socket file descriptor bytes available
-    // Value is 0 to 2,147,483,647
+        Socket file descriptor bytes available
+        Value is 0 to 2,147,483,647
     **/
 	unsigned long socketFDBytesAvailable;  
 	
@@ -198,14 +201,14 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	NSMutableData *sslReadBuffer; 
     
     /**
-        size of the SSL write cache
+        Size of the SSL write cache
     **/
 	size_t sslWriteCachedLength; 
     
 #endif
 	
     /**
-        user data
+        User data
     **/
 	id userData; 
 }
@@ -714,7 +717,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * That is, it will reference the bytes that were appended to the given buffer.
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
-					 buffer:(NSMutableData *)buffer
+					 buffer:(NSMutableData *)buffer // read buffer
 			   bufferOffset:(NSUInteger)offset
 						tag:(long)tag;
 
@@ -736,7 +739,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * That is, it will reference the bytes that were appended to the given buffer.
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
-                     buffer:(NSMutableData *)buffer
+                     buffer:(NSMutableData *)buffer // read buffer
                bufferOffset:(NSUInteger)offset
                   maxLength:(NSUInteger)length
                         tag:(long)tag;

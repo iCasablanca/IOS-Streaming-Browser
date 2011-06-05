@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$protocol_h_t_t_p_response-p.html" title="\&lt;HTTPResponse\&gt;" alt="" coords="5,81,152,109"/>
-<area shape="rect" id="node3" href="$interface_h_t_t_p_async_file_response.html" title="HTTPAsyncFileResponse" alt="" coords="200,5,395,33"/>
-<area shape="rect" id="node7" href="$interface_h_t_t_p_data_response.html" title="HTTPDataResponse" alt="" coords="217,55,377,83"/>
-<area shape="rect" id="node9" href="$interface_h_t_t_p_file_response.html" title="HTTPFileResponse" alt="" coords="221,106,373,134"/>
-<area shape="rect" id="node11" href="$interface_h_t_t_p_redirect_response.html" title="HTTPRedirectResponse" alt="" coords="204,157,391,185"/>
-<area shape="rect" id="node5" href="$interface_h_t_t_p_dynamic_file_response.html" title="HTTPDynamicFileResponse" alt="" coords="443,5,653,33"/>
+<area shape="rect" id="node1" href="$protocolHTTPResponse-p.html" title="\&lt;HTTPResponse\&gt;" alt="" coords="5,81,152,109"/>
+<area shape="rect" id="node3" href="$interfaceHTTPAsyncFileResponse.html" title="HTTPAsyncFileResponse" alt="" coords="200,5,395,33"/>
+<area shape="rect" id="node7" href="$interfaceHTTPDataResponse.html" title="HTTPDataResponse" alt="" coords="217,55,377,83"/>
+<area shape="rect" id="node9" href="$interfaceHTTPFileResponse.html" title="HTTPFileResponse" alt="" coords="221,106,373,134"/>
+<area shape="rect" id="node11" href="$interfaceHTTPRedirectResponse.html" title="HTTPRedirectResponse" alt="" coords="204,157,391,185"/>
+<area shape="rect" id="node5" href="$interfaceHTTPDynamicFileResponse.html" title="HTTPDynamicFileResponse" alt="" coords="443,5,653,33"/>
 </map>

@@ -432,6 +432,7 @@
                 
 			}; // END OF BLOCK
 			
+            // Executes the bonjour block and waits for it to complete 
 			[[self class] performBonjourBlock:bonjourBlock waitUntilDone:YES];
 		}
 	}); // END OF BLOCK
@@ -553,6 +554,7 @@
             // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 			dispatch_block_t bonjourBlock = ^{
                 
+                // Sets the network service text record data
 				[theNetService setTXTRecordData:txtRecordData];
                 
 			}; // END OF BLOCK
@@ -733,6 +735,7 @@
 **/
 - (NSUInteger)numberOfWebSocketConnections
 {
+    // Local attribute
 	NSUInteger result = 0;
 	
     // Locks the web socket
@@ -821,11 +824,15 @@
 		
         // Gets the netService
 		NSNetService *theNetService = netService;
+        
+        
 		NSData *txtRecordData = nil;
         
         // If there is a txtRecordDictionary
 		if (txtRecordDictionary)
         {
+            
+            // Gets the text record dictionary from the network service
 			txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
 		}
         
@@ -909,6 +916,7 @@
 /**
  * Called when our bonjour service has been successfully published.
  * This method does nothing but output a log message telling us about the published service.
+    param NSNetService
 **/
 - (void)netServiceDidPublish:(NSNetService *)ns
 {
@@ -921,6 +929,8 @@
 /**
  * Called if our bonjour service failed to publish itself.
  * This method does nothing but output a log message telling us about the published service.
+    param NSNetService
+    param NSDictionary
 **/
 - (void)netService:(NSNetService *)ns didNotPublish:(NSDictionary *)errorDict
 {
@@ -937,6 +947,7 @@
 /**
  * This method is automatically called when a notification of type HTTPConnectionDidDieNotification is posted.
  * It allows us to remove the connection from our array.
+    param NSNotification
 **/
 - (void)connectionDidDie:(NSNotification *)notification
 {
@@ -955,6 +966,7 @@
 /**
  * This method is automatically called when a notification of type WebSocketDidDieNotification is posted.
  * It allows us to remove the websocket from our array.
+    param NSNotification
 **/
 - (void)webSocketDidDie:(NSNotification *)notification
 {

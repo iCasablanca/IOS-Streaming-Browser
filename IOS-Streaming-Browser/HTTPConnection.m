@@ -21,16 +21,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 // Define chunk size used to read in data for responses
 // This is how much data will be read from disk into RAM at a time
 #if TARGET_OS_IPHONE
-  #define READ_CHUNKSIZE  (1024 * 128)
+  #define READ_CHUNKSIZE  (1024 * 128) // 131,072
 #else
-  #define READ_CHUNKSIZE  (1024 * 512)
+  #define READ_CHUNKSIZE  (1024 * 512) // 524,288
 #endif
 
 // Define chunk size used to read in POST upload data
 #if TARGET_OS_IPHONE
-  #define POST_CHUNKSIZE  (1024 * 32)
+  #define POST_CHUNKSIZE  (1024 * 32) // 32,768
 #else
-  #define POST_CHUNKSIZE  (1024 * 128)
+  #define POST_CHUNKSIZE  (1024 * 128) // 131,072
 #endif
 
 // Define the various timeouts (in seconds) for various parts of the HTTP process
@@ -100,9 +100,7 @@ static NSMutableArray *recentNonces;
 **/
 + (void)initialize
 {
-      
-    
-    
+    // flag for whether the connection is initialized
 	static BOOL initialized = NO;
     
     // If the HTTPConnection is not initialized
@@ -327,6 +325,7 @@ static NSMutableArray *recentNonces;
 /**
     This method is expected to returns an array appropriate for use in kCFStreamSSLCertificates SSL Settings.
     It should be an array of SecCertificateRefs except for the first element in the array, which is a SecIdentityRef.
+    returns NSArray
 **/
 - (NSArray *)sslIdentityAndCertificates
 {
@@ -523,7 +522,7 @@ static NSMutableArray *recentNonces;
 				// Whatever the case may be, we need to reset lastNC, since that variable is on a per nonce basis.
 				lastNC = 0;
 			}
-			else
+			else // If the recentNonces does NOT contain the authorization nonce
 			{
 				// We have no knowledge of ever distributing such a nonce.
 				// This could be a replay attack from a previous connection in the past.
@@ -572,8 +571,9 @@ static NSMutableArray *recentNonces;
 		return [response isEqualToString:[auth response]];
 	}
 	else
-	{
+	{   /////////////////////////
 		// Basic Authentication
+        /////////////////////////
 		
         // If the authentication is not basic authentication
 		if (![auth isBasic])
@@ -793,6 +793,8 @@ static NSMutableArray *recentNonces;
  *   q = "John Mayer Trio" 
  *   num = "50" 
  * }
+    param NSString
+    returns NSDictionary
 **/
 - (NSDictionary *)parseParams:(NSString *)query
 {
@@ -810,6 +812,8 @@ static NSMutableArray *recentNonces;
     // Loop through each of the components in the array
 	for (i = 0; i < [components count]; i++)
 	{ 
+        
+        // Gets the component at a specific index
 		NSString *component = [components objectAtIndex:i];
         
         // If the component has length
@@ -834,9 +838,13 @@ static NSMutableArray *recentNonces;
                     CFStringRef v;  // The value
 					
                     // The key
+                    // Returns a string with any percent escape sequences that do NOT correspond to characters in charactersToLeaveEscaped with their equivalent. 
 					k = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedKey, CFSTR(""));
                     
+                    
+                    
                     // The value
+                    // Returns a string with any percent escape sequences that do NOT correspond to characters in charactersToLeaveEscaped with their equivalent. 
 					v = CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef)escapedValue, CFSTR(""));
 					
 					NSString *key;
@@ -920,7 +928,10 @@ static NSMutableArray *recentNonces;
  * Attempts to parse the given range header into a series of sequential non-overlapping ranges.
  * If successfull, the variables 'ranges' and 'rangeIndex' will be updated, and YES will be returned.
  * Otherwise, NO is returned, and the range request should be ignored.
- **/
+    param NSString
+    param UInt64
+    returns BOOL
+**/
 - (BOOL)parseRangeRequest:(NSString *)rangeHeader 
         withContentLength:(UInt64)contentLength
 {
@@ -1146,6 +1157,7 @@ static NSMutableArray *recentNonces;
 			DDRange range2 = [[ranges objectAtIndex:j] ddrangeValue];
 			
             
+            // Gets the intersection range of range1 and range2
 			DDRange iRange = DDIntersectionRange(range1, range2);
 			
             // If there is not an intersection range between range1 and range2
@@ -1157,7 +1169,6 @@ static NSMutableArray *recentNonces;
 	}
 	
 	// Sort the ranges array
-	
 	[ranges sortUsingSelector:@selector(ddrangeCompare:)];
 	
 	return YES;
@@ -1379,6 +1390,8 @@ static NSMutableArray *recentNonces;
 	// [...]
 	// --4554d24e986f76dd6--
 	
+    
+    // Create mutable array for the ranges headers
 	ranges_headers = [[NSMutableArray alloc] initWithCapacity:[ranges count]];
 	
     // Create an empty unique identifier
@@ -1471,6 +1484,7 @@ static NSMutableArray *recentNonces;
     
     
     // length can be 0 to 2,147,483,647
+    // Creates a string and then encodes it using UTF8 encoding
 	return [[NSString stringWithFormat:@"%lx\r\n", (unsigned long)length] dataUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -1507,6 +1521,7 @@ static NSMutableArray *recentNonces;
 		}
 	}
 	
+    // Local attribute
 	BOOL isChunked = NO;
 	
     // Check if the http responds responds to a call to isChunked
@@ -1548,7 +1563,7 @@ static NSMutableArray *recentNonces;
 		}
 	}
 	
-    
+    // Local attribute
 	HTTPMessage *response;
 	
     // If there is not a range request
@@ -1685,7 +1700,7 @@ static NSMutableArray *recentNonces;
 				}
 			}
 		}
-		else
+		else // is not a range request
 		{
 			// Client specified a byte range in request
 			
@@ -1760,10 +1775,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Returns the number of bytes of the http response body that are sitting in asyncSocket's write queue.
- * 
- * We keep track of this information in order to keep our memory footprint low while
- * working with asynchronous HTTPResponse objects.
+    Returns the number of bytes of the http response body that are sitting in asyncSocket's write queue.
+ 
+    We keep track of this information in order to keep our memory footprint low while working with asynchronous HTTPResponse objects.
+    returns NSUInteger
 **/
 - (NSUInteger)writeQueueSize
 {
@@ -1772,12 +1787,14 @@ static NSMutableArray *recentNonces;
     // Number of bytes in the write queue
 	NSUInteger result = 0;
 	
+    // Local attribute
 	NSUInteger i;
     
     // Loops through the response data sizes array
 	for(i = 0; i < [responseDataSizes count]; i++)
 	{
         
+        // Increments the counter for the total number of bytes
 		result += [[responseDataSizes objectAtIndex:i] unsignedIntegerValue];
 	}
 	
@@ -1811,10 +1828,15 @@ static NSMutableArray *recentNonces;
 	NSUInteger writeQueueSize = [self writeQueueSize];
 	
     
-    // If the writeQueue size is larger than the chunk size
-	if(writeQueueSize >= READ_CHUNKSIZE) return;
-	
+    // If the writeQueue size is larger than the read-chunk size.  This means there is enough space on teh writeQueue to send a chunk of data
+	if(writeQueueSize >= READ_CHUNKSIZE) 
+    {
+        return;
+	}
     
+    // If the method didn't return at this point of the method, then it means the writeQueue is smaller than the read-chunk size. 
+    
+    // Gets the difference from the read-chunk size and the writeQueue size 
 	NSUInteger available = READ_CHUNKSIZE - writeQueueSize;
 
     // Gets the data for the response.
@@ -1823,7 +1845,7 @@ static NSMutableArray *recentNonces;
     // If the response data has length
 	if ([data length] > 0)
 	{
-        
+        // Adds the size of the data to the array
 		[responseDataSizes addObject:[NSNumber numberWithUnsignedInteger:[data length]]];
 		
         // If the response is not separated into chunks
@@ -1890,27 +1912,25 @@ static NSMutableArray *recentNonces;
 {
 	DDLogError(@"continueSendingSingleRangeResponseBody");
     
-	// This method is called when either asyncSocket has finished writing one of the response data chunks,
-	// or when an asynchronous response informs us that is has more available data for us to send.
-	// In the case of the asynchronous response, we don't want to blindly grab the new data,
-	// and shove it onto asyncSocket's write queue.
+	// This method is called when either asyncSocket has finished writing one of the response data chunks, or when an asynchronous response informs us that is has more available data for us to send.
+	// In the case of the asynchronous response, we don't want to blindly grab the new data, and shove it onto asyncSocket's write queue.
 	// Doing so could negatively affect the memory footprint of the application.
 	// Instead, we always ensure that we place no more than READ_CHUNKSIZE bytes onto the write queue.
 	// 
 	// Note that this does not affect the rate at which the HTTPResponse object may generate data.
 	// The HTTPResponse is free to do as it pleases, and this is up to the application's developer.
-	// If the memory footprint is a concern, the developer creating the custom HTTPResponse object may freely
-	// use the calls to readDataOfLength as an indication to start generating more data.
-	// This provides an easy way for the HTTPResponse object to throttle its data allocation in step with the rate
-	// at which the socket is able to send it.
+	// If the memory footprint is a concern, the developer creating the custom HTTPResponse object may freely use the calls to readDataOfLength as an indication to start generating more data.
+	// This provides an easy way for the HTTPResponse object to throttle its data allocation in step with the rate at which the socket is able to send it.
 	
+    
+    // Local attribute for the write queue size in bytes
 	NSUInteger writeQueueSize = [self writeQueueSize];
 	
     
     // If the writeQueue size is larger than the read chunk size
 	if(writeQueueSize >= READ_CHUNKSIZE) return;
 	
-    
+    // Gets the ranges value at index zero.  Since this is a single range response, there should only be one object in the ranges array
 	DDRange range = [[ranges objectAtIndex:0] ddrangeValue];
 	
     // Gets the httpResponse offset
@@ -1926,10 +1946,11 @@ static NSMutableArray *recentNonces;
 	if (bytesLeft > 0)
 	{
         
-        
+        // Gets the different between the read-chunk size and the writeQueue
 		NSUInteger available = READ_CHUNKSIZE - writeQueueSize;
         
         
+        // Determine the bytes yet to read.  
 		NSUInteger bytesToRead = bytesLeft < available ? (NSUInteger)bytesLeft : available;
 		
         
@@ -1980,12 +2001,14 @@ static NSMutableArray *recentNonces;
 	NSUInteger writeQueueSize = [self writeQueueSize];
 	
     
+    // If we have writen more than we have read.  This is a way of throttling the response until we have read more data
 	if(writeQueueSize >= READ_CHUNKSIZE) 
     {
         return;
     }
     
     
+    // If the writeQue is smaller than the read-chunk size
     
 	DDRange range = [[ranges objectAtIndex:rangeIndex] ddrangeValue];
 	
@@ -1993,17 +2016,18 @@ static NSMutableArray *recentNonces;
 	UInt64 offset = [httpResponse offset];
     
     
-    
 	UInt64 bytesRead = offset - range.location;
-    
     
 	UInt64 bytesLeft = range.length - bytesRead;
 	
     
 	if (bytesLeft > 0)
 	{
+        // Gets the difference between the read-chunk size and the writeQueue size
 		NSUInteger available = READ_CHUNKSIZE - writeQueueSize;
         
+        
+        // Get the bytes yet to read
 		NSUInteger bytesToRead = bytesLeft < available ? (NSUInteger)bytesLeft : available;
 	
         // Reads the data from the httpResponse
@@ -2219,6 +2243,9 @@ static NSMutableArray *recentNonces;
  * The HTTPServer comes with two such classes: HTTPFileResponse and HTTPDataResponse.
  * HTTPFileResponse is a wrapper for an NSFileHandle object, and is the preferred way to send a file response.
  * HTTPDataResponse is a wrapper for an NSData object, and may be used to send a custom response.
+    param NSString
+    param NSString
+    returns NSObject <HTTPResponse>
 **/
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
 {
@@ -2281,6 +2308,7 @@ static NSMutableArray *recentNonces;
 
 /**
     Gets the webSocket for a specific URI
+    param NSString
     return WebSocket
 **/
 - (WebSocket *)webSocketForURI:(NSString *)path
@@ -2307,7 +2335,8 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * This method is called after receiving all HTTP headers, but before reading any of the request body.
+    This method is called after receiving all HTTP headers, but before reading any of the request body.
+    param UInt64
 **/
 - (void)prepareForBodyWithSize:(UInt64)contentLength
 {
@@ -2335,7 +2364,8 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Called if the HTML version is other than what is supported
+    Called if the HTML version is other than what is supported
+    param NSString
 **/
 - (void)handleVersionNotSupported:(NSString *)version
 {

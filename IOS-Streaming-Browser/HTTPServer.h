@@ -50,17 +50,17 @@
     NSString *documentRoot; 
     
     /**
-      default is HTTP connection
+      Default is HTTP connection
     **/
 	Class connectionClass; 
     
     /**
-      the interface the server should listen on, "en1", "lo0", etc
+      The interface the server should listen on, "en1", "lo0", etc
     **/
 	NSString *interface; 
     
     /**
-      the listening port
+      The listening port
     **/
 	UInt16 port; 
 
@@ -69,12 +69,12 @@
     ///////////////////////////////////////////  
     
     /**
-      represents a network service
+      Represents a network service
     **/
 	NSNetService *netService; 
     
     /**
-      the domain the service should be published on, the default is 'local'
+      The domain the service should be published on, the default is 'local'
     **/
 	NSString *domain; 
     
@@ -84,17 +84,17 @@
 	NSString *type; 
     
     /**
-      default is the computers name that the server is running on
+      Default is the computers name that the server is running on
     **/
 	NSString *name; 
     
     /**
-      the published server name
+      The published server name
     **/
 	NSString *publishedName; 
 	
     /**
-     
+        Dictionary consisting of "zero or more strings, packed together in memory without any intervening gaps or padding bytes for word alignment. The format of each constituent string within the DNS TXT record is a single length byte, followed by 0-255 bytes of text data."
     **/
     NSDictionary *txtRecordDictionary;
 	
@@ -103,22 +103,22 @@
     ///////////////////////////////////////////
     
     /**
-      the connections to the server
+      The connections to the server
     **/
 	NSMutableArray *connections; 
 
     /**
-      the web socket connections
+      The web socket connections
     **/
 	NSMutableArray *webSockets; 
     
     /**
-      locks the http connection
+      Locks the http connection.  Note:  uses POSIX threads to implement its locking behavior
     **/
 	NSLock *connectionsLock; 
     
     /**
-      locks the websocket
+      Locks the websocket.  Note:  uses POSIX threads to implement its locking behavior
     **/
 	NSLock *webSocketsLock; 
 	

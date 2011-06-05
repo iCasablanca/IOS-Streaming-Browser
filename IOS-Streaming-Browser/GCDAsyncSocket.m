@@ -509,7 +509,7 @@ enum GCDAsyncSocketConfig
 - (void)completeCurrentWrite;
 
 /**
-    Cancel the timer and release the current writer
+    Cancel the timer and release the current write packet
 **/
 - (void)endCurrentWrite;
 
@@ -1317,17 +1317,17 @@ enum GCDAsyncSocketConfig
 {
   @public
     /**
-      write buffer
+        Write buffer
     **/
 	NSData *buffer; 
     
     /**
-        number of bytes that have been written so far for the write operation
+        Number of bytes that have been written so far for the write operation
     **/
 	NSUInteger bytesDone; 
 
     /**
-     
+        The tag for the write packet
     **/
 	long tag;
     
@@ -1430,6 +1430,7 @@ enum GCDAsyncSocketConfig
 {
 	if((self = [super init]))
 	{
+        // Set the transport layer security settings
 		tlsSettings = [settings copy];
 	}
 	return self;
@@ -1512,11 +1513,17 @@ enum GCDAsyncSocketConfig
 			delegateQueue = dq;
 		}
 		
+        // Sets the IP version 4 socket file descriptor to null
 		socket4FD = SOCKET_NULL;
+        
+        // Sets the IP version 6 socket file descriptor to null
 		socket6FD = SOCKET_NULL;
+        
+        
 		connectIndex = 0;
 		
-		if (sq) // socket queue
+        // If there is a socket queue
+		if (sq) 
 		{
             // Make sure the socket queue is not a global concurrence queue
 			NSString *assertMsg = @"The given socketQueue parameter must not be a concurrent queue.";
@@ -1528,6 +1535,8 @@ enum GCDAsyncSocketConfig
 			NSAssert(sq != dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), assertMsg);
 			
 			dispatch_retain(sq);  // Increments the reference to socket queue
+            
+            
 			socketQueue = sq;
 		}
 		else  // if there isn't a socket queue, then create one
@@ -1538,10 +1547,14 @@ enum GCDAsyncSocketConfig
 		
         // Create readqueue mutable array with capacity of 5
 		readQueue = [[NSMutableArray alloc] initWithCapacity:5];
+        
+        // The current read packet
 		currentRead = nil;
 		
         // Create writequeue mutable array with capacity of 5
 		writeQueue = [[NSMutableArray alloc] initWithCapacity:5];
+        
+        // Set the current write packet to nil
 		currentWrite = nil;
 		
         // Create partial read buffer for the host message
@@ -1581,6 +1594,7 @@ enum GCDAsyncSocketConfig
     
 	delegateQueue = NULL;
 	
+    
 	dispatch_release(socketQueue);
 	socketQueue = NULL;
 	
@@ -1628,7 +1642,9 @@ enum GCDAsyncSocketConfig
         
         // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
+            
 			result = delegate;
+            
 		}); // END OF BLOCK
 		
 		return result;
@@ -1647,20 +1663,26 @@ enum GCDAsyncSocketConfig
     // The prototype of blocks submitted to dispatch queues, which 
     // take no arguments and have no return value.
 	dispatch_block_t block = ^{
+        
 		delegate = newDelegate;
+        
 	}; // END OF BLOCK
 	
     
     // Returns the queue on which the currently executing block is running.
     // In this case, check if the socketQueue is currently running the block
 	if (dispatch_get_current_queue() == socketQueue) {
+    
+        // Execute the block on the socketQueue
 		block();
+
 	}
 	else { // if socketQueue is not currently running the block
 		if (synchronously)
         {
             // Run the block synchronously, which means the block executes and control comes back
 			dispatch_sync(socketQueue, block);
+            
 		}else{
             
             // Runs the block asynchronously, which means the block
@@ -1759,7 +1781,9 @@ enum GCDAsyncSocketConfig
 		if (synchronously)
         {
 			dispatch_sync(socketQueue, block);
+            
         }else{ // If executing blocks asynchronously
+            
 			dispatch_async(socketQueue, block);
         }
 	}
@@ -1800,6 +1824,7 @@ enum GCDAsyncSocketConfig
         // If there is a delegate pointer
 		if (delegatePtr)
         {
+            
             *delegatePtr = delegate;
         }
         
@@ -1823,8 +1848,10 @@ enum GCDAsyncSocketConfig
         
         // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
+            
 			dPtr = delegate; //delegate pointer
 			dqPtr = delegateQueue; // delegate que pointer
+            
 		}); // END OF BLOCK
 		
         // If there is a delegate pointer
@@ -1877,9 +1904,11 @@ enum GCDAsyncSocketConfig
     // Returns the queue on which the currently executing block is running.
     // In this case, check if the socketQueue is currently running the block
 	if (dispatch_get_current_queue() == socketQueue) {
+        
 		block(); // submit block to the dispatch queue
 	}
 	else { // if the current queue is not the socketQueue
+        
 		if (synchronously)
         {
             // Submits a block for synchronous execution on the socketQueue
@@ -1957,8 +1986,11 @@ enum GCDAsyncSocketConfig
 		
 		if (flag)
         {
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			config &= ~kAllowHalfDuplexConnection;
 		}else{
+            
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.   
 			config |= kAllowHalfDuplexConnection;
         }
 	}; // END OF BLOCK
@@ -1968,6 +2000,7 @@ enum GCDAsyncSocketConfig
 	if (dispatch_get_current_queue() == socketQueue)
     {
 		block(); // submits the block to the socketQueue
+        
 	}else{
         // Submits block to the socketQueue asynchronously because it is not the current queue.
 		dispatch_async(socketQueue, block);
@@ -2018,8 +2051,12 @@ enum GCDAsyncSocketConfig
 		
 		if (flag)
         {
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			config &= ~kIPv4Disabled;
+            
+            
 		}else{
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.   
 			config |= kIPv4Disabled;
         }
 	}; // END OF BLOCK
@@ -2079,9 +2116,11 @@ enum GCDAsyncSocketConfig
 		
 		if (flag)
         {
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			config &= ~kIPv6Disabled;
             
 		}else{
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			config |= kIPv6Disabled;
         }
 	}; // END OF BLOCK
@@ -2139,8 +2178,10 @@ enum GCDAsyncSocketConfig
 		
 		if (flag)
         {
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			config &= ~kPreferIPv6;
 		}else{
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			config |= kPreferIPv6;
         }
 	};  // END OF BLOCK
@@ -2631,7 +2672,9 @@ enum GCDAsyncSocketConfig
 		}
 		
         // If set, socket has been started (accepting/connecting)
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kSocketStarted;
+        
 		[pool drain];
 	};
 	
@@ -3030,7 +3073,7 @@ enum GCDAsyncSocketConfig
 		
 		// We've made it past all the checks.
 		// It's time to start the connection process.
-		
+		// Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kSocketStarted;
 		
 		LogVerbose(@"Dispatching DNS lookup...");
@@ -3234,6 +3277,7 @@ enum GCDAsyncSocketConfig
 		}
 		
         // If set, socket has been started (accepting/connecting)
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kSocketStarted;
 		
         // Start the connection timeout
@@ -3670,6 +3714,7 @@ enum GCDAsyncSocketConfig
 	
     
     // If set, the socket is connected
+    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	flags |= kConnected;
 	
     // End the connection timeout
@@ -3888,10 +3933,10 @@ enum GCDAsyncSocketConfig
     // if the current read buffer is not nil
 	if (currentRead != nil)  [self endCurrentRead];
     
-    // if current write buffer is not nil
+    // if current write packet is not nil
 	if (currentWrite != nil) 
     {
-        // Cancel the timer and release the current writer
+        // Cancel the timer and release the current write packet
         [self endCurrentWrite];
     }
     
@@ -3909,6 +3954,7 @@ enum GCDAsyncSocketConfig
 		if (readStream || writeStream)
 		{
             // If set, rw streams have been added to handshake listener thread
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			if (flags & kAddedHandshakeListener)
 			{
                 
@@ -3922,8 +3968,10 @@ enum GCDAsyncSocketConfig
             // if there is a read stream
 			if (readStream)
 			{
-                
+             
+                // Sets the readStream client
 				CFReadStreamSetClient(readStream, kCFStreamEventNone, NULL, NULL);
+                
                 
                 // Close and release the read stream
 				CFReadStreamClose(readStream);
@@ -3934,6 +3982,7 @@ enum GCDAsyncSocketConfig
             // if there is a write stream
 			if (writeStream)
 			{
+                // Sets the writeStream client
 				CFWriteStreamSetClient(writeStream, kCFStreamEventNone, NULL, NULL);
                 
                 // Close and release the write stream
@@ -3968,7 +4017,7 @@ enum GCDAsyncSocketConfig
 	{
 		LogVerbose(@"dispatch_source_cancel(accept4Source)");
         
-        
+        // Asynchronously cancel the dispatch source, preventing any further invocation of its event handler block.
 		dispatch_source_cancel(accept4Source);
 		
 		// We never suspend accept4Source
@@ -4024,6 +4073,7 @@ enum GCDAsyncSocketConfig
 	
 	// If the client has passed the connect/accept method, then the connection has at least begun.
 	// Notify delegate that it is now ending.
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	BOOL shouldCallDelegate = (flags & kSocketStarted);
 	
 	// Clear stored socket info and all flags (config remains as is)
@@ -4033,12 +4083,15 @@ enum GCDAsyncSocketConfig
     // If the socket has started and need to notify the delegate
 	if (shouldCallDelegate)
 	{
+        // If there is a delegateQueue and the delegate queue responds to socketDidDisconnect:withError
 		if (delegateQueue && [delegate respondsToSelector: @selector(socketDidDisconnect:withError:)])
 		{
+            // Local attribute for the delegate
 			id theDelegate = delegate;
 			
             // Submits a block for asynchronous execution on the delegateQueue
 			dispatch_async(delegateQueue, ^{
+                
                 
 				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 				
@@ -4046,6 +4099,7 @@ enum GCDAsyncSocketConfig
 				[theDelegate socketDidDisconnect:self withError:error];
 				
 				[pool drain];
+                
 			});  // END OF BLOCK
 		}	
 	}
@@ -4066,6 +4120,7 @@ enum GCDAsyncSocketConfig
 		
         
         // If set, socket has been started (accepting/connecting)
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketStarted)
 		{
             
@@ -4074,6 +4129,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
+        
 	}; // END OF BLOCK
 	
 	// Synchronous disconnection, as documented in the header file
@@ -4101,16 +4157,19 @@ enum GCDAsyncSocketConfig
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
         // If set, socket has been started (accepting/connecting)
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketStarted)
 		{
             
             // If set, no new reads or writes are allowed
             // If set, disconnect after no more reads are queued
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			flags |= (kForbidReadsWrites | kDisconnectAfterReads);
 			[self maybeClose];
 		}
 		
 		[pool drain];
+        
 	}); // END OF BLOCK
 }
 
@@ -4129,11 +4188,13 @@ enum GCDAsyncSocketConfig
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
         // If set, socket has been started (accepting/connecting)
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketStarted)
 		{
             
             // If set, no new reads or writes are allowed
             // If set, disconnect after no more writes are queued
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			flags |= (kForbidReadsWrites | kDisconnectAfterWrites);
             
             // Closes the socket if possible.
@@ -4141,6 +4202,7 @@ enum GCDAsyncSocketConfig
 		}
 		
 		[pool drain];
+        
 	}); // END OF BLOCK
 }
 
@@ -4160,8 +4222,14 @@ enum GCDAsyncSocketConfig
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
         // If set, socket has been started (accepting/connecting)
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketStarted)
 		{
+            
+            // If set, no new reads or writes are allowed
+            // If set, disconnect after no more reads are queued
+            // If set, disconnect after no more writes are queued
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			flags |= (kForbidReadsWrites | kDisconnectAfterReads | kDisconnectAfterWrites);
             
 			[self maybeClose];
@@ -4186,30 +4254,35 @@ enum GCDAsyncSocketConfig
 	BOOL shouldClose = NO;
 	
     // If set, disconnect after no more reads are queued
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kDisconnectAfterReads)
 	{
         // If there is anything in the readQueue and not currently reading from the socket
 		if (([readQueue count] == 0) && (currentRead == nil))
 		{
             // If the flag is set to disconnect the socket after writing
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			if (flags & kDisconnectAfterWrites)
 			{
-                // Check if there is anything in the writeQueue and whether currently writing to the socket
+                // Check if there is anything in the writeQueue and whether current write packet is nil
 				if (([writeQueue count] == 0) && (currentWrite == nil))
 				{
+                    // Flag the connection to close
 					shouldClose = YES;
 				}
 			}
 			else
 			{
+                // Flag the connection to close
 				shouldClose = YES;
 			}
 		}
 	}
     // If set, disconnect after no more writes are queued
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	else if (flags & kDisconnectAfterWrites)
 	{
-        // Check if there is anything in the writeQueue and whether currently writing to the socket
+        // Check if there is anything in the writeQueue and whether currently write packet is nil
 		if (([writeQueue count] == 0) && (currentWrite == nil))
 		{
             // Set the flag to close the socket
@@ -4387,6 +4460,7 @@ enum GCDAsyncSocketConfig
 
 
 /**
+    A connection closed error
     returns NSError
 **/
 - (NSError *)connectionClosedError
@@ -4402,6 +4476,7 @@ enum GCDAsyncSocketConfig
 
 
 /**
+    Some other type of error
     param NSString
     returns NSError
 **/
@@ -4417,6 +4492,7 @@ enum GCDAsyncSocketConfig
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+    Socket is disconnected
     returns BOOL
 **/
 - (BOOL)isDisconnected
@@ -4428,7 +4504,10 @@ enum GCDAsyncSocketConfig
     
     // Whether socket has been started (accepting/connecting)
 	dispatch_block_t block = ^{
+        
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		result = (flags & kSocketStarted) ? NO : YES;
+        
 	}; // END OF BLOCK
 	
     
@@ -4459,7 +4538,10 @@ enum GCDAsyncSocketConfig
 	
     // The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
 	dispatch_block_t block = ^{
+        
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		result = (flags & kConnected) ? YES : NO;
+        
 	}; // END OF BLOCK
 	
     
@@ -4495,9 +4577,11 @@ enum GCDAsyncSocketConfig
         // If the IP version 6 socket is not null
 		if (socket6FD != SOCKET_NULL)
         {
+            // Gets the address for the connected host
 			return [self connectedHostFromSocket6:socket6FD];
         }
 		
+        // There is not an IP4 and IP6 host
 		return nil;
 	}
 	else // if the current queue is not the socketQueue
@@ -4513,10 +4597,12 @@ enum GCDAsyncSocketConfig
 			
 			if (socket4FD != SOCKET_NULL)
             {
+                // Gets the address for the connected host
 				result = [[self connectedHostFromSocket4:socket4FD] retain];
                 
 			}else if (socket6FD != SOCKET_NULL){
                 
+                // Gets the address for the connected host
 				result = [[self connectedHostFromSocket6:socket6FD] retain];
 			}
             
@@ -4541,14 +4627,17 @@ enum GCDAsyncSocketConfig
 	{
 		if (socket4FD != SOCKET_NULL)
         {
+            // Gets the port for the connected host
 			return [self connectedPortFromSocket4:socket4FD];
         }
         
 		if (socket6FD != SOCKET_NULL)
         {
+            //Gets the port for the connected host
 			return [self connectedPortFromSocket6:socket6FD];
 		}
         
+        // Could not get the port from the host
 		return 0;
 	}
 	else  // if the current queue is not the socket queue
@@ -4562,10 +4651,12 @@ enum GCDAsyncSocketConfig
 			
 			if (socket4FD != SOCKET_NULL)
             {    
+                // Gets the port for the connected host
 				result = [self connectedPortFromSocket4:socket4FD];
             }
 			else if (socket6FD != SOCKET_NULL)
             {    
+                // Gets the port for the connected host
 				result = [self connectedPortFromSocket6:socket6FD];
             }
             
@@ -4586,14 +4677,17 @@ enum GCDAsyncSocketConfig
 	{
 		if (socket4FD != SOCKET_NULL)
         {
+            // Gets the address for the local host
 			return [self localHostFromSocket4:socket4FD];
         }
         
 		if (socket6FD != SOCKET_NULL)
         {
+            // Gets the address for the local host
 			return [self localHostFromSocket6:socket6FD];
 		}
         
+        // Could not get the address for the local host
 		return nil;
 	}
 	else
@@ -4608,8 +4702,12 @@ enum GCDAsyncSocketConfig
 			
 			if (socket4FD != SOCKET_NULL)
             {
+                // Gets the address for the local host
 				result = [[self localHostFromSocket4:socket4FD] retain];
+                
 			}else if (socket6FD != SOCKET_NULL){
+                
+                // Gets the address for the local host
 				result = [[self localHostFromSocket6:socket6FD] retain];
 			}
             
@@ -4631,13 +4729,16 @@ enum GCDAsyncSocketConfig
 	{
 		if (socket4FD != SOCKET_NULL)
         {
+            // Gets the port for the local host
 			return [self localPortFromSocket4:socket4FD];
         }
 		if (socket6FD != SOCKET_NULL)
         {
+            // Gets the port for the local host
 			return [self localPortFromSocket6:socket6FD];
         }
 		
+        // Could not get the port for the local host
 		return 0;
 	}
 	else
@@ -4651,9 +4752,14 @@ enum GCDAsyncSocketConfig
 			
 			if (socket4FD != SOCKET_NULL)
             {
+                // Gets the port for the local address
 				result = [self localPortFromSocket4:socket4FD];
+                
 			}else if (socket6FD != SOCKET_NULL){
+                
+                // Gets the port for the local address
 				result = [self localPortFromSocket6:socket6FD];
+                
             }
 		});  // END OF BLOCK
 		
@@ -4662,12 +4768,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Connected IP version4 host
     returns NSString
 **/
 - (NSString *)connectedHost4
 {
 	if (socket4FD != SOCKET_NULL)
     {
+        // Gets the address for the connected host
 		return [self connectedHostFromSocket4:socket4FD];
 	}
     
@@ -4675,12 +4783,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Connected IP version 6 host
     returns NSString
 **/
 - (NSString *)connectedHost6
 {
 	if (socket6FD != SOCKET_NULL)
     {
+        // Gets the address for the connected host
 		return [self connectedHostFromSocket6:socket6FD];
 	}
     
@@ -4688,12 +4798,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets connecter IP version 4 port
     returns UInt16
 **/
 - (UInt16)connectedPort4
 {
 	if (socket4FD != SOCKET_NULL)
     {
+        // Gets the port for the connected host
 		return [self connectedPortFromSocket4:socket4FD];
 	}
     
@@ -4701,12 +4813,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets the IP version 6 port
     returns UInt16
 **/
 - (UInt16)connectedPort6
 {
 	if (socket6FD != SOCKET_NULL)
     {
+        // Gets the port for the connected host
 		return [self connectedPortFromSocket6:socket6FD];
 	}
     
@@ -4714,12 +4828,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets the IP version 4 local host
     returns NSString
 **/
 - (NSString *)localHost4
 {
 	if (socket4FD != SOCKET_NULL)
     {
+        // Gets the address for the local host
 		return [self localHostFromSocket4:socket4FD];
 	}
     
@@ -4727,12 +4843,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets the IP version 6 local host
     returns NSString
 **/
 - (NSString *)localHost6
 {
 	if (socket6FD != SOCKET_NULL)
     {
+        // Gets the port for the localhost
 		return [self localHostFromSocket6:socket6FD];
 	}
     
@@ -4740,12 +4858,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets the IP version4 local port
     returns UInt16
 **/
 - (UInt16)localPort4
 {
 	if (socket4FD != SOCKET_NULL)
     {
+        // Gets the port for the local address
 		return [self localPortFromSocket4:socket4FD];
 	}
     
@@ -4753,12 +4873,14 @@ enum GCDAsyncSocketConfig
 }
 
 /**
+    Gets the IP version 6 local port
     returns UInt16
 **/
 - (UInt16)localPort6
 {
 	if (socket6FD != SOCKET_NULL)
     {
+        // Gets the port for the local address
 		return [self localPortFromSocket6:socket6FD];
 	}
     
@@ -4772,7 +4894,10 @@ enum GCDAsyncSocketConfig
 **/
 - (NSString *)connectedHostFromSocket4:(int)socketFD
 {
+    // IP version 4 internet style socket address
 	struct sockaddr_in sockaddr4;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr4len = sizeof(sockaddr4);
 	
     // if can get the address of the connected peer
@@ -4792,7 +4917,10 @@ enum GCDAsyncSocketConfig
 **/
 - (NSString *)connectedHostFromSocket6:(int)socketFD
 {
+    // IP version 6 internet style socket address
 	struct sockaddr_in6 sockaddr6;
+    
+    // Gets the size of the socket address
 	socklen_t sockaddr6len = sizeof(sockaddr6);
 	
     // if can get the address of the connected peer
@@ -4800,6 +4928,8 @@ enum GCDAsyncSocketConfig
 	{
 		return nil;
 	}
+    
+    // Gets host from IP version 6 socket address
 	return [[self class] hostFromAddress6:&sockaddr6];
 }
 
@@ -4810,7 +4940,10 @@ enum GCDAsyncSocketConfig
 **/
 - (UInt16)connectedPortFromSocket4:(int)socketFD
 {
+    // IP version 4 internet style socket address
 	struct sockaddr_in sockaddr4;
+    
+    // Length of socket address
 	socklen_t sockaddr4len = sizeof(sockaddr4);
 	
     // if can get the address of the connected peer
@@ -4828,7 +4961,10 @@ enum GCDAsyncSocketConfig
 **/
 - (UInt16)connectedPortFromSocket6:(int)socketFD
 {
+    // IP version 6 internet style socket address
 	struct sockaddr_in6 sockaddr6;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr6len = sizeof(sockaddr6);
 	
     
@@ -4847,7 +4983,10 @@ enum GCDAsyncSocketConfig
 **/
 - (NSString *)localHostFromSocket4:(int)socketFD
 {
+    // IP version 4 internet style socket address
 	struct sockaddr_in sockaddr4;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr4len = sizeof(sockaddr4);
 	
     // if can get a socket name
@@ -4865,7 +5004,10 @@ enum GCDAsyncSocketConfig
 **/
 - (NSString *)localHostFromSocket6:(int)socketFD
 {
+    // IP version 6 internet style socket address
 	struct sockaddr_in6 sockaddr6;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr6len = sizeof(sockaddr6);
 	
     // if can get a socket name
@@ -4883,7 +5025,10 @@ enum GCDAsyncSocketConfig
 **/
 - (UInt16)localPortFromSocket4:(int)socketFD
 {
+    // IP version 4 internet style socket address
 	struct sockaddr_in sockaddr4;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr4len = sizeof(sockaddr4);
 	
     // if can get a socket name
@@ -4901,7 +5046,10 @@ enum GCDAsyncSocketConfig
 **/
 - (UInt16)localPortFromSocket6:(int)socketFD
 {
+    // IP version 6 internet style socket address
 	struct sockaddr_in6 sockaddr6;
+    
+    // Gets the length of the socket address
 	socklen_t sockaddr6len = sizeof(sockaddr6);
 	
     // if can get socket name
@@ -4926,7 +5074,10 @@ enum GCDAsyncSocketConfig
         
 		if (socket4FD != SOCKET_NULL)
 		{
+            // IP version 4 internet style socket address
 			struct sockaddr_in sockaddr4;
+            
+            // Gets the length of the socket address
 			socklen_t sockaddr4len = sizeof(sockaddr4);
 			
             // if can get the address of the connected peer
@@ -4938,7 +5089,10 @@ enum GCDAsyncSocketConfig
 		
 		if (socket6FD != SOCKET_NULL)
 		{
+            // IP version 6 internet style socket address
 			struct sockaddr_in6 sockaddr6;
+            
+            // Gets the length of the socket address
 			socklen_t sockaddr6len = sizeof(sockaddr6);
 			
             // if can get the address of the connected peer
@@ -4953,10 +5107,12 @@ enum GCDAsyncSocketConfig
 	if (dispatch_get_current_queue() == socketQueue)
     {
 		block(); // Executes the block on the socketQueue
+        
 	}else{
         
         // Executes the block asynchronously on the socketQueue
 		dispatch_sync(socketQueue, block);
+        
 	}
     
 	return [result autorelease];
@@ -4976,7 +5132,10 @@ enum GCDAsyncSocketConfig
 	dispatch_block_t block = ^{
 		if (socket4FD != SOCKET_NULL)
 		{
+            // IP version 4 internet style socket address
 			struct sockaddr_in sockaddr4;
+            
+            // Gets the length of the socket address
 			socklen_t sockaddr4len = sizeof(sockaddr4);
 			
             // if can get the sockets name
@@ -4988,7 +5147,10 @@ enum GCDAsyncSocketConfig
 		
 		if (socket6FD != SOCKET_NULL)
 		{
+            // IP version 6 internet style socket address
 			struct sockaddr_in6 sockaddr6;
+            
+            // Gets the length of the socket
 			socklen_t sockaddr6len = sizeof(sockaddr6);
 			
             // if can get the sockets name
@@ -5002,8 +5164,12 @@ enum GCDAsyncSocketConfig
     // Returns the queue on which the currently executing block is running
 	if (dispatch_get_current_queue() == socketQueue)
     {
+        // Executes the block on the socketQueue
 		block();
+        
 	}else{
+        
+        // Executes the block on the socketQueue
 		dispatch_sync(socketQueue, block);
 	}
 	return [result autorelease];
@@ -5027,7 +5193,9 @@ enum GCDAsyncSocketConfig
 		
         // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
+            
 			result = (socket4FD != SOCKET_NULL);
+            
 		}); // END OF BLOCK
 		
 		return result;
@@ -5052,7 +5220,9 @@ enum GCDAsyncSocketConfig
 		
         // Submits a block for synchronous execution on the socketQueue
 		dispatch_sync(socketQueue, ^{
+            
 			result = (socket6FD != SOCKET_NULL);
+            
 		}); // END OF BLOCK
 		
 		return result;
@@ -5078,10 +5248,11 @@ enum GCDAsyncSocketConfig
     param UInt16
 **/
 - (void)getInterfaceAddress4:(NSData **)interfaceAddr4Ptr // pointer to a pointer
-                    address6:(NSData **)interfaceAddr6Ptr // pointer to a pointer
-             fromDescription:(NSString *)interfaceDescription
-                        port:(UInt16)port
+            address6:(NSData **)interfaceAddr6Ptr // pointer to a pointer
+            fromDescription:(NSString *)interfaceDescription
+            port:(UInt16)port
 {
+    
 	NSData *addr4 = nil;
 	NSData *addr6 = nil;
 	
@@ -5094,6 +5265,7 @@ enum GCDAsyncSocketConfig
 	if ([components count] > 0)
 	{
 		NSString *temp = [components objectAtIndex:0];
+        
 		if ([temp length] > 0)
 		{
 			interface = temp;
@@ -5103,8 +5275,10 @@ enum GCDAsyncSocketConfig
     
 	if ([components count] > 1 && port == 0)
 	{
+        // Converts string to long
 		long portL = strtol([[components objectAtIndex:1] UTF8String], NULL, 10);
 		
+        
 		if (portL > 0 && portL <= UINT16_MAX)
 		{
 			port = (UInt16)portL;
@@ -5115,6 +5289,7 @@ enum GCDAsyncSocketConfig
 	{
 		// ANY address
 		
+        // IP version 4 internet style socket address
 		struct sockaddr_in nativeAddr4;
         
         // fills a byte string with a bytes value. (i.e. creates a native IP 4 address filled with zeros)
@@ -5125,6 +5300,7 @@ enum GCDAsyncSocketConfig
 		nativeAddr4.sin_port        = htons(port);
 		nativeAddr4.sin_addr.s_addr = htonl(INADDR_ANY);
 		
+        // IP version 6 internet style socket address
 		struct sockaddr_in6 nativeAddr6;
         
         // fills a byte string with a bytes value. (i.e. creates a native IP 6 address filled with zeros)        
@@ -5142,6 +5318,7 @@ enum GCDAsyncSocketConfig
 	{
 		// LOOPBACK address
 		
+        // IP version 4 internet style socket address
 		struct sockaddr_in nativeAddr4;
         
         // fills a byte string with a bytes value. (i.e. creates a native IP 4 address filled with zeros)
@@ -5152,6 +5329,7 @@ enum GCDAsyncSocketConfig
 		nativeAddr4.sin_port        = htons(port);
 		nativeAddr4.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 		
+        // IP version 6 internet style socket address
 		struct sockaddr_in6 nativeAddr6;
         
         // fills a byte string with a bytes value. (i.e. creates a native IP 6 address filled with zeros)
@@ -5170,11 +5348,13 @@ enum GCDAsyncSocketConfig
         // Create a constant read only local attribute
 		const char *iface = [interface UTF8String];
 		
+        // Internet family address
 		struct ifaddrs *addrs;
         
         // Create a constant read only local attribute
 		const struct ifaddrs *cursor;
 		
+        
 		if ((getifaddrs(&addrs) == 0))
 		{
 			cursor = addrs;
@@ -5252,15 +5432,24 @@ enum GCDAsyncSocketConfig
 					}
 				}
 				
+                // Gets the next internet family address
 				cursor = cursor->ifa_next;
 			}
 			
+            // Frees the internet family address
 			freeifaddrs(addrs);
 		}
 	}
 	
-	if (interfaceAddr4Ptr) *interfaceAddr4Ptr = addr4;
-	if (interfaceAddr6Ptr) *interfaceAddr6Ptr = addr6;
+	if (interfaceAddr4Ptr) 
+    {    
+        *interfaceAddr4Ptr = addr4;
+    }
+    
+	if (interfaceAddr6Ptr) 
+    {    
+        *interfaceAddr6Ptr = addr6;
+    }
 }
 
 /**
@@ -5281,6 +5470,7 @@ enum GCDAsyncSocketConfig
     
     // Sets the event handler block for the readSource
 	dispatch_source_set_event_handler(readSource, ^{
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
 		LogVerbose(@"readEventBlock");
@@ -5316,6 +5506,7 @@ enum GCDAsyncSocketConfig
 		LogVerbose(@"writeEventBlock");
 		
         // If set, we know socket can accept bytes. If unset, it's unknown.
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kSocketCanAcceptBytes;
         
         // Writes the data to the socket
@@ -5380,26 +5571,31 @@ enum GCDAsyncSocketConfig
 	// But we should be able to write immediately.
 	
 	socketFDBytesAvailable = 0;
+    
+    // Bitwise AND assignment to determine if flag is 1 or 0
 	flags &= ~kReadSourceSuspended;
 	
 	LogVerbose(@"dispatch_resume(readSource)");
 	dispatch_resume(readSource); // resumes the readSource
 	
     // If set, we know socket can accept bytes. If unset, it's unknown.
+    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	flags |= kSocketCanAcceptBytes;
     
     // If set, the write source is suspended
+    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	flags |= kWriteSourceSuspended;
 }
 
 /**
-    Whether using CFStream
+    Whether using a Core Foundation Stream.  This is only for the IOS
     returns BOOL
 **/
 - (BOOL)usingCFStream
 {
 	#if TARGET_OS_IPHONE
 		
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketSecure)
 		{
 			// Due to the fact that Apple doesn't give us the full power of SecureTransport on iOS,
@@ -5420,13 +5616,17 @@ enum GCDAsyncSocketConfig
 **/
 - (void)suspendReadSource
 {
+    // If the read source is not suspected
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (!(flags & kReadSourceSuspended))
 	{
 		LogVerbose(@"dispatch_suspend(readSource)");
 		
-		dispatch_suspend(readSource); // Suspends the readSource
+        // Suspends the readSource
+		dispatch_suspend(readSource); 
 
 		// If set, the read source is suspended
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
         flags |= kReadSourceSuspended;
 	}
 }
@@ -5436,13 +5636,17 @@ enum GCDAsyncSocketConfig
 **/
 - (void)resumeReadSource
 {
+    // If the readSource is suspended
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kReadSourceSuspended)
 	{
 		LogVerbose(@"dispatch_resume(readSource)");
 		
-		dispatch_resume(readSource); // resumes the readSource
+        // resumes the readSource
+		dispatch_resume(readSource); 
         
-        // If set, the read source is suspended
+        // Sets the read source as NOT suspended
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kReadSourceSuspended;
 	}
 }
@@ -5452,13 +5656,16 @@ enum GCDAsyncSocketConfig
 **/
 - (void)suspendWriteSource
 {
+    // If the writeSource is not suspended
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (!(flags & kWriteSourceSuspended))
 	{
 		LogVerbose(@"dispatch_suspend(writeSource)");
 		
 		dispatch_suspend(writeSource); // Suspends the writeSource
         
-        // If set, the write source is suspended
+        // Sets the write source as suspended
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kWriteSourceSuspended;
 	}
 }
@@ -5469,7 +5676,8 @@ enum GCDAsyncSocketConfig
 - (void)resumeWriteSource
 {
     
-    // If set, the write source is suspended
+    // If the write source is suspended
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kWriteSourceSuspended)
 	{
 		LogVerbose(@"dispatch_resume(writeSource)");
@@ -5477,7 +5685,8 @@ enum GCDAsyncSocketConfig
         // Resumes the invocation of blocks on the writeSource
 		dispatch_resume(writeSource);
         
-        // If set, the write source is suspended
+        // Sets the write source as NOT suspended
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kWriteSourceSuspended;
 	}
 }
@@ -5494,6 +5703,7 @@ enum GCDAsyncSocketConfig
 - (void)readDataWithTimeout:(NSTimeInterval)timeout tag:(long)tag
 {
     // Read data from the socket with a timeout for the read
+    // Set read buffer as nil
 	[self readDataWithTimeout:timeout buffer:nil bufferOffset:0 maxLength:0 tag:tag];
 }
 
@@ -5505,7 +5715,7 @@ enum GCDAsyncSocketConfig
     param long
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
-                     buffer:(NSMutableData *)buffer
+                     buffer:(NSMutableData *)buffer // read buffer
                bufferOffset:(NSUInteger)offset
                         tag:(long)tag
 {
@@ -5521,12 +5731,12 @@ enum GCDAsyncSocketConfig
     param long
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
-                     buffer:(NSMutableData *)buffer
-               bufferOffset:(NSUInteger)offset
+                     buffer:(NSMutableData *)buffer // read buffer
+               bufferOffset:(NSUInteger)offset // read buffer offset
                   maxLength:(NSUInteger)length
                         tag:(long)tag
 {
-    // If the offset is greater than the buffer length.  This shoudn't happen
+    // If the read buffer offset is greater than the read buffer length.  This shoudn't happen
 	if (offset > [buffer length]) return;
 	
     
@@ -5548,6 +5758,7 @@ enum GCDAsyncSocketConfig
 		
         // If set, socket has been started (accepting/connecting)
         // If set, no new reads or writes are allowed
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if ((flags & kSocketStarted) && !(flags & kForbidReadsWrites))
 		{
             // Add a packet to the readQueue
@@ -5614,6 +5825,7 @@ enum GCDAsyncSocketConfig
 		
 		LogTrace();
 		
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if ((flags & kSocketStarted) && !(flags & kForbidReadsWrites))
 		{
             // Adds packet to readQueue
@@ -5724,6 +5936,7 @@ enum GCDAsyncSocketConfig
         
         // If set, socket has been started (accepting/connecting)
         // If set, no new reads or writes are allowed
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if ((flags & kSocketStarted) && !(flags & kForbidReadsWrites))
 		{
             
@@ -5758,6 +5971,7 @@ enum GCDAsyncSocketConfig
 	NSAssert(dispatch_get_current_queue() == socketQueue, @"Must be dispatched on socketQueue");
 	
 	// If we're not currently processing a read AND we have an available read stream
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((currentRead == nil) && (flags & kConnected))
 	{
         // If there a read packet in the readQueue
@@ -5775,6 +5989,7 @@ enum GCDAsyncSocketConfig
 				LogVerbose(@"Dequeued GCDAsyncSpecialPacket");
 				
 				// Attempt to start TLS
+                // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				flags |= kStartingReadTLS;
 				
 				// This method won't do anything unless both kStartingReadTLS and kStartingWriteTLS are set
@@ -5793,12 +6008,14 @@ enum GCDAsyncSocketConfig
 		}
         
         // If disconnecting the socket after reading
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		else if (flags & kDisconnectAfterReads)
 		{
             // If disconnecting the socket after writing
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			if (flags & kDisconnectAfterWrites)
 			{
-                // Check if there is anything in the writeQueue to write to the socket, and am not currently writing anything to the socket
+                // Check if there is anything in the writeQueue to write to the socket, and am not current write packet is nil
 				if (([writeQueue count] == 0) && (currentWrite == nil))
 				{
                     // Close the socket
@@ -5816,7 +6033,7 @@ enum GCDAsyncSocketConfig
 
 
 /**
-    Reads the data
+    Reads the data from the socket
 **/
 - (void)doReadData
 {
@@ -5826,6 +6043,7 @@ enum GCDAsyncSocketConfig
 	// It might be called directly, or via the readSource when data is available to be read.
 
 	// If not currently reading, and reads are not paused due to a possible timeout
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((currentRead == nil) || (flags & kReadsPaused))
 	{
 		LogVerbose(@"No currentRead or kReadsPaused");
@@ -5857,6 +6075,8 @@ enum GCDAsyncSocketConfig
 		return;
 	}
 	
+    
+    
     // if there are bytes available to read on the socket
 	BOOL hasBytesAvailable;
     
@@ -5867,6 +6087,7 @@ enum GCDAsyncSocketConfig
 	#if TARGET_OS_IPHONE
     
         // If set, socket is using secure communication via SSL/TLS
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketSecure)
 		{
 			// Relegated to using CFStream... :( Boo! Give us SecureTransport Apple!
@@ -5876,6 +6097,7 @@ enum GCDAsyncSocketConfig
             
             
             // If the secure socket has bytes available to read from the socket
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			hasBytesAvailable = (flags & kSecureSocketHasBytesAvailable) ? YES : NO;
 		}
 		else // If socket is not using secure communications
@@ -5914,11 +6136,13 @@ enum GCDAsyncSocketConfig
 	
     
     // If set, we're waiting for TLS negotiation to complete
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kStartingReadTLS)
 	{
 		LogVerbose(@"Waiting for SSL/TLS handshake to complete");
 		
 		// The readQueue is waiting for SSL/TLS handshake to complete.
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kStartingWriteTLS)
 		{
 			#if !TARGET_OS_IPHONE
@@ -5947,9 +6171,20 @@ enum GCDAsyncSocketConfig
 		return;
 	}
 	
-	BOOL done        = NO;  // Completed read operation
-	BOOL waiting     = NO;  // Ran out of data, waiting for more
-	BOOL socketEOF   = NO;  // Nothing more to read (end of file)
+    /**
+        Done reading from the socket.  (i.e. completed read operation)
+    **/ 
+	BOOL done        = NO; 
+    
+    /**
+        If the socket is waiting for more data. (i.e. ran out of data, waiting for more)
+    **/
+	BOOL waiting     = NO;  
+    
+    /**
+        End of file terminator received on the socket (i.e. nothing more to read (end of file)
+    **/
+	BOOL socketEOF   = NO;  
 	NSError *error   = nil; // Error occured
 	
     
@@ -6166,12 +6401,15 @@ enum GCDAsyncSocketConfig
 			buffer = [currentRead->buffer mutableBytes] + currentRead->startOffset + currentRead->bytesDone;
 		}
 		
+        /////////////////////////////
 		// Read data into buffer
-		
+		////////////////////////////
+        
 		size_t bytesRead = 0;
 		
         
         // If set, socket is using secure communication via SSL/TLS
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kSocketSecure)
 		{
 			#if TARGET_OS_IPHONE
@@ -6188,11 +6426,17 @@ enum GCDAsyncSocketConfig
 				{
 					error = [NSMakeCollectable(CFReadStreamCopyError(readStream)) autorelease];
 					
+                    // If reading into the partial read buffer
 					if (readIntoPartialReadBuffer)
+                    {
+                        // Set the length of the NSMutable Data
 						[partialReadBuffer setLength:0];
+                    }
+                    
 				}//  if the stream has reached its end
 				else if (result == 0)
 				{
+                    
 					socketEOF = YES;
 					
 					if (readIntoPartialReadBuffer)
@@ -6207,6 +6451,7 @@ enum GCDAsyncSocketConfig
 				// We only know how many decrypted bytes were read.
 				// The actual number of bytes read was likely more due to the overhead of the encryption.
 				// So we reset our flag, and rely on the next callback to alert us of more data.
+                // Bitwise AND assignment to determine if flag is 1 or 0
 				flags &= ~kSecureSocketHasBytesAvailable;
 				
 			#else
@@ -6550,6 +6795,7 @@ enum GCDAsyncSocketConfig
 	NSError *error = nil;
 	
     // If set, we're waiting for TLS negotiation to complete
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((flags & kStartingReadTLS) || (flags & kStartingWriteTLS))
 	{
 		// We received an EOF during or prior to startTLS.
@@ -6760,6 +7006,7 @@ enum GCDAsyncSocketConfig
 	
     
     // If set, reads are paused due to possible timeout
+    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	flags |= kReadsPaused;
 	
     
@@ -6820,7 +7067,9 @@ enum GCDAsyncSocketConfig
 			dispatch_source_set_timer(readTimer, tt, DISPATCH_TIME_FOREVER, 0);
 			
 			// Unpause reads, and continue
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			flags &= ~kReadsPaused;
+            
 			[self doReadData];
 		}
 		else // If the time interval is not valid or not greater than zero
@@ -6861,6 +7110,7 @@ enum GCDAsyncSocketConfig
 	
         // If set, socket has been started (accepting/connecting)
         // If set, no new reads or writes are allowed
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if ((flags & kSocketStarted) && !(flags & kForbidReadsWrites))
 		{
             // Adds packet to the writeQueue
@@ -6896,7 +7146,8 @@ enum GCDAsyncSocketConfig
 	NSAssert(dispatch_get_current_queue() == socketQueue, @"Must be dispatched on socketQueue");
 	
 	
-	// If we're not currently processing a write AND we have an available write stream
+	// If current write packet is nil AND we have an available write stream
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((currentWrite == nil) && (flags & kConnected))
 	{
         // If there items on the writeQueue
@@ -6904,6 +7155,8 @@ enum GCDAsyncSocketConfig
 		{
 			// Dequeue the next object in the write queue
 			currentWrite = [[writeQueue objectAtIndex:0] retain];
+            
+            // Remove object at index zero from the writeQueue
 			[writeQueue removeObjectAtIndex:0];
 			
 			// if the current write packet is a special packet
@@ -6912,6 +7165,7 @@ enum GCDAsyncSocketConfig
 				LogVerbose(@"Dequeued GCDAsyncSpecialPacket");
 				
 				// Attempt to start TLS
+                // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				flags |= kStartingWriteTLS;
 				
 				// This method won't do anything unless both kStartingReadTLS and kStartingWriteTLS are set
@@ -6921,7 +7175,7 @@ enum GCDAsyncSocketConfig
 			{
 				LogVerbose(@"Dequeued GCDAsyncWritePacket");
 				
-				// Setup write timer (if needed)
+				// Setup write timer (if needed) for the write packet
 				[self setupWriteTimerWithTimeout:currentWrite->timeout];
 				
 				// Immediately write, if possible
@@ -6929,9 +7183,11 @@ enum GCDAsyncSocketConfig
 			}
 		}
         // If disconnecting the socket after writing
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		else if (flags & kDisconnectAfterWrites)
 		{
             // If disconnecting the socket after reading
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			if (flags & kDisconnectAfterReads)
 			{
                 // If there is nothing in the readQueue and not currently reading
@@ -6960,8 +7216,9 @@ enum GCDAsyncSocketConfig
 	
 	// This method is called by the writeSource via the socketQueue
 	
-    // if current write to buffer is nil, or
+    // if current write packet is nil, or
     // If set, writes are paused due to possible timeout
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((currentWrite == nil) || (flags & kWritesPaused))
 	{
 		LogVerbose(@"No currentWrite or kWritesPaused");
@@ -6976,7 +7233,8 @@ enum GCDAsyncSocketConfig
 		else // not using CFStream
 		{
 			// If the writeSource is firing, we need to pause it
-			// or else it will continue to fire over and over again.			
+			// or else it will continue to fire over and over again.	
+            // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			if (flags & kSocketCanAcceptBytes)
 			{
                 // Suspends the writeSource
@@ -6988,6 +7246,7 @@ enum GCDAsyncSocketConfig
     
     
 	// If set, we know socket can accept bytes. If unset, it's unknown.
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (!(flags & kSocketCanAcceptBytes))
 	{
 		LogVerbose(@"No space available to write...");
@@ -7008,12 +7267,13 @@ enum GCDAsyncSocketConfig
 	}
 	
     // If set, we're waiting for TLS negotiation to complete
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kStartingWriteTLS)
 	{
 		LogVerbose(@"Waiting for SSL/TLS handshake to complete");
 		
 		// The writeQueue is waiting for SSL/TLS handshake to complete.
-		
+		// The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if (flags & kStartingReadTLS)
 		{
 			#if !TARGET_OS_IPHONE
@@ -7049,16 +7309,19 @@ enum GCDAsyncSocketConfig
 	
     
     // If set, socket is using secure communication via SSL/TLS
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (flags & kSocketSecure)
 	{
 		#if TARGET_OS_IPHONE
 			
         
-            // bytes in the bufer plus the bytesDone
+            // bytes in the currentWrite packet buffer plus the write packets bytesDone
 			void *buffer = (void *)[currentWrite->buffer bytes] + currentWrite->bytesDone;
 			
+            // The write packet Write buffer length less the write packet bytes written to the socket
 			NSUInteger bytesToWrite = [currentWrite->buffer length] - currentWrite->bytesDone;
 			
+        
 			if (bytesToWrite > SIZE_MAX) // NSUInteger may be bigger than size_t (write param 3)
 			{
 				bytesToWrite = SIZE_MAX;
@@ -7277,6 +7540,7 @@ enum GCDAsyncSocketConfig
 	
 	if (waiting) // waiting to write data
 	{
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kSocketCanAcceptBytes;
 		
 		if (![self usingCFStream])
@@ -7318,6 +7582,7 @@ enum GCDAsyncSocketConfig
 		{
 			// This would be the case if our write was able to accept some data, but not all of it.
 			
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			flags &= ~kSocketCanAcceptBytes;
 			
             // If not using CFStream
@@ -7470,6 +7735,7 @@ enum GCDAsyncSocketConfig
 	
     
     // If set, writes are paused due to possible timeout
+    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	flags |= kWritesPaused;
 	
     
@@ -7529,6 +7795,7 @@ enum GCDAsyncSocketConfig
 			dispatch_source_set_timer(writeTimer, tt, DISPATCH_TIME_FOREVER, 0);
 			
 			// Unpause writes, and continue
+            // Bitwise AND assignment to determine if flag is 1 or 0
 			flags &= ~kWritesPaused;
             
             // Writes the data to the socket
@@ -7574,8 +7841,10 @@ enum GCDAsyncSocketConfig
 	
     // Submits a block for asynchronous execution on the socketQueue
 	dispatch_async(socketQueue, ^{
+        
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
+        // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		if ((flags & kSocketStarted) && !(flags & kQueuedTLS) && !(flags & kForbidReadsWrites))
 		{
             // Adds the special packet to the readQueue
@@ -7585,7 +7854,7 @@ enum GCDAsyncSocketConfig
 			[writeQueue addObject:packet];
 			
             // Sets the flag that we've queued an upgrade to TLS
-
+            // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 			flags |= kQueuedTLS;
 			
             
@@ -7852,6 +8121,7 @@ enum GCDAsyncSocketConfig
 - (OSStatus)sslWriteWithBuffer:(const void *)buffer length:(size_t *)bufferLength
 {
     // If set, we know socket can accept bytes. If unset, it's unknown.
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if (!(flags & kSocketCanAcceptBytes))
 	{
 		// Unable to write.
@@ -7886,11 +8156,13 @@ enum GCDAsyncSocketConfig
 		}
 		
         // // If set, we know socket can accept bytes. If unset, it's unknown.
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kSocketCanAcceptBytes;
 	}
 	else if (result == 0)
 	{
         // If set, we know socket can accept bytes. If unset, it's unknown.
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kSocketCanAcceptBytes;
 	}
 	else
@@ -7965,7 +8237,7 @@ OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, size_t 
 	// - All queued writes prior to the user calling startTLS are complete
 	// 
 	// We'll know these conditions are met when both kStartingReadTLS and kStartingWriteTLS are set
-	
+	// The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((flags & kStartingReadTLS) && (flags & kStartingWriteTLS))
 	{
 		LogVerbose(@"Starting TLS...");
@@ -8293,11 +8565,15 @@ OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, size_t 
 		
         
         // If set, we're waiting for TLS negotiation to complete
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingReadTLS;
+        
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingWriteTLS;
 		
         
         // If set, socket is using secure communication via SSL/TLS
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |=  kSocketSecure;
 		
         
@@ -8465,15 +8741,19 @@ OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, size_t 
 	
     
     // If set, we're waiting for TLS negotiation to complete
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((flags & kStartingReadTLS) && (flags & kStartingWriteTLS))
 	{
         // If set, we're waiting for TLS negotiation to complete
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingReadTLS;
         
         // If set, we're waiting for TLS negotiation to complete
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingWriteTLS;
 		
         // If set, socket is using secure communication via SSL/TLS
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kSocketSecure;
 		
         
@@ -8522,13 +8802,16 @@ OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, size_t 
 	LogTrace();
 	
     // If set, we're waiting for TLS negotiation to complete
+    // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((flags & kStartingReadTLS) && (flags & kStartingWriteTLS))
 	{
         
         // // If set, we're waiting for TLS negotiation to complete
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingReadTLS;
         
         // If set, we're waiting for TLS negotiation to complete
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kStartingWriteTLS;
         
         // Close the socket
@@ -8567,9 +8850,11 @@ static void CFReadStreamCallback (CFReadStreamRef stream, CFStreamEventType type
 				
                 // Note: sames as (*asyncSocket).flags
                 // If set, we're waiting for TLS negotiation to complete
+                // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				if ((asyncSocket->flags & kStartingReadTLS) && (asyncSocket->flags & kStartingWriteTLS))
 				{
                     // If the socket has bytes available
+                    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 					asyncSocket->flags |= kSecureSocketHasBytesAvailable;
                     
                     // Finished the SSL handshake
@@ -8578,7 +8863,9 @@ static void CFReadStreamCallback (CFReadStreamRef stream, CFStreamEventType type
 				else
 				{
                     // if the secure socket has bytes available
+                    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 					asyncSocket->flags |= kSecureSocketHasBytesAvailable;
+                    
                     // reads the data from the socket
 					[asyncSocket doReadData];
 				}
@@ -8608,6 +8895,7 @@ static void CFReadStreamCallback (CFReadStreamRef stream, CFStreamEventType type
 				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 				
                 // If set, we're waiting for TLS negotiation to complete
+                // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				if ((asyncSocket->flags & kStartingReadTLS) && (asyncSocket->flags & kStartingWriteTLS))
 				{
                     
@@ -8661,13 +8949,17 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
                 
 				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 				
+                // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				if ((asyncSocket->flags & kStartingReadTLS) && (asyncSocket->flags & kStartingWriteTLS))
 				{
+                    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 					asyncSocket->flags |= kSocketCanAcceptBytes;
+                    
 					[asyncSocket finishSSLHandshake];
 				}
 				else
 				{
+                    // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 					asyncSocket->flags |= kSocketCanAcceptBytes;
                     
                     // Writes the data to the socket
@@ -8697,6 +8989,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
                 
 				NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 				
+                // The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 				if ((asyncSocket->flags & kStartingReadTLS) && (asyncSocket->flags & kStartingWriteTLS))
 				{
 					[asyncSocket abortSSLHandshake:error];
@@ -8811,7 +9104,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 	// - All queued writes prior to the user calling startTLS are complete
 	// 
 	// We'll know these conditions are met when both kStartingReadTLS and kStartingWriteTLS are set
-	
+	// The bitwise-AND operator compares each bit of its first operand to the corresponding bit of its second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 	if ((flags & kStartingReadTLS) && (flags & kStartingWriteTLS))
 	{
 		LogVerbose(@"Starting TLS...");
@@ -8820,25 +9113,31 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
         // If the partialReadBuffer has data
 		if ([partialReadBuffer length] > 0)
 		{
+            
+            
 			NSString *msg = @"Invalid TLS transition. Handshake has already been read from socket.";
 			
 			[self closeWithError:[self otherError:msg]];
 			return;
 		}
 		
+        // If there is nothing in the partial read buffer
+        
         // Suspends the read and write source
 		[self suspendReadSource];
 		[self suspendWriteSource];
 		
-        
+        // Sets the bytes available on the socket to zero
 		socketFDBytesAvailable = 0;
         
         
         // If set, we know socket can accept bytes. If unset, it's unknown
+        // Bitwise AND assignment to determine if flag is 1 or 0
 		flags &= ~kSocketCanAcceptBytes;
         
-        
-		flags &= ~kSecureSocketHasBytesAvailable; // has bytes available on the socket
+        // has bytes available on the socket
+        // Bitwise AND assignment to determine if flag is 1 or 0
+		flags &= ~kSecureSocketHasBytesAvailable; 
 		
         
         // If there isn't any read or write stream
@@ -8855,6 +9154,8 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 		
         // If the readString or writeStream is not NULL
         
+        
+        // streamContext is a struct for holding client information
 		streamContext.version = 0;
 		streamContext.info = self;
 		streamContext.retain = nil;
@@ -8885,6 +9186,7 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
         // Try to register a client to hear about interesting events that occur on a stream.  Only one client per stream is allowed; registering a new client replaces the previous one.        
 		if (!CFWriteStreamSetClient(writeStream, writeStreamEvents, &CFWriteStreamCallback, &streamContext))
 		{
+            
             // Close the socket
 			[self closeWithError:[self otherError:@"Error in CFWriteStreamSetClient"]];
             
@@ -8900,7 +9202,8 @@ static void CFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType ty
 		                   withObject:self
 		                waitUntilDone:YES];
 		
-        // // If set, rw streams have been added to handshake listener thread
+        // If set, rw streams have been added to handshake listener thread
+        // Bitwise OR operator. If either bit is 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0.
 		flags |= kAddedHandshakeListener;
 		
         // Test whether the currentRead pack is a special packet

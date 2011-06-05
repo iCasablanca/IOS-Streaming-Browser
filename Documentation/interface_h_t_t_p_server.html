@@ -173,7 +173,7 @@ Protected Attributes</h2></td></tr>
 <p>Adds a web socket</p>
 <p>Adds a web sockets array </p>
 
-<p>Definition at line <a class="el" href="#L693">693</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L695">695</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">                    :(<a class="code" href="interface_web_socket.html">WebSocket</a> *)ws
 {
     <span class="comment">// Locks the web socker</span>
@@ -359,7 +359,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of HTTP connections</p>
 <p>Returns the number of http client connections that are currently connected to the server. returns NSUInteger </p>
 
-<p>Definition at line <a class="el" href="#L713">713</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L715">715</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">{
     
         NSUInteger result = 0;
@@ -394,8 +394,9 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of web socket connections</p>
 <p>Returns the number of websocket client connections that are currently connected to the server. returns NSUInteger </p>
 
-<p>Definition at line <a class="el" href="#L734">734</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L736">736</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">{
+    <span class="comment">// Local attribute</span>
         NSUInteger result = 0;
         
     <span class="comment">// Locks the web socket</span>
@@ -510,7 +511,7 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Republishes the service via bonjour if the server is running. If the service was not previously published, this method will publish it (if the server is running). </p>
 
-<p>Definition at line <a class="el" href="#L898">898</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L905">905</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">{
         <span class="comment">// Submits a block for asynchronous execution on the serverQueue</span>
         dispatch_async(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
@@ -688,7 +689,7 @@ Protected Attributes</h2></td></tr>
 <p>Sets the published name of the server</p>
 <p>Sets the published name of the server param NSString </p>
 
-<p>Definition at line <a class="el" href="#L447">447</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L448">448</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">               :(NSString *)value
 {
     <span class="comment">// Copies the value into a local attribute</span>
@@ -754,7 +755,7 @@ Protected Attributes</h2></td></tr>
 <p>Sets the TXT record dictionary</p>
 <p>Sets the TXT record dictionary param NSDictionary </p>
 
-<p>Definition at line <a class="el" href="#L527">527</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L528">528</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">                              :(NSDictionary *)value
 {
         <span class="comment">// Copies the value into a local attribute</span>
@@ -784,6 +785,7 @@ Protected Attributes</h2></td></tr>
             <span class="comment">// The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.</span>
                         dispatch_block_t bonjourBlock = ^{
                 
+                <span class="comment">// Sets the network service text record data</span>
                                 [theNetService setTXTRecordData:txtRecordData];
                 
                         }; <span class="comment">// END OF BLOCK</span>
@@ -814,7 +816,7 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Set the type of service to be published via Bonjour param NSString </p>
 
-<p>Definition at line <a class="el" href="#L487">487</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L488">488</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">               :(NSString *)value
 {
     <span class="comment">// Copies the value into a local attribute</span>
@@ -850,7 +852,7 @@ Protected Attributes</h2></td></tr>
 <p>Starts the server</p>
 <p>Starts the server param NSError returns BOOL </p>
 
-<p>Definition at line <a class="el" href="#L578">578</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L580">580</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">             :(NSError **)errPtr
 {
         <span class="comment">// Creates local attributes</span>
@@ -929,7 +931,7 @@ Protected Attributes</h2></td></tr>
 <p>Stops the server</p>
 <p>Stops the server returns BOOL </p>
 
-<p>Definition at line <a class="el" href="#L626">626</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L628">628</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">{
         <span class="comment">// Submits a block for synchronous execution on the serverQueue</span>
         dispatch_sync(<a class="code" href="interface_h_t_t_p_server.html#a9a5136636d1bbcf2988d6b98ecf7ff11">serverQueue</a>, ^{
@@ -992,7 +994,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the TXT record dictionary</p>
 <p>Gets the TXTRecordDictionary The extra data to use for this service via Bonjour. returns NSDictionary </p>
 
-<p>Definition at line <a class="el" href="#L508">508</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
+<p>Definition at line <a class="el" href="#L509">509</a> of file <a class="el" href="">HTTPServer.m</a>.</p>
 <div class="fragment"><pre class="fragment">{
     <span class="comment">// Creates a local attribute</span>
         __block NSDictionary *result;
@@ -1072,7 +1074,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>default is HTTP connection</p>
+<p>Default is HTTP connection</p>
 <p>The connection class is the class that will be used to handle connections. That is, when a new connection is created, an instance of this class will be intialized. The default connection class is <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a>. If you use a different connection class, it is assumed that the class extends <a class="el" href="interface_h_t_t_p_connection.html">HTTPConnection</a> returns Class </p>
 
 <p>Definition at line <a class="el" href="#L55">55</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1105,7 +1107,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the connections to the server </p>
+<p>The connections to the server </p>
 
 <p>Definition at line <a class="el" href="#L108">108</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1121,7 +1123,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>locks the http connection </p>
+<p>Locks the http connection. Note: uses POSIX threads to implement its locking behavior </p>
 
 <p>Definition at line <a class="el" href="#L118">118</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1154,7 +1156,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the domain the service should be published on, the default is 'local'</p>
+<p>The domain the service should be published on, the default is 'local'</p>
 <p>Gets the domain on which to broadcast this service via Bonjour. The default domain is "local". returns NSString </p>
 
 <p>Definition at line <a class="el" href="#L79">79</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1171,7 +1173,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the interface the server should listen on, "en1", "lo0", etc</p>
+<p>The interface the server should listen on, "en1", "lo0", etc</p>
 <p>What interface to bind the listening socket to. returns NSString </p>
 
 <p>Definition at line <a class="el" href="#L60">60</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1204,7 +1206,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>default is the computers name that the server is running on</p>
+<p>Default is the computers name that the server is running on</p>
 <p>Gets the name to use for this service via Bonjour. The default name is an empty string, which should result in the published name being the host name of the computer. returns NSString </p>
 
 <p>Definition at line <a class="el" href="#L89">89</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1221,7 +1223,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>represents a network service </p>
+<p>Represents a network service </p>
 
 <p>Definition at line <a class="el" href="#L74">74</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1237,7 +1239,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the listening port</p>
+<p>The listening port</p>
 <p>The port to listen for connections on. By default this port is initially set to zero, which allows the kernel to pick an available port for us. After the HTTP server has started, the port being used may be obtained by this method. </p>
 
 <p>Definition at line <a class="el" href="#L65">65</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1254,7 +1256,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the published server name</p>
+<p>The published server name</p>
 <p>Gets the published name of the server returns NSString </p>
 
 <p>Definition at line <a class="el" href="#L94">94</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
@@ -1287,6 +1289,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Dictionary consisting of "zero or more strings, packed together in memory without any intervening gaps or padding bytes for word alignment. The format of each constituent string within the DNS TXT record is a single length byte, followed by 0-255 bytes of text data." </p>
 
 <p>Definition at line <a class="el" href="#L99">99</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1319,7 +1322,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the web socket connections </p>
+<p>The web socket connections </p>
 
 <p>Definition at line <a class="el" href="#L113">113</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1335,7 +1338,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>locks the websocket </p>
+<p>Locks the websocket. Note: uses POSIX threads to implement its locking behavior </p>
 
 <p>Definition at line <a class="el" href="#L123">123</a> of file <a class="el" href="">HTTPServer.h</a>.</p>
 
@@ -1350,7 +1353,7 @@ Protected Attributes</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="interface_h_t_t_p_server.html">HTTPServer</a>      </li>
-      <li class="footer">Generated on Fri Jun 3 2011 21:51:12 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Sat Jun 4 2011 18:45:29 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
