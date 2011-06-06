@@ -26,7 +26,7 @@
 @interface DDLogFileManagerDefault (PrivateAPI)
 
 /**
- 
+    @return void
 **/
 - (void)deleteOldLogFiles;
 
@@ -37,39 +37,44 @@
 #if GCD_MAYBE_UNAVAILABLE
 
 /**
-    param NSMutableArray
+    @param NSMutableArray
+    @return void
 **/
 - (void)lt_getMaximumFileSize:(NSMutableArray *)resultHolder;
 
 /**
-    param NSNumber
+    @param NSNumber
+    @return void
 **/
 - (void)lt_setMaximumFileSize:(NSNumber *)maximumFileSizeWrapper;
 
 /**
-    param NSMutableArray
+    @param NSMutableArray
+    @return void
 **/
 - (void)lt_getRollingFrequency:(NSMutableArray *)resultHolder;
 
 /**
-    param NSNumber
+    @param NSNumber
+    @return void
 **/
 - (void)lt_setRollingFrequency:(NSNumber *)rollingFrequencyWrapper;
 
 #endif
 
 /**
- 
+    @return void
 **/
 - (void)rollLogFileNow;
 
 /**
-    param NSTimer
+    @param NSTimer
+    @return void
 **/
 - (void)maybeRollLogFileDueToAge:(NSTimer *)aTimer;
 
 /**
- 
+    @return void
 **/
 - (void)maybeRollLogFileDueToSize;
 @end
@@ -84,7 +89,8 @@
 
 
 /**
-    Initialize the DDLogFileManagerDefault
+    @brief Initialize the DDLogFileManagerDefault
+    @return id
 **/
 - (id)init
 {
@@ -103,7 +109,8 @@
 }
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -115,10 +122,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    param NSString
-    param id
-    param NSDictionary
- 
+    @param NSString
+    @param id
+    @param NSDictionary
+    @return void
 **/
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -176,7 +183,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Deletes archived log files that exceed the maximumNumberOfLogFiles configuration value.
+    @brief Deletes archived log files that exceed the maximumNumberOfLogFiles configuration value.
+    @return void
 **/
 - (void)deleteOldLogFiles
 {
@@ -242,9 +250,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Returns the path to the logs directory.
- * If the logs directory doesn't exist, this method automatically creates it.
- returns NSString
+    @brief Returns the path to the logs directory.
+    If the logs directory doesn't exist, this method automatically creates it.
+    @return NSString
 **/
 - (NSString *)logsDirectory
 {
@@ -277,8 +285,9 @@
 
 
 /**
-    Check if the file name is a log file
-    param NSString
+    @brief Check if the file name is a log file
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)isLogFile:(NSString *)fileName
 {
@@ -308,8 +317,8 @@
 }
 
 /**
-    Returns an array of NSString objects, each of which is the filePath to an existing log file on disk.
-    returns NSArray
+    @brief Returns an array of NSString objects, each of which is the filePath to an existing log file on disk.
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFilePaths
 {
@@ -335,8 +344,8 @@
 }
 
 /**
-    Returns an array of NSString objects, each of which is the fileName of an existing log file on disk.
-    retruns NSArray
+    @brief Returns an array of NSString objects, each of which is the fileName of an existing log file on disk.
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFileNames
 {
@@ -353,8 +362,8 @@
 }
 
 /**
-    Returns an array of DDLogFileInfo objects, each representing an existing log file on disk, and containing important information about the log file such as it's modification date and size.
-    returns NSArray
+    @brief Returns an array of DDLogFileInfo objects, each representing an existing log file on disk, and containing important information about the log file such as it's modification date and size.
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFileInfos
 {
@@ -374,10 +383,11 @@
 }
 
 /**
- * Just like the unsortedLogFilePaths method, but sorts the array.
- * The items in the array are sorted by modification date.
- * The first item in the array will be the most recently modified log file.
-    returns NSArray
+    @brief Just like the unsortedLogFilePaths method, but sorts the array.
+ 
+    The items in the array are sorted by modification date.
+    The first item in the array will be the most recently modified log file.
+    @return NSArray
 **/
 - (NSArray *)sortedLogFilePaths
 {
@@ -394,10 +404,10 @@
 }
 
 /**
- * Just like the unsortedLogFileNames method, but sorts the array.
- * The items in the array are sorted by modification date.
- * The first item in the array will be the most recently modified log file.
- returns NSArray
+    @brief Just like the unsortedLogFileNames method, but sorts the array.
+    The items in the array are sorted by modification date.
+    The first item in the array will be the most recently modified log file.
+    @return NSArray
 **/
 - (NSArray *)sortedLogFileNames
 {
@@ -414,10 +424,10 @@
 }
 
 /**
- * Just like the unsortedLogFileInfos method, but sorts the array.
- * The items in the array are sorted by modification date.
- * The first item in the array will be the most recently modified log file.
- returns NSArray
+    @brief Just like the unsortedLogFileInfos method, but sorts the array.
+    The items in the array are sorted by modification date.
+    The first item in the array will be the most recently modified log file.
+    @return NSArray
 **/
 - (NSArray *)sortedLogFileInfos
 {
@@ -429,9 +439,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Generates a short UUID suitable for use in the log file's name.
+    @brief Generates a short UUID suitable for use in the log file's name.
     The result will have six characters, all in the hexadecimal set [0123456789ABCDEF].
-    returns NSString
+    @return NSString
 **/
 - (NSString *)generateShortUUID
 {
@@ -447,8 +457,8 @@
 }
 
 /**
-    Generates a new unique log file path, and creates the corresponding log file.
-    returns NSString
+    @brief Generates a new unique log file path, and creates the corresponding log file.
+    @return NSString
 **/
 - (NSString *)createNewLogFile
 {
@@ -485,8 +495,8 @@
 @implementation DDLogFileFormatterDefault
 
 /**
-    Initialize the DDLogFileFormatterDefault
-    returns id
+    @brief Initialize the DDLogFileFormatterDefault
+    @return id
 **/
 - (id)init
 {
@@ -501,8 +511,8 @@
 
 
 /**
-    param DDLogMessage
-    returns NSString
+    @param DDLogMessage
+    @return NSString
 **/
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
@@ -513,7 +523,8 @@
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -535,7 +546,8 @@
 
 
 /**
- 
+    @brief Initialize the DDFileLogger
+    @return id
 **/
 - (id)init
 {
@@ -545,7 +557,8 @@
 }
 
 /**
- 
+    @brief Initialize the DDFileLogger with a log file manager
+    @return id
 **/
 - (id)initWithLogFileManager:(id <DDLogFileManager>)aLogFileManager
 {
@@ -563,7 +576,8 @@
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -587,8 +601,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Gets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
-    returns unsigned long long. 
+    @brief Gets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
+    @return unsigned long long. 
 **/
 - (unsigned long long)maximumFileSize
 {
@@ -653,7 +667,9 @@
 
 
 /**
-    Sets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
+    @brief Sets the maximum file size.  This value can be between 0 and 9,223,372,036,854,775,807
+    @param unsigned long long
+    @return void
 **/
 - (void)setMaximumFileSize:(unsigned long long)newMaximumFileSize
 {
@@ -705,7 +721,7 @@
 
 
 /**
-    returns NSTimeInterval
+    @return NSTimeInterval
 **/
 - (NSTimeInterval)rollingFrequency
 {
@@ -767,7 +783,8 @@
 
 
 /**
- 
+    @param NSTimeInterval
+    @return void
 **/
 - (void)setRollingFrequency:(NSTimeInterval)newRollingFrequency
 {
@@ -821,7 +838,9 @@
 
 
 /**
- 
+    @brief Get the maximum file size
+    @param NSMutableArray
+    @return void
 **/
 - (void)lt_getMaximumFileSize:(NSMutableArray *)resultHolder
 {
@@ -833,7 +852,9 @@
 
 
 /**
- 
+    @brief Set the maximum file size
+    @param NSNumber
+    @return void
 **/
 - (void)lt_setMaximumFileSize:(NSNumber *)maximumFileSizeWrapper
 {
@@ -845,7 +866,9 @@
 }
 
 /**
- 
+    @brief Get the rolling frequency
+    @param NSMutableArray
+    @return void
 **/
 - (void)lt_getRollingFrequency:(NSMutableArray *)resultHolder
 {
@@ -856,7 +879,9 @@
 }
 
 /**
- 
+    @brief Set the rolling frequency
+    @param NSNumber
+    @return void
 **/
 - (void)lt_setRollingFrequency:(NSNumber *)rollingFrequencyWrapper
 {
@@ -874,7 +899,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- 
+    @return void
 **/
 - (void)scheduleTimerToRollLogFileDueToAge
 {
@@ -911,7 +936,7 @@
 
 
 /**
- 
+    @return void
 **/
 - (void)rollLogFile
 {
@@ -926,7 +951,8 @@
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			[self rollLogFileNow];
 			[pool release];
-		};
+		}; // END OF BLOCK
+        
 		dispatch_async([DDLog loggingQueue], block);
 		
 	#endif
@@ -945,7 +971,7 @@
 }
 
 /**
- 
+    @return void
 **/
 - (void)rollLogFileNow
 {
@@ -968,7 +994,8 @@
 }
 
 /**
- 
+    @param NSTimer
+    @return void
 **/
 - (void)maybeRollLogFileDueToAge:(NSTimer *)aTimer
 {
@@ -986,8 +1013,8 @@
 
 
 /**
- 
-**/
+    @return void
+**/ 
 - (void)maybeRollLogFileDueToSize
 {
 	// This method is called from logMessage.
@@ -1012,11 +1039,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Returns the log file that should be used.
- * If there is an existing log file that is suitable,
- * within the constraints of maximumFileSize and rollingFrequency, then it is returned.
- * 
- * Otherwise a new file is created and returned.
+    @brief Returns the log file that should be used.
+ 
+    If there is an existing log file that is suitable, within the constraints of maximumFileSize and rollingFrequency, then it is returned.
+  
+    Otherwise a new file is created and returned.
+    @return DDLogFileInfo
 **/
 - (DDLogFileInfo *)currentLogFileInfo
 {
@@ -1079,7 +1107,8 @@
 }
 
 /**
-    returns NSFileHandle
+    @brief Gets the file handle to the current log file
+    @return NSFileHandle
 **/
 - (NSFileHandle *)currentLogFileHandle
 {
@@ -1104,7 +1133,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- 
+    @param DDLogMessage
+    @return void
 **/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
@@ -1131,7 +1161,8 @@
 }
 
 /**
- 
+    @brief Gets the logger name
+    @return NSString
 **/
 - (NSString *)loggerName
 {
@@ -1168,6 +1199,8 @@
 
 /**
     Class method
+    @param NSSTring
+    @return id
 **/
 + (id)logFileWithPath:(NSString *)aFilePath
 {
@@ -1175,7 +1208,9 @@
 }
 
 /**
-    Initialize with a file path
+    @brief Initialize with a file path
+    @param NSString
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)aFilePath
 {
@@ -1187,7 +1222,8 @@
 }
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -1207,7 +1243,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- 
+    @brief Gets the file attributes
+    @return NSDictionary
 **/
 - (NSDictionary *)fileAttributes
 {
@@ -1219,7 +1256,8 @@
 }
 
 /**
-    returns NSString
+    @brief Gets the file name
+    @return NSString
 **/
 - (NSString *)fileName
 {
@@ -1232,7 +1270,8 @@
 
 
 /**
-    returns NSDate
+    @brief Gets the modification date
+    @return NSDate
 **/
 - (NSDate *)modificationDate
 {
@@ -1245,8 +1284,8 @@
 }
 
 /**
-    The log file creation date
-    returns NSDate
+    @brief The log file creation date
+    @return NSDate
 **/
 - (NSDate *)creationDate
 {
@@ -1294,8 +1333,8 @@
 }
 
 /**
-    Gets the file size
-    returns value between 0 and 9,223,372,036,854,775,807
+    @brief Gets the file size
+    @return value between 0 and 9,223,372,036,854,775,807
 **/
 - (unsigned long long)fileSize
 {
@@ -1308,8 +1347,8 @@
 }
 
 /**
-    Gets the age of the log file
-    returns NSTimeInterval
+    @brief Gets the age of the log file
+    @return NSTimeInterval
 **/
 - (NSTimeInterval)age
 {
@@ -1321,8 +1360,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Whether the log file is archived
-    returns BOOL
+    @brief Whether the log file is archived
+    @return BOOL
 **/
 - (BOOL)isArchived
 {
@@ -1343,8 +1382,9 @@
 }
 
 /**
-    Set the file for archiving
-    param BOOL
+    @brief Set the file for archiving
+    @param BOOL
+    @return void
 **/
 - (void)setIsArchived:(BOOL)flag
 {
@@ -1375,7 +1415,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- 
+    @return void
 **/
 - (void)reset
 {
@@ -1393,8 +1433,9 @@
 }
 
 /**
-    Rename the log file
-    param NSString
+    @brief Rename the log file
+    @param NSString
+    @return void
 **/
 - (void)renameFile:(NSString *)newFileName
 {
@@ -1433,7 +1474,8 @@
 // See full explanation in the header file.
 
 /**
-    returns boolean
+    @param NSString
+    @return boolean
 **/
 - (BOOL)hasExtensionAttributeWithName:(NSString *)attrName
 {
@@ -1475,7 +1517,8 @@
 
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)addExtensionAttributeWithName:(NSString *)attrName
 {
@@ -1538,7 +1581,8 @@
 
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName
 {
@@ -1590,8 +1634,8 @@
 #else
 
 /**
-    param NSString
-    returns boolean
+    @param NSString
+    @return boolean
 **/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName
 {
@@ -1605,7 +1649,8 @@
 }
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)addExtendedAttributeWithName:(NSString *)attrName
 {
@@ -1622,7 +1667,8 @@
 }
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName
 {
@@ -1645,8 +1691,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    param id
-    returns boolean
+    @param id
+    @return boolean
 **/
 - (BOOL)isEqual:(id)object
 {
@@ -1662,8 +1708,8 @@
 
 
 /**
-    param DDLogFileInfo
-    returns NSComparisonResult
+    @param DDLogFileInfo
+    @return NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another
 {
@@ -1682,8 +1728,8 @@
 }
 
 /**
-    param DDLogFileInfo
-    returns NSComparisonResult
+    @param DDLogFileInfo
+    @return NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another
 {

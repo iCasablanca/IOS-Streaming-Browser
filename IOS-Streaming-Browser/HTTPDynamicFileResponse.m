@@ -9,13 +9,13 @@
 
 
 /**
-    Initialize the HTTPDynamicFileResponse with a file path for
+    @brief Initialize the HTTPDynamicFileResponse with a file path for
     a specific connection, separator string, and dictionary
-    param NSSTring
-    param HTTPConnection
-    param NSString
-    param NSDictionary
-    returns id
+    @param NSSTring
+    @param HTTPConnection
+    @param NSString
+    @param NSDictionary
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)fpath
          forConnection:(HTTPConnection *)parent
@@ -34,8 +34,8 @@
 }
 
 /**
-    Whether using chunked encoding to transfer the response in a series of chunks with its own size indicator
-    returns BOOL
+    @brief Whether using chunked encoding to transfer the response in a series of chunks with its own size indicator
+    @return BOOL
 **/
 - (BOOL)isChunked
 {
@@ -44,8 +44,8 @@
 }
 
 /**
-    Does nothing
-    returns UInt64
+    @brief Does nothing
+    @return UInt64
 **/
 - (UInt64)contentLength
 {
@@ -57,8 +57,9 @@
 }
 
 /**
-    Does nothing
-    param UInt64
+    @brief Does nothing
+    @param UInt64
+    @return void
 **/
 - (void)setOffset:(UInt64)offset
 {
@@ -68,7 +69,8 @@
 }
 
 /**
-    If done reading the fule
+    @brief If done reading the file
+    @return BOOL
 **/
 - (BOOL)isDone
 {
@@ -80,7 +82,8 @@
 }
 
 /**
-    Processes the read buffer
+    @brief Processes the read buffer
+    @return void
 **/
 - (void)processReadBuffer
 {
@@ -318,7 +321,8 @@
 }
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {

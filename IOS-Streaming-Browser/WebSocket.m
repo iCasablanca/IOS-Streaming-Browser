@@ -19,19 +19,22 @@
 @interface WebSocket (PrivateAPI)
 
 /**
-    Read the http request body
+    @brief Read the http request body
+    @return void
 **/
 - (void)readRequestBody;
 
 
 /**
-    Send a response body
+    @brief Send a response body
+    @return void
 **/
 - (void)sendResponseBody;
 
 
 /**
-    Send the response headers
+    @brief Send the response headers
+    @return void
 **/
 - (void)sendResponseHeaders;
 
@@ -44,9 +47,9 @@
 @implementation WebSocket
 
 /**
-    Whether the HTTPRequest is a request for a web socket
-    param HTTPMessage
-    returns BOOL
+    @brief Whether the HTTPRequest is a request for a web socket
+    @param HTTPMessage
+    @return BOOL
 **/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request
 {
@@ -105,9 +108,9 @@
 
 /**
     Class method
-    Whether the request is a version 76 of the web socket protocol
-    param HTTPMessage
-    returns BOOL
+    @brief Whether the request is a version 76 of the web socket protocol
+    @param HTTPMessage
+    @return BOOL
 **/
 + (BOOL)isVersion76Request:(HTTPMessage *)request
 {
@@ -143,10 +146,10 @@
 
 
 /**
-    Initialize the web socket with an HTTP request and a socket
-    param HTTPMessage
-    param GCDAsyncSocket
-    returns id
+    @brief Initialize the web socket with an HTTP request and a socket
+    @param HTTPMessage
+    @param GCDAsyncSocket
+    @return id
 **/
 - (id)initWithRequest:(HTTPMessage *)aRequest socket:(GCDAsyncSocket *)socket
 {
@@ -185,8 +188,9 @@
 
 
 /**
-    Standard deconstructor
- **/
+    @brief Standard deconstructor
+    @return void
+**/
 - (void)dealloc
 {
 	// Decrement the reference count of a dispatch object.
@@ -203,8 +207,8 @@
 
 
 /**
-    Get the websocket delegate
-    returns id
+    @brief Get the websocket delegate
+    @return id
  **/
 - (id)delegate
 {
@@ -222,8 +226,9 @@
 
 
 /**
-    Sets the websocket delegate
-    param id
+    @brief Sets the websocket delegate
+    @param id
+    @return void
 **/
 - (void)setDelegate:(id)newDelegate
 {
@@ -240,8 +245,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Starting point for the WebSocket after it has been fully initialized (including subclasses).
- * This method is called by the HTTPConnection it is spawned from.
+    @brief Starting point for the WebSocket after it has been fully initialized (including subclasses).
+    This method is called by the HTTPConnection it is spawned from.
+    @return void
 **/
 - (void)start
 {
@@ -279,8 +285,9 @@
 }
 
 /**
- * This method is called by the HTTPServer if it is asked to stop.
- * The server, in turn, invokes stop on each WebSocket instance.
+    @brief This method is called by the HTTPServer if it is asked to stop.
+    The server, in turn, invokes stop on each WebSocket instance.
+    @return void
 **/
 - (void)stop
 {
@@ -304,7 +311,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Read the request body from the socket
+    @brief Read the request body from the socket
+    @return void
 **/
 - (void)readRequestBody
 {
@@ -316,8 +324,8 @@
 }
 
 /**
-    Get the header field Origin value
-    returns NSString
+    @brief Get the header field Origin value
+    @return NSString
 **/
 - (NSString *)originResponseHeaderValue
 {
@@ -344,8 +352,8 @@
 }
 
 /**
-    Get the value for the 'Host' field in the request header
-    returns NSString
+    @brief Get the value for the 'Host' field in the request header
+    @return NSString
 **/
 - (NSString *)locationResponseHeaderValue
 {
@@ -376,7 +384,8 @@
 
 
 /**
-    Sends the response readers
+    @brief Sends the response readers
+    @return void
 **/
 - (void)sendResponseHeaders
 {
@@ -464,9 +473,9 @@
 
 
 /**
-    Process the web socket key values from the request
-    param NSString
-    returns NSData
+    @brief Process the web socket key values from the request
+    @param NSString
+    @return NSData
 **/
 - (NSData *)processKey:(NSString *)key
 {
@@ -528,8 +537,9 @@
 
 
 /**
-    Sends the response body
-    param NSData
+    @brief Sends the response body
+    @param NSData
+    @return void
 **/
 - (void)sendResponseBody:(NSData *)d3
 {
@@ -567,7 +577,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    If the web socket has been opened
+    @brief If the web socket has been opened
+    @return void
 **/
 - (void)didOpen
 {
@@ -589,8 +600,9 @@
 }
 
 /**
-    Sends a message
-    param NSString
+    @brief Sends a message
+    @param NSString
+    @return void
 **/
 - (void)sendMessage:(NSString *)msg
 {
@@ -616,8 +628,9 @@
 }
 
 /**
-    Did receive an incoming message
-    param NSString
+    @brief Did receive an incoming message
+    @param NSString
+    @return void
 **/
 - (void)didReceiveMessage:(NSString *)msg
 {
@@ -637,7 +650,8 @@
 
 
 /**
-    Notifiy delegate that websocket did close
+    @brief Notifiy delegate that websocket did close
+    @return void
 **/
 - (void)didClose
 {
@@ -663,10 +677,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Socket did read the request with a specific tag
-    param GCDAsyncSocket
-    param NSData
-    param long
+    @brief Socket did read the request with a specific tag
+    @param GCDAsyncSocket
+    @param NSData
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
@@ -720,7 +735,10 @@
 }
 
 /**
-    If the web socket did disconnect
+    @brief If the web socket did disconnect
+    @param GCDAsyncSocket
+    @param NSerror
+    @return void
 **/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)error
 {

@@ -2,32 +2,42 @@
 #import "HTTPMessage.h"
 
 
-
+////////////////////////////////////////////////////////////
+//
+//   HTTPAuthenticationRequest (PrivateAPI)
+//
+////////////////////////////////////////////////////////////
 @interface HTTPAuthenticationRequest (PrivateAPI)
 
 /**
-    param NSString
-    param NSString
-    returns NSString
+    @param NSString
+    @param NSString
+    @return NSString
 **/
 - (NSString *)quotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
 
 /**
-    param NSString
-    param NSString
-    returns NSString
+    @param NSString
+    @param NSString
+    @return NSString
 **/
 - (NSString *)nonquotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header;
 @end
 
 
+
+////////////////////////////////////////////////////////////
+//
+//   HTTPAuthenticationRequest
+//
+////////////////////////////////////////////////////////////
 @implementation HTTPAuthenticationRequest
 
 
 /**
-    Initialize the HTTPAuthenticationRequest with an HTTPMessage
-    param HTTPMessage
-    returns id
+    @brief Initialize the HTTPAuthenticationRequest with an HTTPMessage
+    @param HTTPMessage
+    @return id
 **/
 - (id)initWithRequest:(HTTPMessage *)request
 {
@@ -119,7 +129,8 @@
 }
 
 /**
-    Deconstructor
+    @brief Standard Deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -135,13 +146,13 @@
 	[super dealloc];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 #pragma mark Accessors:
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 /**
-    Gets whether basic authentication
-    returns BOOL
+    @brief Gets whether basic authentication
+    @return BOOL
 **/
 - (BOOL)isBasic {
 	return isBasic;
@@ -149,8 +160,8 @@
 
 
 /**
-    Whether digest authentication
-    returns BOOL
+    @brief Whether digest authentication
+    @return BOOL
 **/
 - (BOOL)isDigest {
 	return isDigest;
@@ -158,16 +169,18 @@
 
 
 /**
-    Returns base64 credentials
-    returns NSString
+    @brief Returns base64 credentials
+    @return NSString
 **/
 - (NSString *)base64Credentials {
 	return base64Credentials;
 }
 
 /**
-    Returns the username
+    @brief Returns the username
+ 
     The user's name in the specified realm, encoded according to the value of the "charset" directive. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+    @return NSString
 **/
 - (NSString *)username {
 	return username;
@@ -175,8 +188,10 @@
 
 
 /**
-    Returns the realm
+    @brief Returns the realm
+ 
     The realm containing the user's account. This directive is required if the server provided any realms in the "digest-challenge", in which case it may appear exactly once and its value SHOULD be one of those realms. If the directive is missing, "realm-value" will set to the empty string when computing A1 (see below for details).
+    @return NSString
 **/
 - (NSString *)realm {
 	return realm;
@@ -184,15 +199,18 @@
 
 
 /**
-    Returns the nonce
+    @brief Returns the nonce
+ 
     The server-specified data string received in the preceding digest-challenge. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+    @return NSString
 **/
 - (NSString *)nonce {
 	return nonce;
 }
 
 /**
-    Returns the URI
+    @brief Returns the URI
+    @return NSString
 **/
 - (NSString *)uri {
 	return uri;
@@ -200,9 +218,10 @@
 
 
 /**
-    Returns the quality of protection
+    @brief Returns the quality of protection
+ 
     Indicates what "quality of protection" the client accepted. If present, it may appear exactly once and its value MUST be one of the alternatives in qop-options. If not present, it defaults to "auth". These values affect the computation of the response. Note that this is a single token, not a quoted list of alternatives.
-
+    @return NSString
 **/
 - (NSString *)qop {
 	return qop;
@@ -210,8 +229,10 @@
 
 
 /**
-    Returns the nonce count
+    @brief Returns the nonce count
+ 
     The nc-value is the hexadecimal count of the number of requests (including the current request) that the client has sent with the nonce value in this request. For example, in the first request sent in response to a given nonce value, the client sends "nc=00000001". The purpose of this directive is to allow the server to detect request replays by maintaining its own copy of this count - if the same nc-value is seen twice, then the request is a replay. See the description below of the construction of the response value. This directive may appear at most once; if multiple instances are present, the client should abort the authentication exchange.
+    @return NSString
 **/
 - (NSString *)nc {
 	return nc;
@@ -219,38 +240,40 @@
 
 
 /**
-    A cnonce is a a client-specified data string which MUST be different
-    each time a digest-response is sent as part of initial authentication.
-    The cnonce-value is an opaque quoted string value provided by the client
-    and used by both client and server to avoid chosen plaintext attacks,
-    and to provide mutual authentication. The security of the implementation
-    depends on a good choice. It is RECOMMENDED that it contain at least 64
-    bits of entropy. This directive is required and MUST be present exactly
-    once; otherwise, authentication fails.
+    @brief A cnonce is a a client-specified data string which MUST be different each time a digest-response is sent as part of initial authentication.
+
+    The cnonce-value is an opaque quoted string value provided by the client and used by both client and server to avoid chosen plaintext attacks, and to provide mutual authentication. The security of the implementation depends on a good choice. It is RECOMMENDED that it contain at least 64 bits of entropy. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+    @return NSString
 **/
 - (NSString *)cnonce {
 	return cnonce;
 }
 
 /**
-    Returns the response
+    @brief Returns the response
+ 
     A string of 32 hex digits computed as defined below, which proves that the user knows a password. This directive is required and MUST be present exactly once; otherwise, authentication fails.
+    @return NSString
 **/
 - (NSString *)response {
 	return response;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 #pragma mark Private API:
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 
 /**
- * Retrieves a "Sub Header Field Value" from a given header field value.
- * The sub header field is expected to be quoted.
- * 
- * In the following header field:
- * Authorization: Digest username="Mufasa", qop=auth, response="6629fae4939"
- * The sub header field titled 'username' is quoted, and this method would return the value @"Mufasa".
+    @brief Retrieves a "Sub Header Field Value" from a given header field value.
+ 
+    The sub header field is expected to be quoted.
+ 
+    In the following header field:
+    Authorization: Digest username="Mufasa", qop=auth, response="6629fae4939"
+    The sub header field titled 'username' is quoted, and this method would return the value @"Mufasa".
+    @param NSString
+    @param NSString
+    @return NSString
 **/
 - (NSString *)quotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header
 {
@@ -284,8 +307,9 @@
 		return nil;
 	}
 	
-    
+    //////////////////////////////////////////////////////////////////
     // Made it to this point in the method, this means an end quote was found
+    //////////////////////////////////////////////////////////////////
     
     // Creates a range from the start location to the end location
 	NSRange subHeaderRange = NSMakeRange(postStartRangeLocation, endRange.location - postStartRangeLocation);
@@ -295,28 +319,39 @@
 }
 
 /**
- * Retrieves a "Sub Header Field Value" from a given header field value.
- * The sub header field is expected to not be quoted.
- * 
- * In the following header field:
- * Authorization: Digest username="Mufasa", qop=auth, response="6629fae4939"
- * The sub header field titled 'qop' is nonquoted, and this method would return the value @"auth".
+    @brief Retrieves a "Sub Header Field Value" from a given header field value.
+ 
+    The sub header field is expected to not be quoted.
+ 
+    In the following header field:
+    Authorization: Digest username="Mufasa", qop=auth, response="6629fae4939"
+    The sub header field titled 'qop' is nonquoted, and this method would return the value @"auth".
+    @param NSString
+    @param NSString
+    @return NSString
 **/
 - (NSString *)nonquotedSubHeaderFieldValue:(NSString *)param fromHeaderFieldValue:(NSString *)header
 {
     
     // Finds the begining of the range
+    // This is the location and length of the parameter and an equal sign
 	NSRange startRange = [header rangeOfString:[NSString stringWithFormat:@"%@=", param]];
     
     // The param was not found anywhere in the header    
 	if(startRange.location == NSNotFound)
 	{
+        
 		return nil;
 	}
 	
+    //////////////////////////////////////////
+    // The parameter was found in the header
+    //////////////////////////////////////////
     
-    // Gets the starting location of the range
+    
+    // Gets the starting location of the parameter, and the length
 	NSUInteger postStartRangeLocation = startRange.location + startRange.length;
+    
     
     // Gets the length of from the startRange location to the end of the header
 	NSUInteger postStartRangeLength = [header length] - postStartRangeLocation;
@@ -324,10 +359,11 @@
     // Creates a new range from the starting location, and a length from the start location to the end of the header
 	NSRange postStartRange = NSMakeRange(postStartRangeLocation, postStartRangeLength);
 	
-    // Search for a comma
+    
+    // Finds the endRange by searching for the comma
 	NSRange endRange = [header rangeOfString:@"," options:0 range:postStartRange];
     
-    
+    // Check if we found the comma
 	if(endRange.location == NSNotFound)
 	{
 		// The ending comma was not found anywhere in the header

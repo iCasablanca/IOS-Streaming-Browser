@@ -29,11 +29,12 @@
 
 /**
     Use the DDLogger protocol
+    parent is DDAbstractLogger
 **/
 @interface DDTTYLogger : DDAbstractLogger <DDLogger>
 {
     /**
-     
+        
     **/
 	BOOL isaTTY;
 	
@@ -66,6 +67,7 @@
 
 /**
     Class method
+    @return DDTTYLogger
 **/
 + (DDTTYLogger *)sharedInstance;
 

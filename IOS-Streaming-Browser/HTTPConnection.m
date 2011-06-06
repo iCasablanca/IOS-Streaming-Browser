@@ -74,14 +74,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @interface HTTPConnection (PrivateAPI)
 
 /**
-    Start reading the request
+    @brief Start reading the request
+    @return void
 **/
 - (void)startReadingRequest;
 
 /**
-    Send response headers and body
+    @brief Send response headers and body
+    @return void
 **/
 - (void)sendResponseHeadersAndBody;
+
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,8 +99,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static NSMutableArray *recentNonces;  
 
 /**
- * This method is automatically called (courtesy of Cocoa) before the first instantiation of this class.
- * We use it to initialize any static variables.
+    @brief This method is automatically called (courtesy of Cocoa) before the first instantiation of this class.
+    We use it to initialize any static variables.
+    @return void
 **/
 + (void)initialize
 {
@@ -115,9 +120,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    This method is designed to be called by a scheduled timer, and will remove a nonce from the recent nonce list.
+    @brief This method is designed to be called by a scheduled timer, and will remove a nonce from the recent nonce list.
     The nonce to remove should be set as the timer's userInfo.
-    param NSTimer
+    @param NSTimer
+    @return void
 **/
 + (void)removeRecentNonce:(NSTimer *)aTimer
 {
@@ -130,12 +136,13 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Sole Constructor.
- * Associates this new HTTP connection with the given AsyncSocket.
- * This HTTP connection object will become the socket's delegate and take over responsibility for the socket.
-    param GCDAsyncSocket
-    param HTTPConfig
-    returns self
+    @brief Sole Constructor.
+    Associates this new HTTP connection with the given AsyncSocket.
+    This HTTP connection object will become the socket's delegate and take over responsibility for the socket.
+ 
+    @param GCDAsyncSocket
+    @param HTTPConfig
+    @return id (i.e. self)
 **/
 - (id)initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig
 {
@@ -185,7 +192,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Standard Deconstructor.
+    @brief Standard Deconstructor.
+    @return void
 **/
 - (void)dealloc
 {
@@ -224,10 +232,10 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Returns whether or not the server will accept messages of a given method at a particular URI.
-    param NSString
-    param NSString
-    return BOOL
+    @brief Returns whether or not the server will accept messages of a given method at a particular URI.
+    @param NSString
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)supportsMethod:(NSString *)method 
                 atPath:(NSString *)path
@@ -265,13 +273,14 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns whether or not the server expects a body from the given method.
+    @brief Returns whether or not the server expects a body from the given method.
   
     In other words, should the server expect a content-length header and associated body from this method.
     This would be true in the case of a POST, where the client is sending data, or for something like PUT where the client is supposed to be uploading a file.
-    param NSString
-    param NSString
-    returns BOOL
+ 
+    @param NSString
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path
 {
@@ -306,13 +315,15 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Returns whether or not the server is configured to be a secure server.
- * In other words, all connections to this server are immediately secured, thus only secure connections are allowed.
- * This is the equivalent of having an https server, where it is assumed that all connections must be secure.
- * If this is the case, then unsecure connections will not be allowed on this server, and a separate unsecure server
- * would need to be run on a separate port in order to support unsecure connections.
- * 
- * Note: In order to support secure connections, the sslIdentityAndCertificates method must be implemented.
+    @brief Returns whether or not the server is configured to be a secure server.
+ 
+    In other words, all connections to this server are immediately secured, thus only secure connections are allowed.
+    This is the equivalent of having an https server, where it is assumed that all connections must be secure.
+    If this is the case, then unsecure connections will not be allowed on this server, and a separate unsecure server would need to be run on a separate port in order to support unsecure connections.
+    
+    Note: In order to support secure connections, the sslIdentityAndCertificates method must be implemented.
+ 
+    @return BOOL
 **/
 - (BOOL)isSecureServer
 {
@@ -323,9 +334,11 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    This method is expected to returns an array appropriate for use in kCFStreamSSLCertificates SSL Settings.
+    @brief This method is expected to returns an array appropriate for use in kCFStreamSSLCertificates SSL Settings.
+ 
     It should be an array of SecCertificateRefs except for the first element in the array, which is a SecIdentityRef.
-    returns NSArray
+ 
+    @return NSArray
 **/
 - (NSArray *)sslIdentityAndCertificates
 {
@@ -340,10 +353,12 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Returns whether or not the requested resource is password protected.
+    @brief Returns whether or not the requested resource is password protected.
+ 
     In this generic implementation, nothing is password protected.
-    param NSString
-    returns BOOL
+ 
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)isPasswordProtected:(NSString *)path
 {
@@ -355,12 +370,13 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns whether or not the authentication challenge should use digest access authentication.
+    @brief Returns whether or not the authentication challenge should use digest access authentication.
+ 
     The alternative is basic authentication.
  
     If at all possible, digest access authentication should be used because it's more secure.
     Basic authentication sends passwords in the clear and should be avoided unless using SSL/TLS.
-    returns BOOL
+    @return BOOL
 **/
 - (BOOL)useDigestAccessAuthentication
 {
@@ -372,9 +388,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns the authentication realm.
+    @brief Returns the authentication realm.
     In this generic implmentation, a default realm is used for the entire server.
-    returns NSString
+    @return NSString
 **/
 - (NSString *)realm
 {
@@ -386,9 +402,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns the password for the given username.
-    param NSString
-    returns NSString
+    @brief Returns the password for the given username.
+    @param NSString
+    @return NSString
 **/
 - (NSString *)passwordForUser:(NSString *)username
 {
@@ -404,10 +420,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Generates and returns an authentication nonce.
+    @brief Generates and returns an authentication nonce.
     A nonce is a  server-specified string uniquely generated for each 401 response.
     The default implementation uses a single nonce for each session.
-    returns NSString
+    @return NSString
 **/
 - (NSString *)generateNonce
 {
@@ -425,18 +441,19 @@ static NSMutableArray *recentNonces;
     // Release the UUID
 	CFRelease(theUUID);
 	
+    //////////////////////////////////////////////////////////////////
 	// We have to remember that the HTTP protocol is stateless.
 	// Even though with version 1.1 persistent connections are the norm, they are not guaranteed.
-	// Thus if we generate a nonce for this connection,
-	// it should be honored for other connections in the near future.
+	// Thus if we generate a nonce for this connection, it should be honored for other connections in the near future.
 	// 
 	// In fact, this is absolutely necessary in order to support QuickTime.
 	// When QuickTime makes it's initial connection, it will be unauthorized, and will receive a nonce.
 	// It then disconnects, and creates a new connection with the nonce, and proper authentication.
 	// If we don't honor the nonce for the second connection, QuickTime will repeat the process and never connect.
-	
+	////////////////////////////////////////////////////////////////////
     
-    // Adds newNonce to the recentNonces NSMutableArray
+    
+    // Adds newNonce (i.e. number used once) to the recentNonces NSMutableArray
 	[recentNonces addObject:newNonce];
 	
     
@@ -452,8 +469,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns whether or not the user is properly authenticated.
-    returns BOOL
+    @brief Returns whether or not the user is properly authenticated.
+    @return BOOL
 **/
 - (BOOL)isAuthenticated
 {
@@ -630,8 +647,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Adds a digest access authentication challenge to the given response.
-    param HTTPMessage
+    @brief Adds a digest access authentication challenge to the given response.
+    @param HTTPMessage
+    @return void
 **/
 - (void)addDigestAuthChallenge:(HTTPMessage *)response
 {
@@ -648,8 +666,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Adds a basic authentication challenge to the http response.
-    param HTTPMessage
+    @brief Adds a basic authentication challenge to the http response.
+    @param HTTPMessage
+    @return void
 **/
 - (void)addBasicAuthChallenge:(HTTPMessage *)response
 {
@@ -670,8 +689,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////
 
 /**
- * Starting point for the HTTP connection after it has been fully initialized (including subclasses).
- * This method is called by the HTTP server.
+    @brief Starting point for the HTTP connection after it has been fully initialized (including subclasses).
+    This method is called by the HTTP server.
+    @return void
 **/
 - (void)start
 {
@@ -699,8 +719,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called by the HTTPServer if it is asked to stop.
- * The server, in turn, invokes stop on each HTTPConnection instance.
+    @brief This method is called by the HTTPServer if it is asked to stop.
+    The server, in turn, invokes stop on each HTTPConnection instance.
+    @return void
 **/
 - (void)stop
 {
@@ -721,7 +742,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Starting point for the HTTP connection.
+    @brief Starting point for the HTTP connection.
+    @return void
 **/
 - (void)startConnection
 {
@@ -771,7 +793,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Starts reading an HTTP request.
+    @brief Starts reading an HTTP request.
+    @return void
 **/
 - (void)startReadingRequest
 {
@@ -785,16 +808,15 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Parses the given query string.
- * 
- * For example, if the query is "q=John%20Mayer%20Trio&num=50"
- * then this method would return the following dictionary:
- * { 
- *   q = "John Mayer Trio" 
- *   num = "50" 
- * }
-    param NSString
-    returns NSDictionary
+    @brief Parses the given query string.
+    
+    For example, if the query is "q=John%20Mayer%20Trio&num=50" then this method would return the following dictionary:
+    { 
+        q = "John Mayer Trio" 
+        num = "50" 
+    }
+    @param NSString
+    @return NSDictionary
 **/
 - (NSDictionary *)parseParams:(NSString *)query
 {
@@ -882,14 +904,14 @@ static NSMutableArray *recentNonces;
 }
 
 /** 
- * Parses the query variables in the request URI. 
- * 
- * For example, if the request URI was "/search.html?q=John%20Mayer%20Trio&num=50" 
- * then this method would return the following dictionary: 
- * { 
- *   q = "John Mayer Trio" 
- *   num = "50" 
- * } 
+    @brief Parses the query variables in the request URI. 
+    
+    For example, if the request URI was "/search.html?q=John%20Mayer%20Trio&num=50" then this method would return the following dictionary: 
+    { 
+        q = "John Mayer Trio" 
+        num = "50" 
+    }
+    @return NSDictionary
 **/ 
 - (NSDictionary *)parseGetParams 
 {
@@ -925,12 +947,14 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Attempts to parse the given range header into a series of sequential non-overlapping ranges.
- * If successfull, the variables 'ranges' and 'rangeIndex' will be updated, and YES will be returned.
- * Otherwise, NO is returned, and the range request should be ignored.
-    param NSString
-    param UInt64
-    returns BOOL
+    @brief Attempts to parse the given range header into a series of sequential non-overlapping ranges.
+
+    If successfull, the variables 'ranges' and 'rangeIndex' will be updated, and YES will be returned.
+    Otherwise, NO is returned, and the range request should be ignored.
+
+    @param NSString
+    @param UInt64
+    @return BOOL
 **/
 - (BOOL)parseRangeRequest:(NSString *)rangeHeader 
         withContentLength:(UInt64)contentLength
@@ -1176,8 +1200,8 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Gets the URL as a string for the request HTTPMessage
-    returns NSSTring
+    @brief Gets the URL as a string for the request HTTPMessage
+    @return NSSTring
 **/
 - (NSString *)requestURI
 {
@@ -1194,8 +1218,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    This method is called after a full HTTP request has been received.
+    @brief This method is called after a full HTTP request has been received.
     The current request is in the HTTPMessage request variable.
+    @return void
 **/
 - (void)replyToHTTPRequest
 {
@@ -1322,11 +1347,11 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Prepares a single-range response.
+    @brief Prepares a single-range response.
   
     Note: The returned HTTPMessage is owned by the sender, who is responsible for releasing it.
-    param UInt64
-    returns HTTPMessage
+    @param UInt64
+    @return HTTPMessage
 **/
 - (HTTPMessage *)newUniRangeResponse:(UInt64)contentLength
 {
@@ -1358,11 +1383,11 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Prepares a multi-range response.
+    @brief Prepares a multi-range response.
   
     Note: The returned HTTPMessage is owned by the sender, who is responsible for releasing it.
-    param UInt64
-    returns HTTPMessage
+    @param UInt64
+    @return HTTPMessage
 **/
 - (HTTPMessage *)newMultiRangeResponse:(UInt64)contentLength
 {
@@ -1473,10 +1498,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns the chunk size line that must precede each chunk of data when using chunked transfer encoding.
+    @brief Returns the chunk size line that must precede each chunk of data when using chunked transfer encoding.
     This consists of the size of the data, in hexadecimal, followed by a CRLF.
-    param NSUInteger
-    returns NSData
+    @param NSUInteger
+    @return NSData
 **/
 - (NSData *)chunkedTransferSizeLineForLength:(NSUInteger)length
 {
@@ -1489,8 +1514,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns the data that signals the end of a chunked transfer.
-    returns NSData
+    @brief Returns the data that signals the end of a chunked transfer.
+    @return NSData
 **/
 - (NSData *)chunkedTransferFooter
 {
@@ -1505,7 +1530,8 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Sends the response header and body back to the host
+    @brief Sends the response header and body back to the host
+    @return void
 **/
 - (void)sendResponseHeadersAndBody
 {
@@ -1775,10 +1801,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Returns the number of bytes of the http response body that are sitting in asyncSocket's write queue.
+    @brief Returns the number of bytes of the http response body that are sitting in asyncSocket's write queue.
  
     We keep track of this information in order to keep our memory footprint low while working with asynchronous HTTPResponse objects.
-    returns NSUInteger
+    @return NSUInteger
 **/
 - (NSUInteger)writeQueueSize
 {
@@ -1802,10 +1828,13 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Sends more data, if needed, without growing the write queue over its approximate size limit.
- * The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
- * 
- * This method should only be called for standard (non-range) responses.
+    @brief Sends more data, if needed, without growing the write queue over its approximate size limit.
+
+    The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
+ 
+    This method should only be called for standard (non-range) responses.
+ 
+    @return void
 **/
 - (void)continueSendingStandardResponseBody
 {
@@ -1903,10 +1932,13 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Sends more data, if needed, without growing the write queue over its approximate size limit.
- * The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
- * 
- * This method should only be called for single-range responses.
+    @brief Sends more data, if needed, without growing the write queue over its approximate size limit.
+
+    The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
+ 
+    This method should only be called for single-range responses.
+ 
+    @return void
 **/
 - (void)continueSendingSingleRangeResponseBody
 {
@@ -1973,10 +2005,11 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Sends more data, if needed, without growing the write queue over its approximate size limit.
- * The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
- * 
- * This method should only be called for multi-range responses.
+    @brief Sends more data, if needed, without growing the write queue over its approximate size limit.
+    The last chunk of the response body will be sent with a tag of HTTP_RESPONSE.
+ 
+    This method should only be called for multi-range responses.
+    @return void
 **/
 - (void)continueSendingMultiRangeResponseBody
 {
@@ -2097,9 +2130,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Returns an array of possible index pages.
+    @brief Returns an array of possible index pages.
     For example: {"index.html", "index.htm"}
-    returns NSArray
+    @return NSArray
 **/
 - (NSArray *)directoryIndexFileNames
 {
@@ -2111,9 +2144,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Converts relative URI path into full file-system path.
-    param NSString
-    returns NSString
+    @brief Converts relative URI path into full file-system path.
+    @param NSString
+    @return NSString
 **/
 - (NSString *)filePathForURI:(NSString *)path
 {
@@ -2238,14 +2271,14 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called to get a response for a request.
- * You may return any object that adopts the HTTPResponse protocol.
- * The HTTPServer comes with two such classes: HTTPFileResponse and HTTPDataResponse.
- * HTTPFileResponse is a wrapper for an NSFileHandle object, and is the preferred way to send a file response.
- * HTTPDataResponse is a wrapper for an NSData object, and may be used to send a custom response.
-    param NSString
-    param NSString
-    returns NSObject <HTTPResponse>
+    @brief This method is called to get a response for a request.
+    You may return any object that adopts the HTTPResponse protocol.
+    The HTTPServer comes with two such classes: HTTPFileResponse and HTTPDataResponse.
+    HTTPFileResponse is a wrapper for an NSFileHandle object, and is the preferred way to send a file response.
+    HTTPDataResponse is a wrapper for an NSData object, and may be used to send a custom response.
+    @param NSString
+    @param NSString
+    @return NSObject <HTTPResponse>
 **/
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
 {
@@ -2307,9 +2340,9 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Gets the webSocket for a specific URI
-    param NSString
-    return WebSocket
+    @brief Gets the webSocket for a specific URI
+    @param NSString
+    @return WebSocket
 **/
 - (WebSocket *)webSocketForURI:(NSString *)path
 {
@@ -2335,8 +2368,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    This method is called after receiving all HTTP headers, but before reading any of the request body.
-    param UInt64
+    @brief This method is called after receiving all HTTP headers, but before reading any of the request body.
+    @param UInt64
+    @return void
 **/
 - (void)prepareForBodyWithSize:(UInt64)contentLength
 {
@@ -2344,8 +2378,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called to handle data read from a POST / PUT.
- * The given data is part of the request body.
+    @brief This method is called to handle data read from a POST / PUT.
+    The given data is part of the request body.
+    @param NSData
+    @return void
 **/
 - (void)processDataChunk:(NSData *)postDataChunk
 {
@@ -2364,8 +2400,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Called if the HTML version is other than what is supported
-    param NSString
+    @brief Called if the HTML version is other than what is supported
+    @param NSString
+    @return void
 **/
 - (void)handleVersionNotSupported:(NSString *)version
 {
@@ -2391,7 +2428,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Called if the authentication information was required and absent, or if authentication failed.
+    @brief Called if the authentication information was required and absent, or if authentication failed.
+    @return void
 **/
 - (void)handleAuthenticationFailed
 {
@@ -2435,9 +2473,12 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * Called if we receive some sort of malformed HTTP request.
- * The data parameter is the invalid HTTP header line, including CRLF, as read from GCDAsyncSocket.
- * The data parameter may also be nil if the request as a whole was invalid, such as a POST with no Content-Length.
+    @brief Called if we receive some sort of malformed HTTP request.
+
+    The data parameter is the invalid HTTP header line, including CRLF, as read from GCDAsyncSocket.
+    The data parameter may also be nil if the request as a whole was invalid, such as a POST with no Content-Length.
+    @param NSData
+    @return void
 **/
 - (void)handleInvalidRequest:(NSData *)data
 {
@@ -2475,8 +2516,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Called if we receive a HTTP request with a method other than GET or HEAD.
-    param NSString
+    @brief Called if we receive a HTTP request with a method other than GET or HEAD.
+    @param NSString
+    @return void
 **/
 - (void)handleUnknownMethod:(NSString *)method
 {
@@ -2515,7 +2557,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Called if we're unable to find the requested resource.
+    @brief Called if we're unable to find the requested resource.
+    @return void
 **/
 - (void)handleResourceNotFound
 {
@@ -2551,7 +2594,9 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Gets the current date and time, formatted properly (according to RFC) for insertion into an HTTP header.
+    @brief Gets the current date and time, formatted properly (according to RFC) for insertion into an HTTP header.
+    @param NSDate
+    @return NSString
 **/
 - (NSString *)dateAsString:(NSDate *)date
 {
@@ -2596,8 +2641,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called immediately prior to sending the response headers.
- * This method adds standard header fields, and then converts the response to an NSData object.
+    @brief This method is called immediately prior to sending the response headers.
+    This method adds standard header fields, and then converts the response to an NSData object.
+    @param HTTPMessage
+    @return NSData
 **/
 - (NSData *)preprocessResponse:(HTTPMessage *)response
 {
@@ -2643,8 +2690,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called immediately prior to sending the response headers (for an error).
- * This method adds standard header fields, and then converts the response to an NSData object.
+    @brief This method is called immediately prior to sending the response headers (for an error).
+    This method adds standard header fields, and then converts the response to an NSData object.
+    @param HTTPMessage
+    @return NSData
 **/
 - (NSData *)preprocessErrorResponse:(HTTPMessage *)response;
 {
@@ -2710,8 +2759,11 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * This method is called after the socket has successfully read data from the stream.
- * Remember that this method will only be called after the socket reaches a CRLF, or after it's read the proper length.
+    @brief This method is called after the socket has successfully read data from the stream.
+    Remember that this method will only be called after the socket reaches a CRLF, or after it's read the proper length.
+    @param GCDAsyncSocket
+    @param NSdata
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData*)data withTag:(long)tag
 {
@@ -2912,9 +2964,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    This method is called after the socket has successfully written data to the stream.
-    param GCDAsyncSocket
-    param long
+    @brief This method is called after the socket has successfully written data to the stream.
+    @param GCDAsyncSocket
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
@@ -3047,9 +3100,10 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Sent after the socket has been disconnected.
-    param GCDAsyncSocket
-    param NSError
+    @brief Sent after the socket has been disconnected.
+    @param GCDAsyncSocket
+    @param NSError
+    @return void
 **/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 {
@@ -3066,10 +3120,12 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * This method may be called by asynchronous HTTPResponse objects.
- * That is, HTTPResponse objects that return YES in their "- (BOOL)isAsynchronous" method.
- * 
- * This informs us that the response object has generated more data that we may be able to send.
+    @brief This method may be called by asynchronous HTTPResponse objects.
+    That is, HTTPResponse objects that return YES in their "- (BOOL)isAsynchronous" method.
+    
+    This informs us that the response object has generated more data that we may be able to send.
+    @param NSObject<HTTPResponse>
+    @return void
 **/
 - (void)responseHasAvailableData:(NSObject<HTTPResponse> *)sender
 {
@@ -3128,8 +3184,9 @@ static NSMutableArray *recentNonces;
 }
 
 /**
- * This method is called if the response encounters some critical error,
- * and it will be unable to fullfill the request.
+    @brief This method is called if the response encounters some critical error, and it will be unable to fullfill the request.
+    @param NSObject<HTTPResponse>
+    @return void
 **/
 - (void)responseDidAbort:(NSObject<HTTPResponse> *)sender
 {
@@ -3164,9 +3221,10 @@ static NSMutableArray *recentNonces;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * This method is called after each response has been fully sent.
- * Since a single connection may handle multiple request/responses, this method may be called multiple times.
- * That is, it will be called after completion of each response.
+    @brief This method is called after each response has been fully sent.
+    Since a single connection may handle multiple request/responses, this method may be called multiple times.
+    That is, it will be called after completion of each response.
+    @return BOOL
 **/
 - (BOOL)shouldDie
 {
@@ -3220,7 +3278,8 @@ static NSMutableArray *recentNonces;
 }
 
 /**
-    Closes the connection
+    @brief Closes the connection
+    @return void
 **/
 - (void)die
 {
@@ -3264,7 +3323,10 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Initialize the HTTPConfig with a server and documentRoot
+    @brief Initialize the HTTPConfig with a server and documentRoot
+    @param HTTPServer
+    @param NSString
+    @return id
 **/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot
 {
@@ -3283,10 +3345,11 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Initialize the HTTPConfig with a server, documentRoot and queue
-    param HTTPServer
-    param NSString
-    param dispatch_queue_t
+    @brief Initialize the HTTPConfig with a server, documentRoot and queue
+    @param HTTPServer
+    @param NSString
+    @param dispatch_queue_t
+    @return id
 **/
 - (id)initWithServer:(HTTPServer *)aServer documentRoot:(NSString *)aDocumentRoot queue:(dispatch_queue_t)q
 {
@@ -3323,7 +3386,8 @@ static NSMutableArray *recentNonces;
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {

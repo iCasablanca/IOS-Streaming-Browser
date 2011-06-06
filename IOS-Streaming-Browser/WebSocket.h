@@ -6,64 +6,68 @@
 
 #define WebSocketDidDieNotification  @"WebSocketDidDie"
 
+/**
+    WebSocket
+**/
 @interface WebSocket : NSObject
 {
     
     /**
-      websocket queue
+        @brief Websocket queue
     **/
 	dispatch_queue_t websocketQueue; 
 	
     /**
-       the web socket request
+       @brief The web socket request
     **/
 	HTTPMessage *request; 
 
     /**
-      the socket (i.e. file handle)
+      @brief The socket (i.e. file handle)
     **/
 	GCDAsyncSocket *asyncSocket; 
 	
     /**
-     
+        @brief The terminator
     **/
 	NSData *term;
 	
     /**
-      if web socket is started
+        @brief If web socket is started
     **/
 	BOOL isStarted;  
     
     /**
-      if web socket is open
+        @brief If web socket is open
     **/
 	BOOL isOpen;  
     
     /**
-      if version76
+        @brief If version76
     **/
 	BOOL isVersion76; 
 }
 
 /**
     Class method
-    param HTTPMessage
-    returns BOOL
+    @brief If is a WebSocket request
+    @param HTTPMessage
+    @return BOOL
 **/
 + (BOOL)isWebSocketRequest:(HTTPMessage *)request;
 
 /**
-    Initialize with HTTPMessage request and a socket
-    param HTTPMessage
-    param GCDAsyncSocket
+    @brief Initialize with HTTPMessage request and a socket
+    @param HTTPMessage
+    @param GCDAsyncSocket
+    @return id
 **/
 - (id)initWithRequest:(HTTPMessage *)request socket:(GCDAsyncSocket *)socket;
 
 /**
- * Delegate option.
- * 
- * In most cases it will be easier to subclass WebSocket,
- * but some circumstances may lead one to prefer standard delegate callbacks instead.
+    @brief Delegate option.
+  
+    In most cases it will be easier to subclass WebSocket, but some circumstances may lead one to prefer standard delegate callbacks instead.
 **/
 @property (/* atomic */ assign) id delegate;
 
@@ -82,24 +86,28 @@
 **/
 
 /**
- * Starting point for the WebSocket after it has been fully initialized (including subclasses).
- * This method is called by the HTTPConnection it is spawned from.
- **/
+    @brief Starting point for the WebSocket after it has been fully initialized (including subclasses).
+    This method is called by the HTTPConnection it is spawned from.
+    @return void
+**/
 - (void)start;
 
 
 
 /**
- * This method is called by the HTTPServer if it is asked to stop.
- * The server, in turn, invokes stop on each WebSocket instance.
- **/
+    @brief This method is called by the HTTPServer if it is asked to stop.
+    The server, in turn, invokes stop on each WebSocket instance.
+    @return void
+**/
 - (void)stop;
 
 /**
- * Public API
- * 
- * Sends a message over the WebSocket.
- * This method is thread-safe.
+    Public API
+  
+    @brief Sends a message over the WebSocket.
+    This method is thread-safe.
+    @param NSString
+    @return void
 **/
 - (void)sendMessage:(NSString *)msg;
 
@@ -110,17 +118,21 @@
 **/
 
 /**
-    If the web socket did open
+    @brief If the web socket did open
+    @return void
 **/
 - (void)didOpen;
 
 /**
-    If the web socket did receive an incoming message
+    @brief If the web socket did receive an incoming message
+    @param NSString
+    @return void
 **/
 - (void)didReceiveMessage:(NSString *)msg;
 
 /**
-    If the web socket did close
+    @brief If the web socket did close
+    @return void
 **/
 - (void)didClose;
 
@@ -146,21 +158,24 @@
 @optional
 
 /**
-    The websocket did open
-    param WebSocket
+    @brief The websocket did open
+    @param WebSocket
+    @return void
 **/
 - (void)webSocketDidOpen:(WebSocket *)ws;
 
 /**
-    The websocket did receive an incoming message
-    param WebSocket
-    param NSString
+    @brief The websocket did receive an incoming message
+    @param WebSocket
+    @param NSString
+    @return void
 **/
 - (void)webSocket:(WebSocket *)ws didReceiveMessage:(NSString *)msg;
 
 /**
-    The websocket did close
-    param WebSocket
+    @brief The websocket did close
+    @param WebSocket
+    @return void
 **/
 - (void)webSocketDidClose:(WebSocket *)ws;
 

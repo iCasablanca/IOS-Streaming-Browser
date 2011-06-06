@@ -31,10 +31,10 @@ typedef struct _DDRange {
 typedef DDRange *DDRangePointer;
 
 /**
-    Makes a range with a location and length
-    param UInt64
-    param UInt64
-    returns DDRange
+    @brief Makes a range with a location and length
+    @param UInt64
+    @param UInt64
+    @return DDRange
 **/
 NS_INLINE DDRange DDMakeRange(UInt64 loc, UInt64 len) {
     
@@ -52,69 +52,69 @@ NS_INLINE DDRange DDMakeRange(UInt64 loc, UInt64 len) {
 }
 
 /**
-    Returns the location and length
-    param DDRange
-    returns UInt64
+    @brief Returns the location and length
+    @param DDRange
+    @return UInt64
 **/
 NS_INLINE UInt64 DDMaxRange(DDRange range) {
     return (range.location + range.length);
 }
 
 /**
-    Returns the location within a range
-    param UInt64
-    param DDRange
-    returns BOOL
+    @brief Returns the location within a range
+    @param UInt64
+    @param DDRange
+    @return BOOL
 **/
 NS_INLINE BOOL DDLocationInRange(UInt64 loc, DDRange range) {
     return (loc - range.location < range.length);
 }
 
 /**
-    Whether range1 and range2 are equal
-    param DDRange
-    param DDRange
-    returns BOOL
+    @brief Whether range1 and range2 are equal
+    @param DDRange
+    @param DDRange
+    @return BOOL
 **/
 NS_INLINE BOOL DDEqualRanges(DDRange range1, DDRange range2) {
     return ((range1.location == range2.location) && (range1.length == range2.length));
 }
 
 /**
-    Gets the union of two ranges
-    param DDRange
-    param DDRange
-    returns DDRange
+    @brief Gets the union of two ranges
+    @param DDRange
+    @param DDRange
+    @return DDRange
 **/
 FOUNDATION_EXPORT DDRange DDUnionRange(DDRange range1, DDRange range2);
 
 /**
-    Gets the intersection of two ranges
-    param DDRange
-    param DDRange
-    returns DDRange
+    @brief Gets the intersection of two ranges
+    @param DDRange
+    @param DDRange
+    @return DDRange
 **/
 FOUNDATION_EXPORT DDRange DDIntersectionRange(DDRange range1, DDRange range2);
 
 /**
-    Gets a string from a range
-    param DDRange
-    returns NSString
+    @brief Gets a string from a range
+    @param DDRange
+    @return NSString
 **/
 FOUNDATION_EXPORT NSString *DDStringFromRange(DDRange range);
 
 /**
-    Gets a range from a string
-    param NSString
-    returns DDRange
+    @brief Gets a range from a string
+    @param NSString
+    @return DDRange
 **/
 FOUNDATION_EXPORT DDRange DDRangeFromString(NSString *aString);
 
 /**
-    Compares two ranges
-    param DDRangePointer
-    param DDRangePointer
-    returns NSInteger
+    @brief Compares two ranges
+    @param DDRangePointer
+    @param DDRangePointer
+    @return NSInteger
 **/
 NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
@@ -122,19 +122,19 @@ NSInteger DDRangeCompare(DDRangePointer pDDRange1, DDRangePointer pDDRange2);
 
 /**
     Class method
-    param DDRange
-    returns NSValue
+    @param DDRange
+    @return NSValue
 **/
 + (NSValue *)valueWithDDRange:(DDRange)range;
 
 /**
-    returns DDRange
+    @return DDRange
 **/
 - (DDRange)ddrangeValue;
 
 /**
-    param NSValue
-    returns NSInteger
+    @param NSValue
+    @return NSInteger
 **/
 - (NSInteger)ddrangeCompare:(NSValue *)ddrangeValue;
 

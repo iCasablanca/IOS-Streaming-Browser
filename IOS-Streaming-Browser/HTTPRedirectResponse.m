@@ -6,9 +6,9 @@
 
 
 /**
-    Initializes the HTTPRedirectResponse object with a path
-    param NSString
-    returns id
+    @brief Initializes the HTTPRedirectResponse object with a path
+    @param NSString
+    @return id
 **/
 - (id)initWithPath:(NSString *)path
 {
@@ -21,8 +21,8 @@
 }
 
 /**
-    Returns zero
-    returns UInt64
+    @brief Returns zero
+    @return UInt64
 **/
 - (UInt64)contentLength
 {
@@ -30,8 +30,8 @@
 }
 
 /**
-    Returns zero
-    returns UInt64
+    @brief Returns zero
+    @return UInt64
 **/
 - (UInt64)offset
 {
@@ -39,8 +39,9 @@
 }
 
 /**
-    Does nothing
-    param UInt64
+    @brief Does nothing
+    @param UInt64
+    @return void
 **/
 - (void)setOffset:(UInt64)offset
 {
@@ -48,9 +49,9 @@
 }
 
 /**
-    Returns nil
-    param NSUInteger
-    returns NSData
+    @brief Returns nil
+    @param NSUInteger
+    @return NSData
 **/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
@@ -58,7 +59,8 @@
 }
 
 /**
-    Returns YES
+    @brief Returns YES
+    @return BOOL
 **/
 - (BOOL)isDone
 {
@@ -66,7 +68,8 @@
 }
 
 /**
-    Returns an NSDictionary object with a 'Location' key, and a value as the redirect path
+    @brief Returns an NSDictionary object with a 'Location' key, and a value as the redirect path
+    @return NSDictionary
 **/
 - (NSDictionary *)httpHeaders
 {	
@@ -74,7 +77,8 @@
 }
 
 /**
-    Returns the integer 302
+    @brief Returns the integer 302
+    @return NSInteger
 **/
 - (NSInteger)status
 {	
@@ -82,7 +86,8 @@
 }
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {	

@@ -14,7 +14,7 @@ static char encodingTable[64] = {
 
 
 /**
-    returns NSData
+    @return NSData
 **/
 - (NSData *)md5Digest
 {
@@ -32,8 +32,8 @@ static char encodingTable[64] = {
 }
 
 /**
-   SHA-1 (Secure Hash Algorithm) is a cryptographic hash function with a 160 bit output.
-    returns NSData
+    @brief SHA-1 (Secure Hash Algorithm) is a cryptographic hash function with a 160 bit output.
+    @return NSData
 **/
 - (NSData *)sha1Digest
 {
@@ -50,8 +50,8 @@ static char encodingTable[64] = {
 }
 
 /**
-    Converts a hexidecimal to a string value
-    returns NSString
+    @brief Converts a hexidecimal to a string value
+    @return NSString
 **/
 - (NSString *)hexStringValue
 {
@@ -76,8 +76,8 @@ static char encodingTable[64] = {
 }
 
 /**
-    Converts a base 64 encoded value to a string
-    returns NSString
+    @brief Converts a base 64 encoded value to a string
+    @return NSString
 **/
 - (NSString *)base64Encoded
 {
@@ -197,7 +197,7 @@ static char encodingTable[64] = {
 
 /**
     
-    returns NSData
+    @return NSData
 **/
 - (NSData *)base64Decoded
 {

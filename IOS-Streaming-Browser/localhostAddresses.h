@@ -28,6 +28,7 @@
 
 /**
     Class method
+    @return void
 **/
 + (void)list;
 

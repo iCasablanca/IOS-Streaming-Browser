@@ -12,105 +12,117 @@
 #define HTTPVersion1_0  ((NSString *)kCFHTTPVersion1_0)
 #define HTTPVersion1_1  ((NSString *)kCFHTTPVersion1_1)
 
-
+/**
+    HTTPMessage
+**/
 @interface HTTPMessage : NSObject
 {
     /**
-        message can be request or response
+        Message can be request or response
+        @brief Core Foundation opaque type representing an HTTP message
     **/
 	CFHTTPMessageRef message; 
 }
 
 
 /**
-    Initialize an empty HTTP message
-    returns id
+    @brief Initialize an empty HTTP message
+    @return id
 **/
 - (id)initEmptyRequest;
 
 /**
-    Initialize a request HTTPMessage with a URL and version
-    param NSString
-    param NSURL
-    param NSString
-    returns id - self (HTTPMessage)
+    @brief Initialize a request HTTPMessage with a URL and version
+    @param NSString
+    @param NSURL
+    @param NSString
+    @return id - self (HTTPMessage)
 **/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version;
 
 /**
-     Initialize a response HTTPMessage with a code, description, and version
-    param NSString
-    param NSString
-    param NSString
-    returns id 
+     @brief Initialize a response HTTPMessage with a code, description, and version
+    @param NSString
+    @param NSString
+    @param NSString
+    @return id 
 **/
 - (id)initResponseWithStatusCode:(NSInteger)code description:(NSString *)description version:(NSString *)version;
 
 /**
-    Returns whether can appendData with data
-    param NSData
+    @brief Returns whether can appendData with data
+    @param NSData
+    @return BOOL
 **/
 - (BOOL)appendData:(NSData *)data;
 
 /**
-    Returns whether the header is complete
+    @brief Returns whether the header is complete
+    @return BOOL
 **/
 - (BOOL)isHeaderComplete;
 
 /**
-    Gets the version
+    @brief Gets the version
+    @return NSString
 **/
 - (NSString *)version;
 
 /**
-    Gets the method
+    @brief Gets the method
+    @return NSString
 **/
 - (NSString *)method;
 
 /**
-    Gets the url
+    @brief Gets the url
+    @return NSURL
 **/
 - (NSURL *)url;
 
 /**
-    Gets the status code
+    @brief Gets the status code
+    @return NSInteger
 **/
 - (NSInteger)statusCode;
 
 /**
-    Gets all the header fields wrapped in an NSDictionary object
+    @brief Gets all the header fields wrapped in an NSDictionary object
+    @return NSDictionary
 **/
 - (NSDictionary *)allHeaderFields;
 
 /**
-    Returns the header field as a string
-    param NSString
-    returns NSString
+    @brief Returns the header field as a string
+    @param NSString
+    @return NSString
 **/
 - (NSString *)headerField:(NSString *)headerField;
 
 /**
-    Sets the header field
-    param NSString
-    param NSString
+    @brief Sets the header field
+    @param NSString
+    @param NSString
+    @return void
 **/
 - (void)setHeaderField:(NSString *)headerField value:(NSString *)headerFieldValue;
 
 /**
-    Returns the message data
-    returns NSData
+    @brief Returns the message data
+    @return NSData
 **/
 - (NSData *)messageData;
 
 /**
-    Returns the body data
-    returns NSData
+    @brief Returns the body data
+    @return NSData
 **/
 - (NSData *)body;
 
 /**
-    Set the body data
-    param NSData
+    @brief Set the body data
+    @param NSData
+    @return void
 **/
 - (void)setBody:(NSData *)body;
 

@@ -65,29 +65,34 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param id <DDLogger>
+    @param id <DDLogger>
+    @return void
 **/
 + (void)lt_addLogger:(id <DDLogger>)logger;
 
 /**
     Class method
-    param id <DDLogger>
+    @param id <DDLogger>
+    @return void
 **/
 + (void)lt_removeLogger:(id <DDLogger>)logger;
 
 /**
     Class method
+    @return void
 **/
 + (void)lt_removeAllLoggers;
 
 /**
     Class method
-    param DDLogMessage
+    @param DDLogMessage
+    @return void
 **/
 + (void)lt_log:(DDLogMessage *)logMessage;
 
 /**
     Class method
+    @return void
 **/
 + (void)lt_flush;
 
@@ -139,12 +144,10 @@ typedef struct LoggerNode LoggerNode;
 #endif
 
 /**
- * The runtime sends initialize to each class in a program exactly one time just before the class,
- * or any class that inherits from it, is sent its first message from within the program. (Thus the
- * method may never be invoked if the class is not used.) The runtime sends the initialize message to
- * classes in a thread-safe manner. Superclasses receive this message before their subclasses.
- *
- * This method may also be called directly (assumably by accident), hence the safety mechanism.
+    The runtime sends initialize to each class in a program exactly one time just before the class, or any class that inherits from it, is sent its first message from within the program. (Thus the method may never be invoked if the class is not used.) The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.
+ 
+    This method may also be called directly (assumably by accident), hence the safety mechanism.
+    @return void
 **/
 + (void)initialize
 {
@@ -219,7 +222,8 @@ typedef struct LoggerNode LoggerNode;
 #if GCD_MAYBE_AVAILABLE
 
 /**
- * Provides access to the logging queue.
+    @brief Provides access to the logging queue.
+    @return dispatch_queue_t
 **/
 + (dispatch_queue_t)loggingQueue
 {
@@ -231,7 +235,8 @@ typedef struct LoggerNode LoggerNode;
 #if GCD_MAYBE_UNAVAILABLE
 
 /**
- * Provides access to the logging thread.
+    @brief Provides access to the logging thread.
+    @return NSThread
 **/
 + (NSThread *)loggingThread
 {
@@ -245,7 +250,9 @@ typedef struct LoggerNode LoggerNode;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- Class method
+    Class method
+    @param NSNotification
+    @return void
 **/
 + (void)applicationWillTerminate:(NSNotification *)notification
 {
@@ -257,7 +264,9 @@ typedef struct LoggerNode LoggerNode;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- Class method
+    Class method
+    @param id <DDLogger>
+    @return void
 **/
 + (void)addLogger:(id <DDLogger>)logger
 {
@@ -290,7 +299,9 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- Class method
+    Class method
+    @param id <DDLogger>
+    @return void
 **/
 + (void)removeLogger:(id <DDLogger>)logger
 {
@@ -323,7 +334,8 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- Class method
+    Class method
+    @return void
 **/
 + (void)removeAllLoggers
 {
@@ -358,7 +370,10 @@ typedef struct LoggerNode LoggerNode;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- Class method
+    Class method
+    @param DDLogMessage
+    @param BOOL
+    @return void
 **/
 + (void)queueLogMessage:(DDLogMessage *)logMessage synchronously:(BOOL)flag
 {
@@ -519,14 +534,15 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param BOOL
-    param int
-    param in
-    param int
-    param const char
-    param const char
-    param int
-    param NSString
+    @param BOOL
+    @param int
+    @param int
+    @param int
+    @param const char
+    @param const char
+    @param int
+    @param NSString
+    @return void
 **/
 + (void)log:(BOOL)synchronous
       level:(int)level
@@ -563,6 +579,7 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
+    @return void
 **/
 + (void)flushLog
 {
@@ -598,8 +615,8 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method    
-    param Class
-    returns BOOL
+    @param Class
+    @return BOOL
 **/
 + (BOOL)isRegisteredClass:(Class)class
 {
@@ -619,7 +636,7 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    returns NSArray
+    @return NSArray
 **/
 + (NSArray *)registeredClasses
 {
@@ -667,7 +684,7 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    returns NSArray
+    @return NSArray
 **/
 + (NSArray *)registeredClassNames
 {
@@ -685,8 +702,8 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param Class
-    returns int
+    @param Class
+    @return int
 **/
 + (int)logLevelForClass:(Class)aClass
 {
@@ -701,8 +718,8 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param NSSTring
-    returns int
+    @param NSSTring
+    @return int
 **/
 + (int)logLevelForClassWithName:(NSString *)aClassName
 {
@@ -714,8 +731,9 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param int
-    param Class
+    @param int
+    @param Class
+    @return void
 **/
 + (void)setLogLevel:(int)logLevel forClass:(Class)aClass
 {
@@ -728,8 +746,9 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     Class method
-    param int
-    param NSString
+    @param int
+    @param NSString
+    @return void
 **/
 + (void)setLogLevel:(int)logLevel forClassWithName:(NSString *)aClassName
 {
@@ -745,8 +764,9 @@ typedef struct LoggerNode LoggerNode;
 #if GCD_MAYBE_UNAVAILABLE
 
 /**
-    Entry point for logging thread.
-    param id
+    @brief Entry point for logging thread.
+    @param id
+    @return void
 **/
 + (void)lt_main:(id)ignore
 {
@@ -764,8 +784,9 @@ typedef struct LoggerNode LoggerNode;
 #endif
 
 /**
-    This method should only be run on the logging thread/queue.
-    param id <DDLogger>
+    @brief This method should only be run on the logging thread/queue.
+    @param id <DDLogger>
+    @return void
 **/
 + (void)lt_addLogger:(id <DDLogger>)logger
 {
@@ -829,7 +850,8 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     This method should only be run on the logging thread/queue.
-    param id <DDLogger>
+    @param id <DDLogger>
+    @return void
 **/
 + (void)lt_removeLogger:(id <DDLogger>)logger
 {
@@ -899,7 +921,8 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- * This method should only be run on the logging thread/queue.
+    This method should only be run on the logging thread/queue.
+    @return void
 **/
 + (void)lt_removeAllLoggers
 {
@@ -966,7 +989,9 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- * This method should only be run on the logging thread/queue.
+    This method should only be run on the logging thread/queue.
+    @param DDLogMessage
+    @return void
 **/
 + (void)lt_log:(DDLogMessage *)logMessage
 {
@@ -1106,7 +1131,8 @@ typedef struct LoggerNode LoggerNode;
 }
 
 /**
- * This method should only be run on the background logging thread.
+    This method should only be run on the background logging thread.
+    @return void
 **/
 + (void)lt_flush
 {
@@ -1120,9 +1146,9 @@ typedef struct LoggerNode LoggerNode;
 
 /**
     C-type method
-    param const char
-    param BOOL
-    returns NSString
+    @param const char
+    @param BOOL
+    @return NSString
 **/
 NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 {
@@ -1205,15 +1231,15 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 @implementation DDLogMessage
 
 /**
-    Initialize the DDLogMessage
-    param NSString
-    param int
-    param int
-    param int
-    param const char
-    param const char
-    param int
-    returns id
+    @brief Initialize the DDLogMessage
+    @param NSString
+    @param int
+    @param int
+    @param int
+    @param const char
+    @param const char
+    @param int
+    @return id
 **/
 - (id)initWithLogMsg:(NSString *)msg
                level:(int)level
@@ -1242,8 +1268,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Gets the thread id
-    returns NSString
+    @brief Gets the thread id
+    @return NSString
 **/
 - (NSString *)threadID
 {
@@ -1257,8 +1283,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Gets the file name
-    returns NSString
+    @brief Gets the file name
+    @return NSString
 **/
 - (NSString *)fileName
 {
@@ -1272,8 +1298,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Gets the method name
-    returns NSString
+    @brief Gets the method name
+    @return NSString
 **/
 - (NSString *)methodName
 {
@@ -1287,7 +1313,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -1310,7 +1337,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 @implementation DDAbstractLogger
 
 /**
-    Initialize the DDAbstracLogger
+    @brief Initialize the DDAbstracLogger
+    @return id
 **/
 - (id)init
 {
@@ -1337,7 +1365,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {
@@ -1353,7 +1382,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
- 
+    @param DDLogMessage
+    @return void
 **/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
@@ -1364,7 +1394,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
- 
+    @brief Get the log formatter
+    @param NSMutableArray
+    @return void
 **/
 - (void)lt_getLogFormatter:(NSMutableArray *)resultHolder
 {
@@ -1376,8 +1408,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Set the log formatter
-    param id <DDLogFormatter>
+    @brief Set the log formatter
+    @param id <DDLogFormatter>
+    @return void
 **/
 - (void)lt_setLogFormatter:(id <DDLogFormatter>)logFormatter
 {
@@ -1394,8 +1427,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Gets the logFormatter
-    returns id <DDLogFormatter>
+    @brief Gets the logFormatter
+    @return id <DDLogFormatter>
 **/
 - (id <DDLogFormatter>)logFormatter
 {
@@ -1503,8 +1536,9 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Set the logFormatter
-    param id <DDLogFormatter>
+    @brief Set the logFormatter
+    @param id <DDLogFormatter>
+    @return void
 **/
 - (void)setLogFormatter:(id <DDLogFormatter>)logFormatter
 {
@@ -1611,8 +1645,8 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 
 
 /**
-    Gets the loggerQueue
-    returns dispatch_queue_t
+    @brief Gets the loggerQueue
+    @return dispatch_queue_t
 **/
 - (dispatch_queue_t)loggerQueue
 {

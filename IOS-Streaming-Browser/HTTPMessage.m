@@ -5,8 +5,8 @@
 
 
 /**
-    Initialize the HTTPMessage with an empty message
-    returns self as an empty HTTP message
+    @brief Initialize the HTTPMessage with an empty message
+    @return id (self as an empty HTTP message)
 **/
 - (id)initEmptyRequest
 {
@@ -19,11 +19,11 @@
 }
 
 /**
-    Initialize a request HTTPMessage with a URL and version
-    param NSString
-    param NSURL
-    param NSString
-    returns self (HTTPMessage)
+    @brief Initialize a request HTTPMessage with a URL and version
+    @param NSString
+    @param NSURL
+    @param NSString
+    @return id self (HTTPMessage)
  **/
 - (id)initRequestWithMethod:(NSString *)method URL:(NSURL *)url version:(NSString *)version
 {
@@ -36,11 +36,12 @@
 }
 
 /**
-    Initialize a response HTTPMessage with a code, description, and version
-    param NSSInteger
-    param NSString
-    param NSSTring
- **/
+    @brief Initialize a response HTTPMessage with a code, description, and version
+    @param NSSInteger
+    @param NSString
+    @param NSSTring
+    @return id
+**/
 - (id)initResponseWithStatusCode:(NSInteger)code description:(NSString *)description version:(NSString *)version
 {
 	if ((self = [super init]))
@@ -52,8 +53,9 @@
 }
 
 /**
-    Standard deconstructor
- **/
+    @brief Standard deconstructor
+    @return void
+**/
 - (void)dealloc
 {
 	if (message)
@@ -64,8 +66,9 @@
 }
 
 /**
-    Returns whether can appendData to a message
-    param NSData
+    @brief Returns whether can appendData to a message
+    @param NSData
+    @return BOOL
 **/
 - (BOOL)appendData:(NSData *)data
 {
@@ -74,8 +77,8 @@
 }
 
 /**
-    Whether the header is complete
-    returns BOOL
+    @brief Whether the header is complete
+    @return BOOL
 **/
 - (BOOL)isHeaderComplete
 {
@@ -85,8 +88,8 @@
 
 
 /**
-    Gets the version
-    returns NSString
+    @brief Gets the version
+    @return NSString
 **/
 - (NSString *)version
 {
@@ -95,8 +98,8 @@
 
 
 /**
-    Gets the method
-    returns NSSTring
+    @brief Gets the method
+    @return NSSTring
 **/
 - (NSString *)method
 {
@@ -106,8 +109,8 @@
 
 
 /**
-    Gets the url
-    returns NSURL
+    @brief Gets the url
+    @return NSURL
 **/
 - (NSURL *)url
 {
@@ -116,8 +119,8 @@
 
 
 /**
-    Gets the status code
-    returns NSInteger
+    @brief Gets the status code
+    @return NSInteger
 **/
 - (NSInteger)statusCode
 {
@@ -127,8 +130,8 @@
 
 
 /**
-    Gets a CFDictionary containing all of the header fields.
-    returns NSDictionary
+    @brief Gets a CFDictionary containing all of the header fields.
+    @return NSDictionary
 **/
 - (NSDictionary *)allHeaderFields
 {
@@ -138,9 +141,9 @@
 
 
 /**
-    Gets a speicific header field
-    param NSString
-    returns NSString
+    @brief Gets a speicific header field
+    @param NSString
+    @return NSString
 **/
 - (NSString *)headerField:(NSString *)headerField
 {
@@ -149,9 +152,10 @@
 
 
 /**
-    Sets a header field
-    param NSString
-    param NSString
+    @brief Sets a header field
+    @param NSString
+    @param NSString
+    @return void
 **/
 - (void)setHeaderField:(NSString *)headerField 
                  value:(NSString *)headerFieldValue
@@ -162,8 +166,8 @@
 
 
 /**
-    Gets the message data
-    returns NSData
+    @brief Gets the message data
+    @return NSData
 **/
 - (NSData *)messageData
 {
@@ -173,8 +177,8 @@
 
 
 /**
-    Gets the message body
-    returns NSData
+    @brief Gets the message body
+    @return NSData
 **/
 - (NSData *)body
 {
@@ -183,8 +187,9 @@
 
 
 /**
-    Sets the message body
-    param NSData
+    @brief Sets the message body
+    @param NSData
+    @return void
 **/
 - (void)setBody:(NSData *)body
 {

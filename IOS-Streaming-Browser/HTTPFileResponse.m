@@ -13,10 +13,10 @@
 
 
 /**
-    Initialize the HTTPFileResponse with a file path and HTTPConnection
-    param NSString
-    param HTTPConnection
-    returns id
+    @brief Initialize the HTTPFileResponse with a file path and HTTPConnection
+    @param NSString
+    @param HTTPConnection
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
@@ -65,7 +65,8 @@
 
 
 /**
-    Abort the connection
+    @brief Abort the connection
+    @return void
 **/
 - (void)abort
 {
@@ -75,8 +76,8 @@
 }
 
 /**
-    Whether can open the file or not
-    returns BOOL
+    @brief Whether can open the file or not
+    @return BOOL
 **/
 - (BOOL)openFile
 {
@@ -99,8 +100,8 @@
 }
 
 /**
-    Whether the file needs to be opened
-    returns BOOL
+    @brief Whether the file needs to be opened
+    @return BOOL
 **/
 - (BOOL)openFileIfNeeded
 {
@@ -127,8 +128,8 @@
 
 
 /**
-    Get the file length
-    returns UInt64
+    @brief Get the file length
+    @return UInt64
 **/
 - (UInt64)contentLength
 {
@@ -137,8 +138,8 @@
 }
 
 /**
-    Gets the file offset
-    returns UInt64
+    @brief Gets the file offset
+    @return UInt64
 **/
 - (UInt64)offset
 {
@@ -148,8 +149,9 @@
 
 
 /**
-    Set the file offset
-    param UInt64
+    @brief Set the file offset
+    @param UInt64
+    @return void
 **/
 - (void)setOffset:(UInt64)offset
 {
@@ -177,9 +179,9 @@
 
 
 /**
-    Reads a specific length of data from the file and returns as within an NSData object
-    param NSUInteger
-    returns NSData
+    @brief Reads a specific length of data from the file and returns as within an NSData object
+    @param NSUInteger
+    @return NSData
 **/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
@@ -259,8 +261,8 @@
 }
 
 /**
-    If done reading the files
-    returns BOOL
+    @brief If done reading the files
+    @return BOOL
 **/
 - (BOOL)isDone
 {
@@ -271,8 +273,8 @@
 }
 
 /**
-    Returns the filePath as string
-    returns NSString
+    @brief Returns the filePath as string
+    @return NSString
 **/
 - (NSString *)filePath
 {
@@ -281,7 +283,8 @@
 
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {

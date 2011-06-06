@@ -6,20 +6,20 @@
 {
 
     /**
-     
+        @brief the offset
     **/
 	NSUInteger offset;
     
     /**
-      the data
+        @brief The data
     **/
 	NSData *data;  
 }
 
 /**
-    Initializes the HTTPDataResponse with data
-    param NSDAta
-    returns id
+    @brief Initializes the HTTPDataResponse with data
+    @param NSDAta
+    @return id
 **/
 - (id)initWithData:(NSData *)data;
 

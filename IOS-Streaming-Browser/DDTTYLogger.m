@@ -9,12 +9,10 @@
 static DDTTYLogger *sharedInstance;
 
 /**
- * The runtime sends initialize to each class in a program exactly one time just before the class,
- * or any class that inherits from it, is sent its first message from within the program. (Thus the
- * method may never be invoked if the class is not used.) The runtime sends the initialize message to
- * classes in a thread-safe manner. Superclasses receive this message before their subclasses.
- *
- * This method may also be called directly (assumably by accident), hence the safety mechanism.
+    The runtime sends initialize to each class in a program exactly one time just before the class, or any class that inherits from it, is sent its first message from within the program. (Thus the method may never be invoked if the class is not used.) The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.
+ 
+    This method may also be called directly (assumably by accident), hence the safety mechanism.
+    @return void
 **/
 + (void)initialize
 {
@@ -32,8 +30,8 @@ static DDTTYLogger *sharedInstance;
 
 /**
     Class method
-    Gets the shared instance
-    returns DDTTYLogger
+    @brief Gets the shared instance
+    @return DDTTYLogger
 **/
 + (DDTTYLogger *)sharedInstance
 {
@@ -42,7 +40,8 @@ static DDTTYLogger *sharedInstance;
 
 
 /**
-    Initialize the DDTTYLogger
+    @brief Initialize the DDTTYLogger
+    @return id
 **/
 - (id)init
 {
@@ -103,7 +102,8 @@ static DDTTYLogger *sharedInstance;
 
 
 /**
-    param DDLogMessage
+    @param DDLogMessage
+    @return void
 **/
 - (void)logMessage:(DDLogMessage *)logMessage
 {
@@ -200,8 +200,8 @@ static DDTTYLogger *sharedInstance;
 }
 
 /**
-    Gets the logger name
-    returns NSString
+    @brief Gets the logger name
+    @return NSString
 **/
 - (NSString *)loggerName
 {

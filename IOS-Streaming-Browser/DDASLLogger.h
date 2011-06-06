@@ -34,6 +34,10 @@
 	aslclient client;
 }
 
+/**
+    Class method
+    @return DDASLLogger
+**/
 + (DDASLLogger *)sharedInstance;
 
 // Inherited from DDAbstractLogger

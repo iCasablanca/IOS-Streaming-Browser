@@ -16,94 +16,95 @@
 {	
     
     /**
-     
+        @brief the HTTPConnection
     **/
 	HTTPConnection *connection;
 	
     /**
-      the file path
+        @brief The file path
     **/
 	NSString *filePath; 
     
     /**
-      the file length
+        @brief The file length
     **/
 	UInt64 fileLength;  
     
     /**
-      File offset as pertains to data given to connection
+        @brief File offset as pertains to data given to connection
     **/
 	UInt64 fileOffset;  
     
     /**
-      File offset as pertains to data read from file (but maybe not returned to connection)
+        @brief File offset as pertains to data read from file (but maybe not returned to connection)
     **/
 	UInt64 readOffset;  
 	
     /**
-      whether the file response is aborted
+        @brief Whether the file response is aborted
     **/
 	BOOL aborted;  
 	
     
     /**
-      the data from the file
+        @brief The data from the file
     **/
 	NSData *data;  
 	
     
     /**
-      the file descriptior (i.e. file handle)
+        @brief The file descriptior (i.e. file handle)
     **/
 	int fileFD; 
     
     
     /**
-        The read buffer.  This is for holding the data read from a file, and waiting to be sent to the host
+        @brief The read buffer.  This is for holding the data read from a file, and waiting to be sent to the host
     **/
 	void *readBuffer; 
     
     /**
-        Malloc'd size of readBuffer
+        @brief Malloc'd size of readBuffer
     **/
 	NSUInteger readBufferSize;     
     
     /**
-      Offset within readBuffer where the end of existing data is
+        @brief Offset within readBuffer where the end of existing data is
     **/
 	NSUInteger readBufferOffset;   
     
     /**
-        The read request length.  
+        @brief The read request length.  
     **/
 	NSUInteger readRequestLength; 
     
     /**
-        The read queue
+        @brief The read queue
     **/
 	dispatch_queue_t readQueue;  
     
     /**
-        The read source
+        @brief The read source
     **/
 	dispatch_source_t readSource; 
     
     /**
-        Whether read source is suspended
+        @brief Whether read source is suspended
     **/
 	BOOL readSourceSuspended;  
 }
 
 /**
-        Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
-        param NSString
-        param HTTPConnection
-        returns id
+    @brief Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
+    @param NSString
+    @param HTTPConnection
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)filePath forConnection:(HTTPConnection *)connection;
 
 /**
-    returns filePath as an NSString
+    @brief Returns filePath as an NSString
+    @return NSString
 **/
 - (NSString *)filePath;
 

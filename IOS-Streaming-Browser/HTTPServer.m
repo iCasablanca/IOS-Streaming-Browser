@@ -3,28 +3,36 @@
 #import "HTTPConnection.h"
 #import "WebSocket.h"
 
-
+/**
+    HTTPServer (PrivateAPI)
+**/
 @interface HTTPServer (PrivateAPI)
 
 /**
-    Unpublish the bonjour from the list of published network services
+    @brief Unpublish the bonjour from the list of published network services
+    @return void
 **/
 - (void)unpublishBonjour;
 
+
 /**
-    Publish as a list of network services
+    @brief Publish as a list of network services
+    @return void
 **/
 - (void)publishBonjour;
 
+
 /**
-    Starts the bonjour thread if needed
+    @brief Starts the bonjour thread if needed
+    @return void
 **/
 + (void)startBonjourThreadIfNeeded;
 
 /**
-    Performs a block of code on the bonjour thread
-    param dispatch_block_t
-    param BOOL
+    @brief Performs a block of code on the bonjour thread
+    @param dispatch_block_t
+    @param BOOL
+    @return void
 **/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone;
 
@@ -34,11 +42,16 @@
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+    HTTP Server
+**/
 @implementation HTTPServer
 
 /**
- * Standard Constructor.
- * Instantiates an HTTP server, but does not start it.
+    @brief Standard Constructor.
+ 
+    Instantiates an HTTP server, but does not start it.
+    @return id
 **/
 - (id)init
 {
@@ -109,8 +122,10 @@
 }
 
 /**
- * Standard Deconstructor.
- * Stops the server, and clients, and releases any resources connected with this instance.
+    @brief Standard Deconstructor.
+ 
+    Stops the server, and clients, and releases any resources connected with this instance.
+    @return void
 **/
 - (void)dealloc
 {
@@ -152,10 +167,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    The document root is filesystem root for the webserver.
+    @brief The document root is filesystem root for the webserver.
+ 
     Thus requests for /index.html will be referencing the index.html file within the document root directory.
     All file requests are relative to this document root.
-    returns NSString
+    @return NSString
 **/
 - (NSString *)documentRoot
 {
@@ -175,8 +191,9 @@
 }
 
 /**
-    Set the documents root
-    param NSString
+    @brief Set the documents root
+    @param NSString
+    @return void
 **/
 - (void)setDocumentRoot:(NSString *)value
 {
@@ -205,11 +222,12 @@
 }
 
 /**
-    The connection class is the class that will be used to handle connections.
+    @brief The connection class is the class that will be used to handle connections.
+ 
     That is, when a new connection is created, an instance of this class will be intialized.
     The default connection class is HTTPConnection.
     If you use a different connection class, it is assumed that the class extends HTTPConnection
-    returns Class
+    @return Class
 **/
 - (Class)connectionClass
 {
@@ -227,8 +245,9 @@
 }
 
 /**
-    Sets the connection class on the serverQueue
-    param Class
+    @brief Sets the connection class on the serverQueue
+    @param Class
+    @return void
 **/
 - (void)setConnectionClass:(Class)value
 {
@@ -241,8 +260,8 @@
 }
 
 /**
-    What interface to bind the listening socket to.
-    returns NSString
+    @brief What interface to bind the listening socket to.
+    @return NSString
 **/
 - (NSString *)interface
 {
@@ -260,8 +279,9 @@
 
 
 /**
-    Set the server interface
-    param NSString
+    @brief Set the server interface
+    @param NSString
+    @return void
 **/
 - (void)setInterface:(NSString *)value
 {
@@ -280,9 +300,11 @@
 }
 
 /**
- * The port to listen for connections on.
- * By default this port is initially set to zero, which allows the kernel to pick an available port for us.
- * After the HTTP server has started, the port being used may be obtained by this method.
+    @brief The port to listen for connections on.
+ 
+    By default this port is initially set to zero, which allows the kernel to pick an available port for us.
+    After the HTTP server has started, the port being used may be obtained by this method.
+    @return UInt16
 **/
 - (UInt16)port
 {
@@ -300,8 +322,8 @@
 }
 
 /**
-    Get the servers listening port by dispatching q block on the serverQueue
-    returns UInt16
+    @brief Get the servers listening port by dispatching q block on the serverQueue
+    @return UInt16
 **/
 - (UInt16)listeningPort
 {
@@ -328,8 +350,9 @@
 }
 
 /**
-    Set the servers port
-    param UInt16
+    @brief Set the servers port
+    @param UInt16
+    @return void
 **/
 - (void)setPort:(UInt16)value
 {
@@ -342,9 +365,10 @@
 }
 
 /**
-    Gets the domain on which to broadcast this service via Bonjour.
+    @brief Gets the domain on which to broadcast this service via Bonjour.
+ 
     The default domain is @"local".
-    returns NSString
+    @return NSString
 **/
 - (NSString *)domain
 {
@@ -363,8 +387,9 @@
 
 
 /**
-    Set the domain on which to broadcast this service
-    param NSString
+    @brief Set the domain on which to broadcast this service
+    @param NSString
+    @return void
 **/
 - (void)setDomain:(NSString *)value
 {
@@ -383,10 +408,10 @@
 }
 
 /**
- * Gets the name to use for this service via Bonjour.
- * The default name is an empty string,
- * which should result in the published name being the host name of the computer.
-    returns NSString
+    @brief Gets the name to use for this service via Bonjour.
+
+    The default name is an empty string, which should result in the published name being the host name of the computer.
+    @return NSString
 **/
 - (NSString *)name
 {
@@ -405,8 +430,8 @@
 
 
 /**
-    Gets the published name of the server
-    returns NSString
+    @brief Gets the published name of the server
+    @return NSString
 **/
 - (NSString *)publishedName
 {
@@ -442,8 +467,9 @@
 
 
 /**
-    Sets the published name of the server
-    param NSString
+    @brief Sets the published name of the server
+    @param NSString
+    @return void
 **/
 - (void)setName:(NSString *)value
 {
@@ -462,9 +488,10 @@
 }
 
 /**
- * Gets the type of service to publish via Bonjour.
- * No type is set by default, and one must be set in order for the service to be published.
-    returns NSString
+    @brief Gets the type of service to publish via Bonjour.
+ 
+    No type is set by default, and one must be set in order for the service to be published.
+    @return NSString
 **/
 - (NSString *)type
 {
@@ -482,8 +509,9 @@
 }
 
 /**
-    Set the type of service to be published via Bonjour
-    param NSString
+    @brief Set the type of service to be published via Bonjour
+    @param NSString
+    @return void
 **/
 - (void)setType:(NSString *)value
 {
@@ -502,9 +530,10 @@
 }
 
 /**
-    Gets the TXTRecordDictionary
+    @brief Gets the TXTRecordDictionary
+ 
     The extra data to use for this service via Bonjour.
-    returns NSDictionary
+    @return NSDictionary
 **/
 - (NSDictionary *)TXTRecordDictionary
 {
@@ -522,8 +551,9 @@
 }
 
 /**
-    Sets the TXT record dictionary
-    param NSDictionary
+    @brief Sets the TXT record dictionary
+    @param NSDictionary
+    @return void
 **/
 - (void)setTXTRecordDictionary:(NSDictionary *)value
 {
@@ -573,9 +603,9 @@
 
 
 /**
-    Starts the server
-    param NSError
-    returns BOOL
+    @brief Starts the server
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)start:(NSError **)errPtr
 {
@@ -622,8 +652,8 @@
 
 
 /**
-    Stops the server
-    returns BOOL
+    @brief Stops the server
+    @return BOOL
 **/
 - (BOOL)stop
 {
@@ -672,8 +702,8 @@
 
 
 /**
-    Whether the server is running
-    returns BOOL
+    @brief Whether the server is running
+    @return BOOL
 **/
 - (BOOL)isRunning
 {
@@ -690,7 +720,9 @@
 
 
 /**
-    Adds a web sockets array
+    @brief Adds a web sockets array
+    @param WebSocket
+    @return void
 **/
 - (void)addWebSocket:(WebSocket *)ws
 {
@@ -709,8 +741,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Returns the number of http client connections that are currently connected to the server.
-    returns NSUInteger
+    @brief Returns the number of http client connections that are currently connected to the server.
+    @return NSUInteger
 **/
 - (NSUInteger)numberOfHTTPConnections
 {
@@ -730,8 +762,8 @@
 }
 
 /**
- * Returns the number of websocket client connections that are currently connected to the server.
-    returns NSUInteger
+    @brief Returns the number of websocket client connections that are currently connected to the server.
+    @return NSUInteger
 **/
 - (NSUInteger)numberOfWebSocketConnections
 {
@@ -755,8 +787,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Configures the server
-    returns HTTPConfig
+    @brief Configures the server
+    @return HTTPConfig
 **/
 - (HTTPConfig *)config
 {
@@ -776,10 +808,10 @@
 
 
 /**
-    When the server accepts a new socket
-    param GCDAsyncSocket
-    param GCDAsyncSocket
- 
+    @brief When the server accepts a new socket
+    @param GCDAsyncSocket
+    @param GCDAsyncSocket
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
@@ -806,7 +838,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-    Publish the bonjour net service
+    @brief Publish the bonjour net service
+    @return void
 **/
 - (void)publishBonjour
 {
@@ -867,7 +900,8 @@
 }
 
 /**
-    Unpublic the Bonjour service
+    @brief Unpublic the Bonjour service
+    @return void
 **/
 - (void)unpublishBonjour
 {
@@ -899,8 +933,10 @@
 }
 
 /**
- * Republishes the service via bonjour if the server is running.
- * If the service was not previously published, this method will publish it (if the server is running).
+    @brief Republishes the service via bonjour if the server is running.
+ 
+    If the service was not previously published, this method will publish it (if the server is running).
+    @return void
 **/
 - (void)republishBonjour
 {
@@ -914,9 +950,11 @@
 }
 
 /**
- * Called when our bonjour service has been successfully published.
- * This method does nothing but output a log message telling us about the published service.
-    param NSNetService
+    Called when our bonjour service has been successfully published.
+ 
+    This method does nothing but output a log message telling us about the published service.
+    @param NSNetService
+    @return void
 **/
 - (void)netServiceDidPublish:(NSNetService *)ns
 {
@@ -927,10 +965,12 @@
 }
 
 /**
- * Called if our bonjour service failed to publish itself.
- * This method does nothing but output a log message telling us about the published service.
-    param NSNetService
-    param NSDictionary
+    @brief Called if our bonjour service failed to publish itself.
+ 
+    This method does nothing but output a log message telling us about the published service.
+    @param NSNetService
+    @param NSDictionary
+    @return void
 **/
 - (void)netService:(NSNetService *)ns didNotPublish:(NSDictionary *)errorDict
 {
@@ -945,9 +985,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * This method is automatically called when a notification of type HTTPConnectionDidDieNotification is posted.
- * It allows us to remove the connection from our array.
-    param NSNotification
+    @brief This method is automatically called when a notification of type HTTPConnectionDidDieNotification is posted.
+ 
+    It allows us to remove the connection from our array.
+    @param NSNotification
+    @return void
 **/
 - (void)connectionDidDie:(NSNotification *)notification
 {
@@ -964,9 +1006,10 @@
 }
 
 /**
- * This method is automatically called when a notification of type WebSocketDidDieNotification is posted.
- * It allows us to remove the websocket from our array.
-    param NSNotification
+    @brief This method is automatically called when a notification of type WebSocketDidDieNotification is posted.
+    It allows us to remove the websocket from our array.
+    @param NSNotification
+    @return void
 **/
 - (void)webSocketDidDie:(NSNotification *)notification
 {
@@ -987,22 +1030,21 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * NSNetService is runloop based, so it requires a thread with a runloop.
- * This gives us two options:
- * 
- * - Use the main thread
- * - Setup our own dedicated thread
- * 
- * Since we have various blocks of code that need to synchronously access the netservice objects,
- * using the main thread becomes troublesome and a potential for deadlock.
+    @brief NSNetService is runloop based, so it requires a thread with a runloop.
+    This gives us two options:
+    
+    - Use the main thread
+    - Setup our own dedicated thread
+    
+    Since we have various blocks of code that need to synchronously access the netservice objects, using the main thread becomes troublesome and a potential for deadlock.
 **/
-
 static NSThread *bonjourThread;
 
 
 /**
     Class method
-    Start the bonjour thread
+    @brief Start the bonjour thread
+    @return void
 **/
 + (void)startBonjourThreadIfNeeded
 {
@@ -1026,6 +1068,7 @@ static NSThread *bonjourThread;
 
 /**
     Class method
+    @return void
 **/
 + (void)bonjourThread
 {
@@ -1048,8 +1091,9 @@ static NSThread *bonjourThread;
 /**
     Class method
     
-    Executes the block of code on the bonjour thread
-    param dispatch_block_t
+    @brief Executes the block of code on the bonjour thread
+    @param dispatch_block_t
+    @return void
 **/
 + (void)performBonjourBlock:(dispatch_block_t)block
 {
@@ -1063,9 +1107,10 @@ static NSThread *bonjourThread;
 
 /**
     Class method
-    Executes a block on the bonjour thread
-    param dispatch_block_t
-    param BOOL
+    @brief Executes a block on the bonjour thread
+    @param dispatch_block_t
+    @param BOOL
+    @return void
 **/
 + (void)performBonjourBlock:(dispatch_block_t)block waitUntilDone:(BOOL)waitUntilDone
 {

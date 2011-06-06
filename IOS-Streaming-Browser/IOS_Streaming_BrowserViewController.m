@@ -21,19 +21,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @interface IOS_Streaming_BrowserViewController()
 
 /**
-    Start recording
+    @brief Start recording
+    @return void
 **/
 -(void) startRecording;
 
 /**
-    Stop recording
+    @brief Stop recording
+    @return void
 **/
 -(void) stopRecording;
 
 /**
-    Take a screen shot
+    @brief Take a screen shot
+    @return UIImage
 **/
 -(UIImage*) screenshot;
+
 @end
 
 
@@ -48,7 +52,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Deallocate the object
+    @brief Deallocate the object
+    @return void
 **/
 - (void)dealloc
 {
@@ -64,7 +69,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Executed upon the receipt of a memory warning
+    @brief Executed upon the receipt of a memory warning
+    @return void
 **/
 - (void)didReceiveMemoryWarning
 {
@@ -77,9 +83,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark screenshot
 
 /**
-// copied from http://developer.apple.com/library/ios/#qa/qa1703/_index.html ,
-// with new imageScale to take Retina-to-320x480 scaling into account
-    returns UIImage
+    Copied from http://developer.apple.com/library/ios/#qa/qa1703/_index.html , with new imageScale to take Retina-to-320x480 scaling into account
+    @return UIImage
 **/
 - (UIImage*)screenshot 
 {
@@ -159,8 +164,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark helpers
 
 /**
-    Gets the path to the document directory
-    returns NSString
+    @brief Gets the path to the document directory
+    @return NSString
 **/
 -(NSString*) pathToDocumentsDirectory {
     
@@ -172,8 +177,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Write the image
-    param NSTimer
+    @brief Write the image
+    @param NSTimer
+    @return void
 **/
 -(void) writeImage: (NSTimer*) _timer {
     
@@ -200,7 +206,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Start the HTTP server
+    @brief Start the HTTP server
+    @return void
 **/
 -(void) startHttpServer
 {
@@ -249,7 +256,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Stop the HTTP server
+    @brief Stop the HTTP server
+    @return void
 **/
 -(void) stopHttpServer
 {
@@ -260,7 +268,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Starts Recording images
+    @brief Starts Recording images
+    @return void
 **/
 -(void) startRecording 
 { 
@@ -275,7 +284,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Stop recording images
+    @brief Stop recording images
+    @return void
 **/
 -(void) stopRecording {
     DDLogError(@"stopRecording");
@@ -302,15 +312,17 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark - View lifecycle
 
 /**
-    The view will appear
-    param BOOL
+    @brief The view will appear
+    @param BOOL
+    @return void
 **/
 - (void) viewWillAppear:(BOOL)animated {
     DDLogError(@"viewWillAppear");
 }
 
 /**
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+    @brief Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+    @return void
 **/
 - (void)viewDidLoad
 {
@@ -348,7 +360,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Executed upon the view unloading
+    @brief Executed upon the view unloading
+    @return void
 **/
 - (void)viewDidUnload
 {
@@ -362,9 +375,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Whether the screen should autorotate
-    param UIInterfaceOrientation
-    returns BOOL
+    @brief Whether the screen should autorotate
+    @param UIInterfaceOrientation
+    @return BOOL
 **/
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -376,9 +389,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark event handlers
 
 /**
-    Upon the start/stop button being pressed
-    param id
-    returns IBAction
+    @brief Upon the start/stop button being pressed
+    @param id
+    @return IBAction
 **/
 -(IBAction) handleStartStopTapped: (id) sender 
 {
@@ -400,9 +413,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Gets the address from the address bar, and updates the webview with the requested URL
-    param id
-    returns IBAction
+    @brief Gets the address from the address bar, and updates the webview with the requested URL
+    @param id
+    @return IBAction
 **/
 -(IBAction)gotoAddress:(id) sender 
 {
@@ -423,9 +436,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Upon the back button being pressed on the webview
-    param id
-    returns IBAction
+    @brief Upon the back button being pressed on the webview
+    @param id
+    @return IBAction
 **/
 -(IBAction) goBack:(id)sender 
 {
@@ -434,9 +447,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Upon the configure button being pressed
-    param id
-    returns IBAction
+    @brief Upon the configure button being pressed
+    @param id
+    @return IBAction
 **/
 -(IBAction) configureButton:(id)sender 
 {
@@ -453,9 +466,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Upon the forward button being pressed on the webview
-    param id
-    returns IBAction
+    @brief Upon the forward button being pressed on the webview
+    @param id
+    @return IBAction
 **/
 -(IBAction) goForward:(id)sender 
 {
@@ -465,9 +478,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Upon the reload image beinging pressed on the webview
-    param id
-    returns IBAction
+    @brief Upon the reload image beinging pressed on the webview
+    @param id
+    @return IBAction
 **/
 -(IBAction) reloadPage:(id)sender 
 {
@@ -477,9 +490,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Upon the stop loading button beinging pressed on the webview
-    param id
-    returns IBAction
+    @brief Upon the stop loading button beinging pressed on the webview
+    @param id
+    @return IBAction
 **/
 -(IBAction) stopLoading:(id)sender 
 {
@@ -490,9 +503,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Upon the Home button being pressed on the webview
-    param id
-    returns IBAction
+    @brief Upon the Home button being pressed on the webview
+    @param id
+    @return IBAction
 **/
 -(IBAction) goHome:(id)sender {
     DDLogError(@"goHome");
@@ -511,11 +524,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Whether should load the request in the UIWebView
-    param UIWebView
-    param NSMutableURLRequest
-    param UIWebViewNavigationType
-    returns BOOL
+    @brief Whether should load the request in the UIWebView
+    @param UIWebView
+    @param NSMutableURLRequest
+    @param UIWebViewNavigationType
+    @return BOOL
 **/
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSMutableURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
 {
@@ -718,8 +731,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Start the activity indicator when the webview starts loading a webpage
-    param UIWebView
+    @brief Start the activity indicator when the webview starts loading a webpage
+    @param UIWebView
+    @return void
 **/
 - (void)webViewDidStartLoad:(UIWebView *)webView 
 {
@@ -729,8 +743,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Stop the activity indicator when the webview finishes loading the webpage
-    param UIWebView
+    @brief Stop the activity indicator when the webview finishes loading the webpage
+    @param UIWebView
+    @return void
 **/
 - (void)webViewDidFinishLoad:(UIWebView *)webView 
 {
@@ -740,9 +755,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    The webView did load with an error
-    param UIWebView
-    param NSError
+    @brief The webView did load with an error
+    @param UIWebView
+    @param NSError
+    @return void
 **/
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     DDLogError(@"webView didFailLoadWithError: %@",error);
@@ -751,8 +767,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 
 /**
-    Updates the broadcast ip/port label on the view
-    param NSNotification
+    @brief Updates the broadcast ip/port label on the view
+    @param NSNotification
+    @return void
 **/
 - (void)displayInfoUpdate:(NSNotification *) notification
 {

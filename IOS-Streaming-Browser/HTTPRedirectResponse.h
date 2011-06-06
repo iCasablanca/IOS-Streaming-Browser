@@ -6,16 +6,16 @@
 @interface HTTPRedirectResponse : NSObject <HTTPResponse>
 {
     /**
-        The redirect path
+        @brief The redirect path
     **/
 	NSString *redirectPath;
 }
 
 
 /**
-    Initialize the HTTPRedirectResponse with a redirectPath
-    param NSString
-    returns id
+    @brief Initialize the HTTPRedirectResponse with a redirectPath
+    @param NSString
+    @return id
 **/
 - (id)initWithPath:(NSString *)redirectPath;
 

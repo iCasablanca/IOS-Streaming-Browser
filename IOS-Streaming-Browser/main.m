@@ -16,10 +16,20 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+    @brief Kernel entrypoint
+    @param int
+    @param char
+    @return int
+**/
 int main(int argc, char *argv[])
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // Calls the UIApplication with the arguements
     int retVal = UIApplicationMain(argc, argv, nil, nil);
+    
     [pool release];
+    
     return retVal;
 }

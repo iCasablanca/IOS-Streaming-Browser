@@ -16,12 +16,12 @@
     
 
     /**
-        The window in the application
+        @brief The window in the application
     **/
 	UIWindow *window;
     
     /**
-        The view controller for the views
+        @brief The view controller for the views
     **/
 	IOS_Streaming_BrowserViewController *viewController;
 

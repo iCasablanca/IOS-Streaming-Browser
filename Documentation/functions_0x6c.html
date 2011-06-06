@@ -126,6 +126,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>LFData
 : <a class="el" href="interfaceGCDAsyncSocket.html#a9f80c130183f3fa0f324c7505127ab77">GCDAsyncSocket</a>
 </li>
+<li>lineNumber
+: <a class="el" href="interfaceDDLogMessage.html#a44bf2f6ee91a35522c07c779325d3ef0">DDLogMessage</a>
+</li>
 <li>list
 : <a class="el" href="interfacelocalhostAddresses.html#aa594fce724d61d0087fb9ca98b9d6ec2">localhostAddresses</a>
 </li>
@@ -174,6 +177,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>log:level:flag:context:file:function:line:format:
 : <a class="el" href="interfaceDDLog.html#a452443a2758e650c86f15f174bb31592">DDLog</a>
 </li>
+<li>logContext
+: <a class="el" href="interfaceDDLogMessage.html#a1bf29c9d5a3f4ff0eacb430b1c2098ca">DDLogMessage</a>
+</li>
+<li>logFileManager
+: <a class="el" href="interfaceDDFileLogger.html#a4dd1c6c4e2f8ae6eb2967e400d5896a2">DDFileLogger</a>
+</li>
 <li>logFileWithPath:
 : <a class="el" href="interfaceDDLogFileInfo.html#a2be9d2f7fc841e56d14ab83d0a42b6e3">DDLogFileInfo</a>
 </li>
@@ -182,10 +191,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="interfaceDDAbstractLogger.html#ac6b6196832dd8e3def9cfe811cfdcb69">DDAbstractLogger</a>
 </li>
 <li>loggerName
-: <a class="el" href="interfaceDDTTYLogger.html#a92fc3e172e398441bb808a287da59f89">DDTTYLogger</a>
+: <a class="el" href="interfaceDDASLLogger.html#a92fc3e172e398441bb808a287da59f89">DDASLLogger</a>
+, <a class="el" href="interfaceDDFileLogger.html#a92fc3e172e398441bb808a287da59f89">DDFileLogger</a>
+, <a class="el" href="interfaceDDTTYLogger.html#a92fc3e172e398441bb808a287da59f89">DDTTYLogger</a>
 </li>
 <li>loggingThread
 : <a class="el" href="interfaceDDLog.html#a0db1fa8d38dc4a508f1178f9ece91347">DDLog</a>
+</li>
+<li>logLevel
+: <a class="el" href="interfaceDDLogMessage.html#af5958167dc925f0fb6ad593b094038e3">DDLogMessage</a>
 </li>
 <li>logLevelForClass:
 : <a class="el" href="interfaceDDLog.html#a15a9b64bb570d32e2e182571657f2848">DDLog</a>
@@ -195,13 +209,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>logMessage:
 : <a class="el" href="protocolDDLogger-p.html#a653e20c04337519878252877b5cb167e">&lt;DDLogger&gt;</a>
-, <a class="el" href="interfaceDDFileLogger.html#a653e20c04337519878252877b5cb167e">DDFileLogger</a>
-, <a class="el" href="interfaceDDTTYLogger.html#a653e20c04337519878252877b5cb167e">DDTTYLogger</a>
-, <a class="el" href="interfaceDDAbstractLogger.html#a653e20c04337519878252877b5cb167e">DDAbstractLogger</a>
 , <a class="el" href="interfaceDDASLLogger.html#a653e20c04337519878252877b5cb167e">DDASLLogger</a>
+, <a class="el" href="interfaceDDAbstractLogger.html#a653e20c04337519878252877b5cb167e">DDAbstractLogger</a>
+, <a class="el" href="interfaceDDTTYLogger.html#a653e20c04337519878252877b5cb167e">DDTTYLogger</a>
+, <a class="el" href="interfaceDDFileLogger.html#a653e20c04337519878252877b5cb167e">DDFileLogger</a>
+</li>
+<li>logMsg
+: <a class="el" href="interfaceDDLogMessage.html#a002735b40c66c2972b47e1670339df89">DDLogMessage</a>
 </li>
 <li>logsDirectory
-: <a class="el" href="interfaceDDLogFileManagerDefault.html#adcdca4fb8d0d2dd211ddad5db63c3bba">DDLogFileManagerDefault</a>
+: <a class="el" href="protocolDDLogFileManager-p.html#adcdca4fb8d0d2dd211ddad5db63c3bba">&lt;DDLogFileManager&gt;</a>
+, <a class="el" href="interfaceDDLogFileManagerDefault.html#adcdca4fb8d0d2dd211ddad5db63c3bba">DDLogFileManagerDefault</a>
 </li>
 <li>lookup:didFail:
 : <a class="el" href="interfaceGCDAsyncSocket.html#a2b0440d4004fff8ccc8cecd08b499b67">GCDAsyncSocket</a>
@@ -218,6 +236,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>lt_flush
 : <a class="el" href="interfaceDDLog.html#a3e3845d1e08ae808a103674c886695f7">DDLog</a>
 </li>
+<li>lt_getLogFormatter:
+: <a class="el" href="interfaceDDAbstractLogger.html#aa520f7e36b8dd7b5c756ba1b51ddbf19">DDAbstractLogger</a>
+</li>
+<li>lt_getMaximumFileSize:
+: <a class="el" href="interfaceDDFileLogger.html#a7cd598744d0ee49ec189bfd83e1e71c7">DDFileLogger</a>
+</li>
+<li>lt_getRollingFrequency:
+: <a class="el" href="interfaceDDFileLogger.html#a05d810f158a9d1ce6280a8d2b2432128">DDFileLogger</a>
+</li>
 <li>lt_log:
 : <a class="el" href="interfaceDDLog.html#a5ace02d0bc77424c1183a0c3c1daa496">DDLog</a>
 </li>
@@ -233,12 +260,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>lt_setLogFormatter:
 : <a class="el" href="interfaceDDAbstractLogger.html#a58ad2a43ae324e707ec891ef38234a16">DDAbstractLogger</a>
 </li>
+<li>lt_setMaximumFileSize:
+: <a class="el" href="interfaceDDFileLogger.html#a6dfa3c8997e3a5bf147e3deda5546c83">DDFileLogger</a>
+</li>
+<li>lt_setRollingFrequency:
+: <a class="el" href="interfaceDDFileLogger.html#a3009e722623381c4d9f476a645f2d267">DDFileLogger</a>
+</li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="footer">Generated on Sat Jun 4 2011 21:16:08 for IOS Streaming Browser by&#160;
+      <li class="footer">Generated on Sun Jun 5 2011 22:02:32 for IOS Streaming Browser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

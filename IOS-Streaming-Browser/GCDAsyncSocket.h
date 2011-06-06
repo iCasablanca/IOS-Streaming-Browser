@@ -48,167 +48,169 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+    GCDAsyncSocket
+**/
 @interface GCDAsyncSocket : NSObject
 {
     /**
-     
+        @brief Flags for the asynchronous socket
     **/
 	UInt16 flags;
     
     
     /**
-     
+        
     **/
 	UInt16 config;
 	
     /**
-     
+        @brief The delegate for the GCDAsyncSocket
     **/
 	id delegate;
     
     /**
-        Dispatch queues are lightweight objects to which blocks may be submitted.
-        The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them.
+        @brief Dispatch queues are lightweight objects to which blocks may be submitted. The system manages a pool of threads which process dispatch queues and invoke blocks submitted to them.
     **/
 	dispatch_queue_t delegateQueue;  //dispatch queue
 	
     /**
-      IP version 4 socket file descriptor
+        @brief IP version 4 socket file descriptor
     **/
 	int socket4FD;  
 
 	/**
-      IP version 6 socket file descriptor
+        @brief IP version 6 socket file descriptor
     **/
     int socket6FD;  
 
     /**
-        Index of the connection
+        @brief Index of the connection
     **/
 	int connectIndex; 
     
     /**
-        Object-oriented wrappers for byte buffers
+        @brief Object-oriented wrappers for byte buffers
         IP version 4 interface
     **/
 	NSData * connectInterface4;  
     
     /**
-        IP version 6 interface
+        @brief IP version 6 interface
     **/
 	NSData * connectInterface6;  
 	
     /**
-        The dispatch queue upon which blocks are submitted
+        @brief The dispatch queue upon which blocks are submitted
     **/
 	dispatch_queue_t socketQueue;  
 	
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
     **/
 	dispatch_source_t accept4Source; 
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t accept6Source;
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t connectTimer;
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t readSource;
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t writeSource;
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t readTimer;
     
     /**
-        Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
+        @brief Dispatch sources are used to automatically submit event handler blocks to dispatch queues in response to external events.
      **/
 	dispatch_source_t writeTimer;
 	
     
     /**
-        The read queue
+        @brief The read queue
     **/
 	NSMutableArray *readQueue;  
     
     /**
-        The write queue
+        @brief The write queue
     **/
 	NSMutableArray *writeQueue;  
 	
     
     /**
-      the read packet
+        @brief The read packet
     **/
 	GCDAsyncReadPacket *currentRead; 
     
     /**
-        The write packet
+        @brief The write packet
     **/
 	GCDAsyncWritePacket *currentWrite; 
 	
     /**
-        Socket file descriptor bytes available
+        @brief Socket file descriptor bytes available
         Value is 0 to 2,147,483,647
     **/
 	unsigned long socketFDBytesAvailable;  
 	
     /**
-        A partial read buffer for buffering the host request
+        @brief A partial read buffer for buffering the host request
     **/
 	NSMutableData *partialReadBuffer;  
 		
 #if TARGET_OS_IPHONE
     
     /**
-        A struct for holding client information
+        @brief A struct for holding client information
     **/
 	CFStreamClientContext streamContext;
     
     /**
-        Is the interface for reading a byte stream either synchronously or asynchronously.
+        @brief Is the interface for reading a byte stream either synchronously or asynchronously.
     **/
 	CFReadStreamRef readStream;
     
     /**
-        Is the interface for writing a byte stream either synchronously or asynchronously
+        @brief Is the interface for writing a byte stream either synchronously or asynchronously
     **/
 	CFWriteStreamRef writeStream;
     
 #else
     
     /**
-      the SSL context reference
+        @brief The SSL context reference
     **/
 	SSLContextRef sslContext; 
     
     /**
-        The SSL read buffer for buffering the host response
+        @brief The SSL read buffer for buffering the host response
     **/
 	NSMutableData *sslReadBuffer; 
     
     /**
-        Size of the SSL write cache
+        @brief Size of the SSL write cache
     **/
 	size_t sslWriteCachedLength; 
     
 #endif
 	
     /**
-        User data
+        @brief User data
     **/
 	id userData; 
 }
@@ -225,88 +227,96 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     If you choose to provide a socket queue, the socket queue must not be a concurrent queue.
  
     The delegate queue and socket queue can optionally be the same.
+    @return id
 **/
 - (id)init;
 
 /**
-    Initialize the GCDAsyncSocket with a socket queue
- 
-    param dispatch_queue_t
-    returns id (self)
+    @brief Initialize the GCDAsyncSocket with a socket queue
+    @param dispatch_queue_t
+    @return id (self)
 **/
 - (id)initWithSocketQueue:(dispatch_queue_t)sq;
 
 /**
-    Initialize the GCDAsyncSocket with a delegate and delegate queue
-    param dispatch_queue_t
-    returns id (self)
+    @brief Initialize the GCDAsyncSocket with a delegate and delegate queue
+    @param dispatch_queue_t
+    @return id (self)
 **/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq;
 
+
 /**
-    Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
-    param id
-    param dispatch_queue_t
-    param dispatch_queue_t
-    returns id
+    @brief Initialize the GCDAsyncSocket with a delegate, delegate queue, and socket queue
+    @param id
+    @param dispatch_queue_t
+    @param dispatch_queue_t
+    @return id
 **/
 - (id)initWithDelegate:(id)aDelegate delegateQueue:(dispatch_queue_t)dq socketQueue:(dispatch_queue_t)sq;
 
 #pragma mark Configuration
 
 /**
-    Gets the delegate
-    returns id
+    @brief Gets the delegate
+    @return id
 **/
 - (id)delegate;
 
 /**
-    Sets the delegate
-    param id
+    @brief Sets the delegate
+    @param id
+    @return void
 **/
 - (void)setDelegate:(id)delegate;
 
 /**
-    Synchronously sets the delegate
-    param id
+    @brief Synchronously sets the delegate
+    @param id
+    @return void
 **/
 - (void)synchronouslySetDelegate:(id)delegate;
 
 /**
-    Get the delegate queue
-    returns dispatch_queue_t
+    @brief Get the delegate queue
+    @return dispatch_queue_t
 **/
 - (dispatch_queue_t)delegateQueue;
 
 /**
-    Set the delegate queue
-    param dispatch_queue_t
+    @brief Set the delegate queue
+    @param dispatch_queue_t
+    @return void
 **/
 - (void)setDelegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
-    param dispatch_queue_t
+    @param dispatch_queue_t
+    @return void
 **/
 - (void)synchronouslySetDelegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
-    Get delegate and delegate queue
-    param id
-    param dispatch_queue_t
+    @brief Get delegate and delegate queue
+    @param id
+    @param dispatch_queue_t
+    @return void
 **/
 - (void)getDelegate:(id *)delegatePtr delegateQueue:(dispatch_queue_t *)delegateQueuePtr;
 
 /**
-    Set the delegate and delegate queue
-    param id
-    param dispatch_queue_t
+    @brief Set the delegate and delegate queue
+    @param id
+    @param dispatch_queue_t
+    @return void
 **/
 - (void)setDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
-    Synchronously set the delegate and delegate queue
-    param id
-    param dispatch_queue_t
+    @brief Synchronously set the delegate and delegate queue
+    @param id
+    @param dispatch_queue_t
+    @return void
 **/
 - (void)synchronouslySetDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
@@ -342,14 +352,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 
 /**
-    Whether automatically disconnecting upon the closing of a read stream
-    returns BOOL
+    @brief Whether automatically disconnecting upon the closing of a read stream
+    @return BOOL
 **/
 - (BOOL)autoDisconnectOnClosedReadStream;
 
 /**
-    Sets the flag for whether automatically disconnecting upon the closing of a read stream
-    param BOOL
+    @brief Sets the flag for whether automatically disconnecting upon the closing of a read stream
+    @param BOOL
+    @return void
 **/
 - (void)setAutoDisconnectOnClosedReadStream:(BOOL)flag;
 
@@ -367,68 +378,73 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 **/
 
 /**
-    Whether IP version 4 is enabled
-    returns BOOL
+    @brief Whether IP version 4 is enabled
+    @return BOOL
 **/
 - (BOOL)isIPv4Enabled;
 
 /**
-    Set the flag for whether IP version 4 protocol is enabled
-    param BOOL
+    @brief Set the flag for whether IP version 4 protocol is enabled
+    @param BOOL
+    @return void
 **/
 - (void)setIPv4Enabled:(BOOL)flag;
 
 
 /**
-    Whether IP version 6 protocol is enabled
-    returns BOOL
+    @brief Whether IP version 6 protocol is enabled
+    @return BOOL
 **/
 - (BOOL)isIPv6Enabled;
 
 
 /**
-    Set the flag for whether IP version 6 protocol is enabled
-    param BOOL
+    @brief Set the flag for whether IP version 6 protocol is enabled
+    @param BOOL
+    @return void
 **/
 - (void)setIPv6Enabled:(BOOL)flag;
 
 
 /**
-    Whether IP version 4 protocol is preferred over IP version 6 protocol
-    returns BOOL
+    @brief Whether IP version 4 protocol is preferred over IP version 6 protocol
+    @return BOOL
 **/
 - (BOOL)isIPv4PreferredOverIPv6;
 
 
 /**
-    Set the flag for whether IP version 4 protocol is preferred over IP version 6
-    param BOOL
+    @brief Set the flag for whether IP version 4 protocol is preferred over IP version 6
+    @param BOOL
+    @return void
 **/
 - (void)setPreferIPv4OverIPv6:(BOOL)flag;
 
 /**
-    User data allows you to associate arbitrary information with the socket.
+    @brief User data allows you to associate arbitrary information with the socket.
     This data is not used internally by socket in any way.
-    returns id
+    @return id
 **/
 - (id)userData;
 
 /**
-    param id
+    @brief Set userData
+    @param id
+    @return void
 **/
 - (void)setUserData:(id)arbitraryUserData;
 
 #pragma mark Accepting
 
 /**
-    Tells the socket to begin listening and accepting connections on the given port.
+    @brief Tells the socket to begin listening and accepting connections on the given port.
 
     When a connection is accepted, a new instance of GCDAsyncSocket will be spawned to handle it, and the socket:didAcceptNewSocket: delegate method will be invoked.
  
     The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
-    param (UInt16) port
-    param NSError
-    returns BOOL
+    @param UInt16 port
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)acceptOnPort:(UInt16)port error:(NSError **)errPtr;
 
@@ -448,30 +464,34 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * or programmatically via the getifaddrs() function.
  * 
  * To accept connections on any interface pass nil, or simply use the acceptOnPort:error: method.
+    @param NSString
+    @param UInt6
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)acceptOnInterface:(NSString *)interface port:(UInt16)port error:(NSError **)errPtr;
 
 #pragma mark Connecting
 
 /**
-    Connects to the given host and port.
+    @brief Connects to the given host and port.
  
     This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface, and no timeout.
-    param NSString
-    param UInt16
-    returns BOOL
+    @param NSString
+    @param UInt16
+    @return BOOL
 **/
 - (BOOL)connectToHost:(NSString *)host onPort:(UInt16)port error:(NSError **)errPtr;
 
 /**
-    Connects to the given host and port with an optional timeout.
+    @brief Connects to the given host and port with an optional timeout.
  
     This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface.
-    param NSString
-    param UInt16
-    param NSTimeInterval
-    param NSError
-    returns BOOL
+    @param NSString
+    @param UInt16
+    @param NSTimeInterval
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)connectToHost:(NSString *)host
                onPort:(UInt16)port
@@ -479,7 +499,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
                 error:(NSError **)errPtr;
 
 /**
- * Connects to the given host & port, via the optional interface, with an optional timeout.
+    @brief Connects to the given host & port, via the optional interface, with an optional timeout.
  * 
  * The host may be a domain name (e.g. "deusty.com") or an IP address string (e.g. "192.168.0.2").
  * The interface may be a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35").
@@ -506,6 +526,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If you think you need to, there is a very good chance you have a fundamental misunderstanding somewhere.
  * Local ports do NOT need to match remote ports. In fact, they almost never do.
  * This feature is here for networking professionals using very advanced techniques.
+    @param NSString
+    @param UInt16
+    @param NSString
+    @param NSTimeInterval
+    @param NSerror
+    @return BOOL
 **/
 - (BOOL)connectToHost:(NSString *)host
                onPort:(UInt16)port
@@ -514,7 +540,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
                 error:(NSError **)errPtr;
 
 /**
- * Connects to the given address, specified as a sockaddr structure wrapped in a NSData object.
+    @brief Connects to the given address, specified as a sockaddr structure wrapped in a NSData object.
  * For example, a NSData object returned from NSNetservice's addresses method.
  * 
  * If you have an existing struct sockaddr you can convert it to a NSData object like so:
@@ -522,21 +548,24 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * struct sockaddr *sa -> NSData *dsa = [NSData dataWithBytes:remoteAddr length:remoteAddr->sa_len];
  * 
  * This method invokes connectToAdd
+    @param NSData
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)connectToAddress:(NSData *)remoteAddr error:(NSError **)errPtr;
 
 /**
-    This method is the same as connectToAddress:error: with an additional timeout option.
+    @brief This method is the same as connectToAddress:error: with an additional timeout option.
     To not time out use a negative time interval, or simply use the connectToAddress:error: method.
-    param NSData
-    param NSTimeInterval
-    param NSError
-    returns BOOL
+    @param NSData
+    @param NSTimeInterval
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)connectToAddress:(NSData *)remoteAddr withTimeout:(NSTimeInterval)timeout error:(NSError **)errPtr;
 
 /**
-    Connects to the given address, using the specified interface and timeout.
+    @brief Connects to the given address, using the specified interface and timeout.
  
     The address is specified as a sockaddr structure wrapped in a NSData object.
     For example, a NSData object returned from NSNetservice's addresses method.
@@ -569,11 +598,11 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
     Local ports do NOT need to match remote ports. In fact, they almost never do.
     This feature is here for networking professionals using very advanced techniques.
  
-    param NSData
-    param NSString
-    param NSTimeInterval
-    param NSError
-    returns BOOL
+    @param NSData
+    @param NSString
+    @param NSTimeInterval
+    @param NSError
+    @return BOOL
 **/
 - (BOOL)connectToAddress:(NSData *)remoteAddr
             viaInterface:(NSString *)interface
@@ -583,7 +612,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #pragma mark Disconnecting
 
 /**
- * Disconnects immediately (synchronously). Any pending reads or writes are dropped.
+    @brief Disconnects immediately (synchronously). Any pending reads or writes are dropped.
  * If the socket is not already disconnected, the socketDidDisconnect delegate method
  * will be called immediately, before this method returns.
  * 
@@ -591,91 +620,104 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * [asyncSocket setDelegate:nil];
  * [asyncSocket disconnect];
  * [asyncSocket release];
+    @return void
 **/
 - (void)disconnect;
 
 /**
- * Disconnects after all pending reads have completed.
- * After calling this, the read and write methods will do nothing.
- * The socket will disconnect even if there are still pending writes.
+    @brief Disconnects after all pending reads have completed.
+
+    After calling this, the read and write methods will do nothing.
+    The socket will disconnect even if there are still pending writes.
+    @return void
 **/
 - (void)disconnectAfterReading;
 
 /**
- * Disconnects after all pending writes have completed.
- * After calling this, the read and write methods will do nothing.
- * The socket will disconnect even if there are still pending reads.
+    @brief Disconnects after all pending writes have completed.
+    After calling this, the read and write methods will do nothing.
+    The socket will disconnect even if there are still pending reads.
+    @return void
 **/
 - (void)disconnectAfterWriting;
 
 /**
- * Disconnects after all pending reads and writes have completed.
- * After calling this, the read and write methods will do nothing.
+    @brief Disconnects after all pending reads and writes have completed.
+    After calling this, the read and write methods will do nothing.
+    @return void
 **/
 - (void)disconnectAfterReadingAndWriting;
 
 #pragma mark Diagnostics
 
 /**
- * Returns whether the socket is disconnected or connected.
- * 
- * A disconnected socket may be recycled.
- * That is, it can used again for connecting or listening.
- * 
- * If a socket is in the process of connecting, it may be neither disconnected nor connected.
+    @brief Returns whether the socket is disconnected or connected.
+ 
+    A disconnected socket may be recycled.
+    That is, it can used again for connecting or listening.
+    
+    If a socket is in the process of connecting, it may be neither disconnected nor connected.
+    @return BOOL
 **/
 - (BOOL)isDisconnected;
 
 /**
-    returns BOOL
+    @brief Whether is connected
+    @return BOOL
 **/
 - (BOOL)isConnected;
 
 /**
- * Returns the local or remote host and port to which this socket is connected, or nil and 0 if not connected.
- * The host will be an IP address.
+    @brief Returns the local or remote host and port to which this socket is connected, or nil and 0 if not connected.
+    The host will be an IP address.
+    @return NSString
 **/
 - (NSString *)connectedHost;
 
 /**
-    returns UInt16
+    @brief Gets the connected port
+    @return UInt16
 **/
 - (UInt16)connectedPort;
 
 /**
-    returns NSString
+    @brief Gets the local host
+    @return NSString
 **/
 - (NSString *)localHost;
 
 /**
-    returns UInt16
+    @brief Gets the local port
+    @return UInt16
 **/
 - (UInt16)localPort;
 
 /**
-    Returns the local or remote address to which this socket is connected, specified as a sockaddr structure wrapped in a NSData object.
+    @brief Returns the local or remote address to which this socket is connected, specified as a sockaddr structure wrapped in a NSData object.
  
     See also the connectedHost, connectedPort, localHost and localPort methods.
  
-    returns NSData
+    @return NSData
 **/
 - (NSData *)connectedAddress;
 
 
 /**
-    returns NSData
+    @brief Gets the local address
+    @return NSData
 **/
 - (NSData *)localAddress;
 
 /**
-    Returns whether the socket is IPv4 or IPv6.
+    @brief Returns whether the socket is IPv4.
     An accepting socket may be both.
-    returns BOOL
+    @return BOOL
 **/
 - (BOOL)isIPv4;
 
 /**
-    returns BOOL
+    @brief Wehter the socket is IP version 6
+    @return BOOL
 **/
 - (BOOL)isIPv6;
 
@@ -695,14 +737,17 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 // You can use it as an array index, step number, state id, pointer, etc.
 
 /**
- * Reads the first available bytes that become available on the socket.
- * 
- * If the timeout value is negative, the read operation will not use a timeout.
+    @brief Reads the first available bytes that become available on the socket.
+ 
+    If the timeout value is negative, the read operation will not use a timeout.
+    @param NSTimeInterval
+    @param long
+    @return void
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Reads the first available bytes that become available on the socket.
+    @brief Reads the first available bytes that become available on the socket.
  * The bytes will be appended to the given byte buffer starting at the given offset.
  * The given buffer will automatically be increased in size if needed.
  * 
@@ -715,6 +760,11 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
  * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
+    @param NSTimeInterval
+    @param NSMutableData
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
 					 buffer:(NSMutableData *)buffer // read buffer
@@ -722,7 +772,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 						tag:(long)tag;
 
 /**
- * Reads the first available bytes that become available on the socket.
+    @brief Reads the first available bytes that become available on the socket.
  * The bytes will be appended to the given byte buffer starting at the given offset.
  * The given buffer will automatically be increased in size if needed.
  * A maximum of length bytes will be read.
@@ -737,6 +787,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
  * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
+    @param NSTimeInterval
+    @param NSMutableData
+    @param NSUInteger
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
                      buffer:(NSMutableData *)buffer // read buffer
@@ -745,16 +801,20 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
                         tag:(long)tag;
 
 /**
- * Reads the given number of bytes.
+    @brief Reads the given number of bytes.
  * 
  * If the timeout value is negative, the read operation will not use a timeout.
  * 
  * If the length is 0, this method does nothing and the delegate is not called.
+    @param NSUInteger
+    @param NSTimeInterval
+    @param long
+    @return void
 **/
 - (void)readDataToLength:(NSUInteger)length withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Reads the given number of bytes.
+    @brief Reads the given number of bytes.
  * The bytes will be appended to the given byte buffer starting at the given offset.
  * The given buffer will automatically be increased in size if needed.
  * 
@@ -768,6 +828,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
  * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
+    @param NSUInteger
+    @param NSTimeInterval
+    @param NSMutableData
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataToLength:(NSUInteger)length
              withTimeout:(NSTimeInterval)timeout
@@ -776,7 +842,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
                      tag:(long)tag;
 
 /**
- * Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
+    @brief Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
  * 
  * If the timeout value is negative, the read operation will not use a timeout.
  * 
@@ -784,13 +850,16 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
- * Note that this method is not character-set aware, so if a separator can occur naturally as part of the encoding for
- * a character, the read will prematurely end.
+ * Note that this method is not character-set aware, so if a separator can occur naturally as part of the encoding for a character, the read will prematurely end.
+    @param NSData
+    @param NSTimeInterval
+    @param long
+    @return void
 **/
 - (void)readDataToData:(NSData *)data withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 /**
- * Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
+    @brief Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
  * The bytes will be appended to the given byte buffer starting at the given offset.
  * The given buffer will automatically be increased in size if needed.
  * 
@@ -807,6 +876,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
  * Note that this method is not character-set aware, so if a separator can occur naturally as part of the encoding for
  * a character, the read will prematurely end.
+    @param NSdata
+    @param NSTimeInterval
+    @param NSMutableData
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataToData:(NSData *)data
            withTimeout:(NSTimeInterval)timeout
@@ -815,7 +890,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
                    tag:(long)tag;
 
 /**
- * Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
+    @brief Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
  * 
  * If the timeout value is negative, the read operation will not use a timeout.
  * 
@@ -832,11 +907,16 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
  * Note that this method is not character-set aware, so if a separator can occur naturally as part of the encoding for
  * a character, the read will prematurely end.
+    @param NSdata
+    @param NSTimeInterval
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataToData:(NSData *)data withTimeout:(NSTimeInterval)timeout maxLength:(NSUInteger)length tag:(long)tag;
 
 /**
- * Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
+    @brief Reads bytes until (and including) the passed "data" parameter, which acts as a separator.
  * The bytes will be appended to the given byte buffer starting at the given offset.
  * The given buffer will automatically be increased in size if needed.
  * 
@@ -860,6 +940,13 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
  * Note that this method is not character-set aware, so if a separator can occur naturally as part of the encoding for
  * a character, the read will prematurely end.
+    @param NSData
+    @param NSTimeInterval
+    @param NSMutableData
+    @param NSUInteger
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)readDataToData:(NSData *)data
            withTimeout:(NSTimeInterval)timeout
@@ -871,17 +958,21 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #pragma mark Writing
 
 /**
- * Writes data to the socket, and calls the delegate when finished.
+    @brief Writes data to the socket, and calls the delegate when finished.
  * 
  * If you pass in nil or zero-length data, this method does nothing and the delegate will not be called.
  * If the timeout value is negative, the write operation will not use a timeout.
+    @param NSData
+    @param NSTimeInterval
+    @param long
+    @return void
 **/
 - (void)writeData:(NSData *)data withTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 #pragma mark Security
 
 /**
- * Secures the connection using SSL/TLS.
+    @brief Secures the connection using SSL/TLS.
  * 
  * This method may be called at any time, and the TLS handshake will occur after all pending reads and writes
  * are finished. This allows one the option of sending a protocol dependent StartTLS message, and queuing
@@ -918,13 +1009,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * if it will be "domain.com" or "www.domain.com"), then you can use the default settings to validate the
  * certificate, and then use the X509Certificate class to verify the issuer after the socket has been secured.
  * The X509Certificate class is part of the CocoaAsyncSocket open source project.
- **/
+    @param NSDictionary
+    @return void
+**/
 - (void)startTLS:(NSDictionary *)tlsSettings;
 
 #pragma mark Advanced
 
 /**
- * It's not thread-safe to access certain variables from outside the socket's internal queue.
+    @brief It's not thread-safe to access certain variables from outside the socket's internal queue.
  * 
  * For example, the socket file descriptor.
  * File descriptors are simply integers which reference an index in the per-process file table.
@@ -950,33 +1043,38 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The given block will be invoked synchronously on the socket's internal queue.
  * 
  * If you save references to any protected variables and use them outside the block, you do so at your own peril.
+    @param dispatch_block_t
+    @return void
 **/
 - (void)performBlock:(dispatch_block_t)block;
 
 /**
- * These methods are only available from within the context of a performBlock: invocation.
+    @brief These methods are only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
  * Provides access to the socket's file descriptor(s).
  * If the socket is a server socket (is accepting incoming connections),
  * it might actually have multiple internal socket file descriptors - one for IPv4 and one for IPv6.
+    @return int
 **/
 - (int)socketFD;
 
 /**
-    returns int
+    @brief Gets the IP version 4 socket file descriptor
+    @return int
 **/
 - (int)socket4FD;
 
 /**
-    returns int
+    @brief Gets the IP version 6 socket file descriptor
+    @return int
 **/
 - (int)socket6FD;
 
 #if TARGET_OS_IPHONE
 
 /**
- * These methods are only available from within the context of a performBlock: invocation.
+    @brief These methods are only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
  * Provides access to the socket's internal read/write streams.
@@ -989,16 +1087,18 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * This means the only supplied way to do SSL/TLS is via CFStream or some other API layered on top of it.
  * Thus, in order to provide SSL/TLS support on iOS we are forced to rely on CFStream,
  * instead of the preferred and faster and more powerful SecureTransport.
+    @return CFReadStreamRef
 **/
 - (CFReadStreamRef)readStream;
 
 /**
-    returns CFWriteStreamRef
+    @brief Gets the write stream reference
+    @return CFWriteStreamRef
 **/
 - (CFWriteStreamRef)writeStream;
 
 /**
- * This method is only available from within the context of a performBlock: invocation.
+    @brief This method is only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
  * Configures the socket to allow it to operate when the iOS application has been backgrounded.
@@ -1021,11 +1121,12 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  *         [asyncSocket enableBackgroundingOnSocket];
  *     }];
  * }
+    @return BOOL
 **/
 - (BOOL)enableBackgroundingOnSocket;
 
 /**
- * This method is only available from within the context of a performBlock: invocation.
+    @brief This method is only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
  * This method should be used in place of the usual enableBackgroundingOnSocket method if
@@ -1054,16 +1155,18 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * So the caveat is that this method will mark the socket for backgrounding,
  * but it will not open the read and write streams. (Because if it did, later attempts to start TLS would fail.)
  * Thus the socket will not actually support backgrounding until after the startTLS method has been called.
+    @return BOOL
 **/
 - (BOOL)enableBackgroundingOnSocketWithCaveat;
 
 #else
 
 /**
- * This method is only available from within the context of a performBlock: invocation.
+    @brief This method is only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
  * Provides access to the socket's SSLContext, if SSL/TLS has been started on the socket.
+    @return SSLContextRef
 **/
 - (SSLContextRef)sslContext;
 
@@ -1077,26 +1180,26 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 /**
     Class method
-    Gets the host from an address
-    param NSData
-    returns NSString
+    @brief Gets the host from an address
+    @param NSData
+    @return NSString
 **/
 + (NSString *)hostFromAddress:(NSData *)address;
 
 /**
     Class method
-    Get the port from an address
-    param NSData
-    returns UInt16
+    @brief Get the port from an address
+    @param NSData
+    @return UInt16
 **/
 + (UInt16)portFromAddress:(NSData *)address;
 
 /**
     Class method
-    param NSString (pointer to a pointer)
-    param UInt16
-    param NSData
-    returns BOOL
+    @param NSString (pointer to a pointer)
+    @param UInt16
+    @param NSData
+    @return BOOL
 **/
 + (BOOL)getHost:(NSString **)hostPtr port:(UInt16 *)portPtr fromAddress:(NSData *)address;
 
@@ -1106,25 +1209,25 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 /**
     Class method
-    returns NSData
+    @return NSData
 **/
 + (NSData *)CRLFData;   // 0x0D0A - Carriage return and line feed
 
 /**
     Class method
-    returns NSData
+    @return NSData
 **/
 + (NSData *)CRData;     // 0x0D  - Carriage return
 
 /**
     Class method
-    returns NSData
+    @return NSData
 **/
 + (NSData *)LFData;     // 0x0A - line feed
 
 /**
     Class method
-    returns NSData
+    @return NSData
 **/
 + (NSData *)ZeroData;   // 0x00 - empty NSData object
 
@@ -1138,7 +1241,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 @optional
 
 /**
- * This method is called immediately prior to socket:didAcceptNewSocket:.
+    @brief This method is called immediately prior to socket:didAcceptNewSocket:.
  * It optionally allows a listening socket to specify the socketQueue for a new accepted socket.
  * If this method is not implemented, or returns NULL, the new accepted socket will create its own default queue.
  * 
@@ -1154,11 +1257,14 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * For example, your implementation might look something like this:
  * dispatch_retain(myExistingQueue);
  * return myExistingQueue;
+    @param NSData
+    @param GCDAsyncSocket
+    @return dispatch_queue_t
 **/
 - (dispatch_queue_t)newSocketQueueForConnectionFromAddress:(NSData *)address onSocket:(GCDAsyncSocket *)sock;
 
 /**
- * Called when a socket accepts a connection.
+    @brief Called when a socket accepts a connection.
  * Another socket is automatically spawned to handle it.
  * 
  * You must retain the newSocket if you wish to handle the connection.
@@ -1166,44 +1272,63 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * By default the new socket will have the same delegate and delegateQueue.
  * You may, of course, change this at any time.
+    @param GCDAsyncSocket
+    @param GCDAsyncSocket
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
 
 /**
- * Called when a socket connects and is ready for reading and writing.
+    @brief Called when a socket connects and is ready for reading and writing.
  * The host parameter will be an IP address, not a DNS name.
+    @param GCDAsyncSocket
+    @param NSString
+    @param UInt16
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
 
 /**
-    Called when a socket has completed reading the requested data into memory.
+    @brief Called when a socket has completed reading the requested data into memory.
     Not called if there is an error.
-    param NCDAsyncSocket
-    param NSData
-    param long
+    @param GCDAsyncSocket
+    @param NSData
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
 
 /**
- * Called when a socket has read in data, but has not yet completed the read.
+    @brief Called when a socket has read in data, but has not yet completed the read.
  * This would occur if using readToData: or readToLength: methods.
  * It may be used to for things such as updating progress bars.
+    @param GCDAsyncSocket
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
 
 /**
- * Called when a socket has completed writing the requested data. Not called if there is an error.
+    @brief Called when a socket has completed writing the requested data. Not called if there is an error.
+    @param GCDAsyncSocket
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag;
 
 /**
- * Called when a socket has written some data, but has not yet completed the entire write.
+    @brief Called when a socket has written some data, but has not yet completed the entire write.
  * It may be used to for things such as updating progress bars.
+    @param GCDAsyncSocket
+    @param NSUInteger
+    @param long
+    @return void
 **/
 - (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
 
 /**
- * Called if a read operation has reached its timeout without completing.
+    @brief Called if a read operation has reached its timeout without completing.
  * This method allows you to optionally extend the timeout.
  * If you return a positive time interval (> 0) the read's timeout will be extended by the given amount.
  * If you don't implement this method, or return a non-positive time interval (<= 0) the read will timeout as usual.
@@ -1212,13 +1337,18 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * The length parameter is the number of bytes that have been read so far for the read operation.
  * 
  * Note that this method may be called multiple times for a single read if you return positive numbers.
+    @param GCDAsyncSocket
+    @param long
+    @param NSTimeInterval
+    @param NSUInteger
+    @return NSTimeInterval
 **/
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag
             elapsed:(NSTimeInterval)elapsed
             bytesDone:(NSUInteger)length;
 
 /**
-    Called if a write operation has reached its timeout without completing.
+    @brief Called if a write operation has reached its timeout without completing.
  
     This method allows you to optionally extend the timeout.
  
@@ -1232,41 +1362,44 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
     Note that this method may be called multiple times for a single write if you return positive numbers.
  
-    param GCDAsyncSocket
-    param long
-    param NSTimeInterval
-    param NSUInteger
-    returns NSTimeInterval
+    @param GCDAsyncSocket
+    @param long
+    @param NSTimeInterval
+    @param NSUInteger
+    @return NSTimeInterval
 **/
 - (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutWriteWithTag:(long)tag
         elapsed:(NSTimeInterval)elapsed
         bytesDone:(NSUInteger)length;
 
 /**
-    Conditionally called if the read stream closes, but the write stream may still be writeable.
+    @brief Conditionally called if the read stream closes, but the write stream may still be writeable.
 
     This delegate method is only called if autoDisconnectOnClosedReadStream has been set to NO.
     See the discussion on the autoDisconnectOnClosedReadStream method for more information.
-    param GCDAsyncSocket
+    @param GCDAsyncSocket
+    @return void
 **/
 - (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock;
 
 /**
-    Called when a socket disconnects with or without error.
+    @brief Called when a socket disconnects with or without error.
  
     If you call the disconnect method, and the socket wasn't already disconnected, this delegate method will be called before the disconnect method returns.
-    param GCDAsyncSocket
-    param NSError
+    @param GCDAsyncSocket
+    @param NSError
+    @return void
 **/
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 
 /**
-    Called after the socket has successfully completed SSL/TLS negotiation.
+    @brief Called after the socket has successfully completed SSL/TLS negotiation.
  
     This method is not called unless you use the provided startTLS method.
  
     If a SSL/TLS negotiation fails (invalid certificate, etc) then the socket will immediately close, and the socketDidDisconnect:withError: delegate method will be called with the specific SSL error code.
-    param GCDAsyncSocket
+    @param GCDAsyncSocket
+    @return void
 **/
 - (void)socketDidSecure:(GCDAsyncSocket *)sock;
 

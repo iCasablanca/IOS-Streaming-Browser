@@ -38,23 +38,23 @@
 @interface HTTPDynamicFileResponse : HTTPAsyncFileResponse
 {
     /**
-      separator string
+        @brief separator string
     **/
 	NSData *separator;  
     
     /**
-     
+        @brief The replacement dictionary
     **/
 	NSDictionary *replacementDict;
 }
 
 /**
-    Initialize the HTTPDyanmicFileResponse
-    param NSString
-    param HTTPConnection
-    param NSString
-    param NSDictionary
-    returns id
+    @brief Initialize the HTTPDyanmicFileResponse
+    @param NSString
+    @param HTTPConnection
+    @param NSString
+    @param NSDictionary
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)filePath
          forConnection:(HTTPConnection *)connection

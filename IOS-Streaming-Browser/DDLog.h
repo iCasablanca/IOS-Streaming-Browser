@@ -148,9 +148,8 @@
 @protocol DDLogFormatter;
 
 /**
- * Define our big multiline macros so all the other macros will be easy to read.
+    Define our big multiline macros so all the other macros will be easy to read.
 **/
-
 #define LOG_MACRO(isSynchronous, lvl, flg, ctx, fnct, frmt, ...) \
   [DDLog log:isSynchronous                                       \
        level:lvl                                                 \
@@ -251,8 +250,8 @@
  * 
  * For example: DDLogWarn(@"%@: Unable to find thingy", THIS_FILE) -> @"MyViewController: Unable to find thingy"
 **/
-
 NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
+
 
 #define THIS_FILE (ExtractFileNameWithoutExtension(__FILE__, NO))
 
@@ -277,10 +276,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #if GCD_MAYBE_AVAILABLE
 
 /**
- * Provides access to the underlying logging queue.
- * This may be helpful to Logger classes for things like thread synchronization.
+    @brief Provides access to the underlying logging queue.
+    This may be helpful to Logger classes for things like thread synchronization.
+    @return dispatch_queue_t
 **/
-
 + (dispatch_queue_t)loggingQueue;
 
 #endif
@@ -288,21 +287,29 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #if GCD_MAYBE_UNAVAILABLE
 
 /**
- * Provides access to the underlying logging thread.
- * This may be helpful to Logger classes for things like thread synchronization.
+    @brief Provides access to the underlying logging thread.
+    This may be helpful to Logger classes for things like thread synchronization.
+    @return NSThread
 **/
-
 + (NSThread *)loggingThread;
 
 #endif
 
 /**
- * Logging Primitive.
- * 
- * This method is used by the macros above.
- * It is suggested you stick with the macros as they're easier to use.
+    @brief Logging Primitive.
+ 
+    This method is used by the macros above.
+    It is suggested you stick with the macros as they're easier to use.
+    @param BOOL 
+    @param int
+    @param int
+    @param int
+    @param const char
+    @param const char
+    @param int
+    @param NSString
+    @return void
 **/
-
 + (void)log:(BOOL)synchronous
       level:(int)level
        flag:(int)flag
@@ -313,10 +320,11 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
      format:(NSString *)format, ...;
 
 /**
- * Since logging can be asynchronous, there may be times when you want to flush the logs.
- * The framework invokes this automatically when the application quits.
+    @brief Flush the log
+    Since logging can be asynchronous, there may be times when you want to flush the logs.
+    The framework invokes this automatically when the application quits.
+    @return void
 **/
-
 + (void)flushLog;
 
 /** 
@@ -326,9 +334,24 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * you should create and add a logger.
 **/
 
+/**
+    @brief Adds a logger
+    @param id <DDLogger>
+    @return void
+**/
 + (void)addLogger:(id <DDLogger>)logger;
+
+/**
+    @brief Remove a logger
+    @param id <DDLogger>
+    @return void
+**/
 + (void)removeLogger:(id <DDLogger>)logger;
 
+/**
+    @brief Removes all loggers
+    @return void
+**/
 + (void)removeAllLoggers;
 
 /**
@@ -340,40 +363,43 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 
 /**
     Class method
+    @return NSArray
 **/
 + (NSArray *)registeredClasses;
 
 /**
     Class method
-    returns NSArray
+    @return NSArray
 **/
 + (NSArray *)registeredClassNames;
 
 /**
     Class method
-    param Class
-    returns int
+    @param Class
+    @return int
 **/
 + (int)logLevelForClass:(Class)aClass;
 
 /**
     Class method
-    param NSString
-    returns int
+    @param NSString
+    @return int
 **/
 + (int)logLevelForClassWithName:(NSString *)aClassName;
 
 /**
     Class method
-    param int
-    param Class
+    @param int
+    @param Class
+    @return void
 **/
 + (void)setLogLevel:(int)logLevel forClass:(Class)aClass;
 
 /**
     Class method
-    param int
-    param NSString
+    @param int
+    @param NSString
+    @return void
 **/
 + (void)setLogLevel:(int)logLevel forClassWithName:(NSString *)aClassName;
 
@@ -388,19 +414,21 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 
 
 /**
-    param DDLogMessage
+    @param DDLogMessage
+    @return void
 **/
 - (void)logMessage:(DDLogMessage *)logMessage;
 
 
 /**
-    Formatters may optionally be added to any logger.   If no formatter is set, the logger simply logs the message as it is given in logMessage.  Or it may use its own built in formatting style.
-    returns id <DDLogFormatter>
+    @brief Formatters may optionally be added to any logger.   If no formatter is set, the logger simply logs the message as it is given in logMessage.  Or it may use its own built in formatting style.
+    @return id <DDLogFormatter>
 **/
 - (id <DDLogFormatter>)logFormatter;
 
 /**
-    param id <DDLogFormatter>
+    @param id <DDLogFormatter>
+    @return void
 **/
 - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 
@@ -418,28 +446,31 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * Loggers may use these methods for thread synchronization or other setup/teardown tasks.
 **/
 
+/**
+    @return void
+**/
 - (void)didAddLogger;
 
 /**
- 
+    @return void
 **/
 - (void)willRemoveLogger;
 
 #if GCD_MAYBE_AVAILABLE
 
 /**
- * When Grand Central Dispatch is available
- * each logger is executed concurrently with respect to the other loggers.
- * Thus, a dedicated dispatch queue is used for each logger.
- * Logger implementations may optionally choose to provide their own dispatch queue.
+    When Grand Central Dispatch is available each logger is executed concurrently with respect to the other loggers.
+    Thus, a dedicated dispatch queue is used for each logger.
+    Logger implementations may optionally choose to provide their own dispatch queue.
+    @return dispatch_queue_t
 **/
 - (dispatch_queue_t)loggerQueue;
 
 /**
- * If the logger implementation does not choose to provide its own queue,
- * one will automatically be created for it.
- * The created queue will receive its name from this method.
- * This may be helpful for debugging or profiling reasons.
+    If the logger implementation does not choose to provide its own queue, one will automatically be created for it.
+    The created queue will receive its name from this method.
+    This may be helpful for debugging or profiling reasons.
+    @returns NSString
 **/
 - (NSString *)loggerName;
 
@@ -466,6 +497,10 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
  * in which case the logger will not log the message.
 **/
 
+/**
+    @param DDLogMessage
+    @return NSString
+**/
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage;
 
 @end
@@ -500,13 +535,16 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 
 /**
     Class method
-    returns int
+    @brief Gets the log level
+    @return int
 **/
 + (int)ddLogLevel;
 
 /**
     Class method
-    param int
+    @brief Sets the log level
+    @param int
+    @return void
 **/
 + (void)ddSetLogLevel:(int)logLevel;
 
@@ -529,7 +567,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 @public
     
     /**
-     
+        @brief The log level
     **/
 	int logLevel;
 
@@ -539,37 +577,37 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
     int logFlag;
     
     /**
-     
+        @brief the log context
      **/
 	int logContext;
     
     /**
-     
+        @brief the log message
      **/
 	NSString *logMsg;
     
     /**
-     
+        @brief the timestamp for the log message
      **/
 	NSDate *timestamp;
     
     /**
-     
+        @brief the file 
      **/
 	const char *file;
     
     /**
-     
+        
      **/
 	const char *function;
     
     /**
-     
+        @brief The line number for the message
      **/
 	int lineNumber;
     
     /**
-     
+        @brief the Thread id
      **/
 	mach_port_t machThreadID;
 
@@ -579,17 +617,17 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 @private
     
     /**
-     
+        @brief The thread id
      **/
 	NSString *threadID;
     
     /**
-     
+        @brief The file name
      **/
 	NSString *fileName;
     
     /**
-     
+        @brief The method name
      **/
 	NSString *methodName;
 }
@@ -602,6 +640,14 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 // That is, it expects the given strings to exist for the duration of the object's lifetime,
 // and it expects the given strings to be immutable.
 // In other words, it does not copy these strings, it simply points to them.
+    @param NSString
+    @param int
+    @param int
+    @param int
+    @param const char
+    @param const char
+    @param int
+    @return id
 **/
 - (id)initWithLogMsg:(NSString *)logMsg
                level:(int)logLevel
@@ -612,22 +658,22 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
                 line:(int)line;
 
 /**
- * Returns the threadID as it appears in NSLog.
- * That is, it is a hexadecimal value which is calculated from the machThreadID.
- returns NSSTring
+    @brief Returns the threadID as it appears in NSLog.
+    That is, it is a hexadecimal value which is calculated from the machThreadID.
+    @return NSSTring
 **/
 - (NSString *)threadID;
 
 /**
- * Convenience method to get just the file name, as the file variable is generally the full file path.
- * This method does not include the file extension, which is generally unwanted for logging purposes.
-    returns NSString
+    @brief Convenience method to get just the file name, as the file variable is generally the full file path.
+    This method does not include the file extension, which is generally unwanted for logging purposes.
+    @return NSString
 **/
 - (NSString *)fileName;
 
 /**
- * Returns the function variable in NSString form.
-    returns NSString
+    @brief Returns the function variable in NSString form.
+    @return NSString
 **/
 - (NSString *)methodName;
 
@@ -657,22 +703,27 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 @interface DDAbstractLogger : NSObject <DDLogger>
 {
     /**
-        Follows the DDLogFormatter protocol
+        @brief Follows the DDLogFormatter protocol
     **/
 	id <DDLogFormatter> formatter;
 	
 #if GCD_MAYBE_AVAILABLE
+    
+    /**
+        @brief The loggerQueue
+    **/
 	dispatch_queue_t loggerQueue;
 #endif
 }
 
 /**
- 
+    @return id <DDLogFormatter>
 **/
 - (id <DDLogFormatter>)logFormatter;
 
 /**
- 
+    @param id <DDLogFormatter>
+    @return void
 **/
 - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 

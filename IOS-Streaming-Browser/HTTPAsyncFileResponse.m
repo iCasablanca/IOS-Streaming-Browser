@@ -29,10 +29,10 @@
 
 
 /**
-    Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
-    param NSString
-    param HTTPConnection
-    returns id
+    @brief Initialize the HTTPAsyncFileResponse with a file path and HTTPConnection
+    @param NSString
+    @param HTTPConnection
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)fpath forConnection:(HTTPConnection *)parent
 {
@@ -80,7 +80,8 @@
 
 
 /**
-    Abort the HTTP connection
+    @brief Abort the HTTP connection
+    @return void
 **/
 - (void)abort
 {
@@ -91,7 +92,8 @@
 
 
 /**
-    Process the read buffer
+    @brief Process the read buffer
+    @return void
 **/
 - (void)processReadBuffer
 {
@@ -113,7 +115,8 @@
 }
 
 /**
-    Pause the read source
+    @brief Pause the read source
+    @return void
 **/
 - (void)pauseReadSource
 {
@@ -127,7 +130,8 @@
 }
 
 /**
-    Resume the read source
+    @brief Resume the read source
+    @return void
 **/
 - (void)resumeReadSource
 {
@@ -143,7 +147,8 @@
 }
 
 /**
-    Cancel the read source
+    @brief Cancel the read source
+    @return void
 **/
 - (void)cancelReadSource
 {
@@ -161,8 +166,8 @@
 }
 
 /**
-    Whether can open a file and setup the readSource
-    returns BOOL
+    @brief Whether can open a file and setup the readSource
+    @return BOOL
 **/
 - (BOOL)openFileAndSetupReadSource
 {
@@ -309,7 +314,8 @@
 }
 
 /**
-    Whether need to open file or if it has already been opened
+    @brief Whether need to open file or if it has already been opened
+    @return BOOL
 **/
 - (BOOL)openFileIfNeeded
 {
@@ -333,8 +339,8 @@
 }	
 
 /**
-    Get file length
-    returns UInt64
+    @brief Get file length
+    @return UInt64
 **/
 - (UInt64)contentLength
 {
@@ -343,8 +349,8 @@
 }
 
 /**
-    Get the file offset
-    returns UInt64
+    @brief Get the file offset
+    @return UInt64
 **/
 - (UInt64)offset
 {
@@ -353,8 +359,9 @@
 }
 
 /**
-    Set the file's offset
-    param Uint64
+    @brief Set the file's offset
+    @param Uint64
+    @return void
 **/
 - (void)setOffset:(UInt64)offset
 {
@@ -381,9 +388,9 @@
 }
 
 /**  
-    Reads a certain length of data from the file
-    param NSUInteger
-    returns NSData
+    @brief Reads a certain length of data from the file
+    @param NSUInteger
+    @return NSData
 **/
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
@@ -430,8 +437,8 @@
 }
 
 /**
-    If done reading the file
-    returns BOOL
+    @brief If done reading the file
+    @return BOOL
 **/
 - (BOOL)isDone
 {
@@ -442,8 +449,8 @@
 }
 
 /**
-    Gets the file path
-    returns NSString
+    @brief Gets the file path
+    @return NSString
 **/
 - (NSString *)filePath
 {
@@ -451,8 +458,8 @@
 }
 
 /**
-    Whether this response is asynchronous
-    returns BOOL
+    @brief Whether this response is asynchronous
+    @return BOOL
 **/
 - (BOOL)isAsynchronous
 {
@@ -460,7 +467,8 @@
 }
 
 /**
-    Cancel the readSource and set connection to nil
+    @brief Cancel the readSource and set connection to nil
+    @return void
 **/
 - (void)connectionDidClose
 {
@@ -483,7 +491,8 @@
 }
 
 /**
-    Standard deconstructor
+    @brief Standard deconstructor
+    @return void
 **/
 - (void)dealloc
 {

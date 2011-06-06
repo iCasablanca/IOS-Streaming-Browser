@@ -53,46 +53,46 @@
 // Public methods
 
 /**
- 
+    @return NSString
 **/
 - (NSString *)logsDirectory;
 
 /**
- 
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFilePaths;
 
 /**
-    Gets unsorted array with the log file names
-    returns NSArray
+    @brief Gets unsorted array with the log file names
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFileNames;
 
 /**
     
-    returns NSArray
+    @return NSArray
 **/
 - (NSArray *)unsortedLogFileInfos;
 
 /**
-    returns NSArray
+    @return NSArray
 **/
 - (NSArray *)sortedLogFilePaths;
 
 /**
-    returns NSArray
+    @return NSArray
 **/
 - (NSArray *)sortedLogFileNames;
 
 /**
-    returns NSArray
+    @return NSArray
 **/
 - (NSArray *)sortedLogFileInfos;
 
 // Private methods (only to be used by DDFileLogger)
 
 /**
-    returns NSString
+    @return NSString
 **/
 - (NSString *)createNewLogFile;
 
@@ -103,12 +103,14 @@
 //////////////////////////////////////
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)didArchiveLogFile:(NSString *)logFilePath;
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)didRollAndArchiveLogFile:(NSString *)logFilePath;
 
@@ -132,7 +134,7 @@
 @interface DDLogFileManagerDefault : NSObject <DDLogFileManager>
 {
     /**
-        The maximum number of log files
+        @brief The maximum number of log files
     **/
 	NSUInteger maximumNumberOfLogFiles;
 }
@@ -155,7 +157,7 @@
 @interface DDLogFileFormatterDefault : NSObject <DDLogFormatter>
 {
     /**
-     
+        @brief The date formatter
     **/
 	NSDateFormatter *dateFormatter;
 }
@@ -169,17 +171,17 @@
 @interface DDFileLogger : DDAbstractLogger <DDLogger>
 {
     /**
-     
+        @brief The log file manager
     **/
 	id <DDLogFileManager> logFileManager;
 	
     /**
-     
+        @brief The current log file information
     **/
 	DDLogFileInfo *currentLogFileInfo;
     
     /**
-        The NSFileHandle class is an object-oriented wrapper for a file descriptor
+        @brief The NSFileHandle class is an object-oriented wrapper for a file descriptor
     **/
 	NSFileHandle *currentLogFileHandle;
 	
@@ -189,7 +191,7 @@
 	NSTimer *rollingTimer;
 	
     /**
-        The maximum file size has to be between 0 and 9,223,372,036,854,775,807
+        @brief The maximum file size has to be between 0 and 9,223,372,036,854,775,807
     **/
 	unsigned long long maximumFileSize;
     
@@ -200,12 +202,15 @@
 }
 
 /**
-    Initialize the DDFileLogger
+    @brief Initialize the DDFileLogger
+    @return id
 **/
 - (id)init;
 
 /**
-    Initialize the DDFileLogger with a file manager
+    @brief Initialize the DDFileLogger with a file manager
+    @param id <DDLogFileManager
+    @return id
 **/
 - (id)initWithLogFileManager:(id <DDLogFileManager>)logFileManager;
 
@@ -245,7 +250,8 @@
 
 
 /**
-    You can optionally force the current log file to be rolled with this method.
+    @brief You can optionally force the current log file to be rolled with this method.
+    @return void
 **/
 - (void)rollLogFile;
 
@@ -276,27 +282,27 @@
 @interface DDLogFileInfo : NSObject
 {
     /**
-        The file path of the log file
+        @brief The file path of the log file
     **/
 	NSString *filePath;
     
     /**
-        The log file name
+        @brief The log file name
     **/
 	NSString *fileName;
 	
     /**
-     
+        @brief NSDiction for the file attributes
     **/
 	NSDictionary *fileAttributes;
 	
     /**
-        The creation date
+        @brief The file creation date
     **/
 	NSDate *creationDate;
     
     /**
-        The modification date
+        @brief The modification date
     **/
 	NSDate *modificationDate;
 	
@@ -322,26 +328,28 @@
 
 /**
     Class method
-    param NSString
-    returns id
+    @param NSString
+    @return id
 **/
 + (id)logFileWithPath:(NSString *)filePath;
 
 
 /**
-    Initialize the DDLogFileInfo with a file path
-    param NSString
-    returns id
+    @brief Initialize the DDLogFileInfo with a file path
+    @param NSString
+    @return id
 **/
 - (id)initWithFilePath:(NSString *)filePath;
 
 /**
- 
+    @return void
 **/
 - (void)reset;
 
 /**
-    param NSString
+    @brief Renames the file
+    @param NSString
+    @return void
 **/
 - (void)renameFile:(NSString *)newFileName;
 
@@ -368,18 +376,20 @@
 
 
 /**
-    param NSString
-    returns BOOL
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)hasExtensionAttributeWithName:(NSString *)attrName;
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)addExtensionAttributeWithName:(NSString *)attrName;
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)removeExtensionAttributeWithName:(NSString *)attrName;
 
@@ -389,32 +399,34 @@
 // such as on Macs and on iPhone devices.
 
 /**
-    param NSString
-    returns BOOL
+    @param NSString
+    @return BOOL
 **/
 - (BOOL)hasExtendedAttributeWithName:(NSString *)attrName;
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)addExtendedAttributeWithName:(NSString *)attrName;
 
 /**
-    param NSString
+    @param NSString
+    @return void
 **/
 - (void)removeExtendedAttributeWithName:(NSString *)attrName;
 
 #endif
 
 /**
-    param DDLogFileInfo
-    returns NSComparisonResult
+    @param DDLogFileInfo
+    @return NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another;
 
 /**
-    param DDLogFileInfo
-    returns NSComparisonResult
+    @param DDLogFileInfo
+    @return NSComparisonResult
 **/
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another;
 
